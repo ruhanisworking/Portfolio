@@ -49,3 +49,56 @@ const revealObserver = new IntersectionObserver(
   { threshold: 0.15 }
 );
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+// Accordion groups: opening one closes the rest, with an animated expand/collapse
+// instead of the native <details> instant snap.
+function collapseDetails(item) {
+  const wrap = item.querySelector(".details-body-wrap");
+  if (!wrap) { item.open = false; return; }
+  const startHeight = wrap.getBoundingClientRect().height;
+  wrap.style.height = startHeight + "px";
+  requestAnimationFrame(() => { wrap.style.height = "0px"; });
+  wrap.addEventListener(
+    "transitionend",
+    () => { item.open = false; wrap.style.height = ""; },
+    { once: true }
+  );
+}
+
+function expandDetails(item) {
+  const wrap = item.querySelector(".details-body-wrap");
+  const inner = wrap && wrap.firstElementChild;
+  if (!wrap || !inner) return;
+  wrap.style.height = "0px";
+  requestAnimationFrame(() => { wrap.style.height = inner.getBoundingClientRect().height + "px"; });
+  wrap.addEventListener(
+    "transitionend",
+    () => { wrap.style.height = "auto"; },
+    { once: true }
+  );
+}
+
+function setupAccordionGroup(groupSelector, itemSelector) {
+  document.querySelectorAll(groupSelector).forEach((group) => {
+    const items = Array.from(group.querySelectorAll(itemSelector));
+    items.forEach((item) => {
+      const summary = item.querySelector("summary");
+      if (summary) {
+        summary.addEventListener("click", (e) => {
+          if (item.open) {
+            e.preventDefault();
+            collapseDetails(item);
+          }
+        });
+      }
+      item.addEventListener("toggle", () => {
+        if (item.open) {
+          items.forEach((other) => { if (other !== item && other.open) collapseDetails(other); });
+          expandDetails(item);
+        }
+      });
+    });
+  });
+}
+setupAccordionGroup(".work-grid", ":scope > details.proj-card");
+setupAccordionGroup(".faq-list", ":scope > details.faq-item");

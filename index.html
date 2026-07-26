@@ -15,7 +15,7 @@
       name="keywords"
       content="freelance software engineer bangladesh, website development dhaka, mobile app development bangladesh, ai chatbot bangladesh, ai automation, erp software bangladesh, open source software engineer, data analytics bangladesh, cyber security services bangladesh, custom software dhaka"
     />
-    <meta name="theme-color" content="#fbf3e6" />
+    <meta name="theme-color" content="#f6f6fb" />
     <link rel="canonical" href="https://ruhan.lol/" />
     <meta name="geo.region" content="BD" />
     <meta name="geo.placename" content="Dhaka" />
@@ -26,6 +26,7 @@
     <meta property="og:url" content="https://ruhan.lol/" />
     <meta property="og:title" content="Mohammad Ruhan Islam — Software, Apps &amp; AI Systems" />
     <meta property="og:description" content="Websites, mobile apps, AI chatbots, enterprise software and security — built personally, engineered on proven open-source technology." />
+    <meta property="og:image" content="https://ruhan.lol/assets/images/profile.jpg" />
     <meta name="twitter:card" content="summary" />
 
     <!-- Structured data -->
@@ -38,6 +39,7 @@
         "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
         "email": "mailto:ruhan.9mri@gmail.com",
         "url": "https://ruhan.lol/",
+        "image": "https://ruhan.lol/assets/images/profile.jpg",
         "knowsAbout": ["Web Development", "Mobile App Development", "AI Automation", "Chatbots", "ERP", "Data Engineering", "Cyber Security", "DevOps"]
       }
     </script>
@@ -95,7 +97,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -112,9 +114,9 @@
         </button>
         <ul class="nav-menu">
           <li><a href="#services">services</a></li>
+          <li><a href="#experience">experience</a></li>
           <li><a href="#how-we-build">how we build</a></li>
           <li><a href="#stack">stack</a></li>
-          <li><a href="#story">story</a></li>
           <li><a href="#faq">faq</a></li>
           <li><a href="#contact">contact</a></li>
         </ul>
@@ -124,20 +126,29 @@
 
     <!-- ================= HERO ================= -->
     <header id="home" class="hero">
-      <span class="blob blob-a" aria-hidden="true"></span>
-      <span class="blob blob-b" aria-hidden="true"></span>
-      <span class="blob blob-c" aria-hidden="true"></span>
+      <div class="mesh" aria-hidden="true"><span class="m1"></span><span class="m2"></span><span class="m3"></span></div>
       <div class="container hero-inner">
+        <div class="identity-row">
+          <span class="identity-photo">
+            <img src="assets/images/profile.jpg" alt="Mohammad Ruhan Islam" loading="eager" decoding="async" />
+          </span>
+          <span class="identity-text">
+            <span class="identity-name">Mohammad Ruhan Islam</span>
+            <span class="identity-role">Programmer, IICT &middot; BUET</span>
+          </span>
+        </div>
+
         <p class="hero-eyebrow"><span class="dot-live"></span> Dhaka, Bangladesh &#127465;&#127472; &middot; working nationwide &amp; remote</p>
 
         <h1 class="hero-title">
           <span class="line">One engineering partner</span>
-          <span class="line accent">for everything digital<span class="cursor"></span></span>
+          <span class="line accent">for everything digital</span>
         </h1>
 
         <p class="hero-lede hero-sub">
           Websites. Mobile apps. AI automation. Enterprise systems. Security. Built by an engineer
-          who has run all of it in production — not resold, not outsourced, not templated.
+          who has run all of it in production, including national-level government systems
+          (Bangladesh Technical Education Board) — not resold, not outsourced, not templated.
         </p>
 
         <p class="hero-lede">
@@ -154,19 +165,19 @@
 
         <div class="status-band">
           <div class="status-card c-green">
-            <div class="status-top"><span class="status-dot on"></span><span class="status-label">Full ownership</span></div>
+            <div class="status-top"><span class="status-dot"></span><span class="status-label">Full ownership</span></div>
             <p class="status-detail">One person answers for design, code, servers and uptime</p>
           </div>
           <div class="status-card c-cyan">
-            <div class="status-top"><span class="status-dot on"></span><span class="status-label">Open source first</span></div>
+            <div class="status-top"><span class="status-dot"></span><span class="status-label">Open source first</span></div>
             <p class="status-detail">No license fees, no lock-in, audit every line if you want</p>
           </div>
           <div class="status-card c-violet">
-            <div class="status-top"><span class="status-dot on"></span><span class="status-label">Production mindset</span></div>
+            <div class="status-top"><span class="status-dot"></span><span class="status-label">Production mindset</span></div>
             <p class="status-detail">Monitoring, backups and security from day one, not after launch</p>
           </div>
           <div class="status-card c-pink">
-            <div class="status-top"><span class="status-dot on"></span><span class="status-label">Straight answers</span></div>
+            <div class="status-top"><span class="status-dot"></span><span class="status-label">Straight answers</span></div>
             <p class="status-detail">If something doesn't need building, you'll be told so</p>
           </div>
         </div>
@@ -183,8 +194,9 @@
         </div>
 
         <div class="work-grid">
-          <details class="proj-card reveal">
+          <details class="proj-card svc-website reveal">
             <summary>
+              <div class="motif motif-browser"><div class="m-bar"><span></span><span></span><span></span></div><div class="m-lines"><i></i><i></i></div></div>
               <div class="proj-heading">
                 <h3>Websites &amp; Web Platforms</h3>
                 <span class="proj-tag">Corporate sites &middot; e-commerce &middot; portals</span>
@@ -193,23 +205,23 @@
                 From a company site that actually ranks on Google to a full customer portal with
                 payments, dashboards and admin panels — fast, mobile-first, and built to be found.
               </p>
-              <span class="details-toggle">read more &darr;</span>
+              <span class="details-toggle">Read more <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="details-body">
+            <div class="details-body-wrap"><div class="details-body">
               <p class="proj-desc">
                 Most business websites in Bangladesh are built to be looked at once and
                 forgotten. These are built to work: SEO-ready structure, sub-second load times,
                 responsive on the cheapest Android phone your customer owns, and a backend you
                 can grow into — user accounts, online payments (bKash, Nagad, SSLCommerz, cards),
-                booking, e-commerce, multi-language Bangla/English. Corporate sites, e-commerce,
-                news portals, education platforms, service marketplaces.
+                booking, e-commerce, multi-language Bangla/English.
               </p>
               <ul class="tech"><li>React</li><li>Laravel</li><li>Spring Boot</li><li>PostgreSQL</li><li>Redis</li><li>Nginx</li></ul>
-            </div>
+            </div></div>
           </details>
 
-          <details class="proj-card reveal">
+          <details class="proj-card svc-mobile reveal">
             <summary>
+              <div class="motif motif-phone"><div class="m-device"><i></i><i></i><i></i><i></i></div><span class="m-pulse"></span></div>
               <div class="proj-heading">
                 <h3>Mobile Apps</h3>
                 <span class="proj-tag">Android &amp; iOS &middot; real-time &amp; offline</span>
@@ -218,23 +230,22 @@
                 Real-time, offline-capable mobile apps — delivery tracking, chat, field-force
                 tools, customer apps — that stay fast on real Bangladeshi networks.
               </p>
-              <span class="details-toggle">read more &darr;</span>
+              <span class="details-toggle">Read more <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="details-body">
+            <div class="details-body-wrap"><div class="details-body">
               <p class="proj-desc">
                 Apps here fail for one reason: they're built assuming perfect internet. These
                 assume a bad-network day — offline-first data, background sync, push
-                notifications, live location and real-time updates over WebSockets.
-                Customer-facing apps, internal staff apps, delivery/logistics tracking, attendance
-                and field reporting, chat and community apps. One codebase for Android and iOS
-                where it makes sense, native where it doesn't.
+                notifications, live location and real-time updates over WebSockets. One codebase
+                for Android and iOS where it makes sense, native where it doesn't.
               </p>
-              <ul class="tech"><li>Android</li><li>Flutter / React Native</li><li>Firebase / self-hosted push</li><li>WebSockets</li><li>SQLite sync</li></ul>
-            </div>
+              <ul class="tech"><li>Android</li><li>Flutter / React Native</li><li>Firebase</li><li>WebSockets</li><li>SQLite sync</li></ul>
+            </div></div>
           </details>
 
-          <details class="proj-card reveal">
+          <details class="proj-card svc-ai reveal">
             <summary>
+              <div class="motif motif-chat"><div class="m-bubble"></div><div class="m-bubble right"></div><div class="m-typing"><i></i><i></i><i></i></div></div>
               <div class="proj-heading">
                 <h3>AI Automation &amp; Chatbots</h3>
                 <span class="proj-tag">RAG &middot; Bangla + English &middot; 24/7</span>
@@ -243,24 +254,23 @@
                 AI that answers your customers, reads your documents, and does the repetitive
                 work — on your data, in Bangla and English, 24/7.
               </p>
-              <span class="details-toggle">read more &darr;</span>
+              <span class="details-toggle">Read more <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="details-body">
+            <div class="details-body-wrap"><div class="details-body">
               <p class="proj-desc">
                 Not a demo — deployed AI. Customer-support chatbots trained on your own catalog,
                 policies and FAQs (website, WhatsApp, Messenger). Document intelligence: feed in
-                contracts, reports or forms and get summaries, extracted data or drafted replies.
-                Workflow automation that connects your existing tools so data stops being retyped
-                between them. Built on retrieval-augmented generation (RAG) so answers come from
-                your documents, not the internet's imagination — with the option to run models
-                fully on your own servers when data can't leave the building.
+                contracts, reports or forms and get summaries or drafted replies. Built on
+                retrieval-augmented generation (RAG) so answers come from your documents, not the
+                internet's imagination — with the option to run models fully on your own servers.
               </p>
-              <ul class="tech"><li>Python</li><li>FastAPI</li><li>RAG</li><li>Vector search</li><li>OpenAI / Gemini</li><li>Ollama (self-hosted)</li></ul>
-            </div>
+              <ul class="tech"><li>Python</li><li>FastAPI</li><li>RAG</li><li>Vector search</li><li>OpenAI / Gemini</li><li>Ollama</li></ul>
+            </div></div>
           </details>
 
-          <details class="proj-card reveal">
+          <details class="proj-card svc-erp reveal">
             <summary>
+              <div class="motif motif-dash"><div class="m-row"><i></i><i></i></div><div class="m-row"><i></i><i></i></div><div class="m-row"><i></i><i></i></div></div>
               <div class="proj-heading">
                 <h3>Enterprise &amp; Organizational Software</h3>
                 <span class="proj-tag">ERP &middot; HR &middot; inventory &middot; accounting</span>
@@ -269,24 +279,23 @@
                 ERP, HR, inventory, accounting, approvals — the systems that run an organization,
                 without the SAP-sized price tag.
               </p>
-              <span class="details-toggle">read more &darr;</span>
+              <span class="details-toggle">Read more <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="details-body">
+            <div class="details-body-wrap"><div class="details-body">
               <p class="proj-desc">
-                Large organizations run on SAP and Oracle. The same workflows — inventory,
+                The same workflows large organizations run on SAP and Oracle — inventory,
                 procurement, HR &amp; payroll, accounting, multi-level approvals, reporting — can
                 be built on mature open-source platforms or custom-developed, at a fraction of the
-                cost and fully owned by you. Implementing and customizing open-source ERP where it
-                fits, and building custom modules where your process doesn't match anyone's
-                template. Includes role-based access, audit logs, and the reporting your
+                cost and fully owned by you. Role-based access, audit logs, and the reporting your
                 management actually asks for.
               </p>
               <ul class="tech"><li>ERPNext / custom</li><li>Spring Boot</li><li>Oracle &amp; PostgreSQL</li><li>Jasper Reports</li></ul>
-            </div>
+            </div></div>
           </details>
 
-          <details class="proj-card reveal">
+          <details class="proj-card svc-data reveal">
             <summary>
+              <div class="motif motif-chart"><i></i><i></i><i></i><i></i><i></i></div>
               <div class="proj-heading">
                 <h3>Data Platforms &amp; Analytics</h3>
                 <span class="proj-tag">Dashboards &middot; pipelines &middot; search</span>
@@ -295,24 +304,23 @@
                 Your data is scattered across Excel files, databases and PDFs. Turn it into live
                 dashboards and searchable knowledge.
               </p>
-              <span class="details-toggle">read more &darr;</span>
+              <span class="details-toggle">Read more <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="details-body">
+            <div class="details-body-wrap"><div class="details-body">
               <p class="proj-desc">
                 The pipeline: pull data from every source (databases, APIs, spreadsheets, even
                 scanned documents), move it reliably, and land it somewhere queryable. Apache NiFi
                 and Airbyte for ingestion, Kafka for real-time streams, Spark when the volume gets
-                serious, Apache Tika to extract text from any document format, OpenSearch for
-                full-text search across everything, and Apache Superset for dashboards your
-                management can open in a browser — no per-seat BI license, ever. Sales analytics,
-                operational monitoring, document search portals, management reporting.
+                serious, OpenSearch for full-text search, and Apache Superset for dashboards your
+                management can open in a browser — no per-seat BI license, ever.
               </p>
-              <ul class="tech"><li>Kafka</li><li>NiFi</li><li>Airbyte</li><li>Spark</li><li>Superset</li><li>OpenSearch</li><li>Tika</li><li>ClickHouse</li></ul>
-            </div>
+              <ul class="tech"><li>Kafka</li><li>NiFi</li><li>Airbyte</li><li>Spark</li><li>Superset</li><li>OpenSearch</li><li>ClickHouse</li></ul>
+            </div></div>
           </details>
 
-          <details class="proj-card reveal">
+          <details class="proj-card svc-security reveal">
             <summary>
+              <div class="motif motif-shield"><div class="m-shield"></div></div>
               <div class="proj-heading">
                 <h3>Security, Infrastructure &amp; Reliability</h3>
                 <span class="proj-tag">Hardening &middot; monitoring &middot; backups</span>
@@ -321,24 +329,68 @@
                 Hardened servers, monitored networks, encrypted backups, private VPNs — so the
                 3&nbsp;AM phone call never comes.
               </p>
-              <span class="details-toggle">read more &darr;</span>
+              <span class="details-toggle">Read more <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="details-body">
+            <div class="details-body-wrap"><div class="details-body">
               <p class="proj-desc">
                 Security is not a product you buy; it's how the system is built. Network
-                intrusion detection with Suricata, database activity monitoring so every sensitive
-                query is logged and policy-violating ones are caught, WireGuard/OpenVPN for secure
-                remote access, server hardening, and SQL-injection-proof application design.
-                Reliability is the other half: automated encrypted backups with Bacula and Restic
-                (tested restores, not just backups), S3-compatible private object storage with
-                MinIO, containerized deployments with zero-downtime releases, and monitoring that
-                alerts before users notice. Also available as an audit — a review of what you
-                already run, with a prioritized fix list.
+                intrusion detection with Suricata, database activity monitoring, WireGuard/OpenVPN
+                for secure remote access, server hardening, and SQL-injection-proof application
+                design. Reliability is the other half: automated encrypted backups with Bacula and
+                Restic (tested restores, not just backups), S3-compatible private object storage
+                with MinIO, and monitoring that alerts before users notice.
               </p>
-              <ul class="tech"><li>Suricata</li><li>WireGuard</li><li>Bacula</li><li>Restic</li><li>MinIO</li><li>Docker / Kubernetes</li><li>CI/CD</li></ul>
-            </div>
+              <ul class="tech"><li>Suricata</li><li>WireGuard</li><li>Bacula</li><li>Restic</li><li>MinIO</li><li>Docker / Kubernetes</li></ul>
+            </div></div>
           </details>
         </div>
+      </div>
+    </section>
+
+    <!-- ================= EXPERIENCE (emphasized) ================= -->
+    <section id="experience" class="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-index">02</span>
+          <h2 class="section-title">Experience</h2>
+          <p class="section-note">Where I've actually shipped, and what I learned owning it.</p>
+        </div>
+
+        <div class="experience-grid">
+          <article class="exp-card now reveal">
+            <span class="exp-year">May 2024 — Present</span>
+            <h3 class="exp-role">Programmer</h3>
+            <p class="exp-org">IICT, BUET <small>(Institute of Information &amp; Communication Technology) &middot; promoted from Assistant Programmer</small></p>
+            <p class="exp-desc">
+              Government-scale systems where downtime isn't a metric, it's an incident — including
+              national-level work for the Bangladesh Technical Education Board (BTEB), kept short
+              here under employer confidentiality.
+            </p>
+          </article>
+          <article class="exp-card reveal">
+            <span class="exp-year">Jan 2025 — Oct 2025</span>
+            <h3 class="exp-role">Team Lead / Full-Stack Developer</h3>
+            <p class="exp-org">Merilsoft <small>(Remote, Part-Time)</small></p>
+            <p class="exp-desc">
+              Joined as a developer, promoted to Team Lead within the engagement — AI, web and
+              mobile product lines delivered independently.
+            </p>
+          </article>
+        </div>
+
+        <h3 class="education-label reveal">Education</h3>
+        <div class="education-compact reveal">
+          <span class="edu-chip"><strong>BSc, CSE</strong><span>&middot; KUET &middot; 2018–2024</span></span>
+          <span class="edu-chip"><strong>HSC</strong><span>&middot; Notre Dame College, Dhaka &middot; 2018</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MID-PAGE CTA ================= -->
+    <section class="cta-band">
+      <div class="container cta-band-inner reveal">
+        <p class="cta-band-text">Need one of these built, fixed, or rescued?</p>
+        <a href="mailto:ruhan.9mri@gmail.com" class="btn primary cta-band-btn">Email me &rarr;</a>
       </div>
     </section>
 
@@ -352,11 +404,9 @@
         <p class="prose prose-lg reveal">
           Most software vendors in Bangladesh quietly rent you technology: per-user licenses,
           per-year renewals, and a dependency you can never leave. I build on the open-source
-          stack that global enterprises actually run — Kafka moves data at LinkedIn,
-          MinIO stores it at Fortune-500 scale, Superset powers dashboards at Airbnb. You get the
-          same class of engineering, you own every line of it, and your only recurring cost is
-          hosting. When you want a second opinion, any engineer on earth can read the code —
-          that's the point.
+          stack that global enterprises actually run — Kafka moves data at LinkedIn, MinIO stores
+          it at Fortune-500 scale, Superset powers dashboards at Airbnb. You get the same class of
+          engineering, you own every line of it, and your only recurring cost is hosting.
         </p>
         <div class="trust-strip reveal">
           <div class="trust-item"><strong>No lock-in</strong><span>Leave anytime with all your code and data</span></div>
@@ -370,7 +420,7 @@
     <section id="how-we-build" class="experience">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-index">02</span>
+          <span class="section-index">03</span>
           <h2 class="section-title">From &ldquo;we have a problem&rdquo;<br />to &ldquo;it's running&rdquo;</h2>
         </div>
 
@@ -413,7 +463,7 @@
     <section id="stack" class="skills">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-index">03</span>
+          <span class="section-index">04</span>
           <h2 class="section-title">Full Capability Map</h2>
           <p class="section-note">Every tool is a deliberate choice, not a default.</p>
         </div>
@@ -427,7 +477,7 @@
             <h3 class="craft-label">Frontend</h3>
             <div class="tags"><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Vite</span></div>
           </div>
-          <div class="craft-row c-teal reveal">
+          <div class="craft-row c-amber reveal">
             <h3 class="craft-label">Mobile</h3>
             <div class="tags"><span>Android (Java/Kotlin)</span><span>Flutter / React Native</span></div>
           </div>
@@ -435,17 +485,9 @@
             <h3 class="craft-label">Databases</h3>
             <div class="tags"><span>PostgreSQL</span><span>MySQL</span><span>Oracle</span><span>MongoDB</span><span>ClickHouse</span><span>Redis</span></div>
           </div>
-          <div class="craft-row c-amber reveal">
-            <h3 class="craft-label">Data &amp; Streaming</h3>
-            <div class="tags"><span>Apache Kafka</span><span>Apache NiFi</span><span>Airbyte</span><span>Apache Spark</span><span>Apache Superset</span><span>OpenSearch</span><span>Apache Tika</span></div>
-          </div>
-          <div class="craft-row c-pink reveal">
+          <div class="craft-row c-violet reveal">
             <h3 class="craft-label">AI / LLM</h3>
             <div class="tags"><span>RAG Pipelines</span><span>Vector Databases</span><span>OpenAI &amp; Gemini APIs</span><span>Ollama (self-hosted)</span></div>
-          </div>
-          <div class="craft-row c-violet reveal">
-            <h3 class="craft-label">Storage &amp; Backup</h3>
-            <div class="tags"><span>MinIO</span><span>Bacula</span><span>Restic</span></div>
           </div>
           <div class="craft-row c-red reveal">
             <h3 class="craft-label">Security &amp; Networking</h3>
@@ -459,41 +501,6 @@
             <h3 class="craft-label">Enterprise</h3>
             <div class="tags"><span>ERPNext</span><span>Jasper Reports</span><span>Active Directory</span></div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= STORY ================= -->
-    <section id="story" class="about">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="section-index">04</span>
-          <h2 class="section-title">One engineer.<br />No sales team.</h2>
-        </div>
-
-        <p class="prose prose-lg reveal">
-          I got tired of watching organizations pay too much for systems that didn't fit them —
-          so I started taking on this kind of work directly, myself. I'm Mohammad Ruhan Islam, a
-          software engineer: designing backends, keeping databases alive under real load,
-          automating infrastructure, and shipping systems where downtime had consequences.
-        </p>
-        <p class="prose prose-lg reveal">
-          That background shapes how this works. There's no sales team promising things
-          engineering can't deliver, because the person you talk to <em>is</em> the engineering.
-          Every proposal is written by someone who will personally have to build it — which is
-          the strongest honesty mechanism ever invented.
-        </p>
-        <p class="prose prose-lg reveal">
-          The goal isn't to take on everything. It's to be the person clients describe the same
-          way twice: &ldquo;they said what they'd build, they built it, and it still
-          works.&rdquo;
-        </p>
-
-        <div class="about-meta reveal">
-          <div class="meta-item"><span class="meta-key">Full name</span><span class="meta-val">Mohammad Ruhan Islam</span></div>
-          <div class="meta-item"><span class="meta-key">Based in</span><span class="meta-val">Dhaka, Bangladesh &#127465;&#127472;</span></div>
-          <div class="meta-item"><span class="meta-key">Serving</span><span class="meta-val">Nationwide + remote international</span></div>
-          <div class="meta-item"><span class="meta-key">Languages</span><span class="meta-val">বাংলা / English</span></div>
         </div>
       </div>
     </section>
@@ -522,8 +529,7 @@
             <summary>What is an AI chatbot and does my business actually need one?</summary>
             <p>It's software that answers customer questions automatically — on your website,
               WhatsApp or Messenger — using your own product and policy information. If your team
-              answers the same 20 questions every day, it usually pays for itself. If it wouldn't,
-              you'll be told that instead of being sold one.</p>
+              answers the same 20 questions every day, it usually pays for itself.</p>
           </details>
           <details class="faq-item reveal">
             <summary>Why open source instead of Microsoft/Oracle/SAP-style licensed software?</summary>
@@ -585,6 +591,10 @@
         cyber security services in Dhaka and across Bangladesh.
       </div>
     </footer>
+
+    <a href="mailto:ruhan.9mri@gmail.com" class="fab-contact" aria-label="Email Ruhan">
+      <span class="dot-live"></span> Contact
+    </a>
 
     <script src="js/script.js"></script>
   </body>
