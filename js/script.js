@@ -39,27 +39,3 @@ const revealObserver = new IntersectionObserver(
   { threshold: 0.15 }
 );
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
-
-// Animated stat counters
-document.querySelectorAll(".stat-num[data-count]").forEach((el) => {
-  const target = parseInt(el.getAttribute("data-count"), 10);
-  if (!target) return;
-  const suffix = el.getAttribute("data-suffix") || "";
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        let current = 0;
-        const step = Math.max(1, Math.round(target / 30));
-        const timer = setInterval(() => {
-          current = Math.min(current + step, target);
-          el.textContent = current + suffix;
-          if (current >= target) clearInterval(timer);
-        }, 30);
-        counterObserver.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.5 }
-  );
-  counterObserver.observe(el);
-});
