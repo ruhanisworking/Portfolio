@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>[Your Name] — Full-Stack &amp; AI Systems Engineer</title>
+
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="[Your Name] — Full-stack developer building backend, frontend, DevOps and AI/ML systems. [Meta description placeholder]."
+    />
+    <meta name="author" content="[Your Name]" />
+    <meta
+      name="keywords"
+      content="[Your Name], Full-Stack Developer, Backend, Frontend, DevOps, Machine Learning, AI Systems, System Architecture"
+    />
+    <meta name="theme-color" content="#0b0e14" />
+    <link rel="canonical" href="[Your site URL]" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="[Your Name] — Portfolio" />
+    <meta property="og:url" content="[Your site URL]" />
+    <meta property="og:title" content="[Your Name] — Full-Stack &amp; AI Systems Engineer" />
+    <meta property="og:description" content="[Meta description placeholder]" />
+    <meta property="og:image" content="assets/images/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="[Your Name] portfolio preview" />
+
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "[Your Name]",
+        "jobTitle": "[Your Title]",
+        "url": "[Your site URL]",
+        "email": "mailto:[your@email.com]",
+        "address": { "@type": "PostalAddress", "addressLocality": "[City]", "addressCountry": "[Country]" },
+        "sameAs": ["[LinkedIn URL]", "[GitHub URL]"],
+        "knowsAbout": ["Backend Development", "Frontend Development", "DevOps", "Machine Learning", "System Architecture"]
+      }
+    </script>
+
+    <!-- Set theme before paint to avoid a flash of the wrong mode -->
+    <script>
+      (function () {
+        var theme = "dark";
+        try {
+          if (localStorage.getItem("ri-theme") === "light") theme = "light";
+        } catch (e) {}
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="nav-inner">
+        <a href="#home" class="wordmark">
+          <span class="wm-mark">[RI]</span>
+          <span class="wm-name">[Your Name]</span>
+        </a>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light mode" title="Toggle theme">
+          <span class="icon-moon" aria-hidden="true">&#9789;</span>
+          <span class="icon-sun" aria-hidden="true">&#9728;</span>
+        </button>
+        <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+        <ul class="nav-menu">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Stack</a></li>
+          <li><a href="#experience">Path</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="CV/resume.pdf" download class="cv-btn">Resume &darr;</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="nav-backdrop" id="nav-backdrop" onclick="closeMobileMenu()" aria-hidden="true"></div>
+
+    <!-- ================= HERO ================= -->
+    <header id="home" class="hero">
+      <span class="blob blob-a" data-parallax="0.12" aria-hidden="true"></span>
+      <span class="blob blob-b" data-parallax="0.2" aria-hidden="true"></span>
+      <span class="blob blob-c" data-parallax="0.16" aria-hidden="true"></span>
+
+      <div class="container hero-inner">
+        <p class="hero-eyebrow"><span class="dot-live"></span> Portfolio '26 — [City, Country]</p>
+
+        <h1 class="hero-title">
+          <span class="line">[First</span>
+          <span class="line outline">Last]</span>
+          <span class="line">[Name]</span>
+        </h1>
+
+        <div class="hero-tagrow">
+          <span class="sticker sticker-a">[Full-Stack &amp; AI Systems Engineer]</span>
+          <span class="hero-since">// building since [year]</span>
+        </div>
+
+        <p class="hero-lede">
+          [One or two sentences on what you build end-to-end — e.g. "I design and ship backend
+          services, frontend interfaces, and AI-assisted systems, from database schema to
+          deployed infrastructure."]
+        </p>
+
+        <div class="hero-actions">
+          <a href="#work" class="btn primary">See the work &rarr;</a>
+          <a href="CV/resume.pdf" download class="btn ghost">&darr; Download Resume</a>
+        </div>
+
+        <dl class="hero-stats">
+          <div class="stat s-a">
+            <dt class="stat-num" data-count="0">0</dt>
+            <dd class="stat-label">[Stat label 1]</dd>
+          </div>
+          <div class="stat s-b">
+            <dt class="stat-num" data-count="0">0</dt>
+            <dd class="stat-label">[Stat label 2]</dd>
+          </div>
+          <div class="stat s-c">
+            <dt class="stat-num" data-count="0">0</dt>
+            <dd class="stat-label">[Stat label 3]</dd>
+          </div>
+          <div class="stat s-d">
+            <dt class="stat-num stat-text">[Tag]</dt>
+            <dd class="stat-label">[Stat label 4]</dd>
+          </div>
+        </dl>
+      </div>
+    </header>
+
+    <!-- ================= WORK / PROJECTS ================= -->
+    <section id="work" class="work">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-index">01</span>
+          <h2 class="section-title">Selected Work</h2>
+          <p class="section-note">Systems and products I've built, from architecture to deployment.</p>
+        </div>
+
+        <div class="work-grid">
+          <article class="proj-card featured reveal">
+            <span class="proj-status">LIVE</span>
+            <div class="proj-head">
+              <div class="proj-logo">[IMG]</div>
+              <div class="proj-heading">
+                <h3>[Project One Name]</h3>
+                <span class="proj-tag">[Category · Full-Stack]</span>
+              </div>
+            </div>
+            <p class="proj-desc">
+              [Describe what this project does, your role, and the notable technical challenge
+              you solved.]
+            </p>
+            <ul class="tech">
+              <li>[Tech]</li><li>[Tech]</li><li>[Tech]</li><li>[Tech]</li>
+            </ul>
+            <div class="link-row">
+              <a href="#" target="_blank" rel="noopener" class="link-btn"><span>Live Demo</span></a>
+              <a href="#" target="_blank" rel="noopener" class="link-btn"><span>GitHub</span></a>
+            </div>
+          </article>
+
+          <article class="proj-card featured reveal">
+            <span class="proj-status">LIVE</span>
+            <div class="proj-head">
+              <div class="proj-logo">[IMG]</div>
+              <div class="proj-heading">
+                <h3>[Project Two Name]</h3>
+                <span class="proj-tag">[Category · AI/ML]</span>
+              </div>
+            </div>
+            <p class="proj-desc">
+              [Describe what this project does, your role, and the notable technical challenge
+              you solved.]
+            </p>
+            <ul class="tech">
+              <li>[Tech]</li><li>[Tech]</li><li>[Tech]</li>
+            </ul>
+            <div class="link-row">
+              <a href="#" target="_blank" rel="noopener" class="link-btn"><span>Live Demo</span></a>
+              <a href="#" target="_blank" rel="noopener" class="link-btn"><span>GitHub</span></a>
+            </div>
+          </article>
+
+          <article class="proj-card reveal">
+            <div class="proj-head">
+              <div class="proj-logo">[IMG]</div>
+              <div class="proj-heading">
+                <h3>[Project Three Name]</h3>
+                <span class="proj-tag">[Category · DevOps]</span>
+              </div>
+            </div>
+            <p class="proj-desc">[Short description of the project.]</p>
+            <ul class="tech">
+              <li>[Tech]</li><li>[Tech]</li>
+            </ul>
+            <div class="link-row">
+              <a href="#" target="_blank" rel="noopener" class="link-btn"><span>GitHub</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="about">
+      <div class="container about-inner">
+        <div class="about-portrait reveal">
+          <div class="portrait-frame">
+            <img src="assets/images/profile.jpg" alt="[Your Name]" class="portrait-img" width="600" height="600" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.classList.add('no-img')" />
+            <span class="portrait-placeholder">[Photo]</span>
+          </div>
+          <span class="portrait-badge">That's me &#128075;</span>
+          <div class="portrait-caption"><span class="dot-live"></span> Open to opportunities</div>
+        </div>
+
+        <div class="about-body reveal">
+          <span class="section-index">02</span>
+          <h2 class="section-title">The engineer<br />behind the systems</h2>
+
+          <p class="prose">
+            [Paragraph 1 of your bio — who you are, what drew you to engineering, what you care
+            about.]
+          </p>
+          <p class="prose">
+            [Paragraph 2 — what you build day to day: backend services, frontend interfaces,
+            infrastructure, ML pipelines, AI-assisted workflows, etc. Mention any Claude Code /
+            AI tooling you use in production.]
+          </p>
+
+          <div class="about-meta">
+            <div class="meta-item"><span class="meta-key">Based in</span><span class="meta-val">[City, Country]</span></div>
+            <div class="meta-item"><span class="meta-key">Currently</span><span class="meta-val">[Role @ Company]</span></div>
+            <div class="meta-item"><span class="meta-key">Focus</span><span class="meta-val">Backend · Frontend · DevOps · AI/ML · System Design</span></div>
+          </div>
+
+          <a href="mailto:your@email.com" class="about-email">[your@email.com] &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SKILLS / STACK ================= -->
+    <section id="skills" class="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-index">03</span>
+          <h2 class="section-title">The Stack</h2>
+          <p class="section-note">Tools, systems, and patterns I build with.</p>
+        </div>
+
+        <div class="craft-rows">
+          <div class="craft-row reveal">
+            <h3 class="craft-label">Frontend</h3>
+            <div class="tags"><span>[Tech]</span><span>[Tech]</span><span>[Tech]</span></div>
+          </div>
+          <div class="craft-row reveal">
+            <h3 class="craft-label">Backend</h3>
+            <div class="tags"><span>[Tech]</span><span>[Tech]</span><span>[Tech]</span></div>
+          </div>
+          <div class="craft-row reveal">
+            <h3 class="craft-label">Database</h3>
+            <div class="tags"><span>[Tech]</span><span>[Tech]</span></div>
+          </div>
+          <div class="craft-row reveal">
+            <h3 class="craft-label">DevOps &amp; Cloud</h3>
+            <div class="tags"><span>[Tech]</span><span>[Tech]</span><span>[Tech]</span></div>
+          </div>
+          <div class="craft-row reveal">
+            <h3 class="craft-label">AI / Machine Learning</h3>
+            <div class="tags"><span>[Tech]</span><span>[Tech]</span><span>[Tech]</span></div>
+          </div>
+          <div class="craft-row reveal">
+            <h3 class="craft-label">AI-Assisted / Agentic Dev</h3>
+            <div class="tags"><span>Claude Code</span><span>Claude API</span><span>[Other AI tools]</span></div>
+          </div>
+          <div class="craft-row reveal">
+            <h3 class="craft-label">System Design &amp; Architecture</h3>
+            <div class="tags"><span>[Pattern]</span><span>[Pattern]</span><span>[Pattern]</span></div>
+          </div>
+          <div class="craft-row reveal">
+            <h3 class="craft-label">Languages</h3>
+            <div class="tags"><span>[Language]</span><span>[Language]</span><span>[Language]</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXPERIENCE / PATH ================= -->
+    <section id="experience" class="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-index">04</span>
+          <h2 class="section-title">The Path</h2>
+          <p class="section-note">Where I've worked and studied.</p>
+        </div>
+
+        <div class="path-grid">
+          <article class="path-card now reveal">
+            <span class="now-badge"><span class="dot-live"></span> Currently</span>
+            <div class="path-top"><span class="path-kind work">Work</span><span class="path-no">01</span></div>
+            <h3 class="path-role">[Job Title]</h3>
+            <p class="path-org">[Company Name]</p>
+            <span class="path-year">[Start] — Present</span>
+          </article>
+
+          <article class="path-card reveal">
+            <div class="path-top"><span class="path-kind work">Work</span><span class="path-no">02</span></div>
+            <h3 class="path-role">[Job Title]</h3>
+            <p class="path-org">[Company Name]</p>
+            <span class="path-year">[Start] — [End]</span>
+          </article>
+
+          <article class="path-card reveal">
+            <div class="path-top"><span class="path-kind edu">Edu</span><span class="path-no">03</span></div>
+            <h3 class="path-role">[Degree Name]</h3>
+            <p class="path-org">[Institution]</p>
+            <span class="path-year">[Start] — [End]</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="contact">
+      <div class="container contact-inner reveal">
+        <span class="section-index">05</span>
+        <h2 class="contact-title">Let's build<br />something <span class="outline">real.</span></h2>
+        <p class="contact-lede">
+          Open to opportunities, collaborations, and technical conversations. Reach out.
+        </p>
+
+        <div class="contact-btns">
+          <a href="mailto:your@email.com" class="contact-btn cb-a">
+            <span class="cb-label">Email</span><span class="cb-sub">[your@email.com]</span>
+          </a>
+          <a href="#" target="_blank" rel="noopener" class="contact-btn cb-b">
+            <span class="cb-label">LinkedIn</span><span class="cb-sub">[/in/your-handle]</span>
+          </a>
+          <a href="#" target="_blank" rel="noopener" class="contact-btn cb-c">
+            <span class="cb-label">GitHub</span><span class="cb-sub">[@your-handle]</span>
+          </a>
+        </div>
+
+        <div class="contact-now">
+          <span class="dot-live"></span> Currently <strong>[Role]</strong> at [Company] · since [Month Year]
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-inner">
+        <span class="foot-mark">[Your Name]</span>
+        <span class="foot-copy">&copy; 2026 · Handbuilt with HTML, CSS &amp; JS</span>
+        <a href="#home" class="foot-top">Back to top &uarr;</a>
+      </div>
+    </footer>
+
+    <a href="CV/resume.pdf" download class="fab-cv" aria-label="Download Resume">CV</a>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
