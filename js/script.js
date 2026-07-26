@@ -2,8 +2,18 @@
 function toggleTheme() {
   const root = document.documentElement;
   const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  root.classList.add("theme-anim");
   root.setAttribute("data-theme", next);
   try { localStorage.setItem("ri-theme", next); } catch (e) {}
+  window.setTimeout(() => root.classList.remove("theme-anim"), 450);
+}
+
+// Navbar gains a border/shadow once the page has scrolled
+const navbarEl = document.getElementById("navbar");
+if (navbarEl) {
+  const onScroll = () => navbarEl.classList.toggle("scrolled", window.scrollY > 12);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
 }
 
 // Mobile nav
