@@ -13,12 +13,21 @@
   --ink:     #14141f;
   --ink-2:   #62627a;
 
-  --blue:    #2f6fed;   /* websites — trust, reliability */
-  --violet:  #8b5cf6;   /* AI — innovation, imagination */
-  --emerald: #0ea472;   /* ERP/enterprise — growth, money */
-  --orange:  #f2790f;   /* mobile — energy, speed */
-  --cyan:    #06a8c4;   /* data — clarity, precision */
-  --rose:    #ef4460;   /* security — alert, protection */
+  /* Blue + yellow, varied deep/light shades of each — three blues, three
+     golds. Kept as separate names (not a literal "blue1/blue2" scheme) so
+     the rest of the sheet still reads semantically, but every value below
+     is drawn from just those two families now. */
+  --blue:    #1d4ed8;   /* deep blue — websites */
+  --violet:  #38bdf8;   /* light sky blue — AI */
+  --cyan:    #0ea5e9;   /* mid blue — data */
+  --emerald: #eab308;   /* deep gold — mobile */
+  --orange:  #f59e0b;   /* amber — ERP */
+  --rose:    #ca8a04;   /* mustard gold — security */
+
+  /* Fixed dark ink for text/icons sitting on a gold fill — gold stays
+     light-toned in both themes, so it always needs dark text, never the
+     theme's flipped --ink. Same fix pattern as the earlier yellow-badge bug. */
+  --ink-fixed: #14141f;
 
   --font-display: "Bricolage Grotesque", system-ui, sans-serif;
   --font-body:    "Familjen Grotesk", system-ui, sans-serif;
@@ -41,11 +50,11 @@
   --ink-2:   #9797ae;
 
   --blue:    #5b8dfd;
-  --violet:  #a684ff;
-  --emerald: #22c98a;
-  --orange:  #ff9a3d;
-  --cyan:    #34c3de;
-  --rose:    #ff5c78;
+  --violet:  #7dd3fc;
+  --cyan:    #38bdf8;
+  --emerald: #facc15;
+  --orange:  #fbbf24;
+  --rose:    #eab308;
 
   --shadow-1: 0 2px 10px -2px rgba(0, 0, 0, 0.5);
   --shadow-2: 0 18px 44px -16px rgba(0, 0, 0, 0.55);
@@ -160,6 +169,25 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) { .mesh span { animation: none; } }
 @media (max-width: 780px) { .mesh { opacity: 0.35; } }
 
+/* Small crisp bubbles floating over the hero copy — distinct from the
+   blurred atmospheric mesh blobs behind it. */
+.bubbles { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.bub { position: absolute; border-radius: 50%; opacity: 0.5; animation: bob 7s ease-in-out infinite; }
+.bub::after { content: ""; position: absolute; inset: 0; border-radius: 50%; box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.4); }
+.b1 { width: 34px; height: 34px; left: 6%; top: 18%; background: var(--blue); animation-duration: 8s; }
+.b2 { width: 18px; height: 18px; left: 42%; top: 8%; background: var(--emerald); animation-duration: 6.5s; animation-delay: -1.5s; }
+.b3 { width: 46px; height: 46px; right: 4%; top: 30%; background: var(--violet); animation-duration: 9s; animation-delay: -3s; }
+.b4 { width: 14px; height: 14px; left: 24%; top: 46%; background: var(--orange); animation-duration: 5.5s; animation-delay: -2s; }
+.b5 { width: 24px; height: 24px; right: 22%; top: 10%; background: var(--cyan); animation-duration: 7.5s; animation-delay: -4s; }
+.b6 { width: 12px; height: 12px; left: 60%; top: 40%; background: var(--rose); animation-duration: 6s; animation-delay: -0.8s; }
+.b7 { width: 28px; height: 28px; right: 10%; top: 55%; background: var(--blue); animation-duration: 8.5s; animation-delay: -5s; }
+@keyframes bob {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-18px) translateX(6px); }
+}
+@media (prefers-reduced-motion: reduce) { .bub { animation: none; } }
+@media (max-width: 640px) { .bubbles { opacity: 0.6; } .b3, .b7 { display: none; } }
+
 .identity-row { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
 .identity-photo {
   width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
@@ -193,7 +221,10 @@ img { max-width: 100%; display: block; }
 
 .hero-sub { max-width: 640px; font-size: 1.15rem; margin-bottom: 12px; color: var(--ink); font-weight: 500; }
 .hero-lede { max-width: 580px; color: var(--ink-2); font-size: 1.02rem; margin-bottom: 32px; }
-.hero-lede strong { color: var(--ink); font-weight: 700; }
+.hero-lede strong, .prose strong {
+  color: var(--ink-fixed); font-weight: 700; background: var(--emerald);
+  padding: 0.05em 0.3em; border-radius: 5px; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
 
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
 .btn {
@@ -219,8 +250,12 @@ img { max-width: 100%; display: block; }
 .status-card.c-violet { --accent: var(--violet); }
 .status-card.c-pink   { --accent: var(--rose); }
 .status-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent, var(--blue)); flex-shrink: 0; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent, var(--blue)) 22%, transparent); }
-.status-label { font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent, var(--blue)); }
+.status-icon {
+  color: var(--accent, var(--blue)); flex-shrink: 0; width: 26px; height: 26px; border-radius: 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--accent, var(--blue)) 14%, transparent);
+}
+.status-label { font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink); }
 .status-detail { font-size: 0.86rem; font-weight: 500; color: var(--ink); }
 
 @media (max-width: 700px) { .status-band { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -266,15 +301,15 @@ section { padding: 90px 0; position: relative; }
   position: absolute; top: 18px; right: 18px; font-size: 0.68rem; font-weight: 700;
   display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; border-radius: 30px;
 }
-.proj-status.live { color: #fff; background: var(--emerald); }
-.proj-status.ongoing { color: #fff; background: var(--orange); }
+.proj-status.live { color: var(--ink-fixed); background: var(--emerald); }
+.proj-status.ongoing { color: var(--ink-fixed); background: var(--orange); }
 .proj-status.locked { color: #fff; background: var(--ink-2); }
 
 .proj-heading h3 { font-size: 1.12rem; margin-bottom: 4px; padding-right: 74px; }
 .proj-tag { font-size: 0.78rem; font-weight: 600; color: var(--ink-2); }
 .proj-desc { color: var(--ink-2); font-size: 0.92rem; margin: 12px 0 14px; font-weight: 500; }
 .tech { list-style: none; display: flex; flex-wrap: wrap; gap: 7px; }
-.tech li { font-size: 0.74rem; font-weight: 700; background: var(--card-accent, var(--blue)); padding: 4px 11px; border-radius: 30px; color: #fff; }
+.tech li { font-size: 0.74rem; font-weight: 700; background: var(--card-accent, var(--blue)); padding: 4px 11px; border-radius: 30px; color: var(--on-accent, #fff); }
 
 details.proj-card summary { cursor: pointer; list-style: none; }
 details.proj-card summary::-webkit-details-marker { display: none; }
@@ -282,20 +317,20 @@ details.proj-card summary::marker { content: ""; }
 details.proj-card .proj-desc:last-child { margin-bottom: 0; }
 .details-toggle {
   display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
-  font-size: 0.8rem; color: var(--card-accent, var(--blue)); font-weight: 700;
+  font-size: 0.8rem; color: var(--on-accent, var(--card-accent, var(--blue))); font-weight: 700;
 }
 .details-toggle svg { transition: transform 0.3s ease; }
 details.proj-card[open] .details-toggle svg { transform: rotate(180deg); }
 .details-body-wrap { overflow: hidden; transition: height 0.3s ease; }
 .details-body { padding-top: 16px; margin-top: 14px; border-top: 1px dashed var(--border); }
 
-/* Card accent + bespoke motif per service */
+/* Card accent + bespoke motif per service — alternating blue/gold, varied shade */
 .proj-card.svc-website  { --card-accent: var(--blue); }
-.proj-card.svc-mobile   { --card-accent: var(--orange); }
+.proj-card.svc-mobile   { --card-accent: var(--orange); --on-accent: var(--ink-fixed); }
 .proj-card.svc-ai       { --card-accent: var(--violet); }
-.proj-card.svc-erp      { --card-accent: var(--emerald); }
+.proj-card.svc-erp      { --card-accent: var(--emerald); --on-accent: var(--ink-fixed); }
 .proj-card.svc-data     { --card-accent: var(--cyan); }
-.proj-card.svc-security { --card-accent: var(--rose); }
+.proj-card.svc-security { --card-accent: var(--rose); --on-accent: var(--ink-fixed); }
 .proj-card .motif { margin-bottom: 16px; height: 64px; border-radius: 12px; position: relative; overflow: hidden; background: color-mix(in srgb, var(--card-accent) 8%, var(--bg-2)); }
 
 /* Website motif: browser chrome */
@@ -372,7 +407,7 @@ details.proj-card[open] .details-toggle svg { transform: rotate(180deg); }
 .craft-row { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--border); }
 .craft-row:first-child { border-top: 1px solid var(--border); }
 @media (max-width: 640px) { .craft-row { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
-.craft-label { color: var(--accent, var(--ink)); font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; }
+.craft-label { color: var(--ink); font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .tags span {
   font-size: 0.8rem; font-weight: 700; background: var(--accent, var(--blue)); color: #fff;
@@ -389,6 +424,13 @@ details.proj-card[open] .details-toggle svg { transform: rotate(180deg); }
 .craft-row.c-pink   { --accent: var(--rose); }
 .craft-row.c-red    { --accent: var(--rose); }
 .craft-row.c-teal   { --accent: var(--cyan); }
+
+/* gold-family rows need dark text on their tag chips — gold stays light-toned
+   in both themes, unlike the blue-family rows which hold white text fine */
+.craft-row.c-green .tags span,
+.craft-row.c-amber .tags span,
+.craft-row.c-pink .tags span,
+.craft-row.c-red .tags span { color: var(--ink-fixed); }
 
 /* ===== Process steps (how-we-build) ===== */
 .path-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 16px; }
@@ -408,7 +450,7 @@ details.proj-card[open] .details-toggle svg { transform: rotate(180deg); }
 .path-top { display: flex; justify-content: space-between; margin-bottom: 12px; }
 .path-kind { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 10px; border-radius: 30px; font-weight: 700; }
 .path-kind.work { color: #fff; background: var(--blue); }
-.path-kind.edu { color: #fff; background: var(--orange); }
+.path-kind.edu { color: var(--ink-fixed); background: var(--orange); }
 .path-card.now .path-kind.work { color: var(--blue); background: #fff; }
 .path-no { font-size: 0.8rem; font-weight: 700; opacity: 0.55; }
 .path-role { font-size: 1.05rem; margin-bottom: 4px; }
@@ -476,7 +518,8 @@ details.proj-card[open] .details-toggle svg { transform: rotate(180deg); }
 .contact-email-btn:hover { transform: translateY(-4px); box-shadow: var(--shadow-3); }
 .contact-email-btn .cb-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; opacity: 0.85; }
 .contact-email-btn .cb-sub { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; }
-.contact-whatsapp { background: linear-gradient(135deg, var(--emerald), var(--cyan)); }
+.contact-whatsapp { background: linear-gradient(135deg, var(--emerald), var(--orange)); color: var(--ink-fixed); }
+.contact-whatsapp .cb-label { opacity: 0.7; }
 .contact-now { color: var(--ink-2); font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
 
 /* ===== Mid-page CTA band ===== */
@@ -502,8 +545,16 @@ details.proj-card[open] .details-toggle svg { transform: rotate(180deg); }
 @media (max-width: 640px) { .fab-contact { bottom: 16px; right: 16px; padding: 11px 16px; font-size: 0.8rem; } }
 
 /* ===== Footer ===== */
-footer { border-top: 1px solid var(--border); padding: 28px 0; }
+footer { position: relative; padding: 28px 0; }
+footer::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--violet), var(--emerald), var(--orange));
+}
 .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; color: var(--ink-2); font-size: 0.85rem; font-weight: 600; }
+.foot-mark {
+  font-family: var(--font-display); font-weight: 700;
+  background: linear-gradient(100deg, var(--blue), var(--emerald)); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
 .footer-seo { color: var(--ink-2); font-size: 0.76rem; padding-top: 12px; opacity: 0.7; font-weight: 500; }
 
 /* ===== Reveal on scroll ===== */
