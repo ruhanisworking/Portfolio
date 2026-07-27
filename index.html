@@ -15,7 +15,7 @@
       name="keywords"
       content="freelance software engineer bangladesh, website development dhaka, mobile app development bangladesh, ai chatbot bangladesh, ai automation, erp software bangladesh, open source software engineer, data analytics bangladesh, cyber security services bangladesh, custom software dhaka"
     />
-    <meta name="theme-color" content="#0b0e13" />
+    <meta name="theme-color" content="#f1f3ef" />
     <link rel="canonical" href="https://ruhan.lol/" />
     <meta name="geo.region" content="BD" />
     <meta name="geo.placename" content="Dhaka" />
@@ -86,93 +86,89 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <!-- ================= TOP STATUS BAR ================= -->
-    <nav class="statusbar" id="statusbar">
-      <div class="sb-inner">
-        <a href="#home" class="wordmark">ruhan</a>
-        <span class="sb-status"><span class="dot live" aria-hidden="true"></span> All systems operational</span>
-        <span class="sb-clock" aria-hidden="true"><span id="clock">--:--:--</span> <span class="sep">/</span> Dhaka</span>
+    <!-- ================= NAV ================= -->
+    <nav class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="#home" class="wordmark"><span class="seal" aria-hidden="true">RI</span> Ruhan Islam</a>
         <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
         <ul class="nav-menu">
-          <li><a href="#services">services</a></li>
-          <li><a href="#experience">track record</a></li>
-          <li><a href="#how-we-build">runbook</a></li>
-          <li><a href="#faq">faq</a></li>
-          <li><a href="#contact">contact</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#how-we-build">How we work</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact" class="nav-cta">Get in touch</a></li>
         </ul>
       </div>
     </nav>
     <div class="nav-backdrop" id="nav-backdrop" onclick="closeMobileMenu()" aria-hidden="true"></div>
 
-    <!-- ================= HERO / MASTHEAD ================= -->
+    <!-- ================= HERO ================= -->
     <header id="home" class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
       <div class="container hero-inner">
-        <div class="masthead panel ticked reveal">
-          <span class="tick tl" aria-hidden="true"></span><span class="tick tr" aria-hidden="true"></span>
-          <span class="tick bl" aria-hidden="true"></span><span class="tick br" aria-hidden="true"></span>
-
-          <svg class="sparkline" id="sparkline" viewBox="0 0 168 44" aria-hidden="true" fill="none">
-            <polyline id="spark" stroke="#4fb0ef" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="" />
-            <line class="spark-dash" x1="0" y1="22" x2="168" y2="22" stroke="#37475d" stroke-width="1" />
-          </svg>
-
-          <div class="mast-top">
-            <span class="eyebrow"><span class="dot live" aria-hidden="true"></span> System status</span>
-            <span class="mast-flag">Dhaka, Bangladesh 🇧🇩 · nationwide &amp; remote</span>
-          </div>
-
-          <h1 class="mast-headline display">
-            One engineer. <span class="op">All systems operational.</span>
+        <div class="hero-copy reveal">
+          <span class="hero-avail"><span class="pip" aria-hidden="true"></span> Dhaka, Bangladesh · open to new work</span>
+          <h1 class="hero-title display">
+            One engineer for <span class="warm">everything digital</span>.
           </h1>
-
-          <p class="mast-sub">
-            Websites, mobile apps, AI automation, enterprise systems and security — run in
-            production by one engineer who owns every layer, including national government
-            systems (Bangladesh Technical Education Board). <strong>Not resold, not outsourced,
-            not templated.</strong>
+          <p class="hero-sub">
+            Websites, mobile apps, AI automation, enterprise systems and security — built
+            personally on proven open-source technology, including national government systems.
+            <strong>Not resold, not outsourced, not templated.</strong>
           </p>
-
-          <div class="identity">
+          <div class="hero-actions">
+            <a href="mailto:ruhan.9mri@gmail.com" class="btn primary">Start a conversation</a>
+            <a href="#services" class="btn ghost">See what I build</a>
+          </div>
+          <div class="hero-identity">
             <span class="identity-photo photo-slot" aria-hidden="true">RI</span>
             <span class="identity-meta">
               <span class="identity-name">Mohammad Ruhan Islam</span>
               <span class="identity-role">Programmer · IICT, BUET</span>
             </span>
           </div>
+        </div>
 
-          <div class="metrics">
-            <div class="metric">
-              <div class="metric-k">Ownership</div>
-              <div class="metric-v" data-count="100" data-suffix="%">0<span class="u">%</span></div>
-              <div class="metric-note">One person answers for it all</div>
-            </div>
-            <div class="metric">
-              <div class="metric-k">License fees</div>
-              <div class="metric-v" data-count="0" data-suffix="৳">0<span class="u">৳</span></div>
-              <div class="metric-note">Open-source stack, no lock-in</div>
-            </div>
-            <div class="metric">
-              <div class="metric-k">Services online</div>
-              <div class="metric-v">6<span class="u">/6</span></div>
-              <div class="metric-note">Web to security, one hand</div>
-            </div>
-            <div class="metric">
-              <div class="metric-k">First response</div>
-              <div class="metric-v">&lt;1<span class="u">day</span></div>
-              <div class="metric-note">A straight answer, fast</div>
-            </div>
+        <!-- Signature: the layers one person owns -->
+        <div class="layers reveal" aria-label="The layers I own, end to end">
+          <div class="layers-cap">
+            <span class="t">One person, every layer</span>
+            <span class="s">end to end</span>
           </div>
-
-          <div class="hero-actions">
-            <a href="mailto:ruhan.9mri@gmail.com" class="btn primary">Report what you need →</a>
-            <a href="#services" class="btn ghost">View services</a>
+          <div class="layer">
+            <div class="layer-body">
+              <span class="layer-name">Interface</span>
+              <span class="layer-desc">What your customers see and touch</span>
+            </div>
+            <span class="layer-badge">web · mobile</span>
+          </div>
+          <div class="layer">
+            <div class="layer-body">
+              <span class="layer-name">Application logic</span>
+              <span class="layer-desc">The rules that run your business</span>
+            </div>
+            <span class="layer-badge">apps · AI</span>
+          </div>
+          <div class="layer">
+            <div class="layer-body">
+              <span class="layer-name">Data</span>
+              <span class="layer-desc">Stored, searchable, turned into answers</span>
+            </div>
+            <span class="layer-badge">databases · analytics</span>
+          </div>
+          <div class="layer">
+            <div class="layer-body">
+              <span class="layer-name">Infrastructure &amp; security</span>
+              <span class="layer-desc">Where it runs, safely, without surprises</span>
+            </div>
+            <span class="layer-badge">servers · backups</span>
           </div>
         </div>
       </div>
@@ -182,68 +178,62 @@
     <section id="services" class="services">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow"><span class="section-index">01</span> · Monitored services</span>
-          <h2 class="section-title">What I keep running</h2>
-          <p class="section-note">Expand any service to see the components it actually runs on — not just what it's called.</p>
+          <span class="eyebrow"><span class="num">01</span> What I build</span>
+          <h2 class="section-title">Serious software, without a serious-sized vendor</h2>
+          <p class="section-note">Open any card to see the tools it's actually built on — not just what it's called.</p>
         </div>
 
-        <div class="svc-list reveal">
-          <details class="svc">
+        <div class="svc-grid">
+          <details class="svc reveal">
             <summary>
-              <span class="svc-status"><span class="dot" aria-hidden="true"></span> Operational</span>
-              <span class="svc-head">
-                <span class="svc-name">Websites &amp; Web Platforms</span>
-                <span class="svc-tag">corporate sites · e-commerce · portals</span>
-              </span>
-              <span class="svc-metric"><b>sub-1s</b><span>load target</span></span>
-              <svg class="svc-chev" width="13" height="8" viewBox="0 0 13 8" fill="none" aria-hidden="true"><path d="M1 1l5.5 5.5L12 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <span class="svc-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 8h18" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="6" r="0.6" fill="currentColor"/></svg></span>
+              <span class="svc-name">Websites &amp; web platforms</span>
+              <span class="svc-tag">Corporate sites · e-commerce · portals</span>
+              <p class="svc-desc">From a company site that ranks on Google to a full customer portal with payments, dashboards and admin panels — fast, mobile-first, and built to be found.</p>
+              <span class="svc-more"><span class="label-closed">Read more</span><span class="label-open">Show less</span> <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="details-body-wrap"><div class="details-body"><div class="body-inner">
+            <div class="details-body-wrap"><div class="details-body">
               <p class="svc-detail-text">
                 Most business websites in Bangladesh are built to be looked at once and forgotten.
                 These are built to work: SEO-ready structure, sub-second load times, responsive on
-                the cheapest Android phone your customer owns, and a backend you can grow into —
-                user accounts, online payments (bKash, Nagad, SSLCommerz, cards), booking,
-                e-commerce, multi-language Bangla/English.
+                the cheapest Android phone your customer owns, and a backend you can grow into — user
+                accounts, online payments (bKash, Nagad, SSLCommerz, cards), booking, e-commerce,
+                multi-language Bangla/English.
               </p>
-              <div class="components-label">Components</div>
+              <div class="components-label">Built with</div>
               <ul class="components"><li>React</li><li>Laravel</li><li>Spring Boot</li><li>PostgreSQL</li><li>Redis</li><li>Nginx</li></ul>
-            </div></div></div>
+            </div></div>
           </details>
 
-          <details class="svc">
+          <details class="svc reveal">
             <summary>
-              <span class="svc-status"><span class="dot" aria-hidden="true"></span> Operational</span>
-              <span class="svc-head">
-                <span class="svc-name">Mobile Apps</span>
-                <span class="svc-tag">Android &amp; iOS · real-time &amp; offline</span>
-              </span>
-              <span class="svc-metric"><b>offline-first</b><span>network model</span></span>
-              <svg class="svc-chev" width="13" height="8" viewBox="0 0 13 8" fill="none" aria-hidden="true"><path d="M1 1l5.5 5.5L12 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <span class="svc-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="7" y="3" width="10" height="18" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <span class="svc-name">Mobile apps</span>
+              <span class="svc-tag">Android &amp; iOS · real-time &amp; offline</span>
+              <p class="svc-desc">Real-time, offline-capable apps — delivery tracking, chat, field tools, customer apps — that stay fast on real Bangladeshi networks.</p>
+              <span class="svc-more"><span class="label-closed">Read more</span><span class="label-open">Show less</span> <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="details-body-wrap"><div class="details-body"><div class="body-inner">
+            <div class="details-body-wrap"><div class="details-body">
               <p class="svc-detail-text">
                 Apps here fail for one reason: they're built assuming perfect internet. These assume
                 a bad-network day — offline-first data, background sync, push notifications, live
                 location and real-time updates over WebSockets. One codebase for Android and iOS
                 where it makes sense, native where it doesn't.
               </p>
-              <div class="components-label">Components</div>
+              <div class="components-label">Built with</div>
               <ul class="components"><li>Android</li><li>Flutter / React Native</li><li>Firebase</li><li>WebSockets</li><li>SQLite sync</li></ul>
-            </div></div></div>
+            </div></div>
           </details>
 
-          <details class="svc">
+          <details class="svc reveal">
             <summary>
-              <span class="svc-status"><span class="dot" aria-hidden="true"></span> Operational</span>
-              <span class="svc-head">
-                <span class="svc-name">AI Automation &amp; Chatbots</span>
-                <span class="svc-tag">RAG · Bangla + English · 24/7</span>
-              </span>
-              <span class="svc-metric"><b>on your data</b><span>grounding</span></span>
-              <svg class="svc-chev" width="13" height="8" viewBox="0 0 13 8" fill="none" aria-hidden="true"><path d="M1 1l5.5 5.5L12 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <span class="svc-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 15a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.3A4.5 4.5 0 0 1 17 15H6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 19l1-2M13 19l1-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <span class="svc-name">AI automation &amp; chatbots</span>
+              <span class="svc-tag">RAG · Bangla + English · always on</span>
+              <p class="svc-desc">AI that answers your customers, reads your documents, and does the repetitive work — on your own data, in Bangla and English.</p>
+              <span class="svc-more"><span class="label-closed">Read more</span><span class="label-open">Show less</span> <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="details-body-wrap"><div class="details-body"><div class="body-inner">
+            <div class="details-body-wrap"><div class="details-body">
               <p class="svc-detail-text">
                 Not a demo — deployed AI. Customer-support chatbots trained on your own catalog,
                 policies and FAQs (website, WhatsApp, Messenger). Document intelligence: feed in
@@ -251,22 +241,20 @@
                 retrieval-augmented generation (RAG) so answers come from your documents, not the
                 internet's imagination — with the option to run models fully on your own servers.
               </p>
-              <div class="components-label">Components</div>
+              <div class="components-label">Built with</div>
               <ul class="components"><li>Python</li><li>FastAPI</li><li>RAG</li><li>Vector search</li><li>OpenAI / Gemini</li><li>Ollama</li></ul>
-            </div></div></div>
+            </div></div>
           </details>
 
-          <details class="svc">
+          <details class="svc reveal">
             <summary>
-              <span class="svc-status"><span class="dot" aria-hidden="true"></span> Operational</span>
-              <span class="svc-head">
-                <span class="svc-name">Enterprise &amp; Organizational Software</span>
-                <span class="svc-tag">ERP · HR · inventory · accounting</span>
-              </span>
-              <span class="svc-metric"><b>no SAP bill</b><span>cost model</span></span>
-              <svg class="svc-chev" width="13" height="8" viewBox="0 0 13 8" fill="none" aria-hidden="true"><path d="M1 1l5.5 5.5L12 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <span class="svc-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+              <span class="svc-name">Enterprise &amp; organizational software</span>
+              <span class="svc-tag">ERP · HR · inventory · accounting</span>
+              <p class="svc-desc">The systems that run an organization — inventory, HR, approvals, reporting — without the SAP-sized price tag.</p>
+              <span class="svc-more"><span class="label-closed">Read more</span><span class="label-open">Show less</span> <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="details-body-wrap"><div class="details-body"><div class="body-inner">
+            <div class="details-body-wrap"><div class="details-body">
               <p class="svc-detail-text">
                 The same workflows large organizations run on SAP and Oracle — inventory,
                 procurement, HR &amp; payroll, accounting, multi-level approvals, reporting — can be
@@ -274,22 +262,20 @@
                 and fully owned by you. Role-based access, audit logs, and the reporting your
                 management actually asks for.
               </p>
-              <div class="components-label">Components</div>
+              <div class="components-label">Built with</div>
               <ul class="components"><li>ERPNext / custom</li><li>Spring Boot</li><li>Oracle &amp; PostgreSQL</li><li>Jasper Reports</li></ul>
-            </div></div></div>
+            </div></div>
           </details>
 
-          <details class="svc">
+          <details class="svc reveal">
             <summary>
-              <span class="svc-status"><span class="dot" aria-hidden="true"></span> Operational</span>
-              <span class="svc-head">
-                <span class="svc-name">Data Platforms &amp; Analytics</span>
-                <span class="svc-tag">dashboards · pipelines · search</span>
-              </span>
-              <span class="svc-metric"><b>live</b><span>dashboards</span></span>
-              <svg class="svc-chev" width="13" height="8" viewBox="0 0 13 8" fill="none" aria-hidden="true"><path d="M1 1l5.5 5.5L12 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <span class="svc-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19V9M9 19V5M14 19v-6M19 19v-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+              <span class="svc-name">Data platforms &amp; analytics</span>
+              <span class="svc-tag">Dashboards · pipelines · search</span>
+              <p class="svc-desc">Data scattered across Excel files, databases and PDFs, turned into live dashboards and searchable knowledge.</p>
+              <span class="svc-more"><span class="label-closed">Read more</span><span class="label-open">Show less</span> <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="details-body-wrap"><div class="details-body"><div class="body-inner">
+            <div class="details-body-wrap"><div class="details-body">
               <p class="svc-detail-text">
                 The pipeline: pull data from every source (databases, APIs, spreadsheets, even
                 scanned documents), move it reliably, and land it somewhere queryable. Apache NiFi
@@ -297,22 +283,20 @@
                 serious, OpenSearch for full-text search, and Apache Superset for dashboards your
                 management can open in a browser — no per-seat BI license, ever.
               </p>
-              <div class="components-label">Components</div>
+              <div class="components-label">Built with</div>
               <ul class="components"><li>Kafka</li><li>NiFi</li><li>Airbyte</li><li>Spark</li><li>Superset</li><li>OpenSearch</li><li>ClickHouse</li></ul>
-            </div></div></div>
+            </div></div>
           </details>
 
-          <details class="svc">
+          <details class="svc reveal">
             <summary>
-              <span class="svc-status"><span class="dot" aria-hidden="true"></span> Operational</span>
-              <span class="svc-head">
-                <span class="svc-name">Security, Infrastructure &amp; Reliability</span>
-                <span class="svc-tag">hardening · monitoring · backups</span>
-              </span>
-              <span class="svc-metric"><b>no 3AM call</b><span>objective</span></span>
-              <svg class="svc-chev" width="13" height="8" viewBox="0 0 13 8" fill="none" aria-hidden="true"><path d="M1 1l5.5 5.5L12 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <span class="svc-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-name">Security, infrastructure &amp; reliability</span>
+              <span class="svc-tag">Hardening · monitoring · backups</span>
+              <p class="svc-desc">Hardened servers, monitored networks, encrypted backups and private VPNs — so the bad-hour phone call never comes.</p>
+              <span class="svc-more"><span class="label-closed">Read more</span><span class="label-open">Show less</span> <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="details-body-wrap"><div class="details-body"><div class="body-inner">
+            <div class="details-body-wrap"><div class="details-body">
               <p class="svc-detail-text">
                 Security is not a product you buy; it's how the system is built. Network intrusion
                 detection with Suricata, database activity monitoring, WireGuard/OpenVPN for secure
@@ -321,24 +305,22 @@
                 (tested restores, not just backups), S3-compatible private object storage with
                 MinIO, and monitoring that alerts before users notice.
               </p>
-              <div class="components-label">Components</div>
+              <div class="components-label">Built with</div>
               <ul class="components"><li>Suricata</li><li>WireGuard</li><li>Bacula</li><li>Restic</li><li>MinIO</li><li>Docker / Kubernetes</li></ul>
-            </div></div></div>
+            </div></div>
           </details>
         </div>
 
-        <!-- Component inventory -->
         <div id="stack" class="stack reveal">
-          <h3 class="stack-title">Component inventory</h3>
-          <p class="section-note">Every tool above is a deliberate choice, not a default.</p>
-
+          <h3 class="stack-title">The full toolkit</h3>
+          <p class="section-note">Every tool is a deliberate choice, not a default.</p>
           <div class="craft-rows">
-            <div class="craft-row"><span class="craft-label">Web &amp; Backend</span><div class="tags"><span>Java / Spring Boot</span><span>PHP (Laravel)</span><span>Python (FastAPI)</span><span>Go</span><span>Node.js</span></div></div>
+            <div class="craft-row"><span class="craft-label">Web &amp; backend</span><div class="tags"><span>Java / Spring Boot</span><span>PHP (Laravel)</span><span>Python (FastAPI)</span><span>Go</span><span>Node.js</span></div></div>
             <div class="craft-row"><span class="craft-label">Frontend</span><div class="tags"><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Vite</span></div></div>
             <div class="craft-row"><span class="craft-label">Mobile</span><div class="tags"><span>Android (Java/Kotlin)</span><span>Flutter / React Native</span></div></div>
             <div class="craft-row"><span class="craft-label">Databases</span><div class="tags"><span>PostgreSQL</span><span>MySQL</span><span>Oracle</span><span>MongoDB</span><span>ClickHouse</span><span>Redis</span></div></div>
-            <div class="craft-row"><span class="craft-label">AI / LLM</span><div class="tags"><span>RAG Pipelines</span><span>Vector Databases</span><span>OpenAI &amp; Gemini APIs</span><span>Ollama (self-hosted)</span></div></div>
-            <div class="craft-row"><span class="craft-label">Security &amp; Net</span><div class="tags"><span>Suricata (IDS/IPS)</span><span>DB Activity Monitoring</span><span>WireGuard / OpenVPN</span><span>Hardening &amp; Audit</span></div></div>
+            <div class="craft-row"><span class="craft-label">AI / LLM</span><div class="tags"><span>RAG pipelines</span><span>Vector databases</span><span>OpenAI &amp; Gemini APIs</span><span>Ollama (self-hosted)</span></div></div>
+            <div class="craft-row"><span class="craft-label">Security &amp; network</span><div class="tags"><span>Suricata (IDS/IPS)</span><span>DB activity monitoring</span><span>WireGuard / OpenVPN</span><span>Hardening &amp; audit</span></div></div>
             <div class="craft-row"><span class="craft-label">DevOps</span><div class="tags"><span>Docker</span><span>Kubernetes</span><span>Jenkins</span><span>GitHub Actions</span><span>Nginx</span><span>Linux</span></div></div>
             <div class="craft-row"><span class="craft-label">Enterprise</span><div class="tags"><span>ERPNext</span><span>Jasper Reports</span><span>Active Directory</span></div></div>
           </div>
@@ -346,20 +328,17 @@
       </div>
     </section>
 
-    <!-- ================= EXPERIENCE / TRACK RECORD ================= -->
-    <section id="experience" class="experience">
+    <!-- ================= EXPERIENCE ================= -->
+    <section id="experience" class="experience section-alt">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow"><span class="section-index">02</span> · Track record</span>
-          <h2 class="section-title">Where I've shipped</h2>
-          <p class="section-note">Roles held long enough to own the outcome, not just the code.</p>
+          <span class="eyebrow"><span class="num">02</span> Experience</span>
+          <h2 class="section-title">Where I've shipped, and owned the outcome</h2>
         </div>
 
         <div class="exp-grid">
-          <article class="exp-card now panel ticked reveal">
-            <span class="tick tl" aria-hidden="true"></span><span class="tick tr" aria-hidden="true"></span>
-            <span class="tick bl" aria-hidden="true"></span><span class="tick br" aria-hidden="true"></span>
-            <span class="exp-flag"><span class="dot live" aria-hidden="true"></span> Currently online</span>
+          <article class="exp-card now reveal">
+            <span class="exp-flag"><span class="pip" aria-hidden="true"></span> Current role</span>
             <span class="exp-year">May 2024 — Present</span>
             <h3 class="exp-role">Programmer</h3>
             <p class="exp-org">IICT, BUET <small>(Institute of Information &amp; Communication Technology) · promoted from Assistant Programmer</small></p>
@@ -369,9 +348,7 @@
               here under employer confidentiality.
             </p>
           </article>
-          <article class="exp-card panel ticked reveal">
-            <span class="tick tl" aria-hidden="true"></span><span class="tick tr" aria-hidden="true"></span>
-            <span class="tick bl" aria-hidden="true"></span><span class="tick br" aria-hidden="true"></span>
+          <article class="exp-card reveal">
             <span class="exp-flag">Completed engagement</span>
             <span class="exp-year">Jan 2025 — Oct 2025</span>
             <h3 class="exp-role">Team Lead / Full-Stack Developer</h3>
@@ -391,14 +368,12 @@
       </div>
     </section>
 
-    <!-- ================= OPEN SOURCE CALLOUT ================= -->
+    <!-- ================= OPEN SOURCE ================= -->
     <section id="why-open-source" class="why">
       <div class="container">
-        <div class="callout panel ticked reveal">
-          <span class="tick tl" aria-hidden="true"></span><span class="tick tr" aria-hidden="true"></span>
-          <span class="tick bl" aria-hidden="true"></span><span class="tick br" aria-hidden="true"></span>
-          <span class="eyebrow" style="margin-bottom:16px;">Why open source</span>
-          <h2 class="section-title">Enterprise power.<br />Zero license fees.<br />Full ownership.</h2>
+        <div class="callout reveal">
+          <span class="eyebrow">Why open source</span>
+          <h2 class="section-title">Enterprise power, zero license fees, full ownership</h2>
           <p class="prose">
             Most software vendors in Bangladesh quietly rent you technology: per-user licenses,
             per-year renewals, and a dependency you can never leave. I build on the open-source
@@ -415,40 +390,50 @@
       </div>
     </section>
 
-    <!-- ================= RUNBOOK ================= -->
-    <section id="how-we-build" class="how">
+    <!-- ================= HOW WE WORK ================= -->
+    <section id="how-we-build" class="how section-alt">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow"><span class="section-index">03</span> · Runbook</span>
+          <span class="eyebrow"><span class="num">03</span> How we work together</span>
           <h2 class="section-title">From “we have a problem” to “it's running”</h2>
-          <p class="section-note">The same five steps, every engagement. In order, because the order matters.</p>
+          <p class="section-note">The same five steps every time, in order — because the order is what keeps things calm.</p>
         </div>
 
-        <div class="runbook reveal">
-          <div class="step">
-            <span class="step-no"><b>01</b> ▸</span>
-            <span class="step-role">Listen</span>
-            <span class="step-desc">You describe the problem in plain language — Bangla or English, doesn't matter. No requirement documents needed to start the conversation.</span>
+        <div class="steps">
+          <div class="step reveal">
+            <span class="step-no">1</span>
+            <div>
+              <h3 class="step-role">Listen</h3>
+              <p class="step-desc">You describe the problem in plain language — Bangla or English, doesn't matter. No requirement documents needed to start.</p>
+            </div>
           </div>
-          <div class="step">
-            <span class="step-no"><b>02</b> ▸</span>
-            <span class="step-role">Scope honestly</span>
-            <span class="step-desc">A written proposal: what will be built, on what, by when, for how much. If a ready-made tool solves it cheaper, you'll be told so.</span>
+          <div class="step reveal">
+            <span class="step-no">2</span>
+            <div>
+              <h3 class="step-role">Scope honestly</h3>
+              <p class="step-desc">A written proposal: what will be built, on what, by when, for how much. If a ready-made tool solves it cheaper, you'll be told so.</p>
+            </div>
           </div>
-          <div class="step">
-            <span class="step-no"><b>03</b> ▸</span>
-            <span class="step-role">Build in the open</span>
-            <span class="step-desc">Weekly working demos, not monthly status reports. You see the real system early enough to change your mind cheaply.</span>
+          <div class="step reveal">
+            <span class="step-no">3</span>
+            <div>
+              <h3 class="step-role">Build in the open</h3>
+              <p class="step-desc">Weekly working demos, not monthly status reports. You see the real system early enough to change your mind cheaply.</p>
+            </div>
           </div>
-          <div class="step">
-            <span class="step-no"><b>04</b> ▸</span>
-            <span class="step-role">Launch with a safety net</span>
-            <span class="step-desc">Monitoring, backups and rollback are configured before go-live, not after the first incident.</span>
+          <div class="step reveal">
+            <span class="step-no">4</span>
+            <div>
+              <h3 class="step-role">Launch with a safety net</h3>
+              <p class="step-desc">Monitoring, backups and rollback are configured before go-live, not after the first incident.</p>
+            </div>
           </div>
-          <div class="step">
-            <span class="step-no"><b>05</b> ▸</span>
-            <span class="step-role">Stay reachable</span>
-            <span class="step-desc">Maintenance and support terms agreed up front. When something breaks at a bad hour, you have a phone number, not a ticket queue.</span>
+          <div class="step step-last reveal">
+            <span class="step-no">5</span>
+            <div>
+              <h3 class="step-role">Stay reachable</h3>
+              <p class="step-desc">Maintenance and support terms agreed up front. When something breaks at a bad hour, you have a phone number, not a ticket queue.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -458,33 +443,33 @@
     <section id="faq" class="faq">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow"><span class="section-index">04</span> · Frequently asked</span>
+          <span class="eyebrow"><span class="num">04</span> Questions</span>
           <h2 class="section-title">Straight answers</h2>
         </div>
 
         <div class="faq-list reveal">
           <details class="faq-item">
-            <summary>How much does a website cost in Bangladesh?</summary>
+            <summary>How much does a website cost in Bangladesh? <span class="plus" aria-hidden="true"></span></summary>
             <div class="faq-a"><p>It depends on what the website has to do. A professional company site is a different project from an e-commerce platform with payments and inventory. You'll get a fixed written quote after one conversation — free, no obligation.</p></div>
           </details>
           <details class="faq-item">
-            <summary>Can you build an app that works with bKash / Nagad?</summary>
+            <summary>Can you build an app that works with bKash / Nagad? <span class="plus" aria-hidden="true"></span></summary>
             <div class="faq-a"><p>Yes — bKash, Nagad, SSLCommerz and international card gateways are all standard integrations here.</p></div>
           </details>
           <details class="faq-item">
-            <summary>What is an AI chatbot and does my business actually need one?</summary>
+            <summary>What is an AI chatbot and does my business actually need one? <span class="plus" aria-hidden="true"></span></summary>
             <div class="faq-a"><p>It's software that answers customer questions automatically — on your website, WhatsApp or Messenger — using your own product and policy information. If your team answers the same 20 questions every day, it usually pays for itself.</p></div>
           </details>
           <details class="faq-item">
-            <summary>Why open source instead of Microsoft/Oracle/SAP-style licensed software?</summary>
+            <summary>Why open source instead of Microsoft/Oracle/SAP-style licensed software? <span class="plus" aria-hidden="true"></span></summary>
             <div class="faq-a"><p>The licensed giants are excellent — and priced for multinationals. Open-source equivalents deliver the same core capability with zero license fees and no vendor lock-in. You own everything that's built.</p></div>
           </details>
           <details class="faq-item">
-            <summary>Do you provide support after delivery?</summary>
+            <summary>Do you provide support after delivery? <span class="plus" aria-hidden="true"></span></summary>
             <div class="faq-a"><p>Yes. Every project ships with a support arrangement in writing — updates, backups, monitoring, and a real human to call.</p></div>
           </details>
           <details class="faq-item">
-            <summary>Can our data stay fully inside our own servers?</summary>
+            <summary>Can our data stay fully inside our own servers? <span class="plus" aria-hidden="true"></span></summary>
             <div class="faq-a"><p>Yes. Everything — including AI — can run entirely on infrastructure you own, with nothing leaving your network. This matters for organizations handling sensitive data, and it's a specialty here.</p></div>
           </details>
         </div>
@@ -492,52 +477,60 @@
     </section>
 
     <!-- ================= CONTACT ================= -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact section-alt">
       <div class="container">
-        <div class="contact-panel panel ticked reveal">
-          <span class="tick tl" aria-hidden="true"></span><span class="tick tr" aria-hidden="true"></span>
-          <span class="tick bl" aria-hidden="true"></span><span class="tick br" aria-hidden="true"></span>
-          <span class="eyebrow"><span class="section-index">05</span> · Page the engineer</span>
-          <h2 class="contact-title display">Describe the problem.<br />Get an engineer's answer.</h2>
+        <div class="contact-panel reveal">
+          <span class="eyebrow"><span class="num">05</span> Get in touch</span>
+          <h2 class="contact-title display">Describe the problem.<br />Get an <span class="warm">engineer's answer</span>.</h2>
           <p class="contact-lede">
             One email or one call. Explain what's broken, missing, or slow — in Bangla or English —
             and you'll get back a straight answer: what to build, what it takes, and whether you
             even need it.
           </p>
-
           <div class="channels">
             <a href="mailto:ruhan.9mri@gmail.com" class="channel">
-              <span class="ch-k"><span class="dot cyan" aria-hidden="true"></span> Email</span>
+              <span class="ch-k">Email</span>
               <span class="ch-v">ruhan.9mri@gmail.com</span>
             </a>
-            <a href="https://wa.me/8801749501010" target="_blank" rel="noopener" class="channel wa">
-              <span class="ch-k"><span class="dot" aria-hidden="true"></span> WhatsApp</span>
+            <a href="https://wa.me/8801749501010" target="_blank" rel="noopener" class="channel">
+              <span class="ch-k">WhatsApp</span>
               <span class="ch-v">+880 1749-501010</span>
             </a>
           </div>
-
-          <div class="contact-now">
-            <span class="dot live" aria-hidden="true"></span> Based in Dhaka · Serving all of Bangladesh · Remote-friendly worldwide
-          </div>
+          <div class="contact-now">Based in Dhaka · Serving all of Bangladesh · Remote-friendly worldwide</div>
         </div>
       </div>
     </section>
 
     <footer>
-      <div class="container footer-inner">
-        <span class="foot-mark">Ruhan Islam</span>
-        <span class="foot-copy">Mohammad Ruhan Islam · © 2026 · Dhaka, Bangladesh</span>
-        <a href="#home" class="foot-top">back to top ↑</a>
+      <div class="container footer-grid">
+        <div class="foot-brand">
+          <span class="foot-mark"><span class="seal" aria-hidden="true">RI</span> Ruhan Islam</span>
+          <p class="foot-tagline">
+            One engineer for everything digital — websites, apps, AI, enterprise systems
+            and security, built personally on open source.
+          </p>
+        </div>
+        <nav class="foot-nav" aria-label="Footer">
+          <a href="#services">Services</a>
+          <a href="#experience">Experience</a>
+          <a href="#how-we-build">How we work</a>
+          <a href="#faq">FAQ</a>
+          <a href="mailto:ruhan.9mri@gmail.com">Email</a>
+          <a href="https://wa.me/8801749501010" target="_blank" rel="noopener">WhatsApp</a>
+        </nav>
       </div>
-      <div class="container footer-seo">
-        Software development, website design, mobile app development, AI automation, ERP and
-        cyber security services in Dhaka and across Bangladesh.
+      <div class="container foot-bottom">
+        <span class="foot-copy">© 2026 Mohammad Ruhan Islam · Dhaka, Bangladesh</span>
+        <a href="#home" class="foot-top">Back to top ↑</a>
+      </div>
+      <div class="container">
+        <p class="footer-seo">
+          Software development, website design, mobile app development, AI automation, ERP and
+          cyber security services in Dhaka and across Bangladesh.
+        </p>
       </div>
     </footer>
-
-    <a href="mailto:ruhan.9mri@gmail.com" class="fab-contact" aria-label="Email Ruhan">
-      <span class="dot" aria-hidden="true"></span> Contact
-    </a>
 
     <script src="js/script.js"></script>
   </body>
