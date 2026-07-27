@@ -9,19 +9,21 @@
    ========================================================================= */
 
 :root {
-  --paper:      #f1f3ef;
-  --surface:    #ffffff;
-  --panel-alt:  #e8ede7;
-  --ink:        #232b29;
-  --muted:      #667069;
-  --faint:      #97a09a;
-  --line:       #e1e5df;
-  --line-soft:  #ecefea;
+  --paper:      #f6f3ea;
+  --surface:    #fffdf9;
+  --panel-alt:  #f1ead8;
+  --ink:        #2b2630;
+  --muted:      #6f6675;
+  --faint:      #9d95a1;
+  --line:       #e9e2d3;
+  --line-soft:  #f1ecdf;
 
-  --accent:      #4e8a76;   /* decorative fills */
-  --accent-deep: #356b57;   /* text / links / on-light contrast */
-  --accent-wash: #e2ede6;   /* chip backgrounds, hovers */
-  --accent-ink:  #ffffff;   /* text on an accent fill */
+  --accent:      #f0c24c;   /* YELLOW — primary fills / highlights */
+  --accent-hover:#e6b23a;
+  --accent-deep: #574494;   /* VIOLET complement — text / links / on-light */
+  --accent-wash: #fbeecb;   /* soft butter — warm tile / chip wash */
+  --accent-ink:  #2b2630;   /* dark text on a yellow fill */
+  --comp-wash:   #ece7f7;   /* soft lavender — complementary wash */
 
   --font-display: "Fraunces", Georgia, serif;
   --font-body:    "Hanken Grotesk", system-ui, sans-serif;
@@ -99,12 +101,12 @@ h1, h2, h3 { overflow-wrap: break-word; }
    ========================================================================= */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 60;
-  background: rgba(241, 243, 239, 0);
+  background: rgba(246, 243, 234, 0);
   transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   border-bottom: 1px solid transparent;
 }
 .nav.scrolled {
-  background: rgba(241, 243, 239, 0.82);
+  background: rgba(246, 243, 234, 0.82);
   backdrop-filter: blur(14px) saturate(120%);
   -webkit-backdrop-filter: blur(14px) saturate(120%);
   border-bottom-color: var(--line);
@@ -163,8 +165,8 @@ h1, h2, h3 { overflow-wrap: break-word; }
   position: absolute; top: -12%; left: 50%; transform: translateX(-50%);
   width: 120vw; height: 620px; z-index: 0; pointer-events: none;
   background:
-    radial-gradient(46% 60% at 32% 30%, rgba(78, 138, 118, 0.16), transparent 70%),
-    radial-gradient(50% 55% at 74% 24%, rgba(214, 197, 160, 0.20), transparent 72%);
+    radial-gradient(46% 60% at 30% 28%, rgba(240, 194, 76, 0.22), transparent 70%),
+    radial-gradient(50% 55% at 76% 24%, rgba(122, 99, 196, 0.16), transparent 72%);
   filter: blur(6px);
   animation: breathe 16s ease-in-out infinite;
 }
@@ -207,8 +209,8 @@ h1, h2, h3 { overflow-wrap: break-word; }
   border: 1px solid transparent;
   transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
 }
-.btn.primary { background: var(--accent-deep); color: var(--accent-ink); box-shadow: var(--shadow-sm); }
-.btn.primary:hover { transform: translateY(-2px); box-shadow: var(--shadow); background: #2e5f4d; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); box-shadow: var(--shadow-sm); }
+.btn.primary:hover { transform: translateY(-2px); box-shadow: var(--shadow); background: var(--accent-hover); }
 .btn.ghost { background: var(--surface); color: var(--ink); border-color: var(--line); box-shadow: var(--shadow-sm); }
 .btn.ghost:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent-deep); }
 
@@ -429,8 +431,8 @@ section { padding: 84px 0; position: relative; }
 }
 .step-no {
   font-family: var(--font-display); font-optical-sizing: auto; font-weight: 560;
-  font-size: 1.5rem; color: var(--accent); line-height: 1; flex: none;
-  width: 44px; height: 44px; border-radius: 50%; background: var(--accent-wash);
+  font-size: 1.5rem; color: var(--accent-deep); line-height: 1; flex: none;
+  width: 44px; height: 44px; border-radius: 50%; background: var(--comp-wash);
   display: inline-flex; align-items: center; justify-content: center;
 }
 .step-role { font-family: var(--font-display); font-weight: 560; font-size: 1.18rem; color: var(--ink); }
@@ -454,7 +456,7 @@ section { padding: 84px 0; position: relative; }
   margin-left: auto; flex: none; position: relative; width: 16px; height: 16px;
 }
 .faq-item > summary .plus::before, .faq-item > summary .plus::after {
-  content: ""; position: absolute; background: var(--accent); border-radius: 2px;
+  content: ""; position: absolute; background: var(--accent-deep); border-radius: 2px;
   left: 50%; top: 50%; transition: transform 0.28s ease;
 }
 .faq-item > summary .plus::before { width: 14px; height: 2px; transform: translate(-50%, -50%); }
