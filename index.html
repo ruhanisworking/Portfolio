@@ -15,7 +15,7 @@
       name="keywords"
       content="freelance software engineer bangladesh, website development dhaka, mobile app development bangladesh, ai chatbot bangladesh, ai automation, erp software bangladesh, open source software engineer, data analytics bangladesh, cyber security services bangladesh, custom software dhaka"
     />
-    <meta name="theme-color" content="#f6f6fb" />
+    <meta name="theme-color" content="#f6f3ea" />
     <link rel="canonical" href="https://ruhan.lol/" />
     <meta name="geo.region" content="BD" />
     <meta name="geo.placename" content="Dhaka" />
@@ -82,43 +82,28 @@
       }
     </script>
 
-    <!-- Set theme before paint to avoid a flash of the wrong mode -->
-    <script>
-      (function () {
-        var theme = "light";
-        try {
-          if (localStorage.getItem("ri-theme") === "dark") theme = "dark";
-        } catch (e) {}
-        document.documentElement.setAttribute("data-theme", theme);
-      })();
-    </script>
-
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Familjen+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <nav class="navbar" id="navbar">
+    <!-- ================= NAV ================= -->
+    <nav class="nav" id="nav">
       <div class="nav-inner">
-        <a href="#home" class="wordmark"><span class="wm-mark">ruhan</span></a>
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light mode" title="Toggle theme">
-          <span class="icon-moon" aria-hidden="true">&#9789;</span>
-          <span class="icon-sun" aria-hidden="true">&#9728;</span>
-        </button>
+        <a href="#home" class="wordmark"><span class="seal" aria-hidden="true">RI</span> Ruhan Islam</a>
         <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu" aria-expanded="false">
-          <span></span><span></span>
+          <span></span><span></span><span></span>
         </button>
         <ul class="nav-menu">
-          <li><a href="#services">services</a></li>
-          <li><a href="#experience">experience</a></li>
-          <li><a href="#how-we-build">how we build</a></li>
-          <li><a href="#stack">stack</a></li>
-          <li><a href="#faq">faq</a></li>
-          <li><a href="#contact">contact</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#how-we-build">How we work</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact" class="nav-cta">Get in touch</a></li>
         </ul>
       </div>
     </nav>
@@ -126,299 +111,237 @@
 
     <!-- ================= HERO ================= -->
     <header id="home" class="hero">
-      <div class="mesh" aria-hidden="true"><span class="m1"></span><span class="m2"></span><span class="m3"></span></div>
-      <div class="bubbles" aria-hidden="true">
-        <span class="bub b1"></span><span class="bub b2"></span><span class="bub b3"></span>
-        <span class="bub b4"></span><span class="bub b5"></span><span class="bub b6"></span>
-        <span class="bub b7"></span>
-      </div>
+      <div class="hero-glow" aria-hidden="true"></div>
       <div class="container hero-inner">
-        <div class="identity-row">
-          <span class="identity-photo">
-            <img src="assets/images/profile.jpg" alt="Mohammad Ruhan Islam" loading="eager" decoding="async" />
-          </span>
-          <span class="identity-text">
-            <span class="identity-name">Mohammad Ruhan Islam</span>
-            <span class="identity-role">Programmer, IICT &middot; BUET</span>
-          </span>
+        <div class="hero-copy reveal">
+          <span class="hero-avail"><span class="pip" aria-hidden="true"></span> Dhaka, Bangladesh · open to new work</span>
+          <h1 class="hero-title display">
+            One engineer for <span class="warm">everything digital</span>.
+          </h1>
+          <p class="hero-sub">
+            Websites, mobile apps, AI automation, enterprise systems and security — built
+            personally on proven open-source technology, including national government systems.
+            <strong>Not resold, not outsourced, not templated.</strong>
+          </p>
+          <div class="hero-actions">
+            <a href="mailto:ruhan.9mri@gmail.com" class="btn primary">Start a conversation</a>
+            <a href="#services" class="btn ghost">See what I build</a>
+          </div>
+          <div class="hero-identity">
+            <span class="identity-photo photo-slot" aria-hidden="true">RI</span>
+            <span class="identity-meta">
+              <span class="identity-name">Mohammad Ruhan Islam</span>
+              <span class="identity-role">Programmer · IICT, BUET</span>
+            </span>
+          </div>
         </div>
 
-        <p class="hero-eyebrow"><span class="dot-live"></span> Dhaka, Bangladesh &#127463;&#127465; &middot; working nationwide &amp; remote</p>
-
-        <h1 class="hero-title">
-          <span class="line">One engineering partner</span>
-          <span class="line accent">for everything digital</span>
-        </h1>
-
-        <p class="hero-lede hero-sub">
-          Websites. Mobile apps. AI automation. Enterprise systems. Security. Built by an engineer
-          who has run all of it in production, including national-level government systems
-          (Bangladesh Technical Education Board) — <strong>not resold, not outsourced, not
-          templated.</strong>
-        </p>
-
-        <p class="hero-lede">
-          I work with organizations that need serious software without a serious-sized vendor.
-          Everything I build is engineered on battle-tested open-source technology — the same
-          class of systems that run banks, telecoms and global platforms — so you get
-          <strong>enterprise-grade capability without enterprise-grade licensing bills.</strong>
-        </p>
-
-        <div class="hero-actions">
-          <a href="mailto:ruhan.9mri@gmail.com" class="btn primary">Tell me what you need &rarr;</a>
-          <a href="#services" class="btn ghost">See services</a>
-        </div>
-
-        <div class="status-band">
-          <div class="status-card c-green">
-            <div class="status-top">
-              <span class="status-icon"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="currentColor"/></svg></span>
-              <span class="status-label">Full ownership</span>
-            </div>
-            <p class="status-detail">One person answers for design, code, servers and uptime</p>
+        <!-- Signature: the layers one person owns -->
+        <div class="layers reveal" aria-label="The layers I own, end to end">
+          <div class="layers-cap">
+            <span class="t">One person, every layer</span>
+            <span class="s">end to end</span>
           </div>
-          <div class="status-card c-cyan">
-            <div class="status-top">
-              <span class="status-icon"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="5" y="11" width="14" height="9" rx="2" fill="currentColor"/><path d="M8 11V7a4 4 0 0 1 7.5-2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span>
-              <span class="status-label">Open source first</span>
+          <div class="layer">
+            <div class="layer-body">
+              <span class="layer-name">Interface</span>
+              <span class="layer-desc">What your customers see and touch</span>
             </div>
-            <p class="status-detail">No license fees, no lock-in, audit every line if you want</p>
+            <span class="layer-badge">web · mobile</span>
           </div>
-          <div class="status-card c-violet">
-            <div class="status-top">
-              <span class="status-icon"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 2l7 3v6c0 5-3 8-7 11-4-3-7-6-7-11V5l7-3z" fill="currentColor"/></svg></span>
-              <span class="status-label">Production mindset</span>
+          <div class="layer">
+            <div class="layer-body">
+              <span class="layer-name">Application logic</span>
+              <span class="layer-desc">The rules that run your business</span>
             </div>
-            <p class="status-detail">Monitoring, backups and security from day one, not after launch</p>
+            <span class="layer-badge">apps · AI</span>
           </div>
-          <div class="status-card c-pink">
-            <div class="status-top">
-              <span class="status-icon"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M4 4h16v12H8l-4 4V4z" fill="currentColor"/><path d="M8 10l2 2 4-4" stroke="var(--bg-2)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              <span class="status-label">Straight answers</span>
+          <div class="layer">
+            <div class="layer-body">
+              <span class="layer-name">Data</span>
+              <span class="layer-desc">Stored, searchable, turned into answers</span>
             </div>
-            <p class="status-detail">If something doesn't need building, you'll be told so</p>
+            <span class="layer-badge">databases · analytics</span>
+          </div>
+          <div class="layer">
+            <div class="layer-body">
+              <span class="layer-name">Infrastructure &amp; security</span>
+              <span class="layer-desc">Where it runs, safely, without surprises</span>
+            </div>
+            <span class="layer-badge">servers · backups</span>
           </div>
         </div>
       </div>
     </header>
 
     <!-- ================= SERVICES ================= -->
-    <section id="services" class="work">
+    <section id="services" class="services">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-index">01</span>
-          <h2 class="section-title">What I build</h2>
-          <p class="section-note">Tap a service to see how it's actually built, not just what it's called.</p>
+          <span class="eyebrow"><span class="num">01</span> What I build</span>
+          <h2 class="section-title">Serious software, without a serious-sized vendor</h2>
+          <p class="section-note">Open any card to see the tools it's actually built on — not just what it's called.</p>
         </div>
 
-        <div class="work-grid">
-          <details class="proj-card svc-website reveal">
+        <div class="svc-grid">
+          <details class="svc reveal">
             <summary>
-              <div class="motif motif-browser"><div class="m-bar"><span></span><span></span><span></span></div><div class="m-lines"><i></i><i></i></div></div>
-              <div class="proj-heading">
-                <h3>Websites &amp; Web Platforms</h3>
-                <span class="proj-tag">Corporate sites &middot; e-commerce &middot; portals</span>
-              </div>
-              <p class="proj-desc">
-                From a company site that actually ranks on Google to a full customer portal with
-                payments, dashboards and admin panels — fast, mobile-first, and built to be found.
-              </p>
-              <span class="details-toggle">Read more <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              <span class="svc-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 8h18" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="6" r="0.6" fill="currentColor"/></svg></span>
+              <span class="svc-name">Websites &amp; web platforms</span>
+              <span class="svc-tag">Corporate sites · e-commerce · portals</span>
+              <p class="svc-desc">From a company site that ranks on Google to a full customer portal with payments, dashboards and admin panels — fast, mobile-first, and built to be found.</p>
+              <span class="svc-more"><span class="label-closed">Read more</span><span class="label-open">Show less</span> <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </summary>
             <div class="details-body-wrap"><div class="details-body">
-              <p class="proj-desc">
-                Most business websites in Bangladesh are built to be looked at once and
-                forgotten. These are built to work: SEO-ready structure, sub-second load times,
-                responsive on the cheapest Android phone your customer owns, and a backend you
-                can grow into — user accounts, online payments (bKash, Nagad, SSLCommerz, cards),
-                booking, e-commerce, multi-language Bangla/English.
+              <p class="svc-detail-text">
+                Most business websites in Bangladesh are built to be looked at once and forgotten.
+                These are built to work: SEO-ready structure, sub-second load times, responsive on
+                the cheapest Android phone your customer owns, and a backend you can grow into — user
+                accounts, online payments (bKash, Nagad, SSLCommerz, cards), booking, e-commerce,
+                multi-language Bangla/English.
               </p>
-              <ul class="tech"><li>React</li><li>Laravel</li><li>Spring Boot</li><li>PostgreSQL</li><li>Redis</li><li>Nginx</li></ul>
+              <div class="components-label">Built with</div>
+              <ul class="components"><li>React</li><li>Laravel</li><li>Spring Boot</li><li>PostgreSQL</li><li>Redis</li><li>Nginx</li></ul>
             </div></div>
           </details>
 
-          <details class="proj-card svc-mobile reveal">
+          <details class="svc reveal">
             <summary>
-              <div class="motif motif-phone"><div class="m-device"><i></i><i></i><i></i><i></i></div><span class="m-pulse"></span></div>
-              <div class="proj-heading">
-                <h3>Mobile Apps</h3>
-                <span class="proj-tag">Android &amp; iOS &middot; real-time &amp; offline</span>
-              </div>
-              <p class="proj-desc">
-                Real-time, offline-capable mobile apps — delivery tracking, chat, field-force
-                tools, customer apps — that stay fast on real Bangladeshi networks.
-              </p>
-              <span class="details-toggle">Read more <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              <span class="svc-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="7" y="3" width="10" height="18" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <span class="svc-name">Mobile apps</span>
+              <span class="svc-tag">Android &amp; iOS · real-time &amp; offline</span>
+              <p class="svc-desc">Real-time, offline-capable apps — delivery tracking, chat, field tools, customer apps — that stay fast on real Bangladeshi networks.</p>
+              <span class="svc-more"><span class="label-closed">Read more</span><span class="label-open">Show less</span> <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </summary>
             <div class="details-body-wrap"><div class="details-body">
-              <p class="proj-desc">
-                Apps here fail for one reason: they're built assuming perfect internet. These
-                assume a bad-network day — offline-first data, background sync, push
-                notifications, live location and real-time updates over WebSockets. One codebase
-                for Android and iOS where it makes sense, native where it doesn't.
+              <p class="svc-detail-text">
+                Apps here fail for one reason: they're built assuming perfect internet. These assume
+                a bad-network day — offline-first data, background sync, push notifications, live
+                location and real-time updates over WebSockets. One codebase for Android and iOS
+                where it makes sense, native where it doesn't.
               </p>
-              <ul class="tech"><li>Android</li><li>Flutter / React Native</li><li>Firebase</li><li>WebSockets</li><li>SQLite sync</li></ul>
+              <div class="components-label">Built with</div>
+              <ul class="components"><li>Android</li><li>Flutter / React Native</li><li>Firebase</li><li>WebSockets</li><li>SQLite sync</li></ul>
             </div></div>
           </details>
 
-          <details class="proj-card svc-ai reveal">
+          <details class="svc reveal">
             <summary>
-              <div class="motif motif-chat"><div class="m-bubble"></div><div class="m-bubble right"></div><div class="m-typing"><i></i><i></i><i></i></div></div>
-              <div class="proj-heading">
-                <h3>AI Automation &amp; Chatbots</h3>
-                <span class="proj-tag">RAG &middot; Bangla + English &middot; 24/7</span>
-              </div>
-              <p class="proj-desc">
-                AI that answers your customers, reads your documents, and does the repetitive
-                work — on your data, in Bangla and English, 24/7.
-              </p>
-              <span class="details-toggle">Read more <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              <span class="svc-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 15a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.3A4.5 4.5 0 0 1 17 15H6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 19l1-2M13 19l1-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <span class="svc-name">AI automation &amp; chatbots</span>
+              <span class="svc-tag">RAG · Bangla + English · always on</span>
+              <p class="svc-desc">AI that answers your customers, reads your documents, and does the repetitive work — on your own data, in Bangla and English.</p>
+              <span class="svc-more"><span class="label-closed">Read more</span><span class="label-open">Show less</span> <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </summary>
             <div class="details-body-wrap"><div class="details-body">
-              <p class="proj-desc">
+              <p class="svc-detail-text">
                 Not a demo — deployed AI. Customer-support chatbots trained on your own catalog,
                 policies and FAQs (website, WhatsApp, Messenger). Document intelligence: feed in
                 contracts, reports or forms and get summaries or drafted replies. Built on
                 retrieval-augmented generation (RAG) so answers come from your documents, not the
                 internet's imagination — with the option to run models fully on your own servers.
               </p>
-              <ul class="tech"><li>Python</li><li>FastAPI</li><li>RAG</li><li>Vector search</li><li>OpenAI / Gemini</li><li>Ollama</li></ul>
+              <div class="components-label">Built with</div>
+              <ul class="components"><li>Python</li><li>FastAPI</li><li>RAG</li><li>Vector search</li><li>OpenAI / Gemini</li><li>Ollama</li></ul>
             </div></div>
           </details>
 
-          <details class="proj-card svc-erp reveal">
+          <details class="svc reveal">
             <summary>
-              <div class="motif motif-dash"><div class="m-row"><i></i><i></i></div><div class="m-row"><i></i><i></i></div><div class="m-row"><i></i><i></i></div></div>
-              <div class="proj-heading">
-                <h3>Enterprise &amp; Organizational Software</h3>
-                <span class="proj-tag">ERP &middot; HR &middot; inventory &middot; accounting</span>
-              </div>
-              <p class="proj-desc">
-                ERP, HR, inventory, accounting, approvals — the systems that run an organization,
-                without the SAP-sized price tag.
-              </p>
-              <span class="details-toggle">Read more <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              <span class="svc-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+              <span class="svc-name">Enterprise &amp; organizational software</span>
+              <span class="svc-tag">ERP · HR · inventory · accounting</span>
+              <p class="svc-desc">The systems that run an organization — inventory, HR, approvals, reporting — without the SAP-sized price tag.</p>
+              <span class="svc-more"><span class="label-closed">Read more</span><span class="label-open">Show less</span> <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </summary>
             <div class="details-body-wrap"><div class="details-body">
-              <p class="proj-desc">
+              <p class="svc-detail-text">
                 The same workflows large organizations run on SAP and Oracle — inventory,
-                procurement, HR &amp; payroll, accounting, multi-level approvals, reporting — can
-                be built on mature open-source platforms or custom-developed, at a fraction of the
-                cost and fully owned by you. Role-based access, audit logs, and the reporting your
+                procurement, HR &amp; payroll, accounting, multi-level approvals, reporting — can be
+                built on mature open-source platforms or custom-developed, at a fraction of the cost
+                and fully owned by you. Role-based access, audit logs, and the reporting your
                 management actually asks for.
               </p>
-              <ul class="tech"><li>ERPNext / custom</li><li>Spring Boot</li><li>Oracle &amp; PostgreSQL</li><li>Jasper Reports</li></ul>
+              <div class="components-label">Built with</div>
+              <ul class="components"><li>ERPNext / custom</li><li>Spring Boot</li><li>Oracle &amp; PostgreSQL</li><li>Jasper Reports</li></ul>
             </div></div>
           </details>
 
-          <details class="proj-card svc-data reveal">
+          <details class="svc reveal">
             <summary>
-              <div class="motif motif-chart"><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="proj-heading">
-                <h3>Data Platforms &amp; Analytics</h3>
-                <span class="proj-tag">Dashboards &middot; pipelines &middot; search</span>
-              </div>
-              <p class="proj-desc">
-                Your data is scattered across Excel files, databases and PDFs. Turn it into live
-                dashboards and searchable knowledge.
-              </p>
-              <span class="details-toggle">Read more <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              <span class="svc-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19V9M9 19V5M14 19v-6M19 19v-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+              <span class="svc-name">Data platforms &amp; analytics</span>
+              <span class="svc-tag">Dashboards · pipelines · search</span>
+              <p class="svc-desc">Data scattered across Excel files, databases and PDFs, turned into live dashboards and searchable knowledge.</p>
+              <span class="svc-more"><span class="label-closed">Read more</span><span class="label-open">Show less</span> <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </summary>
             <div class="details-body-wrap"><div class="details-body">
-              <p class="proj-desc">
+              <p class="svc-detail-text">
                 The pipeline: pull data from every source (databases, APIs, spreadsheets, even
                 scanned documents), move it reliably, and land it somewhere queryable. Apache NiFi
                 and Airbyte for ingestion, Kafka for real-time streams, Spark when the volume gets
                 serious, OpenSearch for full-text search, and Apache Superset for dashboards your
                 management can open in a browser — no per-seat BI license, ever.
               </p>
-              <ul class="tech"><li>Kafka</li><li>NiFi</li><li>Airbyte</li><li>Spark</li><li>Superset</li><li>OpenSearch</li><li>ClickHouse</li></ul>
+              <div class="components-label">Built with</div>
+              <ul class="components"><li>Kafka</li><li>NiFi</li><li>Airbyte</li><li>Spark</li><li>Superset</li><li>OpenSearch</li><li>ClickHouse</li></ul>
             </div></div>
           </details>
 
-          <details class="proj-card svc-security reveal">
+          <details class="svc reveal">
             <summary>
-              <div class="motif motif-shield"><div class="m-shield"></div></div>
-              <div class="proj-heading">
-                <h3>Security, Infrastructure &amp; Reliability</h3>
-                <span class="proj-tag">Hardening &middot; monitoring &middot; backups</span>
-              </div>
-              <p class="proj-desc">
-                Hardened servers, monitored networks, encrypted backups, private VPNs — so the
-                3&nbsp;AM phone call never comes.
-              </p>
-              <span class="details-toggle">Read more <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              <span class="svc-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="svc-name">Security, infrastructure &amp; reliability</span>
+              <span class="svc-tag">Hardening · monitoring · backups</span>
+              <p class="svc-desc">Hardened servers, monitored networks, encrypted backups and private VPNs — so the bad-hour phone call never comes.</p>
+              <span class="svc-more"><span class="label-closed">Read more</span><span class="label-open">Show less</span> <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
             </summary>
             <div class="details-body-wrap"><div class="details-body">
-              <p class="proj-desc">
-                Security is not a product you buy; it's how the system is built. Network
-                intrusion detection with Suricata, database activity monitoring, WireGuard/OpenVPN
-                for secure remote access, server hardening, and SQL-injection-proof application
-                design. Reliability is the other half: automated encrypted backups with Bacula and
-                Restic (tested restores, not just backups), S3-compatible private object storage
-                with MinIO, and monitoring that alerts before users notice.
+              <p class="svc-detail-text">
+                Security is not a product you buy; it's how the system is built. Network intrusion
+                detection with Suricata, database activity monitoring, WireGuard/OpenVPN for secure
+                remote access, server hardening, and SQL-injection-proof application design.
+                Reliability is the other half: automated encrypted backups with Bacula and Restic
+                (tested restores, not just backups), S3-compatible private object storage with
+                MinIO, and monitoring that alerts before users notice.
               </p>
-              <ul class="tech"><li>Suricata</li><li>WireGuard</li><li>Bacula</li><li>Restic</li><li>MinIO</li><li>Docker / Kubernetes</li></ul>
+              <div class="components-label">Built with</div>
+              <ul class="components"><li>Suricata</li><li>WireGuard</li><li>Bacula</li><li>Restic</li><li>MinIO</li><li>Docker / Kubernetes</li></ul>
             </div></div>
           </details>
         </div>
 
-        <div id="stack" class="stack-inline reveal">
-          <h3 class="stack-inline-title">The full stack, laid out</h3>
-          <p class="section-note">Every tool above is a deliberate choice, not a default.</p>
-
+        <div id="stack" class="stack reveal">
+          <h3 class="stack-title">The full toolkit</h3>
+          <p class="section-note">Every tool is a deliberate choice, not a default.</p>
           <div class="craft-rows">
-            <div class="craft-row c-green reveal">
-              <h3 class="craft-label">Web &amp; Backend</h3>
-              <div class="tags"><span>Java / Spring Boot</span><span>PHP (Laravel)</span><span>Python (FastAPI)</span><span>Go</span><span>Node.js</span></div>
-            </div>
-            <div class="craft-row c-blue reveal">
-              <h3 class="craft-label">Frontend</h3>
-              <div class="tags"><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Vite</span></div>
-            </div>
-            <div class="craft-row c-amber reveal">
-              <h3 class="craft-label">Mobile</h3>
-              <div class="tags"><span>Android (Java/Kotlin)</span><span>Flutter / React Native</span></div>
-            </div>
-            <div class="craft-row c-cyan reveal">
-              <h3 class="craft-label">Databases</h3>
-              <div class="tags"><span>PostgreSQL</span><span>MySQL</span><span>Oracle</span><span>MongoDB</span><span>ClickHouse</span><span>Redis</span></div>
-            </div>
-            <div class="craft-row c-violet reveal">
-              <h3 class="craft-label">AI / LLM</h3>
-              <div class="tags"><span>RAG Pipelines</span><span>Vector Databases</span><span>OpenAI &amp; Gemini APIs</span><span>Ollama (self-hosted)</span></div>
-            </div>
-            <div class="craft-row c-red reveal">
-              <h3 class="craft-label">Security &amp; Networking</h3>
-              <div class="tags"><span>Suricata (IDS/IPS)</span><span>DB Activity Monitoring</span><span>WireGuard / OpenVPN</span><span>Hardening &amp; Audit</span></div>
-            </div>
-            <div class="craft-row c-green reveal">
-              <h3 class="craft-label">DevOps</h3>
-              <div class="tags"><span>Docker</span><span>Kubernetes</span><span>Jenkins</span><span>GitHub Actions</span><span>Nginx</span><span>Linux</span></div>
-            </div>
-            <div class="craft-row c-blue reveal">
-              <h3 class="craft-label">Enterprise</h3>
-              <div class="tags"><span>ERPNext</span><span>Jasper Reports</span><span>Active Directory</span></div>
-            </div>
+            <div class="craft-row"><span class="craft-label">Web &amp; backend</span><div class="tags"><span>Java / Spring Boot</span><span>PHP (Laravel)</span><span>Python (FastAPI)</span><span>Go</span><span>Node.js</span></div></div>
+            <div class="craft-row"><span class="craft-label">Frontend</span><div class="tags"><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Vite</span></div></div>
+            <div class="craft-row"><span class="craft-label">Mobile</span><div class="tags"><span>Android (Java/Kotlin)</span><span>Flutter / React Native</span></div></div>
+            <div class="craft-row"><span class="craft-label">Databases</span><div class="tags"><span>PostgreSQL</span><span>MySQL</span><span>Oracle</span><span>MongoDB</span><span>ClickHouse</span><span>Redis</span></div></div>
+            <div class="craft-row"><span class="craft-label">AI / LLM</span><div class="tags"><span>RAG pipelines</span><span>Vector databases</span><span>OpenAI &amp; Gemini APIs</span><span>Ollama (self-hosted)</span></div></div>
+            <div class="craft-row"><span class="craft-label">Security &amp; network</span><div class="tags"><span>Suricata (IDS/IPS)</span><span>DB activity monitoring</span><span>WireGuard / OpenVPN</span><span>Hardening &amp; audit</span></div></div>
+            <div class="craft-row"><span class="craft-label">DevOps</span><div class="tags"><span>Docker</span><span>Kubernetes</span><span>Jenkins</span><span>GitHub Actions</span><span>Nginx</span><span>Linux</span></div></div>
+            <div class="craft-row"><span class="craft-label">Enterprise</span><div class="tags"><span>ERPNext</span><span>Jasper Reports</span><span>Active Directory</span></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= EXPERIENCE (emphasized) ================= -->
-    <section id="experience" class="about">
+    <!-- ================= EXPERIENCE ================= -->
+    <section id="experience" class="experience section-alt">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-index">02</span>
-          <h2 class="section-title">Experience</h2>
-          <p class="section-note">Where I've actually shipped, and what I learned owning it.</p>
+          <span class="eyebrow"><span class="num">02</span> Experience</span>
+          <h2 class="section-title">Where I've shipped, and owned the outcome</h2>
         </div>
 
-        <div class="experience-grid">
+        <div class="exp-grid">
           <article class="exp-card now reveal">
+            <span class="exp-flag"><span class="pip" aria-hidden="true"></span> Current role</span>
             <span class="exp-year">May 2024 — Present</span>
             <h3 class="exp-role">Programmer</h3>
-            <p class="exp-org">IICT, BUET <small>(Institute of Information &amp; Communication Technology) &middot; promoted from Assistant Programmer</small></p>
+            <p class="exp-org">IICT, BUET <small>(Institute of Information &amp; Communication Technology) · promoted from Assistant Programmer</small></p>
             <p class="exp-desc">
               Government-scale systems where downtime isn't a metric, it's an incident — including
               national-level work for the Bangladesh Technical Education Board (BTEB), kept short
@@ -426,6 +349,7 @@
             </p>
           </article>
           <article class="exp-card reveal">
+            <span class="exp-flag">Completed engagement</span>
             <span class="exp-year">Jan 2025 — Oct 2025</span>
             <h3 class="exp-role">Team Lead / Full-Stack Developer</h3>
             <p class="exp-org">Merilsoft <small>(Remote, Part-Time)</small></p>
@@ -438,175 +362,175 @@
 
         <h3 class="education-label reveal">Education</h3>
         <div class="education-compact reveal">
-          <span class="edu-chip"><strong>Bachelor of Science, Computer Science &amp; Engineering</strong><span>&middot; Khulna University of Engineering &amp; Technology (KUET) &middot; 2018–2024</span></span>
-          <span class="edu-chip"><strong>Higher Secondary Certificate</strong><span>&middot; Notre Dame College, Dhaka &middot; 2018</span></span>
+          <span class="edu-chip"><strong>Bachelor of Science, Computer Science &amp; Engineering</strong><span>· Khulna University of Engineering &amp; Technology (KUET) · 2018–2024</span></span>
+          <span class="edu-chip"><strong>Higher Secondary Certificate</strong><span>· Notre Dame College, Dhaka · 2018</span></span>
         </div>
       </div>
     </section>
 
-    <!-- ================= MID-PAGE CTA ================= -->
-    <section class="cta-band">
-      <div class="container cta-band-inner reveal">
-        <p class="cta-band-text">Need one of these built, fixed, or rescued?</p>
-        <a href="mailto:ruhan.9mri@gmail.com" class="btn primary cta-band-btn">Email me &rarr;</a>
+    <!-- ================= OPEN SOURCE ================= -->
+    <section id="why-open-source" class="why">
+      <div class="container">
+        <div class="callout reveal">
+          <span class="eyebrow">Why open source</span>
+          <h2 class="section-title">Enterprise power, zero license fees, full ownership</h2>
+          <p class="prose">
+            Most software vendors in Bangladesh quietly rent you technology: per-user licenses,
+            per-year renewals, and a dependency you can never leave. I build on the open-source
+            stack that global enterprises actually run — Kafka moves data at LinkedIn, MinIO stores
+            it at Fortune-500 scale, Superset powers dashboards at Airbnb. <strong>You own every
+            line of it,</strong> and your only recurring cost is hosting.
+          </p>
+          <div class="trust-strip">
+            <div class="trust-item"><strong>No lock-in</strong><span>Leave anytime with all your code and data</span></div>
+            <div class="trust-item"><strong>No license bills</strong><span>Budget goes into building, not renewing</span></div>
+            <div class="trust-item"><strong>No black boxes</strong><span>Every component is auditable and documented</span></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ================= WHY OPEN SOURCE ================= -->
-    <section id="why-open-source" class="about">
+    <!-- ================= HOW WE WORK ================= -->
+    <section id="how-we-build" class="how section-alt">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-index">&#9679;</span>
-          <h2 class="section-title">Enterprise power.<br />Zero license fees.<br />Full ownership.</h2>
-        </div>
-        <p class="prose prose-lg reveal">
-          Most software vendors in Bangladesh quietly rent you technology: per-user licenses,
-          per-year renewals, and a dependency you can never leave. I build on the open-source
-          stack that global enterprises actually run — Kafka moves data at LinkedIn, MinIO stores
-          it at Fortune-500 scale, Superset powers dashboards at Airbnb. <strong>You own every line
-          of it,</strong> and your only recurring cost is hosting.
-        </p>
-        <div class="trust-strip reveal">
-          <div class="trust-item"><strong>No lock-in</strong><span>Leave anytime with all your code and data</span></div>
-          <div class="trust-item"><strong>No license bills</strong><span>Budget goes into building, not renewing</span></div>
-          <div class="trust-item"><strong>No black boxes</strong><span>Every component is auditable and documented</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= HOW WE BUILD ================= -->
-    <section id="how-we-build" class="experience">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="section-index">03</span>
-          <h2 class="section-title">From &ldquo;we have a problem&rdquo;<br />to &ldquo;it's running&rdquo;</h2>
+          <span class="eyebrow"><span class="num">03</span> How we work together</span>
+          <h2 class="section-title">From “we have a problem” to “it's running”</h2>
+          <p class="section-note">The same five steps every time, in order — because the order is what keeps things calm.</p>
         </div>
 
-        <div class="path-grid process-grid">
-          <article class="path-card reveal">
-            <div class="path-top"><span class="path-no">01</span></div>
-            <h3 class="path-role">Listen</h3>
-            <p class="path-org">You describe the problem in plain language — Bangla or English,
-              doesn't matter. No requirement documents needed to start the conversation.</p>
-          </article>
-          <article class="path-card reveal">
-            <div class="path-top"><span class="path-no">02</span></div>
-            <h3 class="path-role">Scope honestly</h3>
-            <p class="path-org">A written proposal: what will be built, on what, by when, for
-              how much. If a ready-made tool solves it cheaper, you'll be told so.</p>
-          </article>
-          <article class="path-card reveal">
-            <div class="path-top"><span class="path-no">03</span></div>
-            <h3 class="path-role">Build in the open</h3>
-            <p class="path-org">Weekly working demos, not monthly status reports. You see the
-              real system early enough to change your mind cheaply.</p>
-          </article>
-          <article class="path-card reveal">
-            <div class="path-top"><span class="path-no">04</span></div>
-            <h3 class="path-role">Launch with a safety net</h3>
-            <p class="path-org">Monitoring, backups and rollback are configured before go-live,
-              not after the first incident.</p>
-          </article>
-          <article class="path-card reveal">
-            <div class="path-top"><span class="path-no">05</span></div>
-            <h3 class="path-role">Stay reachable</h3>
-            <p class="path-org">Maintenance and support terms agreed up front. When something
-              breaks at a bad hour, you have a phone number, not a ticket queue.</p>
-          </article>
+        <div class="steps">
+          <div class="step reveal">
+            <span class="step-no">1</span>
+            <div>
+              <h3 class="step-role">Listen</h3>
+              <p class="step-desc">You describe the problem in plain language — Bangla or English, doesn't matter. No requirement documents needed to start.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <span class="step-no">2</span>
+            <div>
+              <h3 class="step-role">Scope honestly</h3>
+              <p class="step-desc">A written proposal: what will be built, on what, by when, for how much. If a ready-made tool solves it cheaper, you'll be told so.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <span class="step-no">3</span>
+            <div>
+              <h3 class="step-role">Build in the open</h3>
+              <p class="step-desc">Weekly working demos, not monthly status reports. You see the real system early enough to change your mind cheaply.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <span class="step-no">4</span>
+            <div>
+              <h3 class="step-role">Launch with a safety net</h3>
+              <p class="step-desc">Monitoring, backups and rollback are configured before go-live, not after the first incident.</p>
+            </div>
+          </div>
+          <div class="step step-last reveal">
+            <span class="step-no">5</span>
+            <div>
+              <h3 class="step-role">Stay reachable</h3>
+              <p class="step-desc">Maintenance and support terms agreed up front. When something breaks at a bad hour, you have a phone number, not a ticket queue.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ================= FAQ ================= -->
-    <section id="faq" class="work">
+    <section id="faq" class="faq">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-index">04</span>
-          <h2 class="section-title">Frequently Asked</h2>
+          <span class="eyebrow"><span class="num">04</span> Questions</span>
+          <h2 class="section-title">Straight answers</h2>
         </div>
 
-        <div class="faq-list">
-          <details class="faq-item reveal">
-            <summary>How much does a website cost in Bangladesh?</summary>
-            <p>It depends on what the website has to do. A professional company site is a
-              different project from an e-commerce platform with payments and inventory. You'll
-              get a fixed written quote after one conversation — free, no obligation.</p>
+        <div class="faq-list reveal">
+          <details class="faq-item">
+            <summary>How much does a website cost in Bangladesh? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-a"><p>It depends on what the website has to do. A professional company site is a different project from an e-commerce platform with payments and inventory. You'll get a fixed written quote after one conversation — free, no obligation.</p></div>
           </details>
-          <details class="faq-item reveal">
-            <summary>Can you build an app that works with bKash / Nagad?</summary>
-            <p>Yes — bKash, Nagad, SSLCommerz and international card gateways are all standard
-              integrations here.</p>
+          <details class="faq-item">
+            <summary>Can you build an app that works with bKash / Nagad? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-a"><p>Yes — bKash, Nagad, SSLCommerz and international card gateways are all standard integrations here.</p></div>
           </details>
-          <details class="faq-item reveal">
-            <summary>What is an AI chatbot and does my business actually need one?</summary>
-            <p>It's software that answers customer questions automatically — on your website,
-              WhatsApp or Messenger — using your own product and policy information. If your team
-              answers the same 20 questions every day, it usually pays for itself.</p>
+          <details class="faq-item">
+            <summary>What is an AI chatbot and does my business actually need one? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-a"><p>It's software that answers customer questions automatically — on your website, WhatsApp or Messenger — using your own product and policy information. If your team answers the same 20 questions every day, it usually pays for itself.</p></div>
           </details>
-          <details class="faq-item reveal">
-            <summary>Why open source instead of Microsoft/Oracle/SAP-style licensed software?</summary>
-            <p>The licensed giants are excellent — and priced for multinationals. Open-source
-              equivalents deliver the same core capability with zero license fees and no vendor
-              lock-in. You own everything that's built.</p>
+          <details class="faq-item">
+            <summary>Why open source instead of Microsoft/Oracle/SAP-style licensed software? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-a"><p>The licensed giants are excellent — and priced for multinationals. Open-source equivalents deliver the same core capability with zero license fees and no vendor lock-in. You own everything that's built.</p></div>
           </details>
-          <details class="faq-item reveal">
-            <summary>Do you provide support after delivery?</summary>
-            <p>Yes. Every project ships with a support arrangement in writing — updates, backups,
-              monitoring, and a real human to call.</p>
+          <details class="faq-item">
+            <summary>Do you provide support after delivery? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-a"><p>Yes. Every project ships with a support arrangement in writing — updates, backups, monitoring, and a real human to call.</p></div>
           </details>
-          <details class="faq-item reveal">
-            <summary>Can our data stay fully inside our own servers?</summary>
-            <p>Yes. Everything — including AI — can run entirely on infrastructure you own, with
-              nothing leaving your network. This matters for organizations handling sensitive
-              data, and it's a specialty here.</p>
+          <details class="faq-item">
+            <summary>Can our data stay fully inside our own servers? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-a"><p>Yes. Everything — including AI — can run entirely on infrastructure you own, with nothing leaving your network. This matters for organizations handling sensitive data, and it's a specialty here.</p></div>
           </details>
         </div>
       </div>
     </section>
 
     <!-- ================= CONTACT ================= -->
-    <section id="contact" class="contact">
-      <div class="container contact-inner reveal">
-        <span class="section-index">05</span>
-        <h2 class="contact-title">Describe the problem.<br />Get an engineer's answer.</h2>
-        <p class="contact-lede">
-          One email or one call. Explain what's broken, missing, or slow — in Bangla or English —
-          and you'll get back a straight answer: what to build, what it takes, and whether you
-          even need it.
-        </p>
-
-        <div class="contact-main contact-dual">
-          <a href="mailto:ruhan.9mri@gmail.com" class="contact-email-btn">
-            <span class="cb-label">email</span>
-            <span class="cb-sub">ruhan.9mri@gmail.com</span>
-          </a>
-          <a href="https://wa.me/8801749501010" target="_blank" rel="noopener" class="contact-email-btn contact-whatsapp">
-            <span class="cb-label">whatsapp</span>
-            <span class="cb-sub">+880 1749-501010</span>
-          </a>
-        </div>
-
-        <div class="contact-now">
-          <span class="dot-live"></span> Based in Dhaka &middot; Serving all of Bangladesh &middot; Remote-friendly worldwide
+    <section id="contact" class="contact section-alt">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <span class="eyebrow"><span class="num">05</span> Get in touch</span>
+          <h2 class="contact-title display">Describe the problem.<br />Get an <span class="warm">engineer's answer</span>.</h2>
+          <p class="contact-lede">
+            One email or one call. Explain what's broken, missing, or slow — in Bangla or English —
+            and you'll get back a straight answer: what to build, what it takes, and whether you
+            even need it.
+          </p>
+          <div class="channels">
+            <a href="mailto:ruhan.9mri@gmail.com" class="channel">
+              <span class="ch-k">Email</span>
+              <span class="ch-v">ruhan.9mri@gmail.com</span>
+            </a>
+            <a href="https://wa.me/8801749501010" target="_blank" rel="noopener" class="channel">
+              <span class="ch-k">WhatsApp</span>
+              <span class="ch-v">+880 1749-501010</span>
+            </a>
+          </div>
+          <div class="contact-now">Based in Dhaka · Serving all of Bangladesh · Remote-friendly worldwide</div>
         </div>
       </div>
     </section>
 
     <footer>
-      <div class="container footer-inner">
-        <span class="foot-mark">Ruhan Islam</span>
-        <span class="foot-copy">Mohammad Ruhan Islam &middot; &copy; 2026 &middot; Dhaka, Bangladesh</span>
-        <a href="#home" class="foot-top">back to top &uarr;</a>
+      <div class="container footer-grid">
+        <div class="foot-brand">
+          <span class="foot-mark"><span class="seal" aria-hidden="true">RI</span> Ruhan Islam</span>
+          <p class="foot-tagline">
+            One engineer for everything digital — websites, apps, AI, enterprise systems
+            and security, built personally on open source.
+          </p>
+        </div>
+        <nav class="foot-nav" aria-label="Footer">
+          <a href="#services">Services</a>
+          <a href="#experience">Experience</a>
+          <a href="#how-we-build">How we work</a>
+          <a href="#faq">FAQ</a>
+          <a href="mailto:ruhan.9mri@gmail.com">Email</a>
+          <a href="https://wa.me/8801749501010" target="_blank" rel="noopener">WhatsApp</a>
+        </nav>
       </div>
-      <div class="container footer-seo">
-        Software development, website design, mobile app development, AI automation, ERP and
-        cyber security services in Dhaka and across Bangladesh.
+      <div class="container foot-bottom">
+        <span class="foot-copy">© 2026 Mohammad Ruhan Islam · Dhaka, Bangladesh</span>
+        <a href="#home" class="foot-top">Back to top ↑</a>
+      </div>
+      <div class="container">
+        <p class="footer-seo">
+          Software development, website design, mobile app development, AI automation, ERP and
+          cyber security services in Dhaka and across Bangladesh.
+        </p>
       </div>
     </footer>
-
-    <a href="mailto:ruhan.9mri@gmail.com" class="fab-contact" aria-label="Email Ruhan">
-      <span class="dot-live"></span> Contact
-    </a>
 
     <script src="js/script.js"></script>
   </body>

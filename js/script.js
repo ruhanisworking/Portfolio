@@ -1,22 +1,17 @@
-// Theme toggle
-function toggleTheme() {
-  const root = document.documentElement;
-  const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-  root.classList.add("theme-anim");
-  root.setAttribute("data-theme", next);
-  try { localStorage.setItem("ri-theme", next); } catch (e) {}
-  window.setTimeout(() => root.classList.remove("theme-anim"), 450);
-}
+// =========================================================================
+//  Quiet craft — interactions
+//  Scroll reveals, mobile menu, gently animated service accordions.
+// =========================================================================
 
-// Navbar gains a border/shadow once the page has scrolled
-const navbarEl = document.getElementById("navbar");
-if (navbarEl) {
-  const onScroll = () => navbarEl.classList.toggle("scrolled", window.scrollY > 12);
+// --- Nav gains a soft border once the page has scrolled -------------------
+const nav = document.getElementById("nav");
+if (nav) {
+  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 8);
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 }
 
-// Mobile nav
+// --- Mobile nav -----------------------------------------------------------
 function toggleMobileMenu() {
   const menu = document.querySelector(".nav-menu");
   const backdrop = document.getElementById("nav-backdrop");
@@ -25,18 +20,17 @@ function toggleMobileMenu() {
   backdrop.classList.toggle("open", isOpen);
   btn.setAttribute("aria-expanded", String(isOpen));
 }
-
 function closeMobileMenu() {
   document.querySelector(".nav-menu").classList.remove("open");
   document.getElementById("nav-backdrop").classList.remove("open");
-  document.querySelector(".hamburger").setAttribute("aria-expanded", "false");
+  const btn = document.querySelector(".hamburger");
+  if (btn) btn.setAttribute("aria-expanded", "false");
 }
-
 document.querySelectorAll(".nav-menu a").forEach((link) => {
   link.addEventListener("click", closeMobileMenu);
 });
 
-// Reveal on scroll
+// --- Reveal on scroll -----------------------------------------------------
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -46,53 +40,42 @@ const revealObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.15 }
+  { threshold: 0.12 }
 );
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
-// Accordion groups: opening one closes the rest, with an animated expand/collapse
-// instead of the native <details> instant snap.
+// --- Animated service accordions (open one closes the rest) ---------------
 function collapseDetails(item) {
   const wrap = item.querySelector(".details-body-wrap");
   if (!wrap) { item.open = false; return; }
   const startHeight = wrap.getBoundingClientRect().height;
   wrap.style.height = startHeight + "px";
   requestAnimationFrame(() => { wrap.style.height = "0px"; });
-  wrap.addEventListener(
-    "transitionend",
-    () => { item.open = false; wrap.style.height = ""; },
-    { once: true }
-  );
+  wrap.addEventListener("transitionend", () => {
+    item.open = false; wrap.style.height = "";
+  }, { once: true });
 }
-
 function expandDetails(item) {
   const wrap = item.querySelector(".details-body-wrap");
   const inner = wrap && wrap.firstElementChild;
   if (!wrap || !inner) return;
   wrap.style.height = "0px";
   requestAnimationFrame(() => { wrap.style.height = inner.getBoundingClientRect().height + "px"; });
-  wrap.addEventListener(
-    "transitionend",
-    () => { wrap.style.height = "auto"; },
-    { once: true }
-  );
+  wrap.addEventListener("transitionend", () => { wrap.style.height = "auto"; }, { once: true });
 }
-
 function setupAccordionGroup(groupSelector, itemSelector) {
   document.querySelectorAll(groupSelector).forEach((group) => {
     const items = Array.from(group.querySelectorAll(itemSelector));
     items.forEach((item) => {
       const summary = item.querySelector("summary");
-      if (summary) {
+      const wrap = item.querySelector(".details-body-wrap");
+      if (summary && wrap) {
         summary.addEventListener("click", (e) => {
-          if (item.open) {
-            e.preventDefault();
-            collapseDetails(item);
-          }
+          if (item.open) { e.preventDefault(); collapseDetails(item); }
         });
       }
       item.addEventListener("toggle", () => {
-        if (item.open) {
+        if (item.open && wrap) {
           items.forEach((other) => { if (other !== item && other.open) collapseDetails(other); });
           expandDetails(item);
         }
@@ -100,5 +83,4 @@ function setupAccordionGroup(groupSelector, itemSelector) {
     });
   });
 }
-setupAccordionGroup(".work-grid", ":scope > details.proj-card");
-setupAccordionGroup(".faq-list", ":scope > details.faq-item");
+setupAccordionGroup(".svc-grid", ":scope > details.svc");
