@@ -26,7 +26,7 @@
   --comp-wash:   #ece7f7;   /* soft lavender — complementary wash */
 
   --font-display: "Fraunces", Georgia, serif;
-  --font-body:    "Hanken Grotesk", system-ui, sans-serif;
+  --font-body:    "Inter", system-ui, sans-serif;
 
   --maxw: 1080px;
   --gutter: 24px;
@@ -230,6 +230,7 @@ h1, h2, h3 { overflow-wrap: break-word; }
 }
 .identity-meta { display: flex; flex-direction: column; gap: 1px; }
 .identity-name { font-weight: 600; font-size: 0.98rem; color: var(--ink); }
+.identity-title { font-size: 0.85rem; color: var(--accent-deep); font-weight: 600; }
 .identity-role { font-size: 0.85rem; color: var(--muted); }
 
 /* Signature: "every layer" motif */
@@ -558,6 +559,22 @@ footer { border-top: 1px solid var(--line); padding: 56px 0 60px; background: va
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .foot-brand { max-width: none; }
   .foot-nav { justify-content: flex-start; gap: 12px 22px; }
+}
+
+/* =========================================================================
+   FLOATING CONTACT
+   ========================================================================= */
+.fab-stack { position: fixed; bottom: 24px; right: 24px; z-index: 70; display: flex; flex-direction: column; gap: 10px; }
+.fab-btn {
+  width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center;
+  box-shadow: var(--shadow); transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.fab-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: var(--shadow-lg); }
+.fab-email { background: var(--accent-deep); color: #fff; }
+.fab-whatsapp { background: var(--accent); color: var(--accent-ink); }
+@media (max-width: 640px) {
+  .fab-stack { bottom: 16px; right: 16px; gap: 8px; }
+  .fab-btn { width: 44px; height: 44px; }
 }
 
 /* =========================================================================
