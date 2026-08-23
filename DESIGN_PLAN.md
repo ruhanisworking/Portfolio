@@ -102,11 +102,14 @@ it's fixed at the token level here, not case-by-case.
 You asked for all-new fonts and maximum creativity. None of these have been used in any
 previous version.
 
+> **Revised in v4.1** — Syne read too geometric/techno against the photography.
+> Swapped to the pairing below.
+
 | Role | Font | Why |
 |---|---|---|
-| **Display** | **Syne** (700, 800) | Wide, confident, unmistakable — art-studio energy. Used for short headlines only, where its personality lands and its width isn't a readability cost. This is the "creative" signature. |
-| **Body** | **Onest** (400, 500, 600) | Modern warm neutral, excellent at small sizes, quietly gets out of Syne's way. Carries all long-form text. |
-| **Label / data** | **DM Mono** (400, 500) | Eyebrows, section numbers, tech chips, form labels. Gives the "engineer" texture without turning the whole page into a terminal. |
+| **Display** | **Fraunces** (400–700, variable) | The face you said you liked. A soft optical-size serif — organic, warm, and a far better match for the river/forest palette than a geometric sans. Variable axes are used deliberately: `opsz` raises contrast at large sizes, `SOFT 30` rounds the terminals, `WONK 1` enables its characterful alternates. |
+| **Body** | **Geist** (400–700) | Crisp, modern, neutral. Stays quiet so Fraunces leads. |
+| **Label / data** | **Geist Mono** (400, 500) | Eyebrows, section numbers, chips, form labels — engineer texture, drawn from the same family as the body face so it never looks bolted on. |
 
 **Type scale (pixel-exact, 1.250 major-third):**
 
@@ -267,6 +270,44 @@ isn't configured or the network call fails.
 2. A yes/no on **Syne + Onest + DM Mono** — fonts have been the sticking point three times
    now, and swapping them is a two-line change if you dislike them.
 3. Optional: the compressed photo from squoosh.app.
+
+---
+
+## 9b. v4.1 changes (second pass)
+
+1. **Fonts** → Fraunces / Geist / Geist Mono (see §3).
+2. **Phone field** added to the enquiry form (optional, `type="tel"` so mobile
+   shows the number pad), and included in the mail fallback body.
+3. **SEO deepened** —
+   - `ProfessionalService` schema with a full **`hasOfferCatalog`** listing all
+     six services with descriptions. This is the piece that actually earns
+     service-related search results; a bare `Person` schema doesn't.
+   - `WebSite` schema, `@id` cross-links between the Person/Site/Service nodes
+     so Google reads them as one entity rather than three loose blobs.
+   - `sameAs` → GitHub. `alumniOf` → KUET + Notre Dame. `worksFor` → IICT BUET.
+   - `areaServed` (Bangladesh + Dhaka), `availableLanguage` (en, bn).
+   - Meta description rewritten to **≤155 chars** so Google stops truncating it.
+   - `robots: max-image-preview:large` (bigger thumbnail in results),
+     `og:image:alt`, `og:locale` + `bn_BD` alternate, `twitter:image`.
+   - Sitemap now carries **image sitemap** data (title + caption).
+   - *Deliberately not added:* `aggregateRating` / review markup. It's the
+     fastest way to get rich results — and it's fabricating reviews you haven't
+     received. Google penalises it and it would be a lie on your site.
+4. **Photo enhancement** — real unsharp mask via an inline SVG
+   `feConvolveMatrix` (a 3×3 kernel summing to 1.0, so detail rises without
+   shifting brightness), plus saturation/contrast lift, plus a vignette-and-warm-
+   lift pass on the hero frame so you separate from the canopy behind you.
+   This is genuinely what a phone camera pipeline does — *but* it operates on
+   the pixels that exist. It cannot invent detail the way Samsung's on-device
+   AI upscaler does. For that, run the file through **squoosh.app** or
+   **upscayl** (free, offline AI upscaler) and drop the result in; everything is
+   wired to pick it up with no code change.
+5. **Contact made loud** — the address and number are now written out as
+   readable text everywhere they appear: a new contact row under the hero, the
+   contact cards, the footer, and the floating buttons (which are now labelled
+   pills reading `ruhan.9mri@gmail.com` and `+880 1749-501010` rather than bare
+   icons). On phones the floating pills shorten to `Email` / `WhatsApp` because
+   the full address would cover the page — the in-page cards carry it there.
 
 ---
 

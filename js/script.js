@@ -151,6 +151,7 @@ function mailtoFallback(data, reason) {
     `Name: ${data.name || "—"}\n` +
     `Company: ${data.company || "—"}\n` +
     `Email: ${data.email || "—"}\n` +
+    `Phone / WhatsApp: ${data.phone || "—"}\n` +
     `Project type: ${data.project_type || "—"}\n\n` +
     `${data.message || ""}\n`;
   const href = `mailto:${MAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

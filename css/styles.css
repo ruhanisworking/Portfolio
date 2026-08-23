@@ -39,10 +39,14 @@
   --paper:      #fbfcfb;
   --canvas:     #f4f8f5;
 
-  /* ── type ───────────────────────────────────────────────────────────── */
-  --font-display: "Syne", system-ui, sans-serif;
-  --font-body:    "Onest", system-ui, sans-serif;
-  --font-mono:    "DM Mono", ui-monospace, monospace;
+  /* ── type ─────────────────────────────────────────────────────────────
+     Fraunces is the display face you said you liked — a soft, organic,
+     optical-size serif that suits the nature palette far better than the
+     geometric sans it replaces. Geist / Geist Mono carry everything else:
+     crisp, modern, and quiet enough to let Fraunces lead.                */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body:    "Geist", "Inter", system-ui, sans-serif;
+  --font-mono:    "Geist Mono", ui-monospace, "SFMono-Regular", monospace;
 
   /* ── geometry ───────────────────────────────────────────────────────── */
   --maxw:      1200px;
@@ -108,9 +112,19 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); width: 100%; }
 
-/* ── type utilities ─────────────────────────────────────────────────────── */
-.display { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.03em; line-height: 1.04; }
-h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; }
+/* filter defs holder — present in the DOM, never takes up space */
+.svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* ── type utilities ───────────────────────────────────────────────────────
+   Fraunces is a variable font: `opsz` makes large sizes higher-contrast and
+   more elegant, `SOFT` rounds the terminals slightly (organic, matches the
+   photography), `WONK` allows its characterful alternate shapes.           */
+.display, h1, h2, h3 {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 30, "WONK" 1;
+}
+.display { font-weight: 700; letter-spacing: -0.025em; line-height: 1.04; font-variation-settings: "opsz" 120, "SOFT" 30, "WONK" 1; }
+h1, h2, h3 { font-weight: 600; letter-spacing: -0.018em; line-height: 1.14; }
 
 .label {
   font-family: var(--font-mono); font-size: 12px; font-weight: 500;
@@ -123,7 +137,11 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
   background: linear-gradient(90deg, var(--canopy), var(--sprout));
 }
 
-.section-title { font-size: clamp(28px, 4.4vw, 48px); font-weight: 800; font-family: var(--font-display); letter-spacing: -0.025em; line-height: 1.06; margin: 14px 0 12px; }
+.section-title {
+  font-size: clamp(28px, 4.4vw, 48px); font-weight: 600; font-family: var(--font-display);
+  letter-spacing: -0.022em; line-height: 1.08; margin: 14px 0 12px;
+  font-variation-settings: "opsz" 96, "SOFT" 30, "WONK" 1;
+}
 .section-note  { color: var(--ink-2); font-size: 16px; max-width: 56ch; }
 .tone { color: var(--canopy); }
 
@@ -255,6 +273,8 @@ section { padding: 120px 0; position: relative; }
   object-position: 49% 50%;
   transform-origin: 49% 43%;
   transform: scale(2.9);
+  /* a touch more punch than the hero — the chip is tiny, so it needs it */
+  filter: url(#photo-enhance) saturate(1.18) contrast(1.09) brightness(1.03);
 }
 .identity-meta { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .identity-name  { font-family: var(--font-display); font-weight: 700; font-size: 15px; }
@@ -277,7 +297,20 @@ section { padding: 120px 0; position: relative; }
 }
 /* 4:5 frame from a 2.2:1 source — cover fits the height and crops the sides,
    so x=49% keeps him centred in the portrait window. */
-.hero-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 49% 50%; }
+.hero-frame img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 49% 50%;
+  /* photo enhancement — see the .enhance note below */
+  filter: url(#photo-enhance) saturate(1.14) contrast(1.06) brightness(1.02);
+}
+/* depth pass: a soft vignette + a warm lift in the lower third, so the
+   foreground separates from the canopy instead of flattening into it */
+.hero-frame::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background:
+    radial-gradient(120% 88% at 50% 38%, transparent 44%, rgba(16,35,26,.30) 100%),
+    linear-gradient(to top, rgba(168,162,113,.16), transparent 42%);
+}
+.hero-frame figcaption { z-index: 2; }
 .hero-frame figcaption {
   position: absolute; left: 14px; right: 14px; bottom: 14px;
   font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em;
@@ -437,7 +470,12 @@ section { padding: 120px 0; position: relative; }
    ========================================================================= */
 .bleed { padding: 0; position: relative; }
 .bleed-media { position: relative; height: clamp(320px, 46vw, 480px); overflow: hidden; }
-.bleed-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 46%; }
+/* The band is huge on screen, so it gets plain CSS filters rather than the
+   SVG convolution — same visual lift, a fraction of the paint cost. */
+.bleed-media img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 50% 46%;
+  filter: saturate(1.16) contrast(1.05);
+}
 .bleed-media::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(90deg, rgba(16,35,26,.78) 0%, rgba(16,35,26,.46) 46%, rgba(16,35,26,.12) 100%);
@@ -637,15 +675,32 @@ footer { background: var(--forest); color: rgba(255,255,255,.72); padding: 72px 
 /* =========================================================================
    FLOATING CONTACT
    ========================================================================= */
-.fab { position: fixed; right: 22px; bottom: 22px; z-index: 75; display: flex; flex-direction: column; gap: 10px; }
+.fab { position: fixed; right: 22px; bottom: 22px; z-index: 75; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
 .fab a {
-  width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center;
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 50px; padding: 0 20px 0 15px; border-radius: 999px;
   color: #fff; box-shadow: var(--sh-lg);
+  font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: -0.01em;
+  white-space: nowrap;
   transition: transform var(--micro), box-shadow var(--micro);
 }
-.fab a:hover { transform: translateY(-3px) scale(1.06); }
+.fab a svg { flex: none; }
+.fab a:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(16,35,26,.24); }
 .fab .f-mail { background: linear-gradient(135deg, var(--canopy), var(--leaf)); }
 .fab .f-wa   { background: linear-gradient(135deg, var(--river-deep), var(--river)); }
+
+/* ── inline contact line (hero + anywhere the address should be readable) ─ */
+.contact-line { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.contact-line a {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+  background: var(--paper); border: var(--line); box-shadow: var(--sh-sm);
+  padding: 9px 16px; border-radius: 999px; color: var(--ink);
+  transition: transform var(--micro), border-color var(--micro), box-shadow var(--micro);
+}
+.contact-line a:hover { transform: translateY(-2px); border-color: var(--leaf); box-shadow: var(--sh-md); }
+.contact-line a svg { flex: none; color: var(--canopy); }
+.contact-line a.wa svg { color: var(--river-deep); }
 
 /* =========================================================================
    REVEAL
@@ -724,8 +779,14 @@ footer { background: var(--forest); color: rgba(255,255,255,.72); padding: 72px 
   .hero-actions .btn { width: 100%; }
   .form-foot { flex-direction: column; align-items: stretch; }
   .btn.send { width: 100%; }
+  /* the full address is too wide for a phone — keep the label, drop the
+     address, and let the in-page contact cards carry the detail */
   .fab { right: 16px; bottom: 16px; gap: 8px; }
-  .fab a { width: 46px; height: 46px; }
+  .fab a { height: 46px; padding: 0 18px 0 14px; font-size: 12px; }
+  .fab .fab-full { display: none; }
+  .fab .fab-short { display: inline !important; }
+  .contact-line { gap: 8px; }
+  .contact-line a { font-size: 12px; padding: 8px 14px; }
   .foot-grid { grid-template-columns: minmax(0, 1fr); }
 }
 

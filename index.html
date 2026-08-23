@@ -6,9 +6,10 @@
     <title>Mohammad Ruhan Islam — Software, Apps &amp; AI Systems</title>
 
     <!-- SEO -->
+    <!-- kept under ~155 chars so Google shows it whole instead of truncating -->
     <meta
       name="description"
-      content="Websites, mobile apps, AI chatbots, enterprise software and security — built personally, engineered on proven open-source technology. Based in Dhaka, working with clients across Bangladesh."
+      content="Websites, mobile apps, AI chatbots, ERP and security — built personally on open source, in Dhaka. One engineer, full ownership, no license fees."
     />
     <meta name="author" content="Mohammad Ruhan Islam" />
     <meta
@@ -27,16 +28,31 @@
     <meta property="og:title" content="Mohammad Ruhan Islam — Software, Apps &amp; AI Systems" />
     <meta property="og:description" content="Websites, mobile apps, AI chatbots, enterprise software and security — built personally, engineered on proven open-source technology." />
     <meta property="og:image" content="https://ruhan.lol/assets/images/ruhan-river.jpg" />
+    <meta property="og:image:alt" content="Mohammad Ruhan Islam on a river between two forested hills in Bangladesh" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="bn_BD" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://ruhan.lol/assets/images/ruhan-river.jpg" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
     <!-- Structured data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": "https://ruhan.lol/#person",
         "name": "Mohammad Ruhan Islam",
         "alternateName": "Ruhan",
         "jobTitle": "Full-Spectrum Engineer",
+        "sameAs": ["https://github.com/ruhanisworking"],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Institute of Information and Communication Technology (IICT), BUET"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "Khulna University of Engineering & Technology (KUET)" },
+          { "@type": "EducationalOrganization", "name": "Notre Dame College, Dhaka" }
+        ],
         "description": "Software engineer taking on independent projects — web, mobile, AI automation, enterprise software and security, built on open-source technology.",
         "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
         "email": "mailto:ruhan.9mri@gmail.com",
@@ -44,6 +60,51 @@
         "url": "https://ruhan.lol/",
         "image": "https://ruhan.lol/assets/images/ruhan-river.jpg",
         "knowsAbout": ["Web Development", "Mobile App Development", "AI Automation", "Chatbots", "ERP", "Data Engineering", "Cyber Security", "DevOps"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://ruhan.lol/#service",
+        "name": "Ruhan — Software, Apps & AI Systems",
+        "description": "Independent software engineering: websites, mobile apps, AI automation, enterprise systems, data platforms and security — built on open-source technology, owned outright by the client.",
+        "url": "https://ruhan.lol/",
+        "image": "https://ruhan.lol/assets/images/ruhan-river.jpg",
+        "email": "mailto:ruhan.9mri@gmail.com",
+        "telephone": "+8801749501010",
+        "priceRange": "$$",
+        "founder": { "@type": "Person", "name": "Mohammad Ruhan Islam" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
+        "areaServed": [
+          { "@type": "Country", "name": "Bangladesh" },
+          { "@type": "City", "name": "Dhaka" }
+        ],
+        "availableLanguage": ["en", "bn"],
+        "knowsLanguage": ["en", "bn"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Engineering services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website & web platform development", "description": "Corporate sites, e-commerce and customer portals with bKash, Nagad, SSLCommerz and card payments, built SEO-ready and mobile-first." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile app development", "description": "Android and iOS apps built offline-first for real Bangladeshi networks — delivery tracking, chat, field tools and customer apps." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI automation & chatbots", "description": "Retrieval-augmented (RAG) chatbots and document intelligence in Bangla and English, deployable fully on your own servers." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Enterprise software (ERP, HR, inventory)", "description": "ERP, payroll, inventory, procurement and approval workflows on open-source platforms, without per-seat licensing." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Data platforms & analytics", "description": "Ingestion pipelines, real-time streams and management dashboards using Kafka, NiFi, Airbyte, Spark and Superset." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Security, infrastructure & reliability", "description": "Server hardening, intrusion detection, VPNs, tested encrypted backups and monitoring that alerts before users notice." } }
+          ]
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://ruhan.lol/#website",
+        "url": "https://ruhan.lol/",
+        "name": "Mohammad Ruhan Islam",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://ruhan.lol/#person" }
       }
     </script>
     <script type="application/ld+json">
@@ -89,11 +150,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Onest:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..700,0..100,0..1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
+    <!--
+      Photo enhancement filter — an unsharp mask (feConvolveMatrix) plus a
+      saturation lift, i.e. roughly what a phone's camera pipeline does to a
+      JPEG. Applied to the portrait crops via CSS `filter: url(#photo-enhance)`.
+      The kernel sums to 1.0 so overall brightness is preserved; only local
+      edge contrast (detail) increases.
+    -->
+    <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+      <filter id="photo-enhance" color-interpolation-filters="sRGB">
+        <feConvolveMatrix
+          order="3"
+          preserveAlpha="true"
+          kernelMatrix="0 -0.45 0
+                       -0.45 2.8 -0.45
+                        0 -0.45 0"
+          divisor="1" />
+      </filter>
+    </svg>
+
     <!-- ================= NAV ================= -->
     <nav class="nav" id="nav">
       <div class="container">
@@ -148,6 +228,18 @@
               <span class="identity-title">Full-Spectrum Engineer</span>
               <span class="identity-role">Programmer · IICT, BUET</span>
             </span>
+          </div>
+
+          <!-- address + number visible as plain readable text, not hidden behind icons -->
+          <div class="contact-line">
+            <a href="mailto:ruhan.9mri@gmail.com?subject=Project%20enquiry%20from%20ruhan.lol">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.2" stroke="currentColor" stroke-width="1.9"/><path d="M4 7.5l8 5.5 8-5.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              ruhan.9mri@gmail.com
+            </a>
+            <a class="wa" href="https://wa.me/8801749501010?text=Hi%20Ruhan%2C%20I%20found%20you%20via%20ruhan.lol%20%E2%80%94%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5h16v11H9.5L4 20.5v-15z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
+              +880 1749-501010
+            </a>
           </div>
         </div>
 
@@ -613,6 +705,10 @@
                 <input id="f-email" name="email" type="email" placeholder="you@company.com" required autocomplete="email" />
               </div>
               <div class="field">
+                <label for="f-phone">Phone / WhatsApp</label>
+                <input id="f-phone" name="phone" type="tel" placeholder="+880 1XXX-XXXXXX" autocomplete="tel" inputmode="tel" />
+              </div>
+              <div class="field full">
                 <label for="f-type">Project type</label>
                 <select id="f-type" name="project_type">
                   <option>Website / web platform</option>
@@ -687,11 +783,15 @@
 
     <!-- ================= FLOATING CONTACT ================= -->
     <div class="fab" aria-label="Quick contact">
-      <a class="f-mail" href="mailto:ruhan.9mri@gmail.com?subject=Project%20enquiry%20from%20ruhan.lol" aria-label="Email Ruhan">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7.5l8 5.5 8-5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <a class="f-mail" href="mailto:ruhan.9mri@gmail.com?subject=Project%20enquiry%20from%20ruhan.lol" aria-label="Email ruhan.9mri@gmail.com">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7.5l8 5.5 8-5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="fab-full">ruhan.9mri@gmail.com</span>
+        <span class="fab-short" hidden>Email</span>
       </a>
-      <a class="f-wa" href="https://wa.me/8801749501010?text=Hi%20Ruhan%2C%20I%20found%20you%20via%20ruhan.lol%20%E2%80%94%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" aria-label="WhatsApp Ruhan">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 5.5h16v11H9.5L4 20.5v-15z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <a class="f-wa" href="https://wa.me/8801749501010?text=Hi%20Ruhan%2C%20I%20found%20you%20via%20ruhan.lol%20%E2%80%94%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" aria-label="WhatsApp +880 1749-501010">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5h16v11H9.5L4 20.5v-15z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <span class="fab-full">+880 1749-501010</span>
+        <span class="fab-short" hidden>WhatsApp</span>
       </a>
     </div>
 
