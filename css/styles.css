@@ -310,14 +310,26 @@ section { padding: 120px 0; position: relative; }
     radial-gradient(120% 88% at 50% 38%, transparent 44%, rgba(16,35,26,.30) 100%),
     linear-gradient(to top, rgba(168,162,113,.16), transparent 42%);
 }
-.hero-frame figcaption { z-index: 2; }
 .hero-frame figcaption {
-  position: absolute; left: 14px; right: 14px; bottom: 14px;
-  font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em;
-  color: #fff; background: rgba(16,35,26,.42);
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  padding: 9px 13px; border-radius: 10px;
+  position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 2;
+  color: #fff; background: rgba(16,35,26,.44);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  padding: 14px 16px 13px; border-radius: 12px;
+  border-left: 2.5px solid var(--sprout);
 }
+.hero-frame figcaption blockquote {
+  font-family: var(--font-display); font-weight: 500; font-style: italic;
+  font-size: 15px; line-height: 1.4; letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 40, "SOFT" 40, "WONK" 1;
+}
+.hero-frame figcaption blockquote::before { content: "\201C"; }
+.hero-frame figcaption blockquote::after  { content: "\201D"; }
+.hero-frame figcaption cite {
+  display: block; margin-top: 7px; font-style: normal;
+  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--sprout);
+}
+.hero-frame figcaption cite::before { content: "— "; }
 
 /* =========================================================================
    CAPABILITY BAND
