@@ -277,7 +277,18 @@ section { padding: 120px 0; position: relative; }
   filter: url(#photo-enhance) saturate(1.18) contrast(1.09) brightness(1.03);
 }
 .identity-meta { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-.identity-name  { font-family: var(--font-display); font-weight: 700; font-size: 15px; }
+/* the name links home (ruhan.lol) — underline only on hover so it stays a
+   name first and a link second */
+.identity-name {
+  font-family: var(--font-display); font-weight: 700; font-size: 15px;
+  width: fit-content; text-decoration-color: transparent;
+  transition: color var(--micro), text-decoration-color var(--micro);
+}
+.identity-name:hover {
+  color: var(--canopy);
+  text-decoration: underline; text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px; text-decoration-color: var(--leaf);
+}
 .identity-title { font-size: 13px; font-weight: 600; color: var(--canopy); }
 .identity-role  { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); }
 
