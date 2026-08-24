@@ -37,6 +37,27 @@ jobs:
           if [ -f favicon.svg ]; then cp favicon.svg _site/; fi
           if [ -f sitemap.xml ]; then cp sitemap.xml _site/; fi
 
+      # Cache-busting. GitHub Pages tells browsers to cache css/js/images, and
+      # since those URLs never change a returning visitor keeps the old copy —
+      # which is why a normal tab shows a stale site while incognito (empty
+      # cache) shows the new one. Stamping the commit SHA onto each asset URL
+      # makes every deploy a new URL, so the browser has to fetch it.
+      # Done here rather than in index.html so opening the file locally still
+      # uses clean paths.
+      - name: Stamp asset URLs with the commit SHA
+        run: |
+          VER="${GITHUB_SHA:0:8}"
+          sed -i \
+            -e "s|href=\"css/styles.css\"|href=\"css/styles.css?v=$VER\"|g" \
+            -e "s|src=\"js/i18n.js\"|src=\"js/i18n.js?v=$VER\"|g" \
+            -e "s|src=\"js/script.js\"|src=\"js/script.js?v=$VER\"|g" \
+            -e "s|href=\"favicon.svg\"|href=\"favicon.svg?v=$VER\"|g" \
+            -e "s|href=\"assets/images/favicon-\([0-9]\+\)\.png\"|href=\"assets/images/favicon-\1.png?v=$VER\"|g" \
+            _site/index.html
+          echo "stamped with v=$VER"
+          grep -o 'v=[0-9a-f]\{8\}' _site/index.html | sort -u
+          grep -c 'v=' _site/index.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
