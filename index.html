@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- lang is set to the visitor's chosen language at runtime (Bangla by default).
+     translate="no" + the notranslate meta stop Chrome/Google offering to
+     machine-translate the page — the site ships its own Bangla, and an
+     auto-translation layer on top would mangle it. -->
+<html lang="bn" translate="no" class="notranslate">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google" content="notranslate" />
     <title>Mohammad Ruhan Islam — Software, Apps &amp; AI Systems</title>
 
     <!-- SEO -->
@@ -179,15 +184,19 @@
       <div class="container">
         <div class="nav-inner">
           <a href="https://ruhan.lol/" class="wordmark" aria-label="Ruhan — ruhan.lol home"><span class="seal" aria-hidden="true">RI</span> Ruhan</a>
-          <button class="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+          <div class="lang" role="group" aria-label="Language / ভাষা">
+            <a href="#" data-lang="bn" class="bn" aria-current="true">বাংলা</a>
+            <a href="#" data-lang="en">EN</a>
+          </div>
+          <button class="hamburger" onclick="toggleMenu()" aria-label="Menu" data-i18n="nav.menu" data-i18n-attr="aria-label" aria-expanded="false" aria-controls="nav-menu">
             <span></span><span></span><span></span>
           </button>
           <ul class="nav-menu" id="nav-menu">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#process">Process</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+            <li><a href="#services" data-i18n="nav.services">Services</a></li>
+            <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+            <li><a href="#process" data-i18n="nav.process">Process</a></li>
+            <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+            <li><a href="#contact" class="nav-cta" data-i18n="nav.cta">Let's talk</a></li>
           </ul>
         </div>
       </div>
@@ -198,14 +207,14 @@
     <header id="home" class="hero">
       <div class="container hero-inner">
         <div class="hero-copy reveal">
-          <span class="hero-chip"><span class="pip" aria-hidden="true"></span> &#127463;&#127465; Dhaka, Bangladesh · working nationwide &amp; remote</span>
+          <span class="hero-chip"><span class="pip" aria-hidden="true"></span> &#127463;&#127465; <span data-i18n="hero.chip">Dhaka, Bangladesh · working nationwide &amp; remote</span></span>
 
           <h1 class="hero-title display">
-            <span class="ln">One engineer for</span>
-            <span class="ln tone">everything digital.</span>
+            <span class="ln" data-i18n="hero.title1">One engineer for</span>
+            <span class="ln tone" data-i18n="hero.title2">everything digital.</span>
           </h1>
 
-          <p class="hero-lede">
+          <p class="hero-lede" data-i18n="hero.lede">
             Websites, mobile apps, AI automation, enterprise systems and security — built
             personally on proven open-source technology, including national government
             systems. <strong>Not resold, not outsourced, not templated.</strong>
@@ -213,10 +222,10 @@
 
           <div class="hero-actions">
             <a href="#contact" class="btn primary">
-              Start a conversation
+              <span data-i18n="hero.cta1">Start a conversation</span>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <a href="#services" class="btn ghost">See what I build</a>
+            <a href="#services" class="btn ghost" data-i18n="hero.cta2">See what I build</a>
           </div>
 
           <div class="identity">
@@ -224,9 +233,9 @@
               <img src="assets/images/ruhan-river.jpg" alt="Mohammad Ruhan Islam" width="56" height="56" decoding="async" />
             </span>
             <span class="identity-meta">
-              <a class="identity-name" href="https://ruhan.lol/">Mohammad Ruhan Islam</a>
-              <span class="identity-title">Full-Spectrum Engineer</span>
-              <span class="identity-role">Programmer · IICT, BUET</span>
+              <a class="identity-name" href="https://ruhan.lol/" data-i18n="hero.name">Mohammad Ruhan Islam</a>
+              <span class="identity-title" data-i18n="hero.jobtitle">Full-Spectrum Engineer</span>
+              <span class="identity-role" data-i18n="hero.role">Programmer · IICT, BUET</span>
             </span>
           </div>
 
@@ -245,10 +254,10 @@
 
         <div class="hero-visual reveal">
           <figure class="hero-frame">
-            <img src="assets/images/ruhan-river.jpg" alt="Ruhan on the river, forest on both banks" width="900" height="1125" fetchpriority="high" decoding="async" />
+            <img src="assets/images/ruhan-river.jpg" alt="Ruhan on the river, forest on both banks" data-i18n="hero.figalt" data-i18n-attr="alt" width="900" height="1125" fetchpriority="high" decoding="async" />
             <figcaption>
-              <blockquote>Build it so it still runs when nobody&rsquo;s watching.</blockquote>
-              <cite>Ruhan</cite>
+              <blockquote data-i18n="hero.quote">Build it so it still runs when nobody&rsquo;s watching.</blockquote>
+              <cite data-i18n="hero.cite">Ruhan</cite>
             </figcaption>
           </figure>
         </div>
@@ -259,30 +268,30 @@
     <section id="approach" class="approach">
       <div class="container">
         <div class="section-head reveal">
-          <span class="label"><span class="num">01</span> How I work</span>
-          <h2 class="section-title">Four things you can count on</h2>
+          <span class="label"><span class="num">01</span> <span data-i18n="ap.label">How I work</span></span>
+          <h2 class="section-title" data-i18n="ap.title">Four things you can count on</h2>
         </div>
 
         <div class="caps">
           <div class="cap reveal">
             <span class="cap-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 20c0-3.6 3.4-5.6 7.5-5.6s7.5 2 7.5 5.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-            <h3 class="cap-name">Full ownership</h3>
-            <p class="cap-desc">One person answers for design, code, servers and uptime. No handoffs, no finger-pointing.</p>
+            <h3 class="cap-name" data-i18n="ap.1.h">Full ownership</h3>
+            <p class="cap-desc" data-i18n="ap.1.p">One person answers for design, code, servers and uptime. No handoffs, no finger-pointing.</p>
           </div>
           <div class="cap reveal">
             <span class="cap-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2.2" stroke="currentColor" stroke-width="1.8"/><path d="M8.2 11V7.6a3.8 3.8 0 0 1 7.2-1.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-            <h3 class="cap-name">Open source first</h3>
-            <p class="cap-desc">No license fees, no lock-in. Audit every line if you want to — it's yours.</p>
+            <h3 class="cap-name" data-i18n="ap.2.h">Open source first</h3>
+            <p class="cap-desc" data-i18n="ap.2.p">No license fees, no lock-in. Audit every line if you want to — it's yours.</p>
           </div>
           <div class="cap reveal">
             <span class="cap-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l7.5 3.2v5.1c0 4.7-3.2 8-7.5 9.5-4.3-1.5-7.5-4.8-7.5-9.5V6.2L12 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12.2l2.1 2.1L15.2 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <h3 class="cap-name">Production mindset</h3>
-            <p class="cap-desc">Monitoring, backups and security configured from day one — not after the first incident.</p>
+            <h3 class="cap-name" data-i18n="ap.3.h">Production mindset</h3>
+            <p class="cap-desc" data-i18n="ap.3.p">Monitoring, backups and security configured from day one — not after the first incident.</p>
           </div>
           <div class="cap reveal">
             <span class="cap-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 5.5h16v11H9.5L4 20.5v-15z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 11h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-            <h3 class="cap-name">Straight answers</h3>
-            <p class="cap-desc">If something doesn't need building, you'll be told so — before you spend on it.</p>
+            <h3 class="cap-name" data-i18n="ap.4.h">Straight answers</h3>
+            <p class="cap-desc" data-i18n="ap.4.p">If something doesn't need building, you'll be told so — before you spend on it.</p>
           </div>
         </div>
       </div>
@@ -292,9 +301,9 @@
     <section id="services" class="services">
       <div class="container">
         <div class="section-head reveal">
-          <span class="label"><span class="num">02</span> What I build</span>
-          <h2 class="section-title">Serious software, without a <span class="tone">serious-sized vendor</span></h2>
-          <p class="section-note">Open any card to see the tools it's actually built on — not just what it's called.</p>
+          <span class="label"><span class="num">02</span> <span data-i18n="sv.label">What I build</span></span>
+          <h2 class="section-title" data-i18n="sv.title">Serious software, without a <span class="tone">serious-sized vendor</span></h2>
+          <p class="section-note" data-i18n="sv.note">Open any card to see the tools it's actually built on — not just what it's called.</p>
         </div>
 
         <div class="panel reveal">
@@ -308,18 +317,18 @@
                 <div class="svc-head">
                   <span class="svc-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="15" rx="2.2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.8"/></svg></span>
                   <span>
-                    <span class="svc-name">Websites &amp; web platforms</span>
-                    <span class="svc-tag">Corporate · e-commerce · portals</span>
+                    <span class="svc-name" data-i18n="sv.web.h">Websites &amp; web platforms</span>
+                    <span class="svc-tag" data-i18n="sv.web.t">Corporate · e-commerce · portals</span>
                   </span>
                 </div>
-                <p class="svc-desc">From a company site that ranks on Google to a full customer portal with payments, dashboards and admin panels — fast, mobile-first, built to be found.</p>
-                <span class="svc-more"><span class="lbl-shut">Read more</span><span class="lbl-open">Show less</span>
+                <p class="svc-desc" data-i18n="sv.web.d">From a company site that ranks on Google to a full customer portal with payments, dashboards and admin panels — fast, mobile-first, built to be found.</p>
+                <span class="svc-more"><span class="lbl-shut" data-i18n="sv.more">Read more</span><span class="lbl-open" data-i18n="sv.less">Show less</span>
                   <svg width="11" height="7" viewBox="0 0 11 7" fill="none" aria-hidden="true"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
                 </span>
               </summary>
               <div class="svc-body-wrap"><div class="svc-body">
-                <p>Most business websites in Bangladesh are built to be looked at once and forgotten. These are built to work: SEO-ready structure, sub-second load times, responsive on the cheapest Android phone your customer owns, and a backend you can grow into — user accounts, online payments (bKash, Nagad, SSLCommerz, cards), booking, e-commerce, multi-language Bangla/English.</p>
-                <div class="built-label">Built with</div>
+                <p data-i18n="sv.web.x">Most business websites in Bangladesh are built to be looked at once and forgotten. These are built to work: SEO-ready structure, sub-second load times, responsive on the cheapest Android phone your customer owns, and a backend you can grow into — user accounts, online payments (bKash, Nagad, SSLCommerz, cards), booking, e-commerce, multi-language Bangla/English.</p>
+                <div class="built-label" data-i18n="sv.built">Built with</div>
                 <ul class="chips"><li>React</li><li>Laravel</li><li>Spring Boot</li><li>PostgreSQL</li><li>Redis</li><li>Nginx</li></ul>
               </div></div>
             </details>
@@ -332,18 +341,18 @@
                 <div class="svc-head">
                   <span class="svc-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="7" y="3" width="10" height="18" rx="2.6" stroke="currentColor" stroke-width="1.8"/><path d="M10.6 18h2.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
                   <span>
-                    <span class="svc-name">Mobile apps</span>
-                    <span class="svc-tag">Android &amp; iOS · real-time &amp; offline</span>
+                    <span class="svc-name" data-i18n="sv.mob.h">Mobile apps</span>
+                    <span class="svc-tag" data-i18n="sv.mob.t">Android &amp; iOS · real-time &amp; offline</span>
                   </span>
                 </div>
-                <p class="svc-desc">Real-time, offline-capable apps — delivery tracking, chat, field tools, customer apps — that stay fast on real Bangladeshi networks.</p>
-                <span class="svc-more"><span class="lbl-shut">Read more</span><span class="lbl-open">Show less</span>
+                <p class="svc-desc" data-i18n="sv.mob.d">Real-time, offline-capable apps — delivery tracking, chat, field tools, customer apps — that stay fast on real Bangladeshi networks.</p>
+                <span class="svc-more"><span class="lbl-shut" data-i18n="sv.more">Read more</span><span class="lbl-open" data-i18n="sv.less">Show less</span>
                   <svg width="11" height="7" viewBox="0 0 11 7" fill="none" aria-hidden="true"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
                 </span>
               </summary>
               <div class="svc-body-wrap"><div class="svc-body">
-                <p>Apps here fail for one reason: they're built assuming perfect internet. These assume a bad-network day — offline-first data, background sync, push notifications, live location and real-time updates over WebSockets. One codebase for Android and iOS where it makes sense, native where it doesn't.</p>
-                <div class="built-label">Built with</div>
+                <p data-i18n="sv.mob.x">Apps here fail for one reason: they're built assuming perfect internet. These assume a bad-network day — offline-first data, background sync, push notifications, live location and real-time updates over WebSockets. One codebase for Android and iOS where it makes sense, native where it doesn't.</p>
+                <div class="built-label" data-i18n="sv.built">Built with</div>
                 <ul class="chips"><li>Android</li><li>Flutter / React Native</li><li>Firebase</li><li>WebSockets</li><li>SQLite sync</li></ul>
               </div></div>
             </details>
@@ -357,18 +366,18 @@
                 <div class="svc-head">
                   <span class="svc-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.4 15a4 4 0 0 1 0-8 5 5 0 0 1 9.5-1.3A4.5 4.5 0 0 1 17.2 15H6.4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.4 19l.9-2M13.6 19l.9-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
                   <span>
-                    <span class="svc-name">AI automation &amp; chatbots</span>
-                    <span class="svc-tag">RAG · Bangla + English · always on</span>
+                    <span class="svc-name" data-i18n="sv.ai.h">AI automation &amp; chatbots</span>
+                    <span class="svc-tag" data-i18n="sv.ai.t">RAG · Bangla + English · always on</span>
                   </span>
                 </div>
-                <p class="svc-desc">AI that answers your customers, reads your documents, and does the repetitive work — on your own data, in Bangla and English.</p>
-                <span class="svc-more"><span class="lbl-shut">Read more</span><span class="lbl-open">Show less</span>
+                <p class="svc-desc" data-i18n="sv.ai.d">AI that answers your customers, reads your documents, and does the repetitive work — on your own data, in Bangla and English.</p>
+                <span class="svc-more"><span class="lbl-shut" data-i18n="sv.more">Read more</span><span class="lbl-open" data-i18n="sv.less">Show less</span>
                   <svg width="11" height="7" viewBox="0 0 11 7" fill="none" aria-hidden="true"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
                 </span>
               </summary>
               <div class="svc-body-wrap"><div class="svc-body">
-                <p>Not a demo — deployed AI. Customer-support chatbots trained on your own catalog, policies and FAQs (website, WhatsApp, Messenger). Document intelligence: feed in contracts, reports or forms and get summaries or drafted replies. Built on retrieval-augmented generation (RAG) so answers come from your documents, not the internet's imagination — with the option to run models fully on your own servers.</p>
-                <div class="built-label">Built with</div>
+                <p data-i18n="sv.ai.x">Not a demo — deployed AI. Customer-support chatbots trained on your own catalog, policies and FAQs (website, WhatsApp, Messenger). Document intelligence: feed in contracts, reports or forms and get summaries or drafted replies. Built on retrieval-augmented generation (RAG) so answers come from your documents, not the internet's imagination — with the option to run models fully on your own servers.</p>
+                <div class="built-label" data-i18n="sv.built">Built with</div>
                 <ul class="chips"><li>Python</li><li>FastAPI</li><li>RAG</li><li>Vector search</li><li>OpenAI / Gemini</li><li>Ollama</li></ul>
               </div></div>
             </details>
@@ -381,18 +390,18 @@
                 <div class="svc-head">
                   <span class="svc-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" rx="1.6" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.6" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.6" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.6" stroke="currentColor" stroke-width="1.8"/></svg></span>
                   <span>
-                    <span class="svc-name">Enterprise software</span>
-                    <span class="svc-tag">ERP · HR · inventory · accounting</span>
+                    <span class="svc-name" data-i18n="sv.erp.h">Enterprise software</span>
+                    <span class="svc-tag" data-i18n="sv.erp.t">ERP · HR · inventory · accounting</span>
                   </span>
                 </div>
-                <p class="svc-desc">The systems that run an organization — inventory, HR, approvals, reporting — without the SAP-sized price tag.</p>
-                <span class="svc-more"><span class="lbl-shut">Read more</span><span class="lbl-open">Show less</span>
+                <p class="svc-desc" data-i18n="sv.erp.d">The systems that run an organization — inventory, HR, approvals, reporting — without the SAP-sized price tag.</p>
+                <span class="svc-more"><span class="lbl-shut" data-i18n="sv.more">Read more</span><span class="lbl-open" data-i18n="sv.less">Show less</span>
                   <svg width="11" height="7" viewBox="0 0 11 7" fill="none" aria-hidden="true"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
                 </span>
               </summary>
               <div class="svc-body-wrap"><div class="svc-body">
-                <p>The same workflows large organizations run on SAP and Oracle — inventory, procurement, HR &amp; payroll, accounting, multi-level approvals, reporting — can be built on mature open-source platforms or custom-developed, at a fraction of the cost and fully owned by you. Role-based access, audit logs, and the reporting your management actually asks for.</p>
-                <div class="built-label">Built with</div>
+                <p data-i18n="sv.erp.x">The same workflows large organizations run on SAP and Oracle — inventory, procurement, HR &amp; payroll, accounting, multi-level approvals, reporting — can be built on mature open-source platforms or custom-developed, at a fraction of the cost and fully owned by you. Role-based access, audit logs, and the reporting your management actually asks for.</p>
+                <div class="built-label" data-i18n="sv.built">Built with</div>
                 <ul class="chips"><li>ERPNext / custom</li><li>Spring Boot</li><li>Oracle &amp; PostgreSQL</li><li>Jasper Reports</li></ul>
               </div></div>
             </details>
@@ -403,18 +412,18 @@
                 <div class="svc-head">
                   <span class="svc-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4.5 19V10M9.5 19V5.5M14.5 19v-6M19.5 19v-9.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
                   <span>
-                    <span class="svc-name">Data platforms &amp; analytics</span>
-                    <span class="svc-tag">Dashboards · pipelines · search</span>
+                    <span class="svc-name" data-i18n="sv.data.h">Data platforms &amp; analytics</span>
+                    <span class="svc-tag" data-i18n="sv.data.t">Dashboards · pipelines · search</span>
                   </span>
                 </div>
-                <p class="svc-desc">Data scattered across Excel files, databases and PDFs, turned into live dashboards and searchable knowledge.</p>
-                <span class="svc-more"><span class="lbl-shut">Read more</span><span class="lbl-open">Show less</span>
+                <p class="svc-desc" data-i18n="sv.data.d">Data scattered across Excel files, databases and PDFs, turned into live dashboards and searchable knowledge.</p>
+                <span class="svc-more"><span class="lbl-shut" data-i18n="sv.more">Read more</span><span class="lbl-open" data-i18n="sv.less">Show less</span>
                   <svg width="11" height="7" viewBox="0 0 11 7" fill="none" aria-hidden="true"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
                 </span>
               </summary>
               <div class="svc-body-wrap"><div class="svc-body">
-                <p>The pipeline: pull data from every source (databases, APIs, spreadsheets, even scanned documents), move it reliably, and land it somewhere queryable. Apache NiFi and Airbyte for ingestion, Kafka for real-time streams, Spark when the volume gets serious, OpenSearch for full-text search, and Apache Superset for dashboards your management can open in a browser — no per-seat BI license, ever.</p>
-                <div class="built-label">Built with</div>
+                <p data-i18n="sv.data.x">The pipeline: pull data from every source (databases, APIs, spreadsheets, even scanned documents), move it reliably, and land it somewhere queryable. Apache NiFi and Airbyte for ingestion, Kafka for real-time streams, Spark when the volume gets serious, OpenSearch for full-text search, and Apache Superset for dashboards your management can open in a browser — no per-seat BI license, ever.</p>
+                <div class="built-label" data-i18n="sv.built">Built with</div>
                 <ul class="chips"><li>Kafka</li><li>NiFi</li><li>Airbyte</li><li>Spark</li><li>Superset</li><li>OpenSearch</li><li>ClickHouse</li></ul>
               </div></div>
             </details>
@@ -425,18 +434,18 @@
                 <div class="svc-head">
                   <span class="svc-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                   <span>
-                    <span class="svc-name">Security &amp; reliability</span>
-                    <span class="svc-tag">Hardening · monitoring · backups</span>
+                    <span class="svc-name" data-i18n="sv.sec.h">Security &amp; reliability</span>
+                    <span class="svc-tag" data-i18n="sv.sec.t">Hardening · monitoring · backups</span>
                   </span>
                 </div>
-                <p class="svc-desc">Hardened servers, monitored networks, encrypted backups and private VPNs — so the bad-hour phone call never comes.</p>
-                <span class="svc-more"><span class="lbl-shut">Read more</span><span class="lbl-open">Show less</span>
+                <p class="svc-desc" data-i18n="sv.sec.d">Hardened servers, monitored networks, encrypted backups and private VPNs — so the bad-hour phone call never comes.</p>
+                <span class="svc-more"><span class="lbl-shut" data-i18n="sv.more">Read more</span><span class="lbl-open" data-i18n="sv.less">Show less</span>
                   <svg width="11" height="7" viewBox="0 0 11 7" fill="none" aria-hidden="true"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
                 </span>
               </summary>
               <div class="svc-body-wrap"><div class="svc-body">
-                <p>Security is not a product you buy; it's how the system is built. Network intrusion detection with Suricata, database activity monitoring, WireGuard/OpenVPN for secure remote access, server hardening, and SQL-injection-proof application design. Reliability is the other half: automated encrypted backups with Bacula and Restic (tested restores, not just backups), S3-compatible private object storage with MinIO, and monitoring that alerts before users notice.</p>
-                <div class="built-label">Built with</div>
+                <p data-i18n="sv.sec.x">Security is not a product you buy; it's how the system is built. Network intrusion detection with Suricata, database activity monitoring, WireGuard/OpenVPN for secure remote access, server hardening, and SQL-injection-proof application design. Reliability is the other half: automated encrypted backups with Bacula and Restic (tested restores, not just backups), S3-compatible private object storage with MinIO, and monitoring that alerts before users notice.</p>
+                <div class="built-label" data-i18n="sv.built">Built with</div>
                 <ul class="chips"><li>Suricata</li><li>WireGuard</li><li>Bacula</li><li>Restic</li><li>MinIO</li><li>Docker / Kubernetes</li></ul>
               </div></div>
             </details>
@@ -445,17 +454,17 @@
 
           <!-- toolkit -->
           <div id="stack" class="toolkit reveal">
-            <h3 class="toolkit-title">The full toolkit</h3>
-            <p class="section-note">Every tool is a deliberate choice, not a default.</p>
+            <h3 class="toolkit-title" data-i18n="tk.title">The full toolkit</h3>
+            <p class="section-note" data-i18n="tk.note">Every tool is a deliberate choice, not a default.</p>
             <div class="craft-rows">
-              <div class="craft-row"><span class="craft-label">Web &amp; backend</span><div class="tags"><span>Java / Spring Boot</span><span>PHP (Laravel)</span><span>Python (FastAPI)</span><span>Go</span><span>Node.js</span></div></div>
-              <div class="craft-row"><span class="craft-label">Frontend</span><div class="tags"><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Vite</span></div></div>
-              <div class="craft-row"><span class="craft-label">Mobile</span><div class="tags"><span>Android (Java/Kotlin)</span><span>Flutter / React Native</span></div></div>
-              <div class="craft-row"><span class="craft-label">Databases</span><div class="tags"><span>PostgreSQL</span><span>MySQL</span><span>Oracle</span><span>MongoDB</span><span>ClickHouse</span><span>Redis</span></div></div>
-              <div class="craft-row"><span class="craft-label">AI / LLM</span><div class="tags"><span>RAG pipelines</span><span>Vector databases</span><span>OpenAI &amp; Gemini APIs</span><span>Ollama (self-hosted)</span></div></div>
-              <div class="craft-row"><span class="craft-label">Security &amp; network</span><div class="tags"><span>Suricata (IDS/IPS)</span><span>DB activity monitoring</span><span>WireGuard / OpenVPN</span><span>Hardening &amp; audit</span></div></div>
-              <div class="craft-row"><span class="craft-label">DevOps</span><div class="tags"><span>Docker</span><span>Kubernetes</span><span>Jenkins</span><span>GitHub Actions</span><span>Nginx</span><span>Linux</span></div></div>
-              <div class="craft-row"><span class="craft-label">Enterprise</span><div class="tags"><span>ERPNext</span><span>Jasper Reports</span><span>Active Directory</span></div></div>
+              <div class="craft-row"><span class="craft-label" data-i18n="tk.web">Web &amp; backend</span><div class="tags"><span>Java / Spring Boot</span><span>PHP (Laravel)</span><span>Python (FastAPI)</span><span>Go</span><span>Node.js</span></div></div>
+              <div class="craft-row"><span class="craft-label" data-i18n="tk.front">Frontend</span><div class="tags"><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Vite</span></div></div>
+              <div class="craft-row"><span class="craft-label" data-i18n="tk.mobile">Mobile</span><div class="tags"><span>Android (Java/Kotlin)</span><span>Flutter / React Native</span></div></div>
+              <div class="craft-row"><span class="craft-label" data-i18n="tk.db">Databases</span><div class="tags"><span>PostgreSQL</span><span>MySQL</span><span>Oracle</span><span>MongoDB</span><span>ClickHouse</span><span>Redis</span></div></div>
+              <div class="craft-row"><span class="craft-label" data-i18n="tk.ai">AI / LLM</span><div class="tags"><span>RAG pipelines</span><span>Vector databases</span><span>OpenAI &amp; Gemini APIs</span><span>Ollama (self-hosted)</span></div></div>
+              <div class="craft-row"><span class="craft-label" data-i18n="tk.sec">Security &amp; network</span><div class="tags"><span>Suricata (IDS/IPS)</span><span>DB activity monitoring</span><span>WireGuard / OpenVPN</span><span>Hardening &amp; audit</span></div></div>
+              <div class="craft-row"><span class="craft-label" data-i18n="tk.devops">DevOps</span><div class="tags"><span>Docker</span><span>Kubernetes</span><span>Jenkins</span><span>GitHub Actions</span><span>Nginx</span><span>Linux</span></div></div>
+              <div class="craft-row"><span class="craft-label" data-i18n="tk.ent">Enterprise</span><div class="tags"><span>ERPNext</span><span>Jasper Reports</span><span>Active Directory</span></div></div>
             </div>
           </div>
         </div>
@@ -465,14 +474,14 @@
     <!-- ================= FULL-BLEED EDITORIAL BAND ================= -->
     <section class="bleed" aria-label="Working from Bangladesh">
       <div class="bleed-media">
-        <img src="assets/images/ruhan-river.jpg" alt="A river running between two forested hills in Bangladesh" loading="lazy" decoding="async" />
+        <img src="assets/images/ruhan-river.jpg" alt="A river running between two forested hills in Bangladesh" data-i18n="bl.alt" data-i18n-attr="alt" loading="lazy" decoding="async" />
       </div>
       <div class="bleed-copy">
         <div class="container">
           <div class="inner reveal">
-            <span class="label">Where the work happens</span>
-            <h2 class="bleed-title">Built in Bangladesh.<br />Built to hold up anywhere.</h2>
-            <p class="bleed-text">
+            <span class="label" data-i18n="bl.label">Where the work happens</span>
+            <h2 class="bleed-title" data-i18n="bl.title">Built in Bangladesh.<br />Built to hold up anywhere.</h2>
+            <p class="bleed-text" data-i18n="bl.text">
               Government-scale systems, hybrid teams, unreliable networks, real budgets. The
               constraints here are stricter than most — which is exactly why the software has
               to be built properly the first time.
@@ -486,17 +495,17 @@
     <section id="experience" class="experience">
       <div class="container">
         <div class="section-head reveal">
-          <span class="label"><span class="num">03</span> Experience</span>
-          <h2 class="section-title">Where I've shipped, and <span class="tone">owned the outcome</span></h2>
+          <span class="label"><span class="num">03</span> <span data-i18n="ex.label">Experience</span></span>
+          <h2 class="section-title" data-i18n="ex.title">Where I've shipped, and <span class="tone">owned the outcome</span></h2>
         </div>
 
         <div class="exp-grid">
           <article class="exp now reveal">
-            <span class="exp-flag"><span class="pip" aria-hidden="true"></span> Current role</span>
-            <span class="exp-year">May 2024 — Present</span>
-            <h3 class="exp-role">Programmer</h3>
-            <p class="exp-org">IICT, BUET <small>· Institute of Information &amp; Communication Technology · promoted from Assistant Programmer</small></p>
-            <p class="exp-desc">
+            <span class="exp-flag"><span class="pip" aria-hidden="true"></span> <span data-i18n="ex.now">Current role</span></span>
+            <span class="exp-year" data-i18n="ex.1.y">May 2024 — Present</span>
+            <h3 class="exp-role" data-i18n="ex.1.r">Programmer</h3>
+            <p class="exp-org" data-i18n="ex.1.o">IICT, BUET <small>· Institute of Information &amp; Communication Technology · promoted from Assistant Programmer</small></p>
+            <p class="exp-desc" data-i18n="ex.1.d">
               Government-scale systems where downtime isn't a metric, it's an incident —
               including national-level work for the Bangladesh Technical Education Board
               (BTEB), kept short here under employer confidentiality.
@@ -504,26 +513,26 @@
           </article>
 
           <article class="exp reveal">
-            <span class="exp-flag">Completed engagement</span>
-            <span class="exp-year">Jan 2025 — Oct 2025</span>
-            <h3 class="exp-role">Team Lead / Full-Stack Developer</h3>
-            <p class="exp-org">Merilsoft <small>· Remote, part-time</small></p>
-            <p class="exp-desc">
+            <span class="exp-flag" data-i18n="ex.done">Completed engagement</span>
+            <span class="exp-year" data-i18n="ex.2.y">Jan 2025 — Oct 2025</span>
+            <h3 class="exp-role" data-i18n="ex.2.r">Team Lead / Full-Stack Developer</h3>
+            <p class="exp-org" data-i18n="ex.2.o">Merilsoft <small>· Remote, part-time</small></p>
+            <p class="exp-desc" data-i18n="ex.2.d">
               Joined as a developer, promoted to Team Lead within the engagement — AI, web
               and mobile product lines delivered independently.
             </p>
           </article>
         </div>
 
-        <h3 class="edu-label reveal">Education</h3>
+        <h3 class="edu-label reveal" data-i18n="ex.edu">Education</h3>
         <div class="edu-list reveal">
           <div class="edu">
-            <strong>Bachelor of Science, Computer Science &amp; Engineering</strong>
-            <span>Khulna University of Engineering &amp; Technology (KUET) · 4 years</span>
+            <strong data-i18n="ex.edu1.h">Bachelor of Science, Computer Science &amp; Engineering</strong>
+            <span data-i18n="ex.edu1.p">Khulna University of Engineering &amp; Technology (KUET) · 4 years</span>
           </div>
           <div class="edu">
-            <strong>Higher Secondary Certificate</strong>
-            <span>Science · Notre Dame College, Dhaka · 2018</span>
+            <strong data-i18n="ex.edu2.h">Higher Secondary Certificate</strong>
+            <span data-i18n="ex.edu2.p">Science · Notre Dame College, Dhaka · 2018</span>
           </div>
         </div>
       </div>
@@ -533,9 +542,9 @@
     <section id="why" class="why">
       <div class="container">
         <div class="why-panel reveal">
-          <span class="label">Why open source</span>
-          <h2 class="section-title">Enterprise power, zero license fees, full ownership</h2>
-          <p class="prose">
+          <span class="label" data-i18n="os.label">Why open source</span>
+          <h2 class="section-title" data-i18n="os.title">Enterprise power, zero license fees, full ownership</h2>
+          <p class="prose" data-i18n="os.prose">
             Most software vendors in Bangladesh quietly rent you technology: per-user
             licenses, per-year renewals, and a dependency you can never leave. I build on the
             open-source stack that global enterprises actually run — Kafka moves data at
@@ -544,9 +553,9 @@
             is hosting.
           </p>
           <div class="trust">
-            <div class="trust-item"><strong>No lock-in</strong><span>Leave anytime with all your code and data.</span></div>
-            <div class="trust-item"><strong>No license bills</strong><span>Budget goes into building, not renewing.</span></div>
-            <div class="trust-item"><strong>No black boxes</strong><span>Every component is auditable and documented.</span></div>
+            <div class="trust-item"><strong data-i18n="os.1.h">No lock-in</strong><span data-i18n="os.1.p">Leave anytime with all your code and data.</span></div>
+            <div class="trust-item"><strong data-i18n="os.2.h">No license bills</strong><span data-i18n="os.2.p">Budget goes into building, not renewing.</span></div>
+            <div class="trust-item"><strong data-i18n="os.3.h">No black boxes</strong><span data-i18n="os.3.p">Every component is auditable and documented.</span></div>
           </div>
         </div>
       </div>
@@ -556,36 +565,36 @@
     <section id="process" class="process">
       <div class="container">
         <div class="section-head reveal">
-          <span class="label"><span class="num">04</span> How we work together</span>
-          <h2 class="section-title">From &ldquo;we have a problem&rdquo; to <span class="tone">&ldquo;it's running&rdquo;</span></h2>
-          <p class="section-note">The same five steps every time, in order — because the order is what keeps things calm.</p>
+          <span class="label"><span class="num">04</span> <span data-i18n="pr.label">How we work together</span></span>
+          <h2 class="section-title" data-i18n="pr.title">From &ldquo;we have a problem&rdquo; to <span class="tone">&ldquo;it's running&rdquo;</span></h2>
+          <p class="section-note" data-i18n="pr.note">The same five steps every time, in order — because the order is what keeps things calm.</p>
         </div>
 
         <div class="steps">
           <div class="step reveal">
             <span class="step-no">01</span>
-            <h3 class="step-name">Listen</h3>
-            <p class="step-desc">You describe the problem in plain language — Bangla or English. No requirement documents needed to start.</p>
+            <h3 class="step-name" data-i18n="pr.1.h">Listen</h3>
+            <p class="step-desc" data-i18n="pr.1.p">You describe the problem in plain language — Bangla or English. No requirement documents needed to start.</p>
           </div>
           <div class="step reveal">
             <span class="step-no">02</span>
-            <h3 class="step-name">Scope honestly</h3>
-            <p class="step-desc">A written proposal: what gets built, on what, by when, for how much. If a ready-made tool solves it cheaper, you'll be told.</p>
+            <h3 class="step-name" data-i18n="pr.2.h">Scope honestly</h3>
+            <p class="step-desc" data-i18n="pr.2.p">A written proposal: what gets built, on what, by when, for how much. If a ready-made tool solves it cheaper, you'll be told.</p>
           </div>
           <div class="step reveal">
             <span class="step-no">03</span>
-            <h3 class="step-name">Build in the open</h3>
-            <p class="step-desc">Weekly working demos, not monthly status reports. You see the real system early enough to change your mind cheaply.</p>
+            <h3 class="step-name" data-i18n="pr.3.h">Build in the open</h3>
+            <p class="step-desc" data-i18n="pr.3.p">Weekly working demos, not monthly status reports. You see the real system early enough to change your mind cheaply.</p>
           </div>
           <div class="step reveal">
             <span class="step-no">04</span>
-            <h3 class="step-name">Launch safely</h3>
-            <p class="step-desc">Monitoring, backups and rollback are configured before go-live, not after the first incident.</p>
+            <h3 class="step-name" data-i18n="pr.4.h">Launch safely</h3>
+            <p class="step-desc" data-i18n="pr.4.p">Monitoring, backups and rollback are configured before go-live, not after the first incident.</p>
           </div>
           <div class="step reveal">
             <span class="step-no">05</span>
-            <h3 class="step-name">Stay reachable</h3>
-            <p class="step-desc">Support terms agreed up front. When something breaks at a bad hour, you have a phone number, not a ticket queue.</p>
+            <h3 class="step-name" data-i18n="pr.5.h">Stay reachable</h3>
+            <p class="step-desc" data-i18n="pr.5.p">Support terms agreed up front. When something breaks at a bad hour, you have a phone number, not a ticket queue.</p>
           </div>
         </div>
       </div>
@@ -595,34 +604,34 @@
     <section id="faq" class="faq-section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="label"><span class="num">05</span> Questions</span>
-          <h2 class="section-title">Straight answers</h2>
+          <span class="label"><span class="num">05</span> <span data-i18n="fq.label">Questions</span></span>
+          <h2 class="section-title" data-i18n="fq.title">Straight answers</h2>
         </div>
 
         <div class="faq-list reveal">
           <details class="faq">
-            <summary>How much does a website cost in Bangladesh? <span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq-body-wrap"><div class="faq-body"><p>It depends on what the website has to do. A professional company site is a different project from an e-commerce platform with payments and inventory. You'll get a fixed written quote after one conversation — free, no obligation.</p></div></div>
+            <summary><span data-i18n="fq.1.q">How much does a website cost in Bangladesh?</span> <span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq-body-wrap"><div class="faq-body"><p data-i18n="fq.1.a">It depends on what the website has to do. A professional company site is a different project from an e-commerce platform with payments and inventory. You'll get a fixed written quote after one conversation — free, no obligation.</p></div></div>
           </details>
           <details class="faq">
-            <summary>Can you build an app that works with bKash / Nagad? <span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq-body-wrap"><div class="faq-body"><p>Yes — bKash, Nagad, SSLCommerz and international card gateways are all standard integrations here.</p></div></div>
+            <summary><span data-i18n="fq.2.q">Can you build an app that works with bKash / Nagad?</span> <span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq-body-wrap"><div class="faq-body"><p data-i18n="fq.2.a">Yes — bKash, Nagad, SSLCommerz and international card gateways are all standard integrations here.</p></div></div>
           </details>
           <details class="faq">
-            <summary>What is an AI chatbot, and does my business need one? <span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq-body-wrap"><div class="faq-body"><p>It's software that answers customer questions automatically — on your website, WhatsApp or Messenger — using your own product and policy information. If your team answers the same 20 questions every day, it usually pays for itself. If it wouldn't, you'll be told that instead of being sold one.</p></div></div>
+            <summary><span data-i18n="fq.3.q">What is an AI chatbot, and does my business need one?</span> <span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq-body-wrap"><div class="faq-body"><p data-i18n="fq.3.a">It's software that answers customer questions automatically — on your website, WhatsApp or Messenger — using your own product and policy information. If your team answers the same 20 questions every day, it usually pays for itself. If it wouldn't, you'll be told that instead of being sold one.</p></div></div>
           </details>
           <details class="faq">
-            <summary>Why open source instead of licensed software? <span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq-body-wrap"><div class="faq-body"><p>The licensed giants are excellent — and priced for multinationals. Open-source equivalents deliver the same core capability with zero license fees and no vendor lock-in. You own everything that's built.</p></div></div>
+            <summary><span data-i18n="fq.4.q">Why open source instead of licensed software?</span> <span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq-body-wrap"><div class="faq-body"><p data-i18n="fq.4.a">The licensed giants are excellent — and priced for multinationals. Open-source equivalents deliver the same core capability with zero license fees and no vendor lock-in. You own everything that's built.</p></div></div>
           </details>
           <details class="faq">
-            <summary>Do you provide support after delivery? <span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq-body-wrap"><div class="faq-body"><p>Yes. Every project ships with a support arrangement in writing — updates, backups, monitoring, and a real human to call.</p></div></div>
+            <summary><span data-i18n="fq.5.q">Do you provide support after delivery?</span> <span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq-body-wrap"><div class="faq-body"><p data-i18n="fq.5.a">Yes. Every project ships with a support arrangement in writing — updates, backups, monitoring, and a real human to call.</p></div></div>
           </details>
           <details class="faq">
-            <summary>Can our data stay fully inside our own servers? <span class="pm" aria-hidden="true"></span></summary>
-            <div class="faq-body-wrap"><div class="faq-body"><p>Yes. Everything — including AI — can run entirely on infrastructure you own, with nothing leaving your network. This matters for organizations handling sensitive data, and it's a specialty here.</p></div></div>
+            <summary><span data-i18n="fq.6.q">Can our data stay fully inside our own servers?</span> <span class="pm" aria-hidden="true"></span></summary>
+            <div class="faq-body-wrap"><div class="faq-body"><p data-i18n="fq.6.a">Yes. Everything — including AI — can run entirely on infrastructure you own, with nothing leaving your network. This matters for organizations handling sensitive data, and it's a specialty here.</p></div></div>
           </details>
         </div>
       </div>
@@ -632,9 +641,9 @@
     <section id="contact" class="contact">
       <div class="container">
         <div class="section-head reveal">
-          <span class="label"><span class="num">06</span> Get in touch</span>
-          <h2 class="section-title">Describe the problem.<br />Get an <span class="tone">engineer's answer</span>.</h2>
-          <p class="section-note">
+          <span class="label"><span class="num">06</span> <span data-i18n="ct.label">Get in touch</span></span>
+          <h2 class="section-title" data-i18n="ct.title">Describe the problem.<br />Get an <span class="tone">engineer's answer</span>.</h2>
+          <p class="section-note" data-i18n="ct.note">
             Explain what's broken, missing, or slow — in Bangla or English — and you'll get
             back a straight answer: what to build, what it takes, and whether you even need it.
           </p>
@@ -645,30 +654,30 @@
             <a class="channel" href="mailto:ruhan.9mri@gmail.com?subject=Project%20enquiry&amp;body=Hi%20Ruhan%2C%0A%0AI%27d%20like%20to%20talk%20about%3A%0A%0A">
               <span class="ch-icon ch-mail" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.2" stroke="currentColor" stroke-width="1.8"/><path d="M4 7.5l8 5.5 8-5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
               <span class="ch-meta">
-                <span class="ch-k">Email</span>
+                <span class="ch-k" data-i18n="ct.email">Email</span>
                 <span class="ch-v">ruhan.9mri@gmail.com</span>
               </span>
               <span class="ch-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </a>
             <button type="button" class="copy-btn" data-copy="ruhan.9mri@gmail.com">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.9"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
-              <span class="copy-label">Copy address</span>
+              <span class="copy-label" data-i18n="ct.copyMail">Copy address</span>
             </button>
 
-            <a class="channel" style="margin-top:14px" href="https://wa.me/8801749501010?text=Hi%20Ruhan%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">
+            <a class="channel" href="https://wa.me/8801749501010?text=Hi%20Ruhan%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">
               <span class="ch-icon ch-wa" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 5.5h16v11H9.5L4 20.5v-15z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
               <span class="ch-meta">
-                <span class="ch-k">WhatsApp</span>
+                <span class="ch-k" data-i18n="ct.wa">WhatsApp</span>
                 <span class="ch-v">+880 1749-501010</span>
               </span>
               <span class="ch-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </a>
             <button type="button" class="copy-btn" data-copy="+8801749501010">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.9"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
-              <span class="copy-label">Copy number</span>
+              <span class="copy-label" data-i18n="ct.copyNum">Copy number</span>
             </button>
 
-            <p class="form-note" style="margin-top:20px">
+            <p class="form-note contact-where" data-i18n="ct.where">
               Based in Dhaka · working across Bangladesh · remote-friendly worldwide.<br />
               Typical reply time: within one business day.
             </p>
@@ -696,43 +705,43 @@
 
             <div class="field-grid">
               <div class="field">
-                <label for="f-name">Your name</label>
+                <label for="f-name" data-i18n="f.name">Your name</label>
                 <input id="f-name" name="name" type="text" placeholder="Mohammad Ruhan Islam" required autocomplete="name" />
               </div>
               <div class="field">
-                <label for="f-company">Company <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+                <label for="f-company"><span data-i18n="f.company">Company</span> <span class="opt" data-i18n="f.optional">(optional)</span></label>
                 <input id="f-company" name="company" type="text" placeholder="Company Limited" autocomplete="organization" />
               </div>
               <div class="field">
-                <label for="f-email">Email</label>
+                <label for="f-email" data-i18n="f.email">Email</label>
                 <input id="f-email" name="email" type="email" placeholder="ruhan.9mri@gmail.com" required autocomplete="email" />
               </div>
               <div class="field">
-                <label for="f-phone">Phone / WhatsApp</label>
+                <label for="f-phone" data-i18n="f.phone">Phone / WhatsApp</label>
                 <input id="f-phone" name="phone" type="tel" placeholder="+880 1749-501010" autocomplete="tel" inputmode="tel" />
               </div>
               <div class="field full">
-                <label for="f-type">Project type</label>
+                <label for="f-type" data-i18n="f.type">Project type</label>
                 <select id="f-type" name="project_type">
-                  <option>Website / web platform</option>
-                  <option>Mobile app</option>
-                  <option>AI automation / chatbot</option>
-                  <option>Enterprise software (ERP/HR)</option>
-                  <option>Data platform / analytics</option>
-                  <option>Security &amp; infrastructure</option>
-                  <option>Not sure yet — let's talk</option>
+                  <option data-i18n="f.o1">Website / web platform</option>
+                  <option data-i18n="f.o2">Mobile app</option>
+                  <option data-i18n="f.o3">AI automation / chatbot</option>
+                  <option data-i18n="f.o4">Enterprise software (ERP/HR)</option>
+                  <option data-i18n="f.o5">Data platform / analytics</option>
+                  <option data-i18n="f.o6">Security &amp; infrastructure</option>
+                  <option data-i18n="f.o7">Not sure yet — let's talk</option>
                 </select>
               </div>
               <div class="field full">
-                <label for="f-message">About the project</label>
-                <textarea id="f-message" name="message" placeholder="What's broken, missing, or slow? Rough timeline and budget help, but aren't required." required></textarea>
+                <label for="f-message" data-i18n="f.msg">About the project</label>
+                <textarea id="f-message" name="message" placeholder="" data-i18n="f.msgPh" data-i18n-attr="placeholder" required></textarea>
               </div>
             </div>
 
             <div class="form-foot">
-              <span class="form-note">No spam, no mailing list — this only reaches me.</span>
+              <span class="form-note" data-i18n="f.privacy">No spam, no mailing list — this only reaches me.</span>
               <button type="submit" class="btn primary send">
-                <span class="send-label">Send enquiry</span>
+                <span class="send-label" data-i18n="f.send">Send enquiry</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
             </div>
@@ -748,36 +757,36 @@
       <div class="container foot-grid">
         <div class="foot-brand">
           <a href="https://ruhan.lol/" class="wordmark" aria-label="Ruhan — ruhan.lol home"><span class="seal" aria-hidden="true">RI</span> Ruhan</a>
-          <p class="foot-tag">
+          <p class="foot-tag" data-i18n="ft.tag">
             One engineer for everything digital — websites, apps, AI, enterprise systems and
             security, built personally on open source.
           </p>
         </div>
         <div class="foot-col">
-          <h4>Explore</h4>
-          <a href="#services">Services</a>
-          <a href="#stack">Toolkit</a>
-          <a href="#experience">Experience</a>
-          <a href="#process">Process</a>
-          <a href="#faq">FAQ</a>
+          <h4 data-i18n="ft.explore">Explore</h4>
+          <a href="#services" data-i18n="nav.services">Services</a>
+          <a href="#stack" data-i18n="ft.toolkit">Toolkit</a>
+          <a href="#experience" data-i18n="nav.experience">Experience</a>
+          <a href="#process" data-i18n="nav.process">Process</a>
+          <a href="#faq" data-i18n="nav.faq">FAQ</a>
         </div>
         <div class="foot-col">
-          <h4>Contact</h4>
+          <h4 data-i18n="ft.contact">Contact</h4>
           <a href="mailto:ruhan.9mri@gmail.com">ruhan.9mri@gmail.com</a>
           <a href="https://wa.me/8801749501010" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="#contact">Send an enquiry</a>
-          <span style="display:block;font-size:14px;padding:5px 0;color:rgba(255,255,255,.5)">Dhaka, Bangladesh</span>
+          <a href="#contact" data-i18n="ft.enquiry">Send an enquiry</a>
+          <span class="foot-place" data-i18n="ft.place">Dhaka, Bangladesh</span>
         </div>
       </div>
       <div class="container foot-bottom">
-        <span>&copy; 2026 <a class="name-link" href="https://ruhan.lol/">Mohammad Ruhan Islam</a> &middot; Dhaka, Bangladesh</span>
+        <span data-i18n="ft.copy">&copy; 2026 <a class="name-link" href="https://ruhan.lol/">Mohammad Ruhan Islam</a> &middot; Dhaka, Bangladesh</span>
         <a href="#home" class="foot-top">
-          Back to top
+          <span data-i18n="ft.top">Back to top</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
       <div class="container">
-        <p class="foot-seo">
+        <p class="foot-seo" data-i18n="ft.seo">
           Software development, website design, mobile app development, AI automation, ERP and
           cyber security services in Dhaka and across Bangladesh.
         </p>
@@ -798,6 +807,7 @@
       </a>
     </div>
 
+    <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

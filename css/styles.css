@@ -10,7 +10,8 @@
    full-bleed photographic bands and light wide-tracked body text borrowed
    from the Partnerbike–Jobike reference.
 
-   Type: Syne (display) · Onest (body) · DM Mono (labels/data)
+   Type: Fraunces (display) · Geist (body) · Geist Mono (labels/data)
+   Bangla: Tiro Bangla (display) · Hind Siliguri (body)
    ========================================================================= */
 
 :root {
@@ -73,6 +74,56 @@
 
   color-scheme: light;
 }
+
+/* =========================================================================
+   BANGLA
+   -------------------------------------------------------------------------
+   Bengali needs its own faces — Latin fonts have no Bengali glyphs, so the
+   browser would fall back to whatever the OS has, which looks broken.
+   Tiro Bangla (serif) mirrors Fraunces' role; Hind Siliguri carries body
+   copy. Bengali also sits taller than Latin because of its matra and
+   below-baseline marks, so line-height and letter-spacing are re-tuned.
+   ========================================================================= */
+:root[lang="bn"] {
+  --font-display: "Tiro Bangla", "Noto Serif Bengali", serif;
+  --font-body:    "Hind Siliguri", "Noto Sans Bengali", system-ui, sans-serif;
+  /* labels/data stay Latin-capable — they carry English technical terms */
+  --font-mono:    "Geist Mono", "Hind Siliguri", ui-monospace, monospace;
+}
+[lang="bn"] body { line-height: 1.85; font-size: 17px; }
+/* Bengali conjuncts get cramped by negative tracking — reset it */
+[lang="bn"] .display,
+[lang="bn"] h1, [lang="bn"] h2, [lang="bn"] h3,
+[lang="bn"] .section-title, [lang="bn"] .hero-title {
+  letter-spacing: 0; line-height: 1.42; font-variation-settings: normal;
+}
+[lang="bn"] .hero-title { font-size: clamp(30px, 5.4vw, 52px); }
+[lang="bn"] .section-title { font-size: clamp(25px, 3.9vw, 41px); }
+[lang="bn"] .label { letter-spacing: 0.06em; text-transform: none; font-size: 13px; }
+[lang="bn"] .hero-lede, [lang="bn"] .prose { line-height: 1.95; }
+[lang="bn"] .svc-name { font-size: 18px; line-height: 1.45; }
+[lang="bn"] .svc-desc, [lang="bn"] .svc-body p { line-height: 1.9; }
+[lang="bn"] .exp-role { line-height: 1.4; }
+[lang="bn"] .faq summary { line-height: 1.55; }
+[lang="bn"] .field label { letter-spacing: 0.02em; text-transform: none; font-size: 12.5px; }
+[lang="bn"] .edu-label, [lang="bn"] .built-label,
+[lang="bn"] .ch-k, [lang="bn"] .exp-flag { letter-spacing: 0.02em; text-transform: none; }
+[lang="bn"] .hero-frame figcaption blockquote { font-size: 15px; line-height: 1.7; font-style: normal; }
+
+/* ── language toggle ────────────────────────────────────────────────────── */
+.lang {
+  display: inline-flex; align-items: center; flex: none;
+  background: var(--mist-green); border-radius: 999px; padding: 3px; gap: 2px;
+}
+.lang a {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500; line-height: 1;
+  padding: 7px 12px; border-radius: 999px; color: var(--ink-2);
+  transition: background var(--micro), color var(--micro);
+}
+.lang a[aria-current="true"] { background: var(--canopy); color: #fff; }
+.lang a:not([aria-current="true"]):hover { color: var(--ink); background: rgba(255,255,255,.7); }
+/* the Bangla label needs a Bengali-capable face even on the English page */
+.lang .bn { font-family: "Hind Siliguri", var(--font-mono); font-size: 13px; }
 
 /* =========================================================================
    BASE
@@ -731,12 +782,47 @@ footer { background: var(--forest); color: rgba(255,255,255,.72); padding: 72px 
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 600ms ease, transform 600ms var(--ease); }
 .reveal.in { opacity: 1; transform: none; }
 
+.contact-where { margin-top: 20px; }
+
 /* =========================================================================
    RESPONSIVE
    ========================================================================= */
 @media (max-width: 1200px) {
   .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 34px; }
   .step:nth-child(3)::before { display: none; }
+}
+
+/* ── tablet: the nav pill runs out of room once the language toggle is in,
+      and two service cards side by side get cramped well before 780px ───── */
+@media (max-width: 1080px) {
+  .nav-menu { gap: 0; }
+  .nav-menu a { padding: 9px 11px; font-size: 13.5px; }
+}
+
+@media (max-width: 960px) {
+  .hamburger { display: flex; }
+  .nav-menu {
+    position: fixed; top: 0; right: -100%; height: 100dvh; width: min(82vw, 320px);
+    z-index: 78; flex-direction: column; align-items: stretch; justify-content: flex-start;
+    gap: 6px; padding: 92px 22px 28px;
+    background: var(--paper); border-left: var(--line); box-shadow: var(--sh-lg);
+    transform: translateX(104%); right: 0; transition: transform var(--panel-t);
+    overflow-y: auto;
+  }
+  .nav-menu.open { transform: none; }
+  .nav-menu a { font-size: 16px; padding: 13px 16px; border-radius: var(--r-btn); width: 100%; }
+  .nav-menu li { opacity: 0; transform: translateX(14px); transition: opacity 300ms ease, transform 300ms var(--ease); width: 100%; }
+  .nav-menu.open li { opacity: 1; transform: none; }
+  .nav-menu.open li:nth-child(1) { transition-delay: .05s; }
+  .nav-menu.open li:nth-child(2) { transition-delay: .10s; }
+  .nav-menu.open li:nth-child(3) { transition-delay: .15s; }
+  .nav-menu.open li:nth-child(4) { transition-delay: .20s; }
+  .nav-menu.open li:nth-child(5) { transition-delay: .25s; }
+  .nav-cta { text-align: center; margin-top: 8px; }
+
+  /* one service card per row from here — two columns of dense copy is unreadable */
+  .svc-grid { grid-template-columns: minmax(0, 1fr); }
+  .exp-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 980px) {
@@ -753,69 +839,73 @@ footer { background: var(--forest); color: rgba(255,255,255,.72); padding: 72px 
   .foot-brand { grid-column: 1 / -1; }
 }
 
-@media (max-width: 780px) {
-  .nav { top: 10px; }
-  .nav-inner { padding: 8px 8px 8px 16px; }
-  .hamburger { display: flex; }
-  .nav-menu {
-    position: fixed; top: 0; right: 0; height: 100dvh; width: min(82vw, 320px);
-    z-index: 78; flex-direction: column; align-items: stretch; justify-content: flex-start;
-    gap: 6px; padding: 92px 22px 28px;
-    background: var(--paper); border-left: var(--line); box-shadow: var(--sh-lg);
-    transform: translateX(104%); transition: transform var(--panel-t);
-    overflow-y: auto;
-  }
-  .nav-menu.open { transform: none; }
-  .nav-menu a { font-size: 16px; padding: 13px 16px; border-radius: var(--r-btn); }
-  .nav-menu li { opacity: 0; transform: translateX(14px); transition: opacity 300ms ease, transform 300ms var(--ease); }
-  .nav-menu.open li { opacity: 1; transform: none; }
-  .nav-menu.open li:nth-child(1) { transition-delay: .05s; }
-  .nav-menu.open li:nth-child(2) { transition-delay: .10s; }
-  .nav-menu.open li:nth-child(3) { transition-delay: .15s; }
-  .nav-menu.open li:nth-child(4) { transition-delay: .20s; }
-  .nav-menu.open li:nth-child(5) { transition-delay: .25s; }
-  .nav-menu.open li:nth-child(6) { transition-delay: .30s; }
-  .nav-cta { text-align: center; margin-top: 8px; }
-
-  .svc-grid { grid-template-columns: minmax(0, 1fr); }
-  .exp-grid { grid-template-columns: minmax(0, 1fr); }
+/* ── small tablet / large phone ─────────────────────────────────────────── */
+@media (max-width: 860px) {
+  /* three trust cards side by side get too narrow to read here */
   .trust { grid-template-columns: minmax(0, 1fr); }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .step::before { display: none !important; }
+  /* the 200px label column squeezes the tag cloud into a sliver */
   .craft-row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
-  .bleed-media::after { background: linear-gradient(180deg, rgba(16,35,26,.4) 0%, rgba(16,35,26,.8) 100%); }
+  .bleed-media { height: clamp(300px, 52vw, 400px); }
+  .bleed-media::after { background: linear-gradient(180deg, rgba(16,35,26,.34) 0%, rgba(16,35,26,.82) 100%); }
   .bleed-copy { align-items: flex-end; padding-bottom: 34px; }
+}
+
+@media (max-width: 780px) {
+  .nav { top: 10px; }
+  .nav-inner { padding: 8px 8px 8px 14px; gap: 12px; }
+  .wordmark { font-size: 16px; }
+  .lang a { padding: 6px 10px; font-size: 11.5px; }
 }
 
 @media (max-width: 640px) {
   :root { --gutter: 20px; }
   section { padding: 72px 0; }
-  .hero { padding: 124px 0 64px; }
+  .hero { padding: 118px 0 64px; }
   .caps { grid-template-columns: minmax(0, 1fr); }
   .steps { grid-template-columns: minmax(0, 1fr); }
   .field-grid { grid-template-columns: minmax(0, 1fr); }
   .form-panel { padding: 24px 20px; }
-  .panel { padding: 24px 18px; }
-  .svc { padding: 22px; }
-  .exp { padding: 24px; }
+  .panel { padding: 22px 16px; }
+  .why-panel { padding: 30px 20px; }
+  .svc { padding: 20px; }
+  .exp { padding: 22px; }
+  .svc-motif { height: 62px; }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .hero-actions .btn { width: 100%; }
   .form-foot { flex-direction: column; align-items: stretch; }
   .btn.send { width: 100%; }
+  /* the portrait shouldn't eat a whole phone screen before the copy starts */
+  .hero-visual { max-width: 100%; }
+  .hero-frame { aspect-ratio: 5 / 4; }
   /* the full address is too wide for a phone — keep the label, drop the
-     address, and let the in-page contact cards carry the detail */
-  .fab { right: 16px; bottom: 16px; gap: 8px; }
-  .fab a { height: 46px; padding: 0 18px 0 14px; font-size: 12px; }
+     address; the in-page contact cards carry the detail there */
+  .fab { right: 14px; bottom: 14px; gap: 8px; }
+  .fab a { height: 46px; padding: 0 16px 0 13px; font-size: 12px; }
   .fab .fab-full { display: none; }
   .fab .fab-short { display: inline !important; }
   .contact-line { gap: 8px; }
-  .contact-line a { font-size: 12px; padding: 8px 14px; }
+  .contact-line a { font-size: 12px; padding: 8px 13px; }
   .foot-grid { grid-template-columns: minmax(0, 1fr); }
+  .foot-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .edu-list { flex-direction: column; }
+  .edu { width: 100%; }
 }
 
 @media (max-width: 420px) {
   .edu { padding: 12px 16px; }
   .identity-photo { width: 48px; height: 48px; }
+  .hero-chip { font-size: 12px; padding: 7px 13px; }
+  .nav-inner { gap: 8px; padding: 8px 8px 8px 12px; }
+  .lang a { padding: 6px 9px; font-size: 11px; }
+  .seal { width: 27px; height: 27px; font-size: 10px; }
+  .wordmark { font-size: 15px; gap: 8px; }
+  .svc-head { gap: 10px; }
+  .exp-role { font-size: 20px; }
+  /* long unbroken strings (emails, URLs) must not push the layout wide */
+  .ch-v, .contact-line a { overflow-wrap: anywhere; }
+  .contact-line a { max-width: 100%; }
 }
 
 /* =========================================================================
@@ -832,3 +922,8 @@ footer { background: var(--forest); color: rgba(255,255,255,.72); padding: 72px 
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* small utilities pulled out of inline styles */
+.copy-btn + .channel { margin-top: 14px; }
+.field label .opt { text-transform: none; letter-spacing: 0; opacity: .7; }
+.foot-place { display: block; font-size: 14px; padding: 5px 0; color: rgba(255,255,255,.5); }

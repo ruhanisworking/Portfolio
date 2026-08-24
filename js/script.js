@@ -3,6 +3,69 @@
    nav · reveal · exclusive animated accordions · copy buttons · contact form
    ========================================================================= */
 
+/* ── language ───────────────────────────────────────────────────────────────
+   One page, two languages. Elements carry data-i18n="<key>"; the dictionary
+   in i18n.js holds both renderings. Bangla font files are only fetched the
+   first time Bangla is selected, so the English page stays light.
+   ------------------------------------------------------------------------- */
+const LANG_KEY = "ri-lang";
+let bnFontsLoaded = false;
+
+function loadBanglaFonts() {
+  if (bnFontsLoaded) return;
+  bnFontsLoaded = true;
+  const l = document.createElement("link");
+  l.rel = "stylesheet";
+  l.href =
+    "https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@400;500;600;700&display=swap";
+  document.head.appendChild(l);
+}
+
+function applyLang(lang) {
+  const dict = window.I18N || {};
+  if (lang === "bn") loadBanglaFonts();
+
+  document.documentElement.setAttribute("lang", lang);
+
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const entry = dict[el.dataset.i18n];
+    if (!entry || !entry[lang]) return;
+    const value = entry[lang];
+    const attr = el.dataset.i18nAttr;
+    if (attr) el.setAttribute(attr, value.replace(/<[^>]*>/g, ""));
+    else el.innerHTML = value;
+  });
+
+  // <title> and meta description live outside the body
+  if (dict["doc.title"]) document.title = dict["doc.title"][lang];
+  const desc = document.querySelector('meta[name="description"]');
+  if (desc && dict["doc.desc"]) desc.setAttribute("content", dict["doc.desc"][lang]);
+
+  document.querySelectorAll(".lang a").forEach((a) => {
+    a.setAttribute("aria-current", String(a.dataset.lang === lang));
+  });
+
+  try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+}
+
+function currentLang() {
+  return document.documentElement.getAttribute("lang") === "bn" ? "bn" : "en";
+}
+
+(function initLang() {
+  let saved = null;
+  try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
+  // Bangla is the default; a returning visitor keeps whatever they last chose
+  applyLang(saved || "bn");
+
+  document.querySelectorAll(".lang a").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyLang(a.dataset.lang);
+    });
+  });
+})();
+
 /* ── nav ────────────────────────────────────────────────────────────────── */
 const navEl = document.getElementById("nav");
 if (navEl) {
@@ -120,10 +183,14 @@ document.querySelectorAll(".copy-btn").forEach((btn) => {
       document.body.removeChild(ta);
     }
     btn.classList.add("done");
-    if (label) label.textContent = "Copied";
+    if (label) label.textContent = t("ct.copied");
     window.setTimeout(() => {
       btn.classList.remove("done");
-      if (label) label.textContent = original;
+      // re-read from the dictionary: the language may have changed meanwhile
+      if (label) {
+        const key = label.dataset.i18n;
+        label.textContent = key ? t(key) : original;
+      }
     }, 1800);
   });
 });
@@ -138,6 +205,12 @@ const form = document.getElementById("contact-form");
 const statusEl = document.getElementById("form-status");
 const MAIL_TO = "ruhan.9mri@gmail.com";
 const PLACEHOLDER_KEY = "WEB3FORMS_ACCESS_KEY";
+
+/* look a string up in the dictionary in whichever language is showing */
+function t(key) {
+  const entry = (window.I18N || {})[key];
+  return entry ? entry[currentLang()] || entry.en : "";
+}
 
 function setStatus(kind, html) {
   if (!statusEl) return;
@@ -156,11 +229,7 @@ function mailtoFallback(data, reason) {
     `${data.message || ""}\n`;
   const href = `mailto:${MAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   window.location.href = href;
-  setStatus(
-    "ok",
-    `${reason} Your mail app should be opening with the message ready to send. ` +
-      `If nothing happened, email <strong>${MAIL_TO}</strong> directly.`
-  );
+  setStatus("ok", `${reason} ${t("f.fbTail").replace("{mail}", MAIL_TO)}`);
 }
 
 if (form) {
@@ -176,11 +245,11 @@ if (form) {
     // validation
     const email = (data.email || "").trim();
     if (!(data.name || "").trim() || !email || !(data.message || "").trim()) {
-      setStatus("err", "Please fill in your name, email and a short message.");
+      setStatus("err", t("f.errFields"));
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setStatus("err", "That email address doesn't look right — mind checking it?");
+      setStatus("err", t("f.errEmail"));
       return;
     }
 
@@ -188,13 +257,13 @@ if (form) {
     const btnLabel = form.querySelector(".send-label");
     const originalLabel = btnLabel ? btnLabel.textContent : "";
     if (btn) btn.disabled = true;
-    if (btnLabel) btnLabel.textContent = "Sending…";
+    if (btnLabel) btnLabel.textContent = t("f.sending");
 
     const key = (data.access_key || "").trim();
 
     // no key configured yet → straight to the mail-app fallback
     if (!key || key === PLACEHOLDER_KEY) {
-      mailtoFallback(data, "Direct sending isn't switched on yet, so");
+      mailtoFallback(data, t("f.fbNotSet"));
       if (btn) btn.disabled = false;
       if (btnLabel) btnLabel.textContent = originalLabel;
       return;
@@ -214,13 +283,13 @@ if (form) {
         form.reset();
         setStatus(
           "ok",
-          "Thanks — that's landed in my inbox. You'll hear back within one business day."
+          t("f.ok")
         );
       } else {
-        mailtoFallback(data, "The form couldn't send just now, so");
+        mailtoFallback(data, t("f.fbFailed"));
       }
     } catch {
-      mailtoFallback(data, "You look offline, so");
+      mailtoFallback(data, t("f.fbOffline"));
     } finally {
       if (btn) btn.disabled = false;
       if (btnLabel) btnLabel.textContent = originalLabel;
