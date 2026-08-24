@@ -818,6 +818,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.72); padding: 72px 
   .nav-menu.open li:nth-child(3) { transition-delay: .15s; }
   .nav-menu.open li:nth-child(4) { transition-delay: .20s; }
   .nav-menu.open li:nth-child(5) { transition-delay: .25s; }
+  .nav-menu.open li:nth-child(6) { transition-delay: .30s; }
   .nav-cta { text-align: center; margin-top: 8px; }
 
   /* one service card per row from here — two columns of dense copy is unreadable */

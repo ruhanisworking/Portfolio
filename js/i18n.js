@@ -29,9 +29,14 @@ window.I18N = {
   },
 
   /* ── nav ───────────────────────────────────────────────────────────── */
+  /* Two sections are about "how I work": §01 is the principles, §04 is the
+     five steps. Nav labels are deliberately different words so they don't
+     read as duplicates — Approach vs Process, দৃষ্টিভঙ্গি vs কাজের ধাপ.
+     ("ধাপ" = steps, which describes §04 better than the old "ধরন" = type.) */
+  "nav.approach":   { en: "Approach",    bn: "দৃষ্টিভঙ্গি" },
   "nav.services":   { en: "Services",    bn: "সার্ভিস" },
   "nav.experience": { en: "Experience",  bn: "অভিজ্ঞতা" },
-  "nav.process":    { en: "Process",     bn: "কাজের ধরন" },
+  "nav.process":    { en: "Process",     bn: "কাজের ধাপ" },
   "nav.faq":        { en: "FAQ",         bn: "প্রশ্ন" },
   "nav.cta":        { en: "Let's talk",  bn: "কথা বলি" },
   "nav.menu":       { en: "Menu",        bn: "মেনু" },
