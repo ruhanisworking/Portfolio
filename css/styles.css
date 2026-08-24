@@ -99,15 +99,31 @@
 }
 [lang="bn"] .hero-title { font-size: clamp(30px, 5.4vw, 52px); }
 [lang="bn"] .section-title { font-size: clamp(25px, 3.9vw, 41px); }
-[lang="bn"] .label { letter-spacing: 0.06em; text-transform: none; font-size: 13px; }
+/* Letter-spacing pulls Bengali glyph clusters apart — "যোগাযোগ" renders as
+   "যো গা যো গ". Every tracked/uppercased label is reset in one place so a
+   new one can't be added later and quietly break. text-transform is dropped
+   too: Bengali has no case, so uppercase is a no-op that only adds risk. */
+[lang="bn"] .label,
+[lang="bn"] .field label,
+[lang="bn"] .craft-label,
+[lang="bn"] .built-label,
+[lang="bn"] .edu-label,
+[lang="bn"] .foot-col h4,
+[lang="bn"] .ch-k,
+[lang="bn"] .exp-flag,
+[lang="bn"] .svc-more,
+[lang="bn"] .svc-tag,
+[lang="bn"] .hero-frame figcaption cite {
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+[lang="bn"] .label { font-size: 13px; }
+[lang="bn"] .field label { font-size: 12.5px; }
 [lang="bn"] .hero-lede, [lang="bn"] .prose { line-height: 1.95; }
 [lang="bn"] .svc-name { font-size: 18px; line-height: 1.45; }
 [lang="bn"] .svc-desc, [lang="bn"] .svc-body p { line-height: 1.9; }
 [lang="bn"] .exp-role { line-height: 1.4; }
 [lang="bn"] .faq summary { line-height: 1.55; }
-[lang="bn"] .field label { letter-spacing: 0.02em; text-transform: none; font-size: 12.5px; }
-[lang="bn"] .edu-label, [lang="bn"] .built-label,
-[lang="bn"] .ch-k, [lang="bn"] .exp-flag { letter-spacing: 0.02em; text-transform: none; }
 [lang="bn"] .hero-frame figcaption blockquote { font-size: 15px; line-height: 1.7; font-style: normal; }
 
 /* ── language toggle ────────────────────────────────────────────────────── */
@@ -888,8 +904,14 @@ footer { background: var(--forest); color: rgba(255,255,255,.72); padding: 72px 
   .fab .fab-short { display: inline !important; }
   .contact-line { gap: 8px; }
   .contact-line a { font-size: 12px; padding: 8px 13px; }
-  .foot-grid { grid-template-columns: minmax(0, 1fr); }
+  /* Explore and Contact are short lists — side by side uses the width that's
+     already there instead of stacking into a long scroll. Brand spans above. */
+  .foot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
+  .foot-brand { grid-column: 1 / -1; }
+  .foot-col a { padding: 6px 0; }
   .foot-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+  /* keep the last line clear of the floating contact buttons */
+  footer { padding-bottom: 96px; }
   .edu-list { flex-direction: column; }
   .edu { width: 100%; }
 }
