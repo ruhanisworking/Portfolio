@@ -59,9 +59,15 @@ window.I18N = {
   "hero.cta2": { en: "See what I build",     bn: "কী কী বানাই, দেখুন" },
   "hero.role": { en: "Programmer · IICT, BUET", bn: "প্রোগ্রামার · IICT, BUET" },
   "hero.name": { en: "Mohammad Ruhan Islam", bn: "মোহাম্মদ রুহান ইসলাম" },
-  /* "ফুল-স্পেকট্রাম" is unusable — ফুল reads as "flower" in Bangla. The title
-     means "works across every layer", so Bangla says exactly that. */
-  "hero.jobtitle": { en: "Full-Spectrum Engineer", bn: "সব স্তরের ইঞ্জিনিয়ার" },
+  /* This is a title, so it has to read as a name — not a description.
+     "সব স্তরের ইঞ্জিনিয়ার" described the job instead of naming it.
+     সব্যসাচী is the Bangla word for someone skilled across many things
+     (from Arjuna, who drew the bow with either hand), and it carries
+     exactly what "full-spectrum" claims while sounding like a designation.
+     Safe alternative if this reads too literary: keep the English,
+     bn: "Full-Spectrum Engineer" — mixed script is normal for job titles
+     here, and it's what ex.2.r already does with Full-Stack. */
+  "hero.jobtitle": { en: "Full-Spectrum Engineer", bn: "সব্যসাচী ইঞ্জিনিয়ার" },
   /* The old line ("build it so it still runs when nobody's watching") was
      clumsy in English and worse in Bangla. This one is a real engineering
      truth and lands identically in both. */
