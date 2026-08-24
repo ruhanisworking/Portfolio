@@ -41,13 +41,11 @@ window.I18N = {
     en: "Dhaka, Bangladesh · working nationwide & remote",
     bn: "ঢাকা, বাংলাদেশ · সারা দেশে ও রিমোটে কাজ",
   },
-  /* Reworked in both languages together. "One engineer for everything
-     digital" turned into vague Bangla ("সবকিছু ডিজিটাল" means nothing on its
-     own), so the English was rewritten to something concrete that carries
-     across: screen → server names the two ends of the stack, and both
-     languages get the same rhythm. */
-  "hero.title1": { en: "From screen to server —", bn: "স্ক্রিন থেকে সার্ভার —" },
-  "hero.title2": { en: "one engineer, start to finish.", bn: "শুরু থেকে শেষ, একজনই।" },
+  /* The headline is Ruhan's own wording, kept verbatim in both languages.
+     Bangla headlines are commonly nominal — no verb — so this reads as a
+     masthead line rather than an unfinished sentence. */
+  "hero.title1": { en: "One engineer for", bn: "একজন ইঞ্জিনিয়ার আর" },
+  "hero.title2": { en: "everything digital.", bn: "সবকিছু ডিজিটাল" },
   "hero.lede": {
     en: "Websites, mobile apps, AI automation, enterprise systems and security — all of it built by hand on proven open-source technology, national government systems included. <strong>Not resold, not outsourced, not dropped in from a template.</strong>",
     bn: "ওয়েবসাইট, মোবাইল অ্যাপ, AI অটোমেশন, এন্টারপ্রাইজ সিস্টেম আর সিকিউরিটি — সবটাই পরীক্ষিত ওপেন সোর্স প্রযুক্তির উপর, নিজের হাতে গড়া। জাতীয় পর্যায়ের সরকারি সিস্টেমও এর মধ্যে আছে। <strong>কারও থেকে কিনে এনে বেচা নয়, আউটসোর্স নয়, টেমপ্লেট বসিয়ে দেওয়াও নয়।</strong>",
@@ -444,9 +442,10 @@ window.I18N = {
   },
 
   /* ── footer ────────────────────────────────────────────────────────── */
+  /* echoes the headline without repeating it word for word */
   "ft.tag": {
-    en: "Screen to server, one engineer — websites, apps, AI, enterprise systems and security, built by hand on open source.",
-    bn: "স্ক্রিন থেকে সার্ভার, সবটাই একজনের হাতে — ওয়েবসাইট, অ্যাপ, AI, এন্টারপ্রাইজ সিস্টেম আর সিকিউরিটি, সবই ওপেন সোর্সে নিজে হাতে গড়া।",
+    en: "One engineer for everything digital — websites, apps, AI, enterprise systems and security, built by hand on open source.",
+    bn: "ডিজিটাল সবকিছু একজন ইঞ্জিনিয়ারের হাতে — ওয়েবসাইট, অ্যাপ, AI, এন্টারপ্রাইজ সিস্টেম আর সিকিউরিটি, সবই ওপেন সোর্সে নিজে হাতে গড়া।",
   },
   "ft.explore": { en: "Explore", bn: "ঘুরে দেখুন" },
   "ft.contact": { en: "Contact", bn: "যোগাযোগ" },

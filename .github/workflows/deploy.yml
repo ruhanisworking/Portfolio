@@ -34,6 +34,7 @@ jobs:
           cp -r css js assets _site/
           if [ -f CNAME ]; then cp CNAME _site/; fi
           if [ -f robots.txt ]; then cp robots.txt _site/; fi
+          if [ -f favicon.svg ]; then cp favicon.svg _site/; fi
           if [ -f sitemap.xml ]; then cp sitemap.xml _site/; fi
 
       - name: Upload artifact
