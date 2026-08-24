@@ -41,20 +41,30 @@ window.I18N = {
     en: "Dhaka, Bangladesh · working nationwide & remote",
     bn: "ঢাকা, বাংলাদেশ · সারা দেশে ও রিমোটে কাজ",
   },
-  "hero.title1": { en: "One engineer for",     bn: "আপনার সব ডিজিটাল কাজ," },
-  "hero.title2": { en: "everything digital.",  bn: "একজন ইঞ্জিনিয়ারের হাতে।" },
+  /* Reworked in both languages together. "One engineer for everything
+     digital" turned into vague Bangla ("সবকিছু ডিজিটাল" means nothing on its
+     own), so the English was rewritten to something concrete that carries
+     across: screen → server names the two ends of the stack, and both
+     languages get the same rhythm. */
+  "hero.title1": { en: "From screen to server —", bn: "স্ক্রিন থেকে সার্ভার —" },
+  "hero.title2": { en: "one engineer, start to finish.", bn: "শুরু থেকে শেষ, একজনই।" },
   "hero.lede": {
-    en: "Websites, mobile apps, AI automation, enterprise systems and security — built personally on proven open-source technology, including national government systems. <strong>Not resold, not outsourced, not templated.</strong>",
-    bn: "ওয়েবসাইট, মোবাইল অ্যাপ, AI অটোমেশন, এন্টারপ্রাইজ সিস্টেম আর সিকিউরিটি — সবকিছু নিজের হাতে তৈরি, পরীক্ষিত ওপেন সোর্স প্রযুক্তির উপর। জাতীয় পর্যায়ের সরকারি সিস্টেমেও কাজ করা আছে। <strong>কারও থেকে কিনে এনে বেচা নয়, আউটসোর্স নয়, টেমপ্লেট বসিয়ে দেওয়া নয়।</strong>",
+    en: "Websites, mobile apps, AI automation, enterprise systems and security — all of it built by hand on proven open-source technology, national government systems included. <strong>Not resold, not outsourced, not dropped in from a template.</strong>",
+    bn: "ওয়েবসাইট, মোবাইল অ্যাপ, AI অটোমেশন, এন্টারপ্রাইজ সিস্টেম আর সিকিউরিটি — সবটাই পরীক্ষিত ওপেন সোর্স প্রযুক্তির উপর, নিজের হাতে গড়া। জাতীয় পর্যায়ের সরকারি সিস্টেমও এর মধ্যে আছে। <strong>কারও থেকে কিনে এনে বেচা নয়, আউটসোর্স নয়, টেমপ্লেট বসিয়ে দেওয়াও নয়।</strong>",
   },
   "hero.cta1": { en: "Start a conversation", bn: "কথা শুরু করুন" },
   "hero.cta2": { en: "See what I build",     bn: "কী কী বানাই, দেখুন" },
   "hero.role": { en: "Programmer · IICT, BUET", bn: "প্রোগ্রামার · IICT, BUET" },
   "hero.name": { en: "Mohammad Ruhan Islam", bn: "মোহাম্মদ রুহান ইসলাম" },
-  "hero.jobtitle": { en: "Full-Spectrum Engineer", bn: "ফুল-স্পেকট্রাম ইঞ্জিনিয়ার" },
+  /* "ফুল-স্পেকট্রাম" is unusable — ফুল reads as "flower" in Bangla. The title
+     means "works across every layer", so Bangla says exactly that. */
+  "hero.jobtitle": { en: "Full-Spectrum Engineer", bn: "সব স্তরের ইঞ্জিনিয়ার" },
+  /* The old line ("build it so it still runs when nobody's watching") was
+     clumsy in English and worse in Bangla. This one is a real engineering
+     truth and lands identically in both. */
   "hero.quote": {
-    en: "Build it so it still runs when nobody’s watching.",
-    bn: "এমনভাবে বানান, কেউ না দেখলেও যেন চলতে থাকে।",
+    en: "Good software is quiet — you only notice it when it stops.",
+    bn: "ভালো সফটওয়্যার নিঃশব্দে চলে — থেমে গেলেই কেবল চোখে পড়ে।",
   },
   "hero.cite": { en: "Ruhan", bn: "রুহান" },
   "hero.figalt": {
@@ -66,19 +76,21 @@ window.I18N = {
   "ap.label": { en: "How I work", bn: "যেভাবে কাজ করি" },
   "ap.title": {
     en: "Four things you can count on",
-    bn: "চারটা জিনিসের নিশ্চয়তা",
+    bn: "যে চারটি বিষয়ে নিশ্চিন্ত থাকতে পারেন",
   },
   "ap.1.h": { en: "Full ownership", bn: "দায়িত্ব একজনেরই" },
   "ap.1.p": {
     en: "One person answers for design, code, servers and uptime. No handoffs, no finger-pointing.",
     bn: "ডিজাইন, কোড, সার্ভার, আপটাইম — সবের জবাব একজনই দেবে। কাজ হাতবদল হয় না, দোষ চাপানোরও কেউ থাকে না।",
   },
-  "ap.2.h": { en: "Open source first", bn: "আগে ওপেন সোর্স" },
+  "ap.2.h": { en: "Open source first", bn: "ওপেন সোর্স, সবার আগে" },
   "ap.2.p": {
     en: "No license fees, no lock-in. Audit every line if you want to — it's yours.",
     bn: "লাইসেন্স ফি নেই, কোথাও আটকে থাকা নেই। ইচ্ছে হলে প্রতিটা লাইন যাচাই করে দেখুন — কোডটা আপনারই।",
   },
-  "ap.3.h": { en: "Production mindset", bn: "প্রোডাকশনের কথা মাথায় রেখে" },
+  /* "প্রোডাকশনের কথা মাথায় রেখে" was a phrase, not a heading. What it
+     actually promises is that the thing keeps running — so Bangla says that. */
+  "ap.3.h": { en: "Production mindset", bn: "চালু রাখার প্রস্তুতি" },
   "ap.3.p": {
     en: "Monitoring, backups and security configured from day one — not after the first incident.",
     bn: "মনিটরিং, ব্যাকআপ আর সিকিউরিটি প্রথম দিন থেকেই বসানো — প্রথম দুর্ঘটনার পরে নয়।",
@@ -91,9 +103,12 @@ window.I18N = {
 
   /* ── 02 services ───────────────────────────────────────────────────── */
   "sv.label": { en: "What I build", bn: "যা বানাই" },
+  /* "serious software / serious-sized vendor" is an English pun that dies in
+     Bangla ("সিরিয়াস সফটওয়্যার" is meaningless). Rewritten in English to a
+     parallel that survives translation, and Bangla mirrors the same balance. */
   "sv.title": {
-    en: 'Serious software, without a <span class="tone">serious-sized vendor</span>',
-    bn: 'বড় ভেন্ডরের খরচ ছাড়াই <span class="tone">সিরিয়াস সফটওয়্যার</span>',
+    en: 'Enterprise-grade software, <span class="tone">without the enterprise-grade bill</span>',
+    bn: 'বড় প্রতিষ্ঠানের মানের সফটওয়্যার, <span class="tone">বড় প্রতিষ্ঠানের বিল ছাড়াই</span>',
   },
   "sv.note": {
     en: "Open any card to see the tools it's actually built on — not just what it's called.",
@@ -155,7 +170,7 @@ window.I18N = {
   },
   "sv.data.x": {
     en: "The pipeline: pull data from every source (databases, APIs, spreadsheets, even scanned documents), move it reliably, and land it somewhere queryable. Apache NiFi and Airbyte for ingestion, Kafka for real-time streams, Spark when the volume gets serious, OpenSearch for full-text search, and Apache Superset for dashboards your management can open in a browser — no per-seat BI license, ever.",
-    bn: "পাইপলাইনটা এরকম: সব উৎস থেকে ডেটা আনা (ডেটাবেজ, API, স্প্রেডশিট, এমনকি স্ক্যান করা কাগজও), সেটা নির্ভরযোগ্যভাবে সরানো, আর এমন জায়গায় জমা করা যেখান থেকে খুঁজে বের করা যায়। ডেটা আনার জন্য Apache NiFi আর Airbyte, রিয়েল-টাইম স্ট্রিমের জন্য Kafka, ভলিউম বড় হলে Spark, ফুল-টেক্সট সার্চের জন্য OpenSearch, আর ম্যানেজমেন্ট ব্রাউজারেই খুলতে পারবে এমন ড্যাশবোর্ডের জন্য Apache Superset — per-seat BI লাইসেন্সের ঝামেলা ছাড়াই।",
+    bn: "পাইপলাইনটা এরকম: সব উৎস থেকে ডেটা আনা (ডেটাবেজ, API, স্প্রেডশিট, এমনকি স্ক্যান করা কাগজও), সেটা নির্ভরযোগ্যভাবে সরানো, আর এমন জায়গায় জমা করা যেখান থেকে খুঁজে বের করা যায়। ডেটা আনার জন্য Apache NiFi আর Airbyte, রিয়েল-টাইম স্ট্রিমের জন্য Kafka, ভলিউম বড় হলে Spark, full-text search-এর জন্য OpenSearch, আর ম্যানেজমেন্ট ব্রাউজারেই খুলতে পারবে এমন ড্যাশবোর্ডের জন্য Apache Superset — per-seat BI লাইসেন্সের ঝামেলা ছাড়াই।",
   },
 
   "sv.sec.h": { en: "Security & reliability", bn: "সিকিউরিটি ও নির্ভরযোগ্যতা" },
@@ -202,8 +217,8 @@ window.I18N = {
   /* ── 03 experience ─────────────────────────────────────────────────── */
   "ex.label": { en: "Experience", bn: "অভিজ্ঞতা" },
   "ex.title": {
-    en: 'Where I\'ve shipped, and <span class="tone">owned the outcome</span>',
-    bn: 'যেখানে কাজ করেছি, আর <span class="tone">ফলাফলের দায় নিয়েছি</span>',
+    en: 'Where I\'ve shipped, and <span class="tone">carried the responsibility</span>',
+    bn: 'যে কাজগুলো করেছি, <span class="tone">আর যার দায়ও নিয়েছি</span>',
   },
   "ex.now":   { en: "Current role", bn: "বর্তমান দায়িত্ব" },
   "ex.done":  { en: "Completed engagement", bn: "সম্পন্ন কাজ" },
@@ -218,7 +233,7 @@ window.I18N = {
     bn: "জাতীয় পর্যায়ের সরকারি সিস্টেম, যেখানে সার্ভার বন্ধ থাকাটা কোনো পরিসংখ্যান নয় — একটা দুর্ঘটনা। এর মধ্যে বাংলাদেশ কারিগরি শিক্ষা বোর্ডের (BTEB) কাজও আছে; প্রতিষ্ঠানের গোপনীয়তার কারণে এখানে সংক্ষেপেই বলা।",
   },
   "ex.2.y": { en: "Jan 2025 — Oct 2025", bn: "জানুয়ারি ২০২৫ — অক্টোবর ২০২৫" },
-  "ex.2.r": { en: "Team Lead / Full-Stack Developer", bn: "টিম লিড / ফুল-স্ট্যাক ডেভেলপার" },
+  "ex.2.r": { en: "Team Lead / Full-Stack Developer", bn: "টিম লিড / Full-Stack ডেভেলপার" },
   "ex.2.o": {
     en: "Merilsoft <small>· Remote, part-time</small>",
     bn: "Merilsoft <small>· রিমোট, পার্ট-টাইম</small>",
@@ -244,9 +259,11 @@ window.I18N = {
 
   /* ── why open source ───────────────────────────────────────────────── */
   "os.label": { en: "Why open source", bn: "কেন ওপেন সোর্স" },
+  /* three short clauses instead of one long noun-pile — reads as a rhythm in
+     both languages rather than a list bolted together */
   "os.title": {
-    en: "Enterprise power, zero license fees, full ownership",
-    bn: "এন্টারপ্রাইজের ক্ষমতা, লাইসেন্স ফি শূন্য, মালিকানা পুরোটাই আপনার",
+    en: "Same capability. No license fees. Full ownership.",
+    bn: "সক্ষমতা একই। লাইসেন্স ফি নেই। মালিকানা পুরোটাই আপনার।",
   },
   "os.prose": {
     en: "Most software vendors in Bangladesh quietly rent you technology: per-user licenses, per-year renewals, and a dependency you can never leave. I build on the open-source stack that global enterprises actually run — Kafka moves data at LinkedIn, MinIO stores it at Fortune-500 scale, Superset powers dashboards at Airbnb. <strong>You own every line of it,</strong> and your only recurring cost is hosting.",
@@ -272,7 +289,7 @@ window.I18N = {
   "pr.label": { en: "How we work together", bn: "একসাথে কীভাবে কাজ হয়" },
   "pr.title": {
     en: 'From &ldquo;we have a problem&rdquo; to <span class="tone">&ldquo;it\'s running&rdquo;</span>',
-    bn: '&ldquo;সমস্যা আছে&rdquo; থেকে <span class="tone">&ldquo;চলছে&rdquo;</span> পর্যন্ত',
+    bn: '&ldquo;সমস্যাটা এই&rdquo; থেকে <span class="tone">&ldquo;এখন চলছে&rdquo;</span> পর্যন্ত',
   },
   "pr.note": {
     en: "The same five steps every time, in order — because the order is what keeps things calm.",
@@ -355,9 +372,11 @@ window.I18N = {
 
   /* ── 06 contact ────────────────────────────────────────────────────── */
   "ct.label": { en: "Get in touch", bn: "যোগাযোগ" },
+  /* Bangla is verb-final: "পান ... উত্তর" put the verb first and read as a
+     translation. Moving উত্তর পান to the end makes it a normal sentence. */
   "ct.title": {
     en: 'Describe the problem.<br />Get an <span class="tone">engineer\'s answer</span>.',
-    bn: 'সমস্যাটা বলুন।<br />পান <span class="tone">একজন ইঞ্জিনিয়ারের উত্তর</span>।',
+    bn: 'সমস্যাটা বলুন।<br /><span class="tone">ইঞ্জিনিয়ারের উত্তর</span> পান।',
   },
   "ct.note": {
     en: "Explain what's broken, missing, or slow — in Bangla or English — and you'll get back a straight answer: what to build, what it takes, and whether you even need it.",
@@ -426,8 +445,8 @@ window.I18N = {
 
   /* ── footer ────────────────────────────────────────────────────────── */
   "ft.tag": {
-    en: "One engineer for everything digital — websites, apps, AI, enterprise systems and security, built personally on open source.",
-    bn: "ডিজিটাল যা কিছু দরকার, তার জন্য একজন ইঞ্জিনিয়ার — ওয়েবসাইট, অ্যাপ, AI, এন্টারপ্রাইজ সিস্টেম আর সিকিউরিটি, সবই নিজের হাতে ওপেন সোর্সে তৈরি।",
+    en: "Screen to server, one engineer — websites, apps, AI, enterprise systems and security, built by hand on open source.",
+    bn: "স্ক্রিন থেকে সার্ভার, সবটাই একজনের হাতে — ওয়েবসাইট, অ্যাপ, AI, এন্টারপ্রাইজ সিস্টেম আর সিকিউরিটি, সবই ওপেন সোর্সে নিজে হাতে গড়া।",
   },
   "ft.explore": { en: "Explore", bn: "ঘুরে দেখুন" },
   "ft.contact": { en: "Contact", bn: "যোগাযোগ" },
