@@ -24,19 +24,14 @@
     <meta name="theme-color" content="#f4f8f5" />
     <link rel="canonical" href="https://ruhan.lol/" />
 
-    <!-- Favicon.
-         The monogram below matches the seal in the nav, so the tab reads as
-         the same brand. To use the photo instead: crop a SQUARE of the face
-         (the same crop as the identity chip) and save it as
-             assets/images/favicon-180.png   (180×180, for Apple)
-             assets/images/favicon-32.png    (32×32,  for tabs)
-         then uncomment the two lines below — the PNGs take precedence over
-         the SVG automatically. A favicon has to be square; the source photo
-         is 4096×1856, so scaling it whole would render the face a few pixels
-         wide and unrecognisable. -->
+    <!-- Favicon — a circular crop of the face, cut from the same source photo
+         as the hero (System.Drawing did the crop; corners are transparent so
+         it reads as a round avatar in the tab). favicon.svg is the monogram
+         fallback for anything that can't take a PNG. -->
+    <link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="assets/images/favicon-192.png" sizes="192x192" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/images/favicon-180.png" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <!-- <link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png" /> -->
-    <!-- <link rel="apple-touch-icon" href="assets/images/favicon-180.png" /> -->
     <meta name="geo.region" content="BD" />
     <meta name="geo.placename" content="Dhaka" />
 
