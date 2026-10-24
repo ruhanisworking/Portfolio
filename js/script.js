@@ -8,7 +8,10 @@
    in i18n.js holds both renderings. Bangla font files are only fetched the
    first time Bangla is selected, so the English page stays light.
    ------------------------------------------------------------------------- */
-const LANG_KEY = "ri-lang";
+// v2: the old key was written on every first visit back when Bangla was the
+// default, so nearly every returning visitor has "bn" saved — a new key
+// lets them all start on English again.
+const LANG_KEY = "ri-lang-v2";
 let bnFontsLoaded = false;
 
 function loadBanglaFonts() {
@@ -21,7 +24,7 @@ function loadBanglaFonts() {
   document.head.appendChild(l);
 }
 
-function applyLang(lang) {
+function applyLang(lang, remember) {
   const dict = window.I18N || {};
   if (lang === "bn") loadBanglaFonts();
 
@@ -45,7 +48,10 @@ function applyLang(lang) {
     a.setAttribute("aria-current", String(a.dataset.lang === lang));
   });
 
-  try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+  // only an actual click is remembered, so the default never gets "stuck"
+  if (remember) {
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+  }
 }
 
 function currentLang() {
@@ -55,13 +61,13 @@ function currentLang() {
 (function initLang() {
   let saved = null;
   try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
-  // Bangla is the default; a returning visitor keeps whatever they last chose
-  applyLang(saved || "bn");
+  // English is the default; a visitor who clicked বাংলা keeps it next time
+  applyLang(saved === "bn" ? "bn" : "en");
 
   document.querySelectorAll(".lang a").forEach((a) => {
     a.addEventListener("click", (e) => {
       e.preventDefault();
-      applyLang(a.dataset.lang);
+      applyLang(a.dataset.lang, true);
     });
   });
 })();
@@ -203,7 +209,7 @@ document.querySelectorAll(".copy-btn").forEach((btn) => {
    ------------------------------------------------------------------------- */
 const form = document.getElementById("contact-form");
 const statusEl = document.getElementById("form-status");
-const MAIL_TO = "ruhan.9mri@gmail.com";
+const MAIL_TO = "hi@ruhan.bd";
 const PLACEHOLDER_KEY = "WEB3FORMS_ACCESS_KEY";
 
 /* look a string up in the dictionary in whichever language is showing */

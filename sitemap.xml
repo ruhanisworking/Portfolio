@@ -3,11 +3,12 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://ruhan.bd/</loc>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://ruhan.bd/assets/images/ruhan-river.jpg</image:loc>
-      <image:title>Mohammad Ruhan Islam — Full-Spectrum Engineer, Dhaka</image:title>
+      <image:title>Mohammad Ruhan Islam — Software Engineer, Dhaka</image:title>
       <image:caption>Mohammad Ruhan Islam on a river between two forested hills in Bangladesh</image:caption>
     </image:image>
   </url>

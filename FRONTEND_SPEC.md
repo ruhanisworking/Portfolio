@@ -1,5 +1,10 @@
 # Frontend Spec — "River & Canopy" Design System
 
+> **Note (Oct 2026):** the live portfolio has since moved off this palette to "Ember" —
+> many shades of orange with deep-black ink (black text on every orange fill), headings in
+> Cinzel, quotes in Playfair Display, body in DM Sans. `css/styles.css` is the source of
+> truth for that. This spec still describes River & Canopy as a reusable system.
+
 **Status: BINDING.** This file defines the frontend for this project. Follow it exactly.
 Do not redesign, do not substitute "something similar", do not improve on it unsupervised.
 

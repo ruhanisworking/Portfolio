@@ -20,11 +20,11 @@
 window.I18N = {
   /* ── document-level ────────────────────────────────────────────────── */
   "doc.title": {
-    en: "Mohammad Ruhan Islam — Software, Apps & AI Systems",
-    bn: "মোহাম্মদ রুহান ইসলাম — সফটওয়্যার, অ্যাপ ও AI সিস্টেম",
+    en: "Mohammad Ruhan Islam | Software Engineer in Dhaka, Bangladesh",
+    bn: "মোহাম্মদ রুহান ইসলাম | ঢাকার সফটওয়্যার ইঞ্জিনিয়ার",
   },
   "doc.desc": {
-    en: "Websites, mobile apps, AI chatbots, ERP and security — built personally on open source, in Dhaka. One engineer, full ownership, no license fees.",
+    en: "Ruhan builds websites, mobile apps, AI chatbots, ERP and secure systems on open source from Dhaka, Bangladesh. One engineer, full ownership, no license fees.",
     bn: "ওয়েবসাইট, মোবাইল অ্যাপ, AI চ্যাটবট, ERP আর সিকিউরিটি — ঢাকা থেকে, নিজে হাতে, ওপেন সোর্সে তৈরি। একজন ইঞ্জিনিয়ার, পুরো মালিকানা আপনার।",
   },
 
