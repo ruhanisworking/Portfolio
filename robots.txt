@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ruhan.lol/sitemap.xml
+Sitemap: https://ruhan.bd/sitemap.xml

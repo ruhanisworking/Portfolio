@@ -464,8 +464,8 @@ window.I18N = {
   "ft.enquiry": { en: "Send an enquiry", bn: "বার্তা পাঠান" },
   "ft.place":   { en: "Dhaka, Bangladesh", bn: "ঢাকা, বাংলাদেশ" },
   "ft.copy": {
-    en: "&copy; 2026 <a class=\"name-link\" href=\"https://ruhan.lol/\">Mohammad Ruhan Islam</a> &middot; Dhaka, Bangladesh",
-    bn: "&copy; ২০২৬ <a class=\"name-link\" href=\"https://ruhan.lol/\">মোহাম্মদ রুহান ইসলাম</a> &middot; ঢাকা, বাংলাদেশ",
+    en: "&copy; 2026 <a class=\"name-link\" href=\"https://ruhan.bd/\">Mohammad Ruhan Islam</a> &middot; Dhaka, Bangladesh",
+    bn: "&copy; ২০২৬ <a class=\"name-link\" href=\"https://ruhan.bd/\">মোহাম্মদ রুহান ইসলাম</a> &middot; ঢাকা, বাংলাদেশ",
   },
   "ft.top": { en: "Back to top", bn: "উপরে ফিরুন" },
   "ft.seo": {
