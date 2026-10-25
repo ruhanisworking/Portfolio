@@ -2,13 +2,14 @@
 # dashboard.env and tunnel.env sit next to it on the VM and are never committed.
 services:
   hermes:
-    image: nousresearch/hermes-agent:latest
+    build: .
+    image: hermes-agent-ruhan:latest
     container_name: hermes
     restart: unless-stopped
     command: gateway run
     ports:
       - 127.0.0.1:8642:8642   # gateway API (local only)
-      - 127.0.0.1:9119:9119   # dashboard (local only; public via the tunnel)
+      - 127.0.0.1:9119:9119   # dashboard (local only until ruhan.lol is wired)
     volumes:
       - /home/ruhan/.hermes:/opt/data
     env_file:
@@ -17,6 +18,15 @@ services:
       - HERMES_DASHBOARD=1
       - PUID=1001
       - PGID=1001
+
+  commander:
+    image: caddy:2-alpine
+    container_name: commander
+    restart: unless-stopped
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - /home/ruhan/.hermes/commander/site:/srv/site:ro
+      - /home/ruhan/.hermes/commander/data:/srv/data:ro
 
   cloudflared:
     image: cloudflare/cloudflared:latest

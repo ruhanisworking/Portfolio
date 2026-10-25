@@ -20,11 +20,15 @@ or token. If the private note is missing, ask Ruhan for the host details.
 ## What it is
 
 ```text
-Telegram ──► Hermes gateway ─┐
-                             ├─ container "hermes" (nousresearch/hermes-agent)
-https://ruhan.lol            │    data: /home/ruhan/.hermes  →  /opt/data
-  └► Cloudflare Access login │    dashboard :9119, API :8642 (127.0.0.1 only)
-     └► Cloudflare Tunnel ───┴─ container "cloudflared" → http://hermes:9119
+Telegram ──► container "hermes" (hermes-agent-ruhan = nousresearch/hermes-agent + git, rsync)
+               data: /home/ruhan/.hermes → /opt/data   (repo clone: /opt/data/work/Portfolio)
+               writes /opt/data/commander/{site,data}
+                              │
+container "commander" (Caddy) serves ~/.hermes/commander/site at /, …/data at /data/
+                              │
+Cloudflare Access ─► Tunnel (container "cloudflared")
+   ruhan.lol        → http://commander:80    (the Commander dashboard)
+   agent.ruhan.lol  → http://hermes:9119     (Hermes' own web UI)
 ```
 
 - **VM:** Ubuntu 24.04, 8 cores, 15 GB RAM, ~95 GB disk. Docker Engine and the
@@ -52,7 +56,14 @@ in inline remote commands.
 
 | Path | What |
 |---|---|
-| `~/hermes/compose.yaml` | both services. Copy kept in this folder: [compose.yaml](compose.yaml) |
+| `~/hermes/compose.yaml` | hermes, commander, cloudflared. Copy: [compose.yaml](compose.yaml) |
+| `~/hermes/Dockerfile` | adds git + rsync to the Hermes image. Copy: [Dockerfile](Dockerfile) |
+| `~/hermes/Caddyfile` | Commander file server. Copy: [Caddyfile](Caddyfile) |
+| `~/.hermes/work/Portfolio` | clone of this repo. Hermes builds Commander here |
+| `~/.hermes/commander/site/` | deployed `dist-commander/` (rsync) |
+| `~/.hermes/commander/data/<id>.json` | Commander data written by Hermes / `commander-mail` |
+| `~/.hermes/skills/ruhan/ruhan-{commander,frontend,business}` | symlinks into the repo clone's `hermes/skills/` |
+| ruhan's crontab | `*/15` runs `commander-mail` (refreshes ruhan.lol/mail, no model calls) |
 | `~/hermes/dashboard.env` | dashboard basic-auth user `ruhan` + random password (600) |
 | `~/hermes/tunnel.env` | `TUNNEL_TOKEN=` for cloudflared (600) |
 | `~/.hermes/.env` | API keys: `OPENROUTER_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_ALLOWED_USERS`, … |
@@ -96,8 +107,9 @@ Set in `config.yaml`:
 - ruhan.lol is registered at **Namecheap**, which uses Cloudflare nameservers
   (set under Domain → Nameservers → Custom DNS, not under Advanced DNS). It is a
   zone in the same Cloudflare account as ruhan.bd.
-- **Tunnel** `hermes-vm` has one route (a "Published application"),
-  `ruhan.lol` → `http://hermes:9119`.
+- **Tunnel** `hermes-vm` has routes ("Published application"):
+  `ruhan.lol` → `http://commander:80`, and `agent.ruhan.lol` →
+  `http://hermes:9119`. Both hostnames must be covered by the Access app.
 - **Access application** `Commander` uses policy `Only Me`: Allow, Include
   Emails. Login methods are Cloudflare account login, plus One-time PIN if it
   has been enabled. Without an Access app, ruhan.lol would be open to anyone.
@@ -136,6 +148,21 @@ sent through Gmail as me@ruhan.bd may land in spam or show "via gmail.com".
 To fix: add Google to SPF, add DMARC, and ideally send through an SMTP
 provider (Brevo/Resend) that signs DKIM for ruhan.bd.
 
+## Commander (ruhan.lol)
+
+The source is in this repo: `commander/` holds the pages and `sections.json`,
+`src/components/cmd-*` the components. `node tools/build.mjs` renders it into
+`dist-commander/`. Data is never in the repo: Hermes writes
+`/opt/data/commander/data/<id>.json` (shape in `cmd-panel.js` and in
+`hermes/skills/ruhan-commander`). The Hermes skills for it live in `hermes/`.
+
+Deploy after changing commander code:
+```bash
+git push   # from the PC; then on the VM:
+docker exec -u hermes hermes sh -c 'cd /opt/data/work/Portfolio && git pull --ff-only && node tools/build.mjs && node tools/check.mjs && rsync -a --delete dist-commander/ /opt/data/commander/site/'
+```
+After you edit `hermes/skills/*`, pull the same way and `docker compose restart hermes`.
+
 ## Everyday commands (on the VM, in `~/hermes`)
 
 ```bash
@@ -143,7 +170,7 @@ docker compose ps
 docker compose logs --tail 50 hermes        # gateway, Telegram, model errors
 docker compose logs --tail 20 cloudflared   # "Registered tunnel connection" ×4 = healthy
 docker compose restart hermes               # after editing config.yaml / .env
-docker compose pull && docker compose up -d # update both images
+docker compose build --pull hermes && docker compose pull commander cloudflared && docker compose up -d  # update images
 docker compose run --rm hermes <cmd>        # one-off hermes CLI (setup, config, model, doctor)
 ```
 
@@ -166,13 +193,16 @@ The status of this setup lives in `docs/notes/hermes-vm-private.md` (status
 log). Update that note after each work session. Open items when this skill was
 written:
 
-1. Mail. Both accounts are connected and drafting works. Still to do: a daily
-   inbox summary cron to Telegram, and the ruhan.bd SPF/DMARC/DKIM fix
-   described above.
-2. Git. A fine-grained GitHub token for the repos Hermes may touch
-   (`GITHUB_TOKEN`).
-3. Commander dashboard. Build Ruhan's own summary page for ruhan.lol, using
-   Hermes itself.
+1. Mail. Both accounts are connected and drafting works. Still to do: a
+   daily summary to Telegram; **sending with approval**, through a
+   `pre_tool_call` shell hook that returns `{"action":"approve"}` for
+   `mail-send <draft-id>` and blocks every other send path; and the ruhan.bd
+   SPF/DMARC/DKIM fix described above.
+2. Git push. Hermes can clone, commit and build, but it cannot push. It needs
+   a fine-grained GitHub token, scoped to the Portfolio repo only.
+3. Commander. Built and deployed. Only mail has data so far. Hermes fills the
+   other sections once its model quota allows. OpenRouter free is 50 requests
+   a day, or 1000 a day after a $10 top-up.
 4. Hardening. Turn off SSH password login (keys only, tested first so nobody is
    locked out), and delete `/etc/sudoers.d/90-ruhan` (the NOPASSWD rule that
    was added for the install).
