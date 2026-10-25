@@ -35,6 +35,11 @@ def addressed_to(env, account):
     return "work" if account == "work" else "gmail"
 
 
+def seen(env):
+    # flags look like {"raw": "\\Seen", "iana": "seen"}
+    return any(str(f.get("iana") if isinstance(f, dict) else f).lower() == "seen" for f in env.get("flags") or [])
+
+
 def item(env, account):
     sender = (env.get("from") or [{}])[0]
     when = dt.datetime.fromisoformat(env["date"].replace("Z", "+00:00")).astimezone(BD)
@@ -53,7 +58,7 @@ def main():
         except Exception as e:  # keep the page useful when one inbox fails
             errors.append(str(e))
             continue
-        unread = [e for e in envs if "seen" not in [f.lower() for f in e.get("flags") or []]]
+        unread = [e for e in envs if not seen(e)]
         unread_total += len(unread)
         stats.append({"label": f"Unread · {label}", "value": str(len(unread)),
                       "note": f"of the newest {len(envs)}"})
