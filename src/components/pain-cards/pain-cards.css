@@ -1,0 +1,48 @@
+/* Pain cards — three problems in the client's own words. When a card scrolls
+   in (.is-visible from reveal), a gradient mark draws under the quote.
+   Markup: <ul class="pain-cards"><li class="pain-cards__item card">
+           <p class="pain-cards__quote">"…"</p><p class="pain-cards__note">…</p></li>…</ul> */
+.pain-cards {
+  list-style: none;
+  display: grid;
+  gap: var(--space-md);
+}
+@media (--bp-md) {
+  .pain-cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+.pain-cards__quote {
+  display: inline;
+  font-family: var(--type-quote-family);
+  font-style: italic;
+  font-size: var(--type-quote-size);
+  line-height: var(--type-quote-leading);
+  color: var(--c-pain-cards-quote);
+  background-image: var(--c-pain-cards-mark);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% var(--c-pain-cards-mark-height);
+  transition: background-size var(--motion-slow) var(--motion-ease);
+  transition-delay: calc(var(--_i, 0) * var(--motion-stagger) + var(--motion-base));
+}
+.is-visible .pain-cards__quote,
+.pain-cards__item.is-visible .pain-cards__quote { background-size: 100% var(--c-pain-cards-mark-height); }
+
+.pain-cards__note {
+  margin-top: var(--space-sm);
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-leading);
+  color: var(--color-text-muted);
+}
+
+/* ── dark variant (content look.pains) — the problems on a dark band ─────── */
+.pains--dark {
+  background-color: var(--color-dark);
+  background-image: var(--gradient-dark-glow);
+  color: var(--color-on-dark);
+}
+.pains--dark h2 { color: var(--color-on-dark); }
+.pains--dark .section-header__eyebrow { color: var(--color-orange-300); }
+.pains--dark .pain-cards__item { background: var(--color-dark-2); border: var(--border-dark); box-shadow: none; }
+.pains--dark .pain-cards__quote { color: var(--color-on-dark); }
+.pains--dark .pain-cards__note { color: var(--color-on-dark-muted); }

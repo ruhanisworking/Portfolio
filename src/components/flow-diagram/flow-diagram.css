@@ -1,0 +1,128 @@
+/* Flow diagram — a dark panel of nodes joined by lines. Nodes and lines with
+   data-from="n" light up (.is-on) when story-scroll reaches step n; a packet
+   then runs down each lit line.
+   Markup: <div class="flow-diagram"><ol>
+           <li class="flow-diagram__node" data-from="1"><span class="icon-tile">…</span>
+           <span><b>Label</b><small>sub</small></span></li>…</ol></div> */
+.flow-diagram {
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-dark);
+  background-image: var(--gradient-dark-glow);
+  box-shadow: var(--shadow-lg);
+}
+.flow-diagram ol { list-style: none; display: flex; flex-direction: column; }
+
+.flow-diagram__node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs);
+  border-radius: var(--radius-md);
+  background: var(--c-flow-diagram-node-bg);
+  border: var(--c-flow-diagram-node-border);
+  color: var(--c-flow-diagram-node-text);
+  opacity: 0.45;
+  transform: scale(0.98);
+  transition:
+    opacity var(--motion-base) var(--motion-ease),
+    transform var(--motion-base) var(--motion-spring),
+    box-shadow var(--motion-base) var(--motion-ease);
+}
+.flow-diagram__node.is-on { opacity: 1; transform: none; box-shadow: var(--c-flow-diagram-node-on-shadow); }
+.flow-diagram__node .icon-tile { width: var(--c-flow-diagram-icon-size); height: var(--c-flow-diagram-icon-size); box-shadow: none; }
+.flow-diagram__node b { display: block; font-size: var(--type-body-sm-size); font-weight: var(--type-button-weight); }
+.flow-diagram__node small { display: block; font-size: var(--type-meta-size); color: var(--c-flow-diagram-node-sub); }
+
+/* the line between this node and the next */
+.flow-diagram__node:not(:last-child) { margin-bottom: var(--c-flow-diagram-line-length); }
+.flow-diagram__node:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--space-xs) + var(--c-flow-diagram-icon-size) / 2 - 1px);
+  top: 100%;
+  width: 2px;
+  height: var(--c-flow-diagram-line-length);
+  background: var(--c-flow-diagram-line);
+}
+.flow-diagram__node.is-on:not(:last-child)::after { background: var(--c-flow-diagram-line-on); }
+/* a packet running down a lit line */
+.flow-diagram__node.is-on:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  z-index: var(--z-raised);
+  left: calc(var(--space-xs) + var(--c-flow-diagram-icon-size) / 2 - 4px);
+  top: 100%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-amber-300);
+  box-shadow: var(--shadow-glow);
+  animation: flow-packet var(--motion-pulse) var(--motion-ease) infinite;
+}
+@keyframes flow-packet {
+  from { transform: translateY(0); opacity: 1; }
+  to   { transform: translateY(var(--c-flow-diagram-line-length)); opacity: 0; }
+}
+
+/* ── variants (content look.story) ─────────────────────────────────────── */
+/* checklist: no lines; each item gets a check that fills when reached */
+.flow-diagram--checklist .flow-diagram__node::after,
+.flow-diagram--checklist .flow-diagram__node::before { display: none; }
+.flow-diagram--checklist .flow-diagram__node { margin-bottom: var(--space-xs); padding-right: var(--space-2xl); }
+.flow-diagram--checklist .flow-diagram__node > span:last-child::after {
+  content: "";
+  position: absolute;
+  right: var(--space-sm);
+  top: 50%;
+  width: var(--c-flow-diagram-check-size);
+  height: var(--c-flow-diagram-check-size);
+  margin-top: calc(var(--c-flow-diagram-check-size) / -2);
+  border-radius: 50%;
+  border: 2px solid var(--color-dark-3);
+  transition: background var(--motion-base) var(--motion-spring), border-color var(--motion-base) var(--motion-ease);
+}
+.flow-diagram--checklist .flow-diagram__node.is-on > span:last-child::after {
+  border-color: var(--color-success-bright);
+  background: var(--color-success-bright);
+  box-shadow: var(--c-flow-diagram-check-inset);
+}
+
+/* timeline: an open rail with dots instead of boxes */
+.flow-diagram--timeline .flow-diagram__node {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding-block: var(--space-2xs);
+}
+.flow-diagram--timeline .flow-diagram__node.is-on { box-shadow: none; }
+.flow-diagram--timeline .flow-diagram__node b { font-size: var(--type-body-size); }
+.flow-diagram--timeline .flow-diagram__node .icon-tile { border-radius: 50%; }
+
+/* row: a horizontal pipeline (used with story-scroll--row, which autoplays) */
+@media (--bp-md) {
+  .flow-diagram--row ol { flex-direction: row; gap: var(--c-flow-diagram-line-length); }
+  .flow-diagram--row .flow-diagram__node {
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  .flow-diagram--row .flow-diagram__node:not(:last-child)::after {
+    left: 100%;
+    top: calc(var(--space-xs) + var(--c-flow-diagram-icon-size) / 2);
+    width: var(--c-flow-diagram-line-length);
+    height: 2px;
+  }
+  .flow-diagram--row .flow-diagram__node.is-on:not(:last-child)::before {
+    left: 100%;
+    top: calc(var(--space-xs) + var(--c-flow-diagram-icon-size) / 2 - 4px);
+    animation-name: flow-packet-x;
+  }
+}
+@keyframes flow-packet-x {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(var(--c-flow-diagram-line-length)); opacity: 0; }
+}

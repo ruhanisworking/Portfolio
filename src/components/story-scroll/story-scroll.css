@@ -1,0 +1,75 @@
+/* Story scroll — "how we see it". Steps scroll on the left while the visual
+   on the right stays put (sticky) and changes with the active step.
+   story-scroll.js sets data-active on [data-story-visual], toggles .is-on on
+   anything with data-from="n" (on from step n), .is-current on data-cap="n",
+   and writes scroll progress to --_progress for the rail.
+   Below md there's no sticky: each step stays readable, the visual sits after them. */
+.story-scroll { position: relative; display: grid; gap: var(--space-xl); }
+
+.story-scroll__steps { list-style: none; display: flex; flex-direction: column; gap: var(--space-lg); }
+.story-scroll__step { position: relative; padding-left: var(--space-lg); }
+.story-scroll__num {
+  font-family: var(--type-eyebrow-family);
+  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-eyebrow-weight);
+  letter-spacing: var(--type-eyebrow-tracking);
+  color: var(--c-story-scroll-num);
+}
+.story-scroll__step h3 { margin: var(--space-2xs) 0; }
+.story-scroll__step p { color: var(--color-text-muted); max-width: 46ch; }
+
+/* progress rail on the left of the steps */
+.story-scroll__rail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--c-story-scroll-rail-width);
+  border-radius: var(--radius-pill);
+  background: var(--c-story-scroll-rail);
+  overflow: hidden;
+}
+.story-scroll__rail::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--c-story-scroll-rail-fill);
+  transform-origin: top;
+  transform: scaleY(var(--_progress, 0));
+}
+.story-scroll__list { position: relative; }
+
+.story-scroll__caption {
+  margin-top: var(--space-sm);
+  min-height: 3em;
+  text-align: center;
+  font-size: var(--type-meta-size);
+  color: var(--color-text-subtle);
+}
+.story-scroll__caption [data-cap] { display: none; }
+.story-scroll__caption [data-cap].is-current { display: block; animation: fade-in var(--motion-base) var(--motion-ease); }
+
+@media (--bp-md) {
+  .story-scroll { grid-template-columns: 0.9fr 1.1fr; align-items: start; gap: var(--space-2xl); }
+  .story-scroll__step {
+    min-height: var(--c-story-scroll-step-min);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: var(--c-story-scroll-dim);
+    transition: opacity var(--motion-base) var(--motion-ease);
+  }
+  .story-scroll__step.is-current { opacity: 1; }
+  .story-scroll__visual { position: sticky; top: var(--c-story-scroll-sticky-top); }
+}
+
+/* ── row variant: the pipeline sits on top, full width, and plays itself;
+      the four steps sit underneath in a row (story-scroll.js autoplays) ── */
+@media (--bp-md) {
+  .story-scroll--row { grid-template-columns: 1fr; }
+  .story-scroll--row .story-scroll__visual { position: static; order: -1; }
+  .story-scroll--row .story-scroll__steps { flex-direction: row; gap: var(--space-md); }
+  .story-scroll--row .story-scroll__step { flex: 1; min-height: 0; padding-left: 0; padding-top: var(--space-md); }
+  .story-scroll--row .story-scroll__rail { left: 0; right: 0; top: 0; bottom: auto; width: auto; height: var(--c-story-scroll-rail-width); }
+  .story-scroll--row .story-scroll__rail::after { transform-origin: left; transform: scaleX(var(--_progress, 0)); }
+}

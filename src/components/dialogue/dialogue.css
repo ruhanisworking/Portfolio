@@ -1,0 +1,39 @@
+/* Dialogue — a short, clearly illustrative first call. Client bubbles on the
+   left (paper), ours on the right (dark). Bubbles arrive one by one through
+   data-reveal-stagger, slower than usual so it reads like a conversation.
+   Markup: <ol class="dialogue" data-reveal-stagger>
+           <li class="dialogue__line dialogue__line--client"><span class="dialogue__who">Client</span><p>…</p></li>
+           <li class="dialogue__line dialogue__line--us">…</li></ol> */
+.dialogue {
+  --c-reveal-stagger: var(--c-dialogue-stagger);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: var(--layout-prose);
+  margin-inline: auto;
+}
+
+.dialogue__line { display: flex; flex-direction: column; gap: var(--space-3xs); max-width: 84%; }
+.dialogue__line p {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--c-dialogue-radius);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+}
+.dialogue__who { font-size: var(--type-meta-size); color: var(--c-dialogue-who); padding-inline: var(--space-xs); }
+
+.dialogue__line--client p {
+  background: var(--c-dialogue-client-bg);
+  border: var(--c-dialogue-client-border);
+  border-bottom-left-radius: var(--radius-xs);
+  box-shadow: var(--shadow-sm);
+}
+.dialogue__line--us { align-self: flex-end; align-items: flex-end; }
+.dialogue__line--us p {
+  background: var(--c-dialogue-us-bg);
+  color: var(--c-dialogue-us-text);
+  border-bottom-right-radius: var(--radius-xs);
+  box-shadow: var(--shadow-md);
+}
+.dialogue__note { text-align: center; font-size: var(--type-meta-size); color: var(--color-text-subtle); margin-top: var(--space-sm); }

@@ -1,0 +1,3 @@
+/* Count-up — numbers keep their width while counting (count-up.js).
+   Markup: <span data-count="98" data-suffix="%">98%</span> */
+[data-count] { font-variant-numeric: tabular-nums; }

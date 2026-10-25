@@ -1,0 +1,207 @@
+/* Island — the Dynamic-Island navbar.
+   A black pill fixed at the top centre with two states (data-state, set by island.js):
+     open     at the top of the page, on hover/focus (desktop) or after a tap (mobile)
+     compact  everywhere else — seal + current section name + scroll progress
+   The morph is grid-track animation (0fr ↔ 1fr), so the pill's width/height
+   follows its content smoothly with no measuring. Mobile (< md): links drop
+   down as a sheet; desktop: links slide out sideways. */
+
+.island {
+  position: fixed;
+  top: var(--layout-island-top);
+  /* left/right 0 + auto margins centre it; left: 50% would cap its width at half the screen */
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  z-index: var(--z-island);
+  width: min(calc(100% - 2 * var(--layout-gutter)), var(--c-island-width-mobile));
+  overflow: hidden;
+  background: var(--c-island-bg);
+  color: var(--c-island-text);
+  border-radius: var(--c-island-radius);
+  box-shadow: var(--c-island-shadow);
+  transition: border-radius var(--c-island-duration) var(--motion-spring);
+}
+.island[data-state="open"] { border-radius: var(--c-island-radius-open); }
+
+.island__bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "brand status toggle" "links links links";
+  align-items: center;
+  column-gap: var(--space-2xs);
+  padding: var(--c-island-pad);
+}
+
+/* ── brand ──────────────────────────────────────────────────────────────── */
+.island__brand {
+  grid-area: brand;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  height: calc(var(--c-island-height) - 2 * var(--c-island-pad));
+  padding-right: var(--space-2xs);
+  font-family: var(--type-wordmark-family);
+  font-size: var(--type-wordmark-size);
+  font-weight: var(--type-wordmark-weight);
+  letter-spacing: var(--type-wordmark-tracking);
+  white-space: nowrap;
+}
+.island__brand .wordmark { height: var(--c-wordmark-height-sm); }
+
+/* ── status: dot + current section name ─────────────────────────────────── */
+.island__status {
+  grid-area: status;
+  display: grid;
+  grid-template-columns: 1fr;
+  min-width: 0;
+  transition: grid-template-columns var(--c-island-duration) var(--motion-spring),
+              opacity var(--motion-fast) var(--motion-ease);
+}
+.island__status-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--c-island-text-muted);
+  font-family: var(--type-nav-family);
+  font-size: var(--type-nav-size);
+  font-weight: var(--type-nav-weight);
+}
+.island__dot {
+  width: var(--c-island-dot-size);
+  height: var(--c-island-dot-size);
+  flex: none;
+  border-radius: 50%;
+  background: var(--c-island-progress);
+  animation: pulse var(--motion-pulse) var(--motion-ease) infinite;
+}
+.island__label { display: inline-block; overflow: hidden; text-overflow: ellipsis; }
+.island__label.is-in { animation: island-label-in var(--motion-base) var(--motion-spring); }
+
+@keyframes island-label-in {
+  from { opacity: 0; transform: translateY(70%); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── links: a sheet on mobile ───────────────────────────────────────────── */
+.island__links {
+  grid-area: links;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--c-island-duration) var(--motion-spring);
+}
+.island[data-state="open"] .island__links { grid-template-rows: 1fr; }
+
+.island__links-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity var(--motion-fast) var(--motion-ease);
+}
+.island[data-state="open"] .island__links-inner { opacity: 1; transition-delay: var(--motion-fast); }
+.island__links-inner > :first-child { margin-top: var(--space-2xs); }
+
+.island__link {
+  display: flex;
+  align-items: center;
+  min-height: var(--c-island-link-height);
+  padding-inline: var(--space-sm);
+  border-radius: var(--radius-pill);
+  color: var(--c-island-text-muted);
+  font-family: var(--type-nav-family);
+  font-size: var(--type-nav-size);
+  font-weight: var(--type-nav-weight);
+  white-space: nowrap;
+  transition:
+    background var(--motion-fast) var(--motion-ease),
+    color var(--motion-fast) var(--motion-ease);
+}
+.island__link:hover { background: var(--c-island-link-hover-bg); color: var(--c-island-text); }
+.island__link[aria-current="true"] { color: var(--c-island-text); background: var(--c-island-link-hover-bg); }
+
+.island .lang-toggle { align-self: flex-start; margin: var(--space-2xs) var(--space-xs); }
+
+.island__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  min-height: var(--c-island-link-height);
+  padding-inline: var(--space-md);
+  margin-bottom: var(--space-3xs);
+  border-radius: var(--radius-pill);
+  background: var(--c-island-cta-bg);
+  color: var(--c-island-cta-text);
+  font-family: var(--type-button-family);
+  font-size: var(--type-nav-size);
+  font-weight: var(--type-button-weight);
+  white-space: nowrap;
+  transition: transform var(--motion-base) var(--motion-spring);
+}
+.island__cta:hover { transform: scale(1.04); }
+.island__cta svg { width: var(--c-island-icon-size); height: var(--c-island-icon-size); flex: none; }
+
+/* ── toggle (mobile only) ───────────────────────────────────────────────── */
+.island__toggle {
+  grid-area: toggle;
+  position: relative;
+  width: var(--c-island-toggle-size);
+  height: var(--c-island-toggle-size);
+  border-radius: 50%;
+  background: var(--c-island-link-hover-bg);
+}
+.island__toggle span {
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--c-island-text);
+  transition: transform var(--c-island-duration) var(--motion-spring);
+}
+.island__toggle span:first-child { top: calc(50% - 4px); }
+.island__toggle span:last-child  { top: calc(50% + 2px); }
+.island[data-state="open"] .island__toggle span:first-child { transform: translateY(3px) rotate(45deg); }
+.island[data-state="open"] .island__toggle span:last-child  { transform: translateY(-3px) rotate(-45deg); }
+
+/* ── scroll progress line ───────────────────────────────────────────────── */
+.island__progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--c-island-progress);
+  transform-origin: left;
+  transform: scaleX(var(--_progress, 0));
+}
+
+/* ── desktop: links slide out sideways, pill stays a pill ───────────────── */
+@media (--bp-md) {
+  .island { width: fit-content; max-width: calc(100% - 2 * var(--layout-gutter)); }
+  .island[data-state="open"] { border-radius: var(--c-island-radius); }
+
+  .island__bar {
+    display: flex;
+    column-gap: 0;
+  }
+  .island__toggle { display: none; }
+
+  .island[data-state="open"] .island__status { grid-template-columns: 0fr; opacity: 0; }
+  .island__status-inner { padding-inline: var(--space-2xs) var(--space-sm); }
+
+  .island__links { grid-template-rows: none; grid-template-columns: 0fr; transition-property: grid-template-columns; }
+  .island[data-state="open"] .island__links { grid-template-columns: 1fr; }
+  .island__links-inner { flex-direction: row; align-items: center; }
+  .island__links-inner > :first-child { margin-top: 0; }
+  .island__link { padding-inline: var(--space-xs); }
+  .island .lang-toggle { align-self: center; margin: 0 var(--space-2xs); }
+  .island__cta { margin-bottom: 0; }
+}

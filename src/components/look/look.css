@@ -1,0 +1,31 @@
+/* Look — gives each solution page its own character while staying Ember.
+   The template puts look--<accent> on <html>, so every token derived from
+   --gradient-brand / --gradient-text (buttons, accents, island CTA, rails…)
+   follows on that page. Layout variants live in the components they change:
+   page-hero--split|reverse|stacked · flow-diagram--flow|row|timeline|checklist
+   · offers--grid|rows|bento · pains--light|dark. */
+
+:root.look--amber {
+  --gradient-brand: var(--gradient-brand-amber);
+  --gradient-text: var(--gradient-text-amber);
+  --gradient-canvas-glow: var(--gradient-glow-amber);
+  --gradient-dark-glow: var(--gradient-dark-glow-amber);
+}
+:root.look--rust {
+  --gradient-brand: var(--gradient-brand-rust);
+  --gradient-text: var(--gradient-text-rust);
+  --gradient-canvas-glow: var(--gradient-glow-rust);
+  --gradient-dark-glow: var(--gradient-dark-glow-rust);
+}
+:root.look--wood {
+  --gradient-brand: var(--gradient-brand-wood);
+  --gradient-text: var(--gradient-text-wood);
+  --gradient-canvas-glow: var(--gradient-glow-wood);
+  --gradient-dark-glow: var(--gradient-dark-glow-wood);
+}
+:root.look--peach {
+  --gradient-brand: var(--gradient-brand-peach);
+  --gradient-text: var(--gradient-text-peach);
+  --gradient-canvas-glow: var(--gradient-glow-peach);
+  --gradient-dark-glow: var(--gradient-dark-glow-peach);
+}

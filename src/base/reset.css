@@ -1,0 +1,52 @@
+/* Reset + page canvas. Everything visual comes from DESIGN.md tokens. */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--space-3xl);
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip; /* clip, not hidden — hidden would break position: sticky */
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-canvas);
+  background-image: var(--gradient-canvas-glow);
+  background-attachment: fixed;
+  color: var(--color-text);
+  font-family: var(--type-body-family);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-leading);
+  overflow-x: clip; /* clip, not hidden — hidden would break position: sticky */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; }
+p, h1, h2, h3, h4 { overflow-wrap: break-word; }
+
+::selection { background: var(--color-selection); color: var(--color-ink); }
+
+:focus-visible {
+  outline: var(--border-focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--space-sm); top: calc(-1 * var(--space-3xl));
+  z-index: var(--z-overlay);
+  padding: var(--space-2xs) var(--space-sm);
+  background: var(--color-dark); color: var(--color-on-dark);
+  border-radius: var(--radius-sm);
+}
+.skip-link:focus { top: var(--space-sm); }

@@ -1,0 +1,26 @@
+/* Engagement — how the work is shaped: quick fix / project / ongoing.
+   Markup: <ul class="engagement"><li class="engagement__item card [engagement__item--featured]">
+           <h3 class="t-h3">…</h3><p class="engagement__time">…</p><p>…</p><p class="engagement__best">…</p></li></ul> */
+.engagement { list-style: none; display: grid; gap: var(--space-md); }
+@media (--bp-md) {
+  .engagement { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+}
+
+.engagement__item { position: relative; display: flex; flex-direction: column; gap: var(--space-2xs); }
+.engagement__item p { color: var(--color-text-muted); font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); }
+.engagement__time { font-weight: var(--type-button-weight); color: var(--color-text-accent); }
+.engagement__best { margin-top: auto; padding-top: var(--space-sm); border-top: var(--border-thin); }
+
+.engagement__item--featured { border: var(--c-engagement-featured-border); box-shadow: var(--shadow-md); }
+.engagement__item--featured::before {
+  content: "Most common";
+  position: absolute;
+  top: calc(-1 * var(--space-xs));
+  left: var(--space-md);
+  padding: var(--space-3xs) var(--space-xs);
+  border-radius: var(--radius-pill);
+  background: var(--c-engagement-featured-badge);
+  color: var(--color-on-orange);
+  font-size: var(--type-meta-size);
+  font-weight: var(--type-button-weight);
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- Human-readable sitemap: every solution page (from content/solutions/*.md)
+     and every project on it. Also gives crawlers one page that links to all. -->
+<html lang="en" translate="no">
+  <head>
+    <!-- @include partials/head.html robots="index, follow" -->
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <!-- @include components/island/island.html home="Sitemap" -->
+
+    <main id="main">
+      <section class="section">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol><li><a href="/">Home</a></li><li aria-current="page">Sitemap</li></ol>
+          </nav>
+          <header class="section-header u-mt-lg">
+            <span class="section-header__eyebrow t-eyebrow">Sitemap</span>
+            <h1 class="t-h1">Every page <span class="t-accent">on ruhan.bd</span></h1>
+            <p class="section-header__sub t-subheading">Each solution page, and every project it covers. The machine-readable version is at <a href="/sitemap.xml">/sitemap.xml</a>.</p>
+          </header>
+
+          <div class="grid grid--3">
+            <article class="card">
+              <h2 class="t-h4"><a href="/">Home</a></h2>
+              <p class="card__text">AI automation engineer — private AI, automation, backups and monitoring for small businesses in the US and Australia.</p>
+              <ul class="card__text u-mt-lg">
+                <li><a href="/#services">What I build</a></li>
+                <li><a href="/#work">Selected work</a></li>
+                <li><a href="/#process">How I work</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#faq">FAQ</a></li>
+                <li><a href="/#contact">Contact</a></li>
+              </ul>
+            </article>
+            <!-- @each solutions as sol -->
+            <article class="card">
+              <h2 class="t-h4"><a href="{{sol.seo.path}}">{{sol.hero.crumb}}</a></h2>
+              <p class="card__text">{{sol.seo.description}}</p>
+              <ul class="card__text u-mt-lg">
+                <!-- @each sol.offers as o --><li><a href="{{sol.seo.path}}#build">{{o.name}}</a></li>
+                <!-- @end -->
+              </ul>
+            </article>
+            <!-- @end -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- @include components/footer/footer.html tagline="Private AI, automation, backups and monitoring for small businesses in the US and Australia — built on open source, owned by you." -->
+  </body>
+</html>

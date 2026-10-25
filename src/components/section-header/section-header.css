@@ -1,0 +1,32 @@
+/* Section header — eyebrow (with gradient rule) → h2 (+ gradient accent) → subheading.
+   Include: <!-- @include components/section-header/section-header.html
+                  eyebrow="01 · How I work" title="Four things" accent="you can count on" sub="…" --> */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--c-section-header-gap);
+  max-width: var(--c-section-header-max);
+  margin-bottom: var(--space-xl);
+}
+
+.section-header__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--c-section-header-eyebrow);
+}
+.section-header__eyebrow::before {
+  content: "";
+  width: var(--c-section-header-rule-width);
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--c-section-header-eyebrow-rule);
+}
+
+.section-header .t-accent { background: var(--c-section-header-accent); -webkit-background-clip: text; background-clip: text; }
+.section-header__sub { color: var(--c-section-header-sub); max-width: 56ch; }
+
+.section-header--center { align-items: center; text-align: center; margin-inline: auto; }
+
+.section--dark .section-header__sub { color: var(--color-on-dark-muted); }
+.section--dark .section-header__eyebrow { color: var(--color-orange-300); }

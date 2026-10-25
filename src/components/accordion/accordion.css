@@ -1,0 +1,72 @@
+/* Accordion — <details> items; give a group the same name="" and only one stays open.
+   Markup: <details class="accordion" name="faq"><summary>Question
+           <span class="accordion__icon" aria-hidden="true"></span></summary>
+           <div class="accordion__body">Answer</div></details>
+   Opening animates where the browser supports ::details-content; elsewhere it snaps. */
+.accordion { border-bottom: var(--c-accordion-border); }
+
+.accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding-block: var(--space-md);
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--type-h4-family);
+  font-size: var(--type-h4-size);
+  font-weight: var(--type-h4-weight);
+  letter-spacing: var(--type-h4-tracking);
+  line-height: var(--type-h4-leading);
+}
+.accordion summary::-webkit-details-marker { display: none; }
+
+.accordion__icon {
+  position: relative;
+  width: var(--c-accordion-icon-size);
+  height: var(--c-accordion-icon-size);
+  flex: none;
+  border-radius: 50%;
+  background: var(--c-accordion-icon-bg);
+  transition:
+    background var(--motion-base) var(--motion-ease),
+    transform var(--motion-base) var(--motion-spring);
+}
+.accordion__icon::before,
+.accordion__icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 40%;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--c-accordion-icon-mark);
+  transform: translate(-50%, -50%);
+  transition:
+    opacity var(--motion-fast) var(--motion-ease),
+    transform var(--motion-base) var(--motion-spring);
+}
+.accordion__icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+
+/* open: the vertical bar turns flat and fades, leaving a minus */
+.accordion[open] .accordion__icon { background: var(--c-accordion-icon-bg-open); }
+.accordion[open] .accordion__icon::after { transform: translate(-50%, -50%) rotate(0deg); opacity: 0; }
+
+.accordion__body {
+  padding-bottom: var(--space-md);
+  color: var(--color-text-muted);
+  max-width: var(--layout-prose);
+}
+
+@supports (interpolate-size: allow-keywords) {
+  .accordion { interpolate-size: allow-keywords; }
+  .accordion::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size var(--motion-base) var(--motion-ease),
+      content-visibility var(--motion-base) allow-discrete;
+  }
+  .accordion[open]::details-content { block-size: auto; }
+}

@@ -1,0 +1,32 @@
+/* Chip — small pill tag. A `.chips` row wraps; hover fills orange (ink text).
+   `.chip__dot` is the pulsing "live" dot. */
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2xs); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  height: var(--c-chip-height);
+  padding-inline: var(--c-chip-pad-x);
+  border: var(--c-chip-border);
+  border-radius: var(--c-chip-radius);
+  background: var(--c-chip-bg);
+  color: var(--c-chip-text);
+  font-family: var(--type-meta-family);
+  font-size: var(--type-meta-size);
+  font-weight: var(--type-meta-weight);
+  letter-spacing: var(--type-meta-tracking);
+  white-space: nowrap;
+  transition:
+    background var(--motion-fast) var(--motion-ease),
+    transform var(--motion-base) var(--motion-spring);
+}
+.chip--interactive:hover { background: var(--c-chip-bg-hover); transform: translateY(-2px); }
+
+.chip__dot {
+  width: var(--c-chip-dot-size);
+  height: var(--c-chip-dot-size);
+  border-radius: 50%;
+  background: var(--color-orange-500);
+  animation: pulse var(--motion-pulse) var(--motion-ease) infinite;
+}

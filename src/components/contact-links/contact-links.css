@@ -1,0 +1,95 @@
+/* Contact links — email, WhatsApp, LinkedIn, each with its own icon in an
+   orange-shade tile (ink glyph, never white). The email is always written out.
+   Include: <!-- @include components/contact-links/contact-links.html variant="pills" -->
+   variants: pills (light, inline) · pills-dark (on dark bands) · cards (big, stacked) */
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--c-contact-links-gap);
+  list-style: none;
+}
+
+.contact-links__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--c-contact-links-pill-height);
+  padding: var(--c-contact-links-pill-pad);
+  border: var(--c-contact-links-pill-border);
+  border-radius: var(--radius-pill);
+  background: var(--c-contact-links-pill-bg);
+  color: var(--c-contact-links-pill-text);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--motion-base) var(--motion-spring),
+    box-shadow var(--motion-base) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease);
+}
+.contact-links__item:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-hairline-orange);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-links__icon {
+  width: var(--c-contact-links-icon-size);
+  height: var(--c-contact-links-icon-size);
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--c-contact-links-icon-ink);
+  transition: transform var(--motion-base) var(--motion-spring);
+}
+.contact-links__icon svg { width: 54%; height: 54%; }
+.contact-links__item:hover .contact-links__icon { transform: rotate(-8deg) scale(1.06); }
+
+.contact-links__icon--email    { background: var(--c-contact-links-icon-email); }
+.contact-links__icon--whatsapp { background: var(--c-contact-links-icon-whatsapp); }
+.contact-links__icon--linkedin { background: var(--c-contact-links-icon-linkedin); }
+
+.contact-links__text { display: flex; flex-direction: column; line-height: 1.15; }
+.contact-links__label {
+  font-family: var(--type-eyebrow-family);
+  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-eyebrow-weight);
+  letter-spacing: var(--type-eyebrow-tracking);
+  text-transform: var(--type-eyebrow-case);
+  color: var(--color-text-subtle);
+}
+.contact-links__value {
+  font-family: var(--type-button-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-button-weight);
+}
+
+/* pills: label hidden, value only — compact */
+.contact-links--pills .contact-links__label,
+.contact-links--pills-dark .contact-links__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+.contact-links--pills-dark .contact-links__item {
+  background: var(--c-contact-links-pill-dark-bg);
+  border: var(--c-contact-links-pill-dark-border);
+  color: var(--c-contact-links-pill-dark-text);
+  box-shadow: none;
+}
+
+/* cards: big tiles, label + value, one per row on mobile */
+.contact-links--cards { flex-direction: column; }
+.contact-links--cards .contact-links__item {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  padding: var(--space-sm);
+  gap: var(--space-sm);
+  background: var(--c-contact-links-pill-dark-bg);
+  border: var(--c-contact-links-pill-dark-border);
+  color: var(--c-contact-links-pill-dark-text);
+  box-shadow: none;
+}
+.contact-links--cards .contact-links__icon {
+  width: var(--c-contact-links-icon-size-lg);
+  height: var(--c-contact-links-icon-size-lg);
+  border-radius: var(--c-contact-links-icon-radius);
+}
+.contact-links--cards .contact-links__label { color: var(--color-on-dark-subtle); }
+.contact-links--cards .contact-links__value { font-size: var(--type-body-lg-size); }

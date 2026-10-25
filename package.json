@@ -1,0 +1,15 @@
+{
+  "name": "ruhan-bd",
+  "private": true,
+  "description": "ruhan.bd — the Ember design system and site. No dependencies; Node 20+.",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "dev": "node tools/build.mjs --dev",
+    "check": "node tools/check.mjs",
+    "verify": "node tools/build.mjs && node tools/check.mjs",
+    "brand": "node tools/build.mjs && python tools/brand.py",
+    "avatar": "node tools/build.mjs && python tools/avatar.py",
+    "og": "node tools/build.mjs && python tools/og.py && node tools/build.mjs"
+  }
+}

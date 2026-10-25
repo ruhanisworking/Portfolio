@@ -1,0 +1,125 @@
+/* Hero — the introduction.
+   Left: a YouTube-style identity row (small round illustrated avatar, name,
+   handle), the H1 and the contact links. Right: a "stage" of three product
+   windows (viz) stacked like a desk of open apps, with a floating badge.
+   Markup:
+   <section class="hero">
+     <div class="hero__copy">
+       <div class="hero__id"><picture class="hero__avatar">…</picture>
+         <div><p class="hero__name">Ruhan</p>
+         <p class="hero__handle">…</p></div></div>
+       <h1 class="hero__title"><span class="hero__kicker">…</span><span class="hero__line">…</span></h1> …
+     </div>
+     <div class="hero__stage"><div class="hero__window hero__window--1">viz</div>… <span class="hero__badge">…</span></div>
+   </section> */
+.hero {
+  display: grid;
+  gap: var(--c-hero-gap);
+  align-items: center;
+}
+@media (--bp-lg) {
+  .hero { grid-template-columns: 1.1fr 0.9fr; }
+}
+
+.hero__copy { display: flex; flex-direction: column; gap: var(--space-md); }
+
+/* ── identity row ───────────────────────────────────────────────────────── */
+.hero__id { display: flex; align-items: center; gap: var(--space-sm); }
+.hero__avatar {
+  width: var(--c-hero-avatar-size);
+  height: var(--c-hero-avatar-size);
+  flex: none;
+  padding: var(--space-3xs);
+  border-radius: 50%;
+  background: var(--c-hero-avatar-ring);
+  box-shadow: var(--c-hero-avatar-shadow);
+}
+.hero__avatar img { width: 100%; height: 100%; border-radius: 50%; }
+
+.hero__name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-family: var(--type-h3-family);
+  font-size: var(--type-h3-size);
+  font-weight: var(--type-h3-weight);
+  letter-spacing: var(--type-h3-tracking);
+  line-height: 1.1;
+}
+.hero__handle { font-size: var(--type-meta-size); color: var(--color-text-subtle); margin-top: var(--space-3xs); }
+.hero__handle .chip__dot { display: inline-block; margin-right: var(--space-3xs); vertical-align: middle; }
+
+/* the H1 carries the keyword in its small first line and the memorable line big */
+.hero__title { display: flex; flex-direction: column; gap: var(--space-xs); }
+.hero__kicker {
+  font-family: var(--type-eyebrow-family);
+  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-eyebrow-weight);
+  letter-spacing: var(--type-eyebrow-tracking);
+  text-transform: var(--type-eyebrow-case);
+  color: var(--color-text-accent);
+}
+.hero__line {
+  font-family: var(--type-display-family);
+  font-size: var(--c-hero-line-size);
+  font-weight: var(--type-display-weight);
+  line-height: var(--type-display-leading);
+  letter-spacing: var(--type-display-tracking);
+}
+/* one sentence per line — the rhythm is part of the line */
+.hero__line > span { display: block; }
+
+.hero__lede {
+  max-width: 54ch;
+  font-size: var(--type-body-lg-size);
+  line-height: var(--type-body-lg-leading);
+  color: var(--color-text-muted);
+}
+
+/* ── stage: three product windows, stacked ──────────────────────────────── */
+.hero__stage { position: relative; display: grid; gap: var(--space-sm); }
+.hero__window { border-radius: var(--radius-md); box-shadow: var(--c-hero-window-shadow); }
+.hero__window--3 { display: none; }
+
+@media (--bp-md) {
+  .hero__stage { display: block; height: var(--c-hero-stage-height); }
+  .hero__window { position: absolute; width: 74%; transition: transform var(--motion-base) var(--motion-spring); }
+  .hero__window--1 { top: 0; left: 0; transform: rotate(-2deg); }
+  .hero__window--2 { top: 32%; right: 0; transform: rotate(1.5deg); z-index: var(--z-raised); }
+  .hero__window--3 { display: block; bottom: 0; left: 8%; transform: rotate(-1deg); }
+  .hero__window:hover { transform: rotate(0) translateY(-6px); z-index: var(--z-fab); }
+}
+
+.hero__badge {
+  position: absolute;
+  z-index: var(--z-fab);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-sm) var(--space-2xs) var(--space-2xs);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper);
+  border: var(--border-thin);
+  color: var(--color-ink);
+  font-family: var(--type-meta-family);
+  font-size: var(--type-meta-size);
+  font-weight: var(--type-button-weight);
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
+  animation: hero-float var(--motion-pulse) var(--motion-ease) infinite alternate;
+}
+.hero__badge .icon-tile {
+  width: var(--c-hero-badge-icon);
+  height: var(--c-hero-badge-icon);
+  border-radius: 50%;
+  box-shadow: none;
+}
+.hero__badge--1 { top: calc(-1 * var(--space-sm)); right: var(--space-sm); }
+@media (--bp-md) {
+  .hero__badge--1 { top: 22%; right: auto; left: 52%; }
+}
+
+@keyframes hero-float {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-6px); }
+}

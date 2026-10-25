@@ -1,0 +1,30 @@
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a class="footer__wordmark" href="/" aria-label="Ruhan — back to top">
+        <!-- @include components/wordmark/wordmark.html id="footer" -->
+      </a>
+      <p class="footer__tagline">{{props.tagline}}</p>
+    </div>
+    <nav class="footer__col" aria-label="Footer">
+      <h4 class="footer__heading">Explore</h4>
+      <a href="/#services">Services</a>
+      <a href="/#work">Work</a>
+      <a href="/#process">Process</a>
+      <a href="/#about">About</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+    <nav class="footer__col" aria-label="Solutions">
+      <h4 class="footer__heading">Solutions</h4>
+      <!-- @each solutions as sol --><a href="{{sol.seo.path}}">{{sol.hero.crumb}}</a>
+      <!-- @end -->
+    </nav>
+    <div class="footer__col">
+      <h4 class="footer__heading">Contact</h4>
+      <!-- @include components/contact-links/contact-links.html variant="pills-dark" -->
+    </div>
+  </div>
+  <div class="container">
+    <p class="footer__fine">&copy; 2026 {{site.full-name}} &middot; {{site.location}} &middot; serving the US &amp; Australia &middot; <a href="/sitemap.html">Sitemap</a></p>
+  </div>
+</footer>

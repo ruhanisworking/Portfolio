@@ -1,0 +1,38 @@
+/* Page structure: container, section rhythm, grids, stacks. */
+
+.container {
+  width: 100%;
+  max-width: var(--layout-max);
+  margin-inline: auto;
+  padding-inline: var(--layout-gutter);
+}
+.container--prose { max-width: calc(var(--layout-prose) + 2 * var(--layout-gutter)); }
+
+.section { padding-block: var(--space-section); }
+/* the first section clears the fixed island */
+main > .section:first-child { padding-top: calc(var(--space-section) + var(--layout-island-clearance)); }
+.section--dark {
+  background-color: var(--color-dark);
+  background-image: var(--gradient-dark-glow);
+  color: var(--color-on-dark);
+}
+.section--dark h1, .section--dark h2, .section--dark h3, .section--dark h4 { color: var(--color-on-dark); }
+
+/* vertical rhythm: children spaced by --stack-gap */
+.stack { display: flex; flex-direction: column; gap: var(--stack-gap, var(--space-sm)); }
+.stack--lg { --stack-gap: var(--space-lg); }
+.stack--sm { --stack-gap: var(--space-2xs); }
+
+.cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs); }
+
+.grid { display: grid; gap: var(--space-md); grid-template-columns: 1fr; }
+@media (--bp-sm) { .grid--2, .grid--4 { grid-template-columns: repeat(2, 1fr); } }
+@media (--bp-md) { .grid--3 { grid-template-columns: repeat(3, 1fr); } }
+@media (--bp-lg) { .grid--4 { grid-template-columns: repeat(4, 1fr); } }
+
+.split { display: grid; gap: var(--space-xl); align-items: center; }
+@media (--bp-md) { .split { grid-template-columns: 1.1fr 0.9fr; } }
+.split--top { align-items: start; }
+
+/* spacing utilities — only the few the pages need between components */
+.u-mt-lg { margin-top: var(--space-lg); }

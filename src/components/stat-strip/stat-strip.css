@@ -1,0 +1,35 @@
+/* Stat strip — 3–4 big numbers with labels, divided by hairlines.
+   Markup: <dl class="stat-strip"><div class="stat-strip__item">
+           <dt class="stat-strip__label">years</dt><dd class="stat-strip__value">2.5</dd></div>…</dl> */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: var(--c-stat-strip-divider);
+}
+@media (--bp-md) {
+  .stat-strip { grid-template-columns: repeat(4, 1fr); }
+}
+
+.stat-strip__item {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-3xs);
+  padding: var(--space-sm) var(--space-sm) var(--space-sm) 0;
+}
+.stat-strip__item + .stat-strip__item { padding-left: var(--space-sm); border-left: var(--c-stat-strip-divider); }
+@media (--bp-max-md) {
+  .stat-strip__item:nth-child(3) { padding-left: 0; border-left: 0; }
+  .stat-strip__item:nth-child(n + 3) { border-top: var(--c-stat-strip-divider); }
+}
+
+.stat-strip__value {
+  font-family: var(--type-h1-family);
+  font-size: var(--c-stat-strip-value-size);
+  font-weight: var(--type-h1-weight);
+  line-height: 1;
+  color: var(--c-stat-strip-value);
+}
+.stat-strip__label {
+  font-size: var(--type-meta-size);
+  color: var(--c-stat-strip-label);
+}

@@ -1,0 +1,4 @@
+/* Icon — 24-unit line icons, one file each (icon/<name>.svg), stroke in currentColor.
+   Include: <!-- @include components/icon/chat.svg --> */
+.icon { width: var(--c-icon-size); height: var(--c-icon-size); flex: none; }
+.icon-tile .icon { width: 50%; height: 50%; }

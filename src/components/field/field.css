@@ -1,0 +1,40 @@
+/* Field — label + input/textarea.
+   Markup: <label class="field"><span class="field__label">Email</span>
+           <input class="field__input" type="email" /></label> */
+.field { display: flex; flex-direction: column; gap: var(--space-2xs); }
+
+.field__label {
+  font-family: var(--type-eyebrow-family);
+  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-eyebrow-weight);
+  letter-spacing: var(--type-eyebrow-tracking);
+  text-transform: var(--type-eyebrow-case);
+  color: var(--c-field-label);
+}
+
+.field__input {
+  width: 100%;
+  height: var(--c-field-height);
+  padding-inline: var(--space-sm);
+  background: var(--c-field-bg);
+  border: var(--c-field-border);
+  border-radius: var(--c-field-radius);
+  font-family: var(--type-body-family);
+  font-size: var(--type-body-size);
+  transition:
+    border-color var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease);
+}
+.field__input::placeholder { color: var(--color-text-subtle); }
+.field__input:focus {
+  outline: none;
+  border-color: var(--c-field-border-focus);
+  box-shadow: var(--c-field-focus-ring);
+}
+
+textarea.field__input {
+  height: auto;
+  min-height: var(--c-field-textarea-min);
+  padding-block: var(--space-xs);
+  resize: vertical;
+}

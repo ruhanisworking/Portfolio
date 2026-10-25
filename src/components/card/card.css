@@ -1,0 +1,52 @@
+/* Card — base surface, interactive (lifts on hover), dark.
+   Markup: <article class="card card--interactive"><span class="icon-tile">…</span>
+           <h3 class="card__title t-h3">…</h3><p class="card__text">…</p></article> */
+.card {
+  position: relative;
+  background: var(--c-card-bg);
+  border: var(--c-card-border);
+  border-radius: var(--c-card-radius);
+  padding: var(--c-card-pad);
+  box-shadow: var(--c-card-shadow);
+}
+
+.card--interactive {
+  transition:
+    transform var(--motion-base) var(--motion-ease),
+    box-shadow var(--motion-base) var(--motion-ease),
+    border-color var(--motion-base) var(--motion-ease);
+}
+.card--interactive:hover {
+  transform: translateY(var(--c-card-lift));
+  box-shadow: var(--c-card-shadow-hover);
+  border-color: var(--c-card-border-hover);
+}
+
+.card--dark {
+  background: var(--c-card-dark-bg);
+  border: var(--c-card-dark-border);
+  color: var(--color-on-dark);
+  box-shadow: none;
+}
+.card--dark h1, .card--dark h2, .card--dark h3, .card--dark h4 { color: var(--color-on-dark); }
+.card--dark .card__text { color: var(--color-on-dark-muted); }
+
+.card__title { margin-block: var(--space-sm) var(--space-2xs); }
+.card__media { margin-bottom: var(--space-sm); }
+.card__media + .icon-tile { margin-top: 0; }
+/* the customer's problem, in their words — quoted, in the accent colour */
+.card__problem {
+  font-family: var(--type-quote-family);
+  font-style: italic;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-sm-leading);
+  color: var(--color-text-accent);
+  margin-bottom: var(--space-2xs);
+}
+.card__text {
+  color: var(--color-text-muted);
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-leading);
+}
+.card__meta { margin-top: var(--space-sm); }
+.card__link { margin-top: var(--space-xs); margin-left: calc(-1 * var(--space-xs)); }

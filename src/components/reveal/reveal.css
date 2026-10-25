@@ -1,0 +1,17 @@
+/* Reveal — the fade-up entrance every block uses.
+   [data-reveal]            fades up when it scrolls into view
+   [data-reveal-stagger]    its children fade up one after another
+   Hidden only when JS is running (html.js), so content never stays invisible. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--c-reveal-distance));
+  transition:
+    opacity var(--c-reveal-duration) var(--c-reveal-ease),
+    transform var(--c-reveal-duration) var(--c-reveal-ease);
+  transition-delay: calc(var(--_i, 0) * var(--c-reveal-stagger));
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}

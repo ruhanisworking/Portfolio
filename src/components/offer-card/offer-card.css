@@ -1,0 +1,89 @@
+/* Offer card — one project from docs/PROJECT-CATALOG.md: number, name, brief,
+   "you get", "live in", stack chips, and a small dark log that plays the
+   outcome line by line when the card scrolls in.
+   Markup: <article class="offer-card card card--interactive">
+             <p class="offer-card__num">#01</p><h3 class="t-h3">…</h3><p class="offer-card__brief">…</p>
+             <ol class="offer-card__log"><li>…</li>…</ol>
+             <dl class="offer-card__facts"><div><dt>You get</dt><dd>…</dd></div>…</dl>
+             <ul class="chips">…</ul></article> */
+.offer-card { display: flex; flex-direction: column; gap: var(--space-sm); height: 100%; }
+
+.offer-card__num {
+  font-family: var(--type-eyebrow-family);
+  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-eyebrow-weight);
+  letter-spacing: var(--type-eyebrow-tracking);
+  color: var(--color-text-accent);
+}
+.offer-card__brief { color: var(--color-text-muted); font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); }
+
+.offer-card__log {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  background-color: var(--c-offer-card-log-bg);
+  background-image: var(--gradient-dark-glow);
+  color: var(--c-offer-card-log-text);
+  font-size: var(--type-meta-size);
+}
+.offer-card__log li { display: flex; gap: var(--space-2xs); }
+.offer-card__log li::before { content: "→"; color: var(--c-offer-card-log-accent); }
+.offer-card__log li:last-child { color: var(--color-on-dark); font-weight: var(--type-button-weight); }
+.offer-card__log li:last-child::before { content: "✓"; color: var(--color-success-bright); }
+
+/* lines play in one after another when the card arrives */
+.js .offer-card__log li { opacity: 0; transform: translateX(-6px); }
+.is-visible .offer-card__log li {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--motion-base) var(--motion-ease), transform var(--motion-base) var(--motion-ease);
+}
+.is-visible .offer-card__log li:nth-child(1) { transition-delay: var(--motion-slow); }
+.is-visible .offer-card__log li:nth-child(2) { transition-delay: calc(var(--c-offer-card-log-step) * 1 + var(--motion-slow)); }
+.is-visible .offer-card__log li:nth-child(3) { transition-delay: calc(var(--c-offer-card-log-step) * 2 + var(--motion-slow)); }
+.is-visible .offer-card__log li:nth-child(4) { transition-delay: calc(var(--c-offer-card-log-step) * 3 + var(--motion-slow)); }
+
+.offer-card__facts { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); margin-top: auto; }
+.offer-card__facts div { display: flex; flex-direction: column; gap: var(--space-3xs); }
+.offer-card__facts dt {
+  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-eyebrow-weight);
+  letter-spacing: var(--type-eyebrow-tracking);
+  text-transform: var(--type-eyebrow-case);
+  color: var(--color-text-subtle);
+}
+.offer-card__facts dd { font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); }
+
+/* ── offer layouts (content look.offers) ───────────────────────────────── */
+.offers { display: grid; gap: var(--space-md); grid-template-columns: 1fr; grid-auto-flow: dense; }
+
+/* grid: plain columns */
+@media (--bp-md) { .offers--grid { grid-template-columns: repeat(2, 1fr); } }
+@media (--bp-lg) { .offers--grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* rows: one wide card per row — story on the left, the log and facts on the right */
+@media (--bp-md) {
+  .offers--rows .offer-card,
+  .offers--bento .offer-card:nth-child(3n + 1) {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    column-gap: var(--space-xl);
+    align-items: start;
+  }
+  .offers--rows .offer-card > *,
+  .offers--bento .offer-card:nth-child(3n + 1) > * { grid-column: 1; }
+  .offers--rows .offer-card__log,
+  .offers--bento .offer-card:nth-child(3n + 1) .offer-card__log { grid-column: 2; grid-row: 1 / span 3; }
+  .offers--rows .offer-card__facts,
+  .offers--bento .offer-card:nth-child(3n + 1) .offer-card__facts { grid-column: 2; grid-row: 4 / span 2; margin-top: var(--space-sm); }
+}
+
+/* bento: mixed sizes — every third card spans two columns */
+@media (--bp-md) { .offers--bento { grid-template-columns: repeat(2, 1fr); } }
+@media (--bp-lg) {
+  .offers--bento { grid-template-columns: repeat(3, 1fr); }
+  .offers--bento .offer-card:nth-child(3n + 1) { grid-column: span 2; }
+}

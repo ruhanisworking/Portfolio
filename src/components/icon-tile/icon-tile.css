@@ -1,0 +1,18 @@
+/* Icon tile — a gradient square holding a line icon. Four shade variants so a
+   row of tiles never repeats one orange. Icon colour is ink, never white. */
+.icon-tile {
+  width: var(--c-icon-tile-size);
+  height: var(--c-icon-tile-size);
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--c-icon-tile-radius);
+  background: var(--c-icon-tile-bg-1);
+  color: var(--c-icon-tile-text);
+  box-shadow: var(--shadow-sm);
+}
+.icon-tile svg { width: 48%; height: 48%; }
+
+.icon-tile--2 { background: var(--c-icon-tile-bg-2); }
+.icon-tile--3 { background: var(--c-icon-tile-bg-3); }
+.icon-tile--4 { background: var(--c-icon-tile-bg-4); }

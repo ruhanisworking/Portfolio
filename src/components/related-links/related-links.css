@@ -1,0 +1,17 @@
+/* Related links — cards pointing to other solution pages.
+   Markup: <ul class="related-links"><li><a class="related-links__item card card--interactive" href="…">
+           <b>Name</b><span>line</span></a></li></ul> */
+.related-links { list-style: none; display: grid; gap: var(--space-md); }
+@media (--bp-md) {
+  .related-links { grid-template-columns: repeat(3, 1fr); }
+}
+.related-links__item { display: flex; flex-direction: column; gap: var(--space-2xs); height: 100%; }
+.related-links__item b { font-family: var(--type-h4-family); font-size: var(--type-h4-size); letter-spacing: var(--type-h4-tracking); }
+.related-links__item span { color: var(--color-text-muted); font-size: var(--type-body-sm-size); }
+.related-links__item b::after { content: " →"; color: var(--c-related-links-arrow); }
+
+/* icons variant — the home page's "every solution" grid */
+.related-links--icons .icon-tile { margin-bottom: var(--space-2xs); }
+@media (--bp-lg) {
+  .related-links--icons { grid-template-columns: repeat(4, 1fr); }
+}

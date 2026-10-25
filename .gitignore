@@ -1,18 +1,31 @@
-.claude/
 .DS_Store
 Thumbs.db
 
-# personal working notes — not part of the published site
-CONTENT.md
-SITE_CONTENT_DRAFT.md
-changes.md
+# Claude tooling: only this project's own skill and agents are versioned;
+# the generic skills copied into .claude/skills and local settings stay local
+.claude/*
+!.claude/agents/
+.claude/skills/*
+!.claude/skills/
+!.claude/skills/ruhan-frontend/
 
-# reference documents dropped locally — not part of the published site
-Chichingo — Game development studio for publishers.pdf
-Partnerbike   Jobike.pdf
+# build output — tools/build.mjs regenerates it
+dist/
+
+# personal working notes — not part of the published site
+docs/notes/
+
+# reference documents and raw camera drops — not part of the published site
+design/references/
+
+# design references cloned locally (VoltAgent/awesome-design-md, MIT) — own git history
+design/awesome-design-md/
 
 # raw personal documents (NID, CV source, unprocessed photo) — never published
 information/
 
-# raw camera drop — published copy lives in assets/images/ruhan-river.jpg
-IMG_20250805_114607.jpg
+# AI skill from the Datamon work project — internal, must not reach this public repo
+frontend-workflow/
+
+# downloaded fonts etc. for tools/
+tools/.cache/

@@ -1,0 +1,14 @@
+/* Breadcrumb — Home › Solutions › Page. The template adds BreadcrumbList schema.
+   Markup: <nav class="breadcrumb" aria-label="Breadcrumb"><ol>
+           <li><a href="/">Home</a></li>…<li aria-current="page">X</li></ol></nav> */
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  list-style: none;
+  font-size: var(--type-meta-size);
+  color: var(--c-breadcrumb-text);
+}
+.breadcrumb li + li::before { content: "›"; margin-right: var(--space-2xs); }
+.breadcrumb a:hover { color: var(--color-ink); }
+.breadcrumb [aria-current="page"] { color: var(--c-breadcrumb-current); font-weight: var(--type-button-weight); }

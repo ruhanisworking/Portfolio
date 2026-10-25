@@ -1,0 +1,27 @@
+/* Language toggle — EN / বাংলা. Lives inside the island (dark), active option is orange with ink text. */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  padding: var(--space-3xs);
+  border-radius: var(--c-lang-toggle-radius);
+  background: var(--c-lang-toggle-bg);
+}
+
+.lang-toggle__opt {
+  height: var(--c-lang-toggle-height);
+  padding-inline: var(--space-xs);
+  border-radius: var(--c-lang-toggle-radius);
+  color: var(--c-lang-toggle-text);
+  font-family: var(--type-nav-family);
+  font-size: var(--type-meta-size);
+  font-weight: var(--type-nav-weight);
+  transition:
+    background var(--motion-fast) var(--motion-ease),
+    color var(--motion-fast) var(--motion-ease);
+}
+.lang-toggle__opt:hover { color: var(--color-on-dark); }
+.lang-toggle__opt[aria-pressed="true"] {
+  background: var(--c-lang-toggle-active-bg);
+  color: var(--c-lang-toggle-active-text);
+}

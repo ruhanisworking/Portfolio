@@ -1,0 +1,77 @@
+/* Button — primary (orange gradient, ink text), secondary, ghost, dark; sm and icon sizes.
+   Markup: <a class="btn btn--primary" href="…">Label <span class="btn__arrow" aria-hidden="true">→</span></a> */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  height: var(--c-button-height);
+  padding-inline: var(--c-button-pad-x);
+  border: 1px solid transparent;
+  border-radius: var(--c-button-radius);
+  font-family: var(--type-button-family);
+  font-size: var(--type-button-size);
+  font-weight: var(--type-button-weight);
+  letter-spacing: var(--type-button-tracking);
+  line-height: var(--type-button-leading);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform var(--motion-base) var(--motion-spring),
+    box-shadow var(--motion-base) var(--motion-ease),
+    background var(--motion-base) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease),
+    color var(--motion-fast) var(--motion-ease);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(0.98); }
+
+.btn__arrow { display: inline-block; transition: transform var(--motion-base) var(--motion-spring); }
+.btn:hover .btn__arrow { transform: translateX(3px); }
+
+.btn--primary {
+  background: var(--c-button-primary-bg);
+  color: var(--c-button-primary-text);
+  box-shadow: var(--c-button-primary-shadow);
+}
+.btn--primary:hover { background: var(--c-button-primary-bg-hover); }
+
+.btn--secondary {
+  background: var(--c-button-secondary-bg);
+  color: var(--c-button-secondary-text);
+  border: var(--c-button-secondary-border);
+  box-shadow: var(--shadow-sm);
+}
+.btn--secondary:hover { border-color: var(--color-orange-400); box-shadow: var(--shadow-md); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--c-button-ghost-text);
+  padding-inline: var(--space-xs);
+}
+.btn--ghost:hover { background: var(--color-orange-50); }
+
+.btn--dark {
+  background: var(--c-button-dark-bg);
+  color: var(--c-button-dark-text);
+}
+.btn--dark:hover { background: var(--color-dark-3); }
+
+.btn--sm {
+  height: var(--c-button-height-sm);
+  padding-inline: var(--c-button-pad-x-sm);
+  font-size: var(--type-body-sm-size);
+}
+
+.btn--icon {
+  width: var(--c-button-height);
+  padding-inline: 0;
+  border-radius: var(--radius-pill);
+}
+.btn--icon svg { width: 45%; height: 45%; }
+
+.btn--block { width: 100%; }
+
+@media (--bp-max-sm) {
+  .btn--stack-mobile { width: 100%; }
+}

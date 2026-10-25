@@ -1,0 +1,45 @@
+/* Process steps — numbered steps joined by a line (horizontal from md up).
+   Markup: <ol class="process-steps"><li class="process-steps__item">
+           <span class="process-steps__num">1</span><h3 class="t-h3">…</h3><p>…</p></li>…</ol> */
+.process-steps {
+  list-style: none;
+  display: grid;
+  gap: var(--space-lg);
+  counter-reset: step;
+}
+@media (--bp-md) {
+  .process-steps { grid-template-columns: repeat(var(--_cols, 3), 1fr); gap: var(--space-md); }
+}
+
+.process-steps__item { position: relative; display: flex; flex-direction: column; gap: var(--space-2xs); }
+.process-steps__item p { color: var(--color-text-muted); font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); }
+
+.process-steps__num {
+  position: relative;
+  z-index: var(--z-base);
+  width: var(--c-process-steps-num-size);
+  height: var(--c-process-steps-num-size);
+  display: grid;
+  place-items: center;
+  margin-bottom: var(--space-2xs);
+  border-radius: 50%;
+  background: var(--c-process-steps-num-bg);
+  color: var(--c-process-steps-num-text);
+  font-family: var(--type-h3-family);
+  font-size: var(--type-h3-size);
+  font-weight: var(--type-h3-weight);
+  box-shadow: var(--shadow-glow);
+}
+
+/* the connecting line, behind the numbers */
+@media (--bp-md) {
+  .process-steps__item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--c-process-steps-num-size) / 2);
+    left: var(--c-process-steps-num-size);
+    right: calc(-1 * var(--space-md));
+    height: 2px;
+    background: var(--c-process-steps-line);
+  }
+}

@@ -1,0 +1,100 @@
+/* Text styles — one class per DESIGN.md `type` entry, plus element defaults.
+   Cinzel (display/h1–h4/wordmark) is written in normal case on purpose:
+   lowercase renders as small capitals, so first letters stand taller. */
+
+h1, h2, h3, h4 { color: var(--color-text); font-weight: inherit; }
+
+.t-display, .t-h1, .t-h2, .t-h3, .t-h4, .t-subheading, .t-body-lg, .t-body,
+.t-body-sm, .t-meta, .t-eyebrow, .t-quote, h1, h2, h3, h4 {
+  font-family: var(--_family);
+  font-size: var(--_size);
+  font-weight: var(--_weight);
+  line-height: var(--_leading);
+  letter-spacing: var(--_tracking);
+  text-transform: var(--_case);
+}
+
+.t-display {
+  --_family: var(--type-display-family); --_size: var(--type-display-size);
+  --_weight: var(--type-display-weight); --_leading: var(--type-display-leading);
+  --_tracking: var(--type-display-tracking); --_case: var(--type-display-case);
+}
+.t-h1, h1 {
+  --_family: var(--type-h1-family); --_size: var(--type-h1-size);
+  --_weight: var(--type-h1-weight); --_leading: var(--type-h1-leading);
+  --_tracking: var(--type-h1-tracking); --_case: var(--type-h1-case);
+}
+.t-h2, h2 {
+  --_family: var(--type-h2-family); --_size: var(--type-h2-size);
+  --_weight: var(--type-h2-weight); --_leading: var(--type-h2-leading);
+  --_tracking: var(--type-h2-tracking); --_case: var(--type-h2-case);
+}
+.t-h3, h3 {
+  --_family: var(--type-h3-family); --_size: var(--type-h3-size);
+  --_weight: var(--type-h3-weight); --_leading: var(--type-h3-leading);
+  --_tracking: var(--type-h3-tracking); --_case: var(--type-h3-case);
+}
+.t-h4, h4 {
+  --_family: var(--type-h4-family); --_size: var(--type-h4-size);
+  --_weight: var(--type-h4-weight); --_leading: var(--type-h4-leading);
+  --_tracking: var(--type-h4-tracking); --_case: var(--type-h4-case);
+}
+.t-subheading {
+  --_family: var(--type-subheading-family); --_size: var(--type-subheading-size);
+  --_weight: var(--type-subheading-weight); --_leading: var(--type-subheading-leading);
+  --_tracking: var(--type-subheading-tracking); --_case: var(--type-subheading-case);
+  color: var(--color-text-muted);
+}
+.t-body-lg {
+  --_family: var(--type-body-lg-family); --_size: var(--type-body-lg-size);
+  --_weight: var(--type-body-lg-weight); --_leading: var(--type-body-lg-leading);
+  --_tracking: var(--type-body-lg-tracking); --_case: var(--type-body-lg-case);
+}
+.t-body {
+  --_family: var(--type-body-family); --_size: var(--type-body-size);
+  --_weight: var(--type-body-weight); --_leading: var(--type-body-leading);
+  --_tracking: var(--type-body-tracking); --_case: var(--type-body-case);
+}
+.t-body-sm {
+  --_family: var(--type-body-sm-family); --_size: var(--type-body-sm-size);
+  --_weight: var(--type-body-sm-weight); --_leading: var(--type-body-sm-leading);
+  --_tracking: var(--type-body-sm-tracking); --_case: var(--type-body-sm-case);
+}
+.t-meta {
+  --_family: var(--type-meta-family); --_size: var(--type-meta-size);
+  --_weight: var(--type-meta-weight); --_leading: var(--type-meta-leading);
+  --_tracking: var(--type-meta-tracking); --_case: var(--type-meta-case);
+  color: var(--color-text-subtle);
+}
+.t-eyebrow {
+  --_family: var(--type-eyebrow-family); --_size: var(--type-eyebrow-size);
+  --_weight: var(--type-eyebrow-weight); --_leading: var(--type-eyebrow-leading);
+  --_tracking: var(--type-eyebrow-tracking); --_case: var(--type-eyebrow-case);
+  color: var(--color-text-accent);
+}
+.t-quote {
+  --_family: var(--type-quote-family); --_size: var(--type-quote-size);
+  --_weight: var(--type-quote-weight); --_leading: var(--type-quote-leading);
+  --_tracking: var(--type-quote-tracking); --_case: var(--type-quote-case);
+  font-style: italic;
+}
+
+/* gradient text — for one accent phrase inside a heading */
+.t-accent {
+  background: var(--gradient-text);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+
+.t-muted { color: var(--color-text-muted); }
+.t-subtle { color: var(--color-text-subtle); }
+
+/* inline highlight — orange wash under a phrase */
+.t-mark {
+  font-weight: 600;
+  color: var(--color-ink);
+  background: linear-gradient(transparent 62%, var(--color-orange-200) 62%);
+}
+
+/* Bangla needs nothing here: DESIGN.md `type-bn` overrides the same
+   --type-* variables under :root[lang="bn"], so every class follows. */

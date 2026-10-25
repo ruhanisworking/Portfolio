@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!-- Solution page template. Every content/solutions/<slug>.md renders through
+     this file into /solutions/<slug>/. Edit the content file, not this one,
+     unless every solution page should change. -->
+<html lang="en" translate="no" class="look--{{page.look.accent}}">
+  <head>
+    <!-- @include partials/head.html robots="index, follow, max-image-preview:large, max-snippet:-1" -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{site.url}}/" },
+              { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "{{site.url}}/#services" },
+              { "@type": "ListItem", "position": 3, "name": "{{page.hero.crumb|json}}", "item": "{{site.url}}{{page.seo.path}}" }
+            ]
+          },
+          {
+            "@type": "ItemList",
+            "name": "{{page.hero.crumb|json}}",
+            "itemListElement": [<!-- @each page.offers as offer sep="," -->
+              {
+                "@type": "ListItem",
+                "position": {{loop.n}},
+                "item": {
+                  "@type": "Service",
+                  "name": "{{offer.name|json}}",
+                  "description": "{{offer.brief|json}}",
+                  "provider": { "@type": "Person", "name": "{{site.full-name}}", "url": "{{site.url}}/" },
+                  "areaServed": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "Australia" }]
+                }
+              }<!-- @end -->
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [<!-- @each page.faq as f sep="," -->
+              { "@type": "Question", "name": "{{f.q|json}}", "acceptedAnswer": { "@type": "Answer", "text": "{{f.a|json}}" } }<!-- @end -->
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <!-- @include components/island/island.html home="{{page.hero.crumb}}" -->
+
+    <main id="main">
+
+      <!-- ── hero ─────────────────────────────────────────────────────────── -->
+      <section class="section" aria-labelledby="page-title">
+        <div class="container">
+          <div class="page-hero page-hero--{{page.look.hero}}">
+            <div class="page-hero__copy" data-reveal-stagger>
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol><li><a href="/">Home</a></li><li><a href="/#services">Solutions</a></li><li aria-current="page">{{page.hero.crumb}}</li></ol>
+              </nav>
+              <h1 class="hero__title" id="page-title">
+                <span class="hero__kicker">{{page.hero.kicker}}</span>
+                <span class="hero__line">{{page.hero.line}}</span>
+              </h1>
+              <p class="hero__lede">{{page.hero.lede}}</p>
+              <div class="cluster">
+                <a class="btn btn--primary btn--stack-mobile" href="#contact">{{page.hero.cta}} <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+                <a class="btn btn--secondary btn--stack-mobile" href="#build">See what we build</a>
+              </div>
+              <!-- @include components/contact-links/contact-links.html variant="pills" -->
+            </div>
+            <div class="page-hero__scene" data-reveal>
+              <!-- @include components/viz/{{page.hero.scene}}.html -->
+              <ul class="page-hero__chips">
+                <!-- @each page.hero.chips as chip --><li class="chip">{{chip}}</li><!-- @end -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── pains ────────────────────────────────────────────────────────── -->
+      <section class="section pains--{{page.look.pains}}" aria-labelledby="pain-title">
+        <div class="container">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Sound familiar?</span>
+            <h2 class="t-h2" id="pain-title">{{page.pains.title}}</h2>
+          </header>
+          <ul class="pain-cards" data-reveal-stagger>
+            <!-- @each page.pains.items as p -->
+            <li class="pain-cards__item card">
+              <p class="pain-cards__quote">“{{p.quote}}”</p>
+              <p class="pain-cards__note">{{p.note}}</p>
+            </li>
+            <!-- @end -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- ── story ────────────────────────────────────────────────────────── -->
+      <section class="section" aria-labelledby="story-title">
+        <div class="container">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">How we see it</span>
+            <h2 class="t-h2" id="story-title">{{page.story.title}} <span class="t-accent">{{page.story.accent}}</span></h2>
+            <p class="section-header__sub t-subheading">{{page.story.sub}}</p>
+          </header>
+
+          <div class="story-scroll story-scroll--{{page.look.story}}" data-story>
+            <div class="story-scroll__list">
+              <span class="story-scroll__rail" aria-hidden="true"></span>
+              <ol class="story-scroll__steps">
+                <!-- @each page.story.steps as s -->
+                <li class="story-scroll__step" data-step="{{loop.n}}">
+                  <span class="story-scroll__num">Step 0{{loop.n}}</span>
+                  <h3 class="t-h3">{{s.title}}</h3>
+                  <p>{{s.text}}</p>
+                </li>
+                <!-- @end -->
+              </ol>
+            </div>
+            <div class="story-scroll__visual" data-story-visual aria-hidden="true">
+              <div class="flow-diagram flow-diagram--{{page.look.story}}">
+                <ol>
+                  <!-- @each page.story.flow as n -->
+                  <li class="flow-diagram__node" data-from="{{n.from}}">
+                    <span class="icon-tile icon-tile--{{n.tile}}"><!-- @include components/icon/{{n.icon}}.svg --></span>
+                    <span><b>{{n.label}}</b><small>{{n.sub}}</small></span>
+                  </li>
+                  <!-- @end -->
+                </ol>
+              </div>
+              <p class="story-scroll__caption">
+                <!-- @each page.story.steps as s --><span data-cap="{{loop.n}}">{{s.caption}}</span><!-- @end -->
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── what we build (projects from docs/PROJECT-CATALOG.md) ──────────── -->
+      <section class="section" id="build" aria-labelledby="build-title">
+        <div class="container">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">What we build</span>
+            <h2 class="t-h2" id="build-title">{{page.build.title}} <span class="t-accent">{{page.build.accent}}</span></h2>
+            <p class="section-header__sub t-subheading">{{page.build.sub}}</p>
+          </header>
+          <div class="offers offers--{{page.look.offers}}" data-reveal-stagger>
+            <!-- @each page.offers as offer -->
+            <article class="offer-card card card--interactive">
+              <p class="offer-card__num">Project 0{{loop.n}}</p>
+              <h3 class="t-h3">{{offer.name}}</h3>
+              <p class="offer-card__brief">{{offer.brief}}</p>
+              <ol class="offer-card__log" aria-label="What happens">
+                <!-- @each offer.log as line --><li>{{line}}</li><!-- @end -->
+              </ol>
+              <dl class="offer-card__facts">
+                <div><dt>You get</dt><dd>{{offer.get}}</dd></div>
+                <div><dt>Live in</dt><dd>{{offer.live}}</dd></div>
+              </dl>
+              <ul class="chips"><!-- @each offer.stack as t --><li class="chip">{{t}}</li><!-- @end --></ul>
+            </article>
+            <!-- @end -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ── under the hood ───────────────────────────────────────────────── -->
+      <section class="section section--dark" aria-labelledby="hood-title">
+        <div class="container">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Under the hood</span>
+            <h2 class="t-h2" id="hood-title">{{page.hood.title}} <span class="t-accent">{{page.hood.accent}}</span></h2>
+            <p class="section-header__sub t-subheading">{{page.hood.sub}}</p>
+          </header>
+          <div class="grid grid--3" data-reveal-stagger>
+            <!-- @each page.hood.items as h -->
+            <article class="card card--dark">
+              <span class="icon-tile icon-tile--{{h.tile}}"><!-- @include components/icon/{{h.icon}}.svg --></span>
+              <h3 class="card__title t-h3">{{h.name}}</h3>
+              <p class="card__text">{{h.text}}</p>
+            </article>
+            <!-- @end -->
+          </div>
+          <p class="t-meta u-mt-lg" data-reveal>Built on: <!-- @each page.hood.built-on as b sep=" · " -->{{b}}<!-- @end --></p>
+        </div>
+      </section>
+
+      <!-- ── how it sounds ────────────────────────────────────────────────── -->
+      <section class="section" aria-labelledby="talk-title">
+        <div class="container">
+          <header class="section-header section-header--center" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">How it sounds</span>
+            <h2 class="t-h2" id="talk-title">{{page.talk.title}}</h2>
+          </header>
+          <ol class="dialogue" data-reveal-stagger>
+            <!-- @each page.talk.lines as l -->
+            <li class="dialogue__line dialogue__line--{{l.who}}"><span class="dialogue__who">{{l.name}}</span><p>{{l.line}}</p></li>
+            <!-- @end -->
+          </ol>
+          <p class="dialogue__note" data-reveal>An example of a typical first call.</p>
+        </div>
+      </section>
+
+      <!-- ── engagement ───────────────────────────────────────────────────── -->
+      <section class="section" aria-labelledby="work-title">
+        <div class="container">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Working together</span>
+            <h2 class="t-h2" id="work-title">{{page.engagement.title}}</h2>
+          </header>
+          <ul class="engagement" data-reveal-stagger>
+            <!-- @each page.engagement.items as e -->
+            <li class="engagement__item card engagement__item--{{e.kind}}">
+              <h3 class="t-h3">{{e.name}}</h3>
+              <p class="engagement__time">{{e.time}}</p>
+              <p>{{e.what}}</p>
+              <p class="engagement__best">{{e.best}}</p>
+            </li>
+            <!-- @end -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- ── faq ──────────────────────────────────────────────────────────── -->
+      <section class="section" id="faq" aria-labelledby="faq-title">
+        <div class="container container--prose">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Questions</span>
+            <h2 class="t-h2" id="faq-title">{{page.faq-title}}</h2>
+          </header>
+          <div data-reveal>
+            <!-- @each page.faq as f -->
+            <details class="accordion" name="faq">
+              <summary>{{f.q}} <span class="accordion__icon" aria-hidden="true"></span></summary>
+              <div class="accordion__body">{{f.a}}</div>
+            </details>
+            <!-- @end -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ── contact ──────────────────────────────────────────────────────── -->
+      <section class="section section--dark" id="contact" aria-labelledby="contact-title">
+        <div class="container">
+          <div class="split split--top">
+            <div class="stack stack--lg" data-reveal>
+              <header class="section-header">
+                <span class="section-header__eyebrow t-eyebrow">Next step</span>
+                <h2 class="t-h2" id="contact-title">{{page.cta.title}} <span class="t-accent">{{page.cta.accent}}</span></h2>
+                <p class="section-header__sub t-subheading">{{page.cta.text}}</p>
+              </header>
+              <!-- @include components/contact-links/contact-links.html variant="cards" -->
+            </div>
+            <form class="contact-form card" data-contact-form data-to="{{site.email}}" data-reveal>
+              <label class="field"><span class="field__label">Your name</span><input class="field__input" name="name" type="text" autocomplete="name" placeholder="Jane Smith" required /></label>
+              <label class="field"><span class="field__label">Work email</span><input class="field__input" name="email" type="email" autocomplete="email" placeholder="jane@company.com" required /></label>
+              <label class="field"><span class="field__label">What do you need?</span><textarea class="field__input" name="message" placeholder="{{page.cta.placeholder|attr}}" required></textarea></label>
+              <button class="btn btn--primary btn--block" type="submit">Send to {{site.email}} <span class="btn__arrow" aria-hidden="true">&rarr;</span></button>
+              <p class="contact-form__note">Opens your email app with your message ready to send.</p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── related ──────────────────────────────────────────────────────── -->
+      <section class="section" aria-labelledby="related-title">
+        <div class="container">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Keep exploring</span>
+            <h2 class="t-h2" id="related-title">Related solutions</h2>
+          </header>
+          <ul class="related-links" data-reveal-stagger>
+            <!-- @each page.related as r -->
+            <li><a class="related-links__item card card--interactive" href="{{r.path}}"><b>{{r.name}}</b><span>{{r.line}}</span></a></li>
+            <!-- @end -->
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- @include components/footer/footer.html tagline="Private AI, automation, backups and monitoring for small businesses in the US and Australia — built on open source, owned by you." -->
+  </body>
+</html>

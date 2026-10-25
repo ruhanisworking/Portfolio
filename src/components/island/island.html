@@ -1,0 +1,34 @@
+<header class="island" data-island data-state="open">
+  <nav class="island__bar" aria-label="Main">
+    <a class="island__brand" href="/" aria-label="Ruhan — home">
+      <!-- @include components/wordmark/wordmark.html id="island" -->
+    </a>
+
+    <span class="island__status" aria-hidden="true">
+      <span class="island__status-inner">
+        <span class="island__dot"></span>
+        <span class="island__label" data-island-label>{{props.home}}</span>
+      </span>
+    </span>
+
+    <div class="island__links" id="island-links">
+      <div class="island__links-inner">
+        <a class="island__link" href="/#services" data-island-link>Services</a>
+        <a class="island__link" href="/#work" data-island-link>Work</a>
+        <a class="island__link" href="/#process" data-island-link>Process</a>
+        <a class="island__link" href="/#about" data-island-link>About</a>
+        <a class="island__link" href="/#faq" data-island-link>FAQ</a>
+        <a class="island__cta" href="mailto:{{site.email}}">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          {{site.email}}
+        </a>
+      </div>
+    </div>
+
+    <button class="island__toggle" type="button" data-island-toggle
+            aria-expanded="false" aria-controls="island-links" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+  <span class="island__progress" aria-hidden="true"></span>
+</header>

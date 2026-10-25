@@ -24,44 +24,41 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Prepare public site files
+      # The site is built from src/ + content/ + DESIGN.md into dist/ (no
+      # dependencies to install). check.mjs fails the deploy on any design
+      # token or SEO rule violation, so a broken page never goes live.
+      - name: Build and check
         run: |
-          mkdir _site
-          cp index.html _site/
-          cp -r css js assets _site/
-          if [ -f CNAME ]; then cp CNAME _site/; fi
-          if [ -f robots.txt ]; then cp robots.txt _site/; fi
-          if [ -f favicon.svg ]; then cp favicon.svg _site/; fi
-          if [ -f sitemap.xml ]; then cp sitemap.xml _site/; fi
+          node tools/build.mjs
+          node tools/check.mjs
+          if [ -f CNAME ]; then cp CNAME dist/; fi
 
-      # Cache-busting. GitHub Pages tells browsers to cache css/js/images, and
-      # since those URLs never change a returning visitor keeps the old copy —
-      # which is why a normal tab shows a stale site while incognito (empty
-      # cache) shows the new one. Stamping the commit SHA onto each asset URL
-      # makes every deploy a new URL, so the browser has to fetch it.
-      # Done here rather than in index.html so opening the file locally still
-      # uses clean paths.
+      # Cache-busting. Browsers cache css/js/favicons; stamping the commit SHA
+      # onto those URLs makes every deploy a new URL, so returning visitors
+      # get the new site instead of a stale copy.
       - name: Stamp asset URLs with the commit SHA
         run: |
           VER="${GITHUB_SHA:0:8}"
-          sed -i \
-            -e "s|href=\"css/styles.css\"|href=\"css/styles.css?v=$VER\"|g" \
-            -e "s|src=\"js/i18n.js\"|src=\"js/i18n.js?v=$VER\"|g" \
-            -e "s|src=\"js/script.js\"|src=\"js/script.js?v=$VER\"|g" \
-            -e "s|href=\"favicon.svg\"|href=\"favicon.svg?v=$VER\"|g" \
-            -e "s|href=\"assets/images/favicon-\([0-9]\+\)\.png\"|href=\"assets/images/favicon-\1.png?v=$VER\"|g" \
-            _site/index.html
+          find dist -name '*.html' -print0 | xargs -0 sed -i \
+            -e "s|href=\"/css/site.css\"|href=\"/css/site.css?v=$VER\"|g" \
+            -e "s|src=\"/js/site.js\"|src=\"/js/site.js?v=$VER\"|g" \
+            -e "s|href=\"/favicon.svg\"|href=\"/favicon.svg?v=$VER\"|g" \
+            -e "s|href=\"/favicon-\([0-9]\+\)\.png\"|href=\"/favicon-\1.png?v=$VER\"|g"
           echo "stamped with v=$VER"
-          grep -o 'v=[0-9a-f]\{8\}' _site/index.html | sort -u
-          grep -c 'v=' _site/index.html
+          grep -c "v=$VER" dist/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "_site"
+          path: "dist"
 
       - name: Deploy to GitHub Pages
         id: deployment

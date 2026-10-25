@@ -1,0 +1,36 @@
+/* Case card — one piece of work on a dark card: eyebrow (client type) → title
+   → problem → what was built → two facts → stack chips.
+   Markup: <article class="case-card card card--dark">
+             <p class="case-card__who t-eyebrow">…</p><h3 class="t-h3">…</h3>
+             <p class="case-card__text">…</p>
+             <dl class="case-card__facts"><div><dt>…</dt><dd>…</dd></div>…</dl>
+             <ul class="chips case-card__stack">…</ul></article> */
+.case-card { display: flex; flex-direction: column; gap: var(--space-sm); height: 100%; }
+.case-card__who { color: var(--color-orange-300); }
+.case-card__text { color: var(--color-on-dark-muted); font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); }
+.case-card__text strong { color: var(--color-on-dark); font-weight: var(--type-button-weight); }
+
+.case-card__facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin-top: auto;
+  padding-top: var(--space-sm);
+  border-top: var(--border-dark);
+}
+.case-card__facts div { display: flex; flex-direction: column-reverse; gap: var(--space-3xs); }
+.case-card__facts dd {
+  font-family: var(--type-h2-family);
+  font-size: var(--c-case-card-fact-size);
+  font-weight: var(--type-h2-weight);
+  line-height: 1;
+  color: var(--c-case-card-fact-value);
+}
+.case-card__facts dt { font-size: var(--type-meta-size); color: var(--c-case-card-fact-label); }
+
+.case-card__stack { list-style: none; }
+.case-card__stack .chip {
+  background: var(--color-dark-3);
+  border-color: var(--color-hairline-dark);
+  color: var(--color-on-dark-muted);
+}

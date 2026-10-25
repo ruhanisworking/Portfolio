@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!-- Home — ruhan.bd. SEO, keywords and the memorable lines live in
+     content/index.md; tools/check.mjs checks this page against them. -->
+<html lang="en" translate="no">
+  <head>
+    <!-- @include partials/head.html robots="index, follow, max-image-preview:large, max-snippet:-1" -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "{{site.url}}/#person",
+            "name": "{{site.full-name}}",
+            "alternateName": "{{site.name}}",
+            "jobTitle": "{{site.role}}",
+            "email": "mailto:{{site.email}}",
+            "url": "{{site.url}}/",
+            "image": "{{site.url}}/images/ruhan-avatar.png",
+            "sameAs": ["{{site.linkedin}}", "{{site.github}}"],
+            "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
+            "alumniOf": { "@type": "CollegeOrUniversity", "name": "Khulna University of Engineering & Technology (KUET)" },
+            "knowsAbout": ["AI automation", "Private AI", "Workflow automation", "n8n", "Self-hosted software", "Backup and recovery", "Server monitoring", "Cybersecurity", "Web accessibility", "Open source"]
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "{{site.url}}/#service",
+            "name": "{{site.name}} — AI automation & infrastructure engineering",
+            "url": "{{site.url}}/",
+            "email": "{{site.email}}",
+            "founder": { "@id": "{{site.url}}/#person" },
+            "areaServed": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "Australia" }],
+            "availableLanguage": "en",
+            "serviceType": ["Private AI setup", "Workflow automation", "Backup and recovery", "Server and uptime monitoring", "Security and compliance", "Accessible websites"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "{{site.url}}/#website",
+            "url": "{{site.url}}/",
+            "name": "{{site.name}}",
+            "inLanguage": "en",
+            "publisher": { "@id": "{{site.url}}/#person" }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <!-- @include components/island/island.html home="Hello" -->
+
+    <main id="main">
+
+      <!-- ── 1 · HERO ─────────────────────────────────────────────────────── -->
+      <section class="section" aria-labelledby="hero-title">
+        <div class="container stack stack--lg">
+          <div class="hero">
+            <div class="hero__copy" data-reveal-stagger>
+              <div class="hero__id">
+                <picture class="hero__avatar">
+                  <source srcset="/images/ruhan-avatar-256.webp" type="image/webp" />
+                  <img src="/images/ruhan-avatar-256.png" width="256" height="256" alt="Illustrated avatar of Ruhan, AI automation engineer" fetchpriority="high" />
+                </picture>
+                <div>
+                  <p class="hero__name">Ruhan</p>
+                  <p class="hero__handle"><span class="chip__dot" aria-hidden="true"></span>Taking new projects · US &amp; Australian hours</p>
+                </div>
+              </div>
+              <h1 class="hero__title" id="hero-title">
+                <span class="hero__kicker">AI automation engineer · private AI, backups &amp; monitoring</span>
+                <span class="hero__line"><span>Your systems.</span> <span class="t-accent">Your data.</span> <span>Your machines.</span></span>
+              </h1>
+              <p class="hero__lede">I'm Ruhan, an AI automation engineer. I build <strong>private AI</strong>, <strong>workflow automation</strong>, backups that actually restore and monitoring that warns you first — self-hosted on proven open source and supported after launch, for small businesses in the US and Australia.</p>
+              <div class="cluster">
+                <a class="btn btn--primary btn--stack-mobile" href="#contact">Book a free 30-minute call <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+                <a class="btn btn--secondary btn--stack-mobile" href="#work">See my work</a>
+              </div>
+              <!-- @include components/contact-links/contact-links.html variant="pills" -->
+            </div>
+
+            <div class="hero__stage" data-reveal>
+              <div class="hero__window hero__window--1"><!-- @include components/viz/viz-ai.html --></div>
+              <div class="hero__window hero__window--2"><!-- @include components/viz/viz-monitor.html --></div>
+              <div class="hero__window hero__window--3"><!-- @include components/viz/viz-automation.html --></div>
+              <span class="hero__badge hero__badge--1"><span class="icon-tile icon-tile--3" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4 10-10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Restore test passed</span>
+            </div>
+          </div>
+
+          <dl class="stat-strip" data-reveal>
+            <div class="stat-strip__item"><dt class="stat-strip__label">years shipping production systems</dt><dd class="stat-strip__value">2.5</dd></div>
+            <div class="stat-strip__item"><dt class="stat-strip__label">organizations, incl. government</dt><dd class="stat-strip__value">5</dd></div>
+            <div class="stat-strip__item"><dt class="stat-strip__label">projects shipped</dt><dd class="stat-strip__value">18</dd></div>
+            <div class="stat-strip__item"><dt class="stat-strip__label">time zones covered</dt><dd class="stat-strip__value">US · AU</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ── 2 · SERVICES ─────────────────────────────────────────────────── -->
+      <section class="section" id="services" aria-labelledby="services-title">
+        <div class="container">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">01 · What I build</span>
+            <h2 class="t-h2" id="services-title">Private AI, automation &amp; backups <span class="t-accent">for small business</span></h2>
+            <p class="section-header__sub t-subheading">Six problems I solve. Each one runs on infrastructure you own and is built on proven open source — no per-seat fees, and nothing quietly leaves your network.</p>
+          </header>
+
+          <div class="grid grid--3" data-reveal-stagger>
+            <article class="card card--interactive">
+              <div class="card__media"><!-- @include components/viz/viz-ai.html --></div>
+              <p class="card__problem">"My team pastes client data into ChatGPT."</p>
+              <h3 class="card__title t-h3">Private AI for business</h3>
+              <p class="card__text">A ChatGPT-style assistant on your own server that answers from your documents — with the source for every answer.</p>
+              <a class="btn btn--ghost btn--sm card__link" href="/solutions/ai-agent-development/">Explore AI agents &amp; chatbots <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+            </article>
+            <article class="card card--interactive">
+              <div class="card__media"><!-- @include components/viz/viz-automation.html --></div>
+              <p class="card__problem">"We copy the same data between five apps."</p>
+              <h3 class="card__title t-h3">Workflow automation with n8n</h3>
+              <p class="card__text">Workflows that move leads, invoices and emails on their own, with AI steps where they genuinely help.</p>
+              <a class="btn btn--ghost btn--sm card__link" href="/solutions/workflow-automation/">Explore workflow automation <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+            </article>
+            <article class="card card--interactive">
+              <div class="card__media"><!-- @include components/viz/viz-backup.html --></div>
+              <p class="card__problem">"We have backups. Nobody has tested a restore."</p>
+              <h3 class="card__title t-h3">Backup and recovery</h3>
+              <p class="card__text">Encrypted and offline copies, monthly restore tests and a one-page ransomware recovery plan your team can follow.</p>
+              <a class="btn btn--ghost btn--sm card__link" href="/solutions/small-business-backup/">Explore backup &amp; recovery <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+            </article>
+            <article class="card card--interactive">
+              <div class="card__media"><!-- @include components/viz/viz-monitor.html --></div>
+              <p class="card__problem">"We hear about downtime from customers."</p>
+              <h3 class="card__title t-h3">Server monitoring &amp; uptime alerts</h3>
+              <p class="card__text">Uptime checks, server health and forecast alerts — so you know days before a disk fills up, not minutes after.</p>
+              <a class="btn btn--ghost btn--sm card__link" href="/solutions/server-monitoring/">Explore monitoring &amp; IT support <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+            </article>
+            <article class="card card--interactive">
+              <div class="card__media"><!-- @include components/viz/viz-security.html --></div>
+              <p class="card__problem">"Shared passwords, no MFA — and an audit coming."</p>
+              <h3 class="card__title t-h3">Security &amp; compliance basics</h3>
+              <p class="card__text">A team password vault, single sign-on and MFA, patching, and the evidence behind Essential Eight, HIPAA or SOC 2 prep.</p>
+              <a class="btn btn--ghost btn--sm card__link" href="/solutions/small-business-cybersecurity/">Explore security &amp; compliance <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+            </article>
+            <article class="card card--interactive">
+              <div class="card__media"><!-- @include components/viz/viz-web.html --></div>
+              <p class="card__problem">"One inaccessible checkout from an ADA letter."</p>
+              <h3 class="card__title t-h3">Accessible websites &amp; stores</h3>
+              <p class="card__text">WCAG 2.2 AA websites and online stores, accessibility audits and fixes, and monthly re-scans with a report.</p>
+              <a class="btn btn--ghost btn--sm card__link" href="/solutions/website-accessibility/">Explore websites &amp; accessibility <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+            </article>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── 2b · EVERY SOLUTION (from content/solutions/*.md) ─────────────── -->
+      <section class="section" id="solutions" aria-labelledby="solutions-title">
+        <div class="container">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Every solution</span>
+            <h2 class="t-h2" id="solutions-title">Eleven ways we take work <span class="t-accent">off your plate</span></h2>
+            <p class="section-header__sub t-subheading">Each page tells the full story: the problem, how we solve it, what we build and what it's built on.</p>
+          </header>
+          <ul class="related-links related-links--icons" data-reveal-stagger>
+            <!-- @each solutions as sol -->
+            <li><a class="related-links__item card card--interactive" href="{{sol.seo.path}}">
+              <span class="icon-tile icon-tile--{{loop.n}}"><!-- @include components/icon/{{sol.icon}}.svg --></span>
+              <b>{{sol.hero.crumb}}</b><span>{{sol.hero.line}}</span>
+            </a></li>
+            <!-- @end -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- ── 3 · WORK ─────────────────────────────────────────────────────── -->
+      <section class="section section--dark" id="work" aria-labelledby="work-title">
+        <div class="container">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">02 · Selected work</span>
+            <h2 class="t-h2" id="work-title">Built for the day <span class="t-accent">something breaks.</span></h2>
+            <p class="section-header__sub t-subheading">Self-hosted systems from my own lab, a US software company and national government platforms. Public-sector clients are described, not named.</p>
+          </header>
+
+          <div class="grid grid--2" data-reveal-stagger>
+            <article class="case-card card card--dark">
+              <p class="case-card__who t-eyebrow">Own product · Backup</p>
+              <h3 class="t-h3">Self-healing office backup mesh</h3>
+              <p class="case-card__text"><strong>The problem:</strong> small offices pay for cloud backup and still lose work when a PC dies. <strong>What I built:</strong> an agent that encrypts files on their owner's PC, splits them into erasure-coded shards and stores them on the other PCs in the office — no central server, and every restore is verified by hash.</p>
+              <dl class="case-card__facts">
+                <div><dt>central servers needed</dt><dd>0</dd></div>
+                <div><dt>restores hash-verified</dt><dd>All</dd></div>
+              </dl>
+              <ul class="chips case-card__stack"><li class="chip">Go</li><li class="chip">Erasure coding</li><li class="chip">End-to-end encryption</li><li class="chip">Windows service</li></ul>
+            </article>
+
+            <article class="case-card card card--dark">
+              <p class="case-card__who t-eyebrow">Own product · Monitoring</p>
+              <h3 class="t-h3">Monitoring with forecast alerts</h3>
+              <p class="case-card__text"><strong>The problem:</strong> outages found by users, disks found full. <strong>What I built:</strong> agents for Windows and Linux, checks for databases, DNS and services, an alert engine that learns each server's normal and forecasts trouble, and a maintenance calendar that silences planned work.</p>
+              <dl class="case-card__facts">
+                <div><dt>platforms watched</dt><dd>Win · Linux</dd></div>
+                <div><dt>alerting</dt><dd>Forecast</dd></div>
+              </dl>
+              <ul class="chips case-card__stack"><li class="chip">C# / .NET</li><li class="chip">Time series</li><li class="chip">Docker</li><li class="chip">Alerting</li></ul>
+            </article>
+
+            <article class="case-card card card--dark">
+              <p class="case-card__who t-eyebrow">US software company · AI</p>
+              <h3 class="t-h3">AI document generation engine</h3>
+              <p class="case-card__text"><strong>The problem:</strong> reports assembled by hand from scattered files. <strong>What I built:</strong> upload the documents, describe the report, and a multi-turn AI agent writes it using retrieval over a vector index — routing work between OpenAI and Gemini to keep costs down. Promoted to team lead during the engagement.</p>
+              <dl class="case-card__facts">
+                <div><dt>LLM providers, cost-routed</dt><dd>2</dd></div>
+                <div><dt>my role by the end</dt><dd>Lead</dd></div>
+              </dl>
+              <ul class="chips case-card__stack"><li class="chip">Python · FastAPI</li><li class="chip">RAG</li><li class="chip">Vector DB</li><li class="chip">React</li></ul>
+            </article>
+
+            <article class="case-card card card--dark">
+              <p class="case-card__who t-eyebrow">Government · National scale</p>
+              <h3 class="t-h3">Platforms that can't go down</h3>
+              <p class="case-card__text"><strong>What I built:</strong> time-gated exam paper delivery to centres nationwide, a tamper-evident results archive going back to 2000, and a 10-service logistics platform on Kubernetes with continuous delivery — plus security hardening of four legacy exam systems.</p>
+              <dl class="case-card__facts">
+                <div><dt>services, zero manual deploys</dt><dd>10</dd></div>
+                <div><dt>results archived since</dt><dd>2000</dd></div>
+              </dl>
+              <ul class="chips case-card__stack"><li class="chip">Spring Boot</li><li class="chip">PostgreSQL · Oracle</li><li class="chip">Kubernetes</li><li class="chip">Jenkins</li></ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 4 · PROCESS ──────────────────────────────────────────────────── -->
+      <section class="section" id="process" aria-labelledby="process-title">
+        <div class="container">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">03 · How I work</span>
+            <h2 class="t-h2" id="process-title">Written plans. Weekly demos. <span class="t-accent">No surprises.</span></h2>
+            <p class="section-header__sub t-subheading">A remote engagement built for small teams: you always know what's being built, what it costs and who to call.</p>
+          </header>
+          <ol class="process-steps" data-reveal-stagger>
+            <li class="process-steps__item">
+              <span class="process-steps__num" aria-hidden="true">1</span>
+              <h3 class="t-h3">Assess</h3>
+              <p>A free 30-minute call, then a written plan: what to build, what it replaces and a fixed price.</p>
+            </li>
+            <li class="process-steps__item">
+              <span class="process-steps__num" aria-hidden="true">2</span>
+              <h3 class="t-h3">Build</h3>
+              <p>Working demos every week on your own infrastructure, so you can change your mind while it's still cheap.</p>
+            </li>
+            <li class="process-steps__item">
+              <span class="process-steps__num" aria-hidden="true">3</span>
+              <h3 class="t-h3">Run</h3>
+              <p>Monitoring, tested backups and updates after launch, with response times in writing — or a clean handover to your team.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ── 5 · ABOUT ────────────────────────────────────────────────────── -->
+      <section class="section" id="about" aria-labelledby="about-title">
+        <div class="container">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">04 · About</span>
+            <h2 class="t-h2" id="about-title">A freelance software engineer with <span class="t-accent">government-scale experience</span></h2>
+            <p class="section-header__sub t-subheading">I'm a freelance software engineer based in Dhaka, Bangladesh, working with teams in the US and Australia. I've spent 2.5 years shipping systems where downtime isn't a metric — it's an incident.</p>
+          </header>
+
+          <div class="split split--top">
+            <ol class="timeline" data-reveal-stagger>
+              <li class="timeline__item">
+                <p class="timeline__when">May 2024 — present</p>
+                <h3 class="t-h3">Programmer</h3>
+                <p class="timeline__where">IICT, BUET · Institute of Information &amp; Communication Technology</p>
+                <p class="timeline__text">Lead engineer on national exam, results and logistics platforms — full-stack, DevOps, database administration and security hardening. Promoted from Assistant Programmer.</p>
+              </li>
+              <li class="timeline__item">
+                <p class="timeline__when">Jan 2025 — Oct 2025</p>
+                <h3 class="t-h3">Team Lead, Full-Stack</h3>
+                <p class="timeline__where">US-based software company · remote</p>
+                <p class="timeline__text">Joined as a developer, promoted to team lead. Shipped an AI document engine, a restaurant platform with thermal-printer ordering and the company website.</p>
+              </li>
+              <li class="timeline__item">
+                <p class="timeline__when">2024</p>
+                <h3 class="t-h3">BSc, Computer Science &amp; Engineering</h3>
+                <p class="timeline__where">KUET · CGPA 3.72 / 4.00 · Dean's Award</p>
+                <p class="timeline__text">Thesis research on verifiable search over encrypted cloud data.</p>
+              </li>
+            </ol>
+
+            <div class="card stack" data-reveal>
+              <h3 class="t-h4">Toolkit</h3>
+              <p class="t-meta">AI</p>
+              <ul class="chips"><li class="chip">Ollama</li><li class="chip">RAG</li><li class="chip">OpenAI</li><li class="chip">Gemini</li><li class="chip">Vector DBs</li></ul>
+              <p class="t-meta">Backend</p>
+              <ul class="chips"><li class="chip">Spring Boot</li><li class="chip">FastAPI</li><li class="chip">Laravel</li><li class="chip">Go</li></ul>
+              <p class="t-meta">Data</p>
+              <ul class="chips"><li class="chip">PostgreSQL</li><li class="chip">Oracle</li><li class="chip">MongoDB</li><li class="chip">ClickHouse</li><li class="chip">Kafka</li></ul>
+              <p class="t-meta">Infrastructure</p>
+              <ul class="chips"><li class="chip">Linux</li><li class="chip">Docker</li><li class="chip">Kubernetes</li><li class="chip">Jenkins</li><li class="chip">Nginx</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 6 · FAQ ──────────────────────────────────────────────────────── -->
+      <section class="section" id="faq" aria-labelledby="faq-title">
+        <div class="container container--prose">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">05 · Questions</span>
+            <h2 class="t-h2" id="faq-title">Self-hosted AI &amp; remote work, <span class="t-accent">answered</span></h2>
+          </header>
+          <div data-reveal>
+            <details class="accordion" name="faq" open>
+              <summary>Do you work with clients in the US and Australia? <span class="accordion__icon" aria-hidden="true"></span></summary>
+              <div class="accordion__body">Yes — all of my client work is remote. My day in Dhaka (GMT+6) overlaps the Australian working day, and for US clients I work while you sleep and hand over by your morning. Calls fit your morning or evening.</div>
+            </details>
+            <details class="accordion" name="faq">
+              <summary>What does "private" or "self-hosted" mean for my business? <span class="accordion__icon" aria-hidden="true"></span></summary>
+              <div class="accordion__body">The software runs on a computer or server you control — in your office or your own cloud account — instead of on someone else's platform. Your data stays there, and you never pay per-seat licence fees.</div>
+            </details>
+            <details class="accordion" name="faq">
+              <summary>How do you price a project? <span class="accordion__icon" aria-hidden="true"></span></summary>
+              <div class="accordion__body">After the free assessment you get a fixed price in writing for the setup. Monitoring, backups and support can continue on a simple monthly plan — or I hand everything over to your team.</div>
+            </details>
+            <details class="accordion" name="faq">
+              <summary>Will you sign an NDA and work to HIPAA or Essential Eight? <span class="accordion__icon" aria-hidden="true"></span></summary>
+              <div class="accordion__body">Yes, I sign NDAs. I build to those control sets and give you the evidence — configurations, test results, reports. The formal assessment or certification is done by your auditor.</div>
+            </details>
+            <details class="accordion" name="faq">
+              <summary>Can you work with Microsoft 365 or Google Workspace? <span class="accordion__icon" aria-hidden="true"></span></summary>
+              <div class="accordion__body">Yes. Private AI, automation and backups connect to the tools you already use — nothing needs to be replaced just to get started.</div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 7 · CONTACT ──────────────────────────────────────────────────── -->
+      <section class="section section--dark" id="contact" aria-labelledby="contact-title">
+        <div class="container">
+          <div class="split split--top">
+            <div class="stack stack--lg" data-reveal>
+              <header class="section-header">
+                <span class="section-header__eyebrow t-eyebrow">06 · Contact</span>
+                <h2 class="t-h2" id="contact-title">Tell me what's <span class="t-accent">slowing you down.</span></h2>
+                <p class="section-header__sub t-subheading">Email is fastest — I reply within one business day with questions or a time for a call.</p>
+              </header>
+              <!-- @include components/contact-links/contact-links.html variant="cards" -->
+            </div>
+
+            <form class="contact-form card" data-contact-form data-to="{{site.email}}" data-reveal>
+              <label class="field"><span class="field__label">Your name</span><input class="field__input" name="name" type="text" autocomplete="name" placeholder="Jane Smith" required /></label>
+              <label class="field"><span class="field__label">Work email</span><input class="field__input" name="email" type="email" autocomplete="email" placeholder="jane@company.com" required /></label>
+              <label class="field"><span class="field__label">What do you need?</span><textarea class="field__input" name="message" placeholder="e.g. a private AI assistant for 12 staff, or tested backups for our office" required></textarea></label>
+              <button class="btn btn--primary btn--block" type="submit">Send to {{site.email}} <span class="btn__arrow" aria-hidden="true">&rarr;</span></button>
+              <p class="contact-form__note">Opens your email app with your message ready to send.</p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- @include components/footer/footer.html tagline="Private AI, automation, backups and monitoring for small businesses in the US and Australia — built on open source, owned by you." -->
+  </body>
+</html>

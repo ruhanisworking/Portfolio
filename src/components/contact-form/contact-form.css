@@ -1,0 +1,6 @@
+/* Contact form — name / email / message. Sending opens the visitor's mail app
+   with everything filled in and addressed to the site email (contact-form.js),
+   so nothing depends on a third-party form service.
+   Markup: <form class="contact-form card" data-contact-form data-to="…">…fields…</form> */
+.contact-form { display: flex; flex-direction: column; gap: var(--c-contact-form-gap); }
+.contact-form__note { font-size: var(--type-meta-size); color: var(--color-text-subtle); text-align: center; }
