@@ -1,0 +1,29 @@
+# Copy of ~/hermes/compose.yaml on the VM (user ruhan). No secrets here:
+# dashboard.env and tunnel.env sit next to it on the VM and are never committed.
+services:
+  hermes:
+    image: nousresearch/hermes-agent:latest
+    container_name: hermes
+    restart: unless-stopped
+    command: gateway run
+    ports:
+      - 127.0.0.1:8642:8642   # gateway API (local only)
+      - 127.0.0.1:9119:9119   # dashboard (local only; public via the tunnel)
+    volumes:
+      - /home/ruhan/.hermes:/opt/data
+    env_file:
+      - dashboard.env
+    environment:
+      - HERMES_DASHBOARD=1
+      - PUID=1001
+      - PGID=1001
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    env_file:
+      - tunnel.env
+    depends_on:
+      - hermes

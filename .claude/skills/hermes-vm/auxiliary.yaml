@@ -1,0 +1,30 @@
+# Appended to the end of ~/.hermes/config.yaml on the VM.
+# Keeps every Hermes side task on free OpenRouter models; the built-in default
+# is the paid google/gemini-3-flash-preview.
+
+# --- ruhan: keep every side task on free OpenRouter models (no paid default) ---
+auxiliary:
+  vision:
+    provider: "openrouter"
+    model: "nvidia/nemotron-3.5-super-vl:free"
+  web_extract:
+    provider: "openrouter"
+    model: "nvidia/nemotron-3-super-120b-a12b:free"
+  tts_audio_tags:
+    provider: "openrouter"
+    model: "nvidia/nemotron-3-super-120b-a12b:free"
+  title_generation:
+    provider: "openrouter"
+    model: "nvidia/nemotron-3-super-120b-a12b:free"
+  compression:
+    provider: "openrouter"
+    model: "nvidia/nemotron-3-super-120b-a12b:free"
+  session_search:
+    provider: "openrouter"
+    model: "nvidia/nemotron-3-super-120b-a12b:free"
+  background_review:
+    provider: "openrouter"
+    model: "nvidia/nemotron-3-super-120b-a12b:free"
+  curator:
+    provider: "openrouter"
+    model: "nvidia/nemotron-3-super-120b-a12b:free"

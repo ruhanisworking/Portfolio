@@ -25,6 +25,15 @@ For any visual / frontend work, load the **ruhan-frontend** skill
 - `npm run build && npm run check` must pass; then screenshot and look.
 - Agents: `frontend-builder` (builds) and `design-reviewer` (read-only review).
 
+## Hermes agent and ruhan.lol: use the hermes-vm skill
+
+Ruhan runs a personal Hermes Agent in Docker on his own VM. He talks to it over
+Telegram, and its dashboard is at https://ruhan.lol behind Cloudflare Access.
+For anything about it, load the **hermes-vm** skill
+(`.claude/skills/hermes-vm/SKILL.md`). Connect with `ssh ruhan-vm`. The host,
+port and Cloudflare IDs are in `docs/notes/hermes-vm-private.md` (git-ignored).
+Never commit them or any key or token. Log progress in that note's status log.
+
 ## Content and language
 
 Audience is the US and Australia, US English. The new site has no Bangla for
