@@ -1,0 +1,85 @@
+#!/opt/hermes/.venv/bin/python3
+"""Write the Commander mail page (/opt/data/commander/data/mail.json) from both inboxes.
+
+No AI involved: lists unread mail per account (sender, subject, time, which
+address it came to) and counts drafts, through himalaya. Never reads bodies.
+Run by hand or from a Hermes cron job:  commander-mail
+"""
+import datetime as dt
+import json
+import os
+import subprocess
+
+OUT = "/opt/data/commander/data/mail.json"
+ACCOUNTS = {"personal": "personal", "work": "work"}
+ALIASES = ("me@ruhan.bd", "hi@ruhan.bd")
+SCAN = 40  # newest envelopes looked at per account
+BD = dt.timezone(dt.timedelta(hours=6))
+
+
+def envelopes(account, mailbox=None, size=SCAN):
+    cmd = ["himalaya", "--json", "-a", account, "envelope", "list", "-s", str(size)]
+    if mailbox:
+        cmd += ["-m", mailbox]
+    out = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
+    if out.returncode != 0:
+        raise RuntimeError(f"{account}: {out.stderr.strip() or out.stdout.strip()}")
+    return json.loads(out.stdout).get("envelopes", [])
+
+
+def addressed_to(env, account):
+    to = [a.get("email", "").lower() for a in env.get("to") or []]
+    for alias in ALIASES:
+        if alias in to:
+            return alias
+    return "work" if account == "work" else "gmail"
+
+
+def item(env, account):
+    sender = (env.get("from") or [{}])[0]
+    when = dt.datetime.fromisoformat(env["date"].replace("Z", "+00:00")).astimezone(BD)
+    return {
+        "title": env.get("subject") or "(no subject)",
+        "meta": f"{sender.get('name') or sender.get('email', '?')} · {when:%b %d, %H:%M}",
+        "tag": addressed_to(env, account),
+    }
+
+
+def main():
+    stats, lists, errors, unread_total = [], [], [], 0
+    for label, account in ACCOUNTS.items():
+        try:
+            envs = envelopes(account)
+        except Exception as e:  # keep the page useful when one inbox fails
+            errors.append(str(e))
+            continue
+        unread = [e for e in envs if "seen" not in [f.lower() for f in e.get("flags") or []]]
+        unread_total += len(unread)
+        stats.append({"label": f"Unread · {label}", "value": str(len(unread)),
+                      "note": f"of the newest {len(envs)}"})
+        lists.append({"title": f"Unread · {label}", "empty": "Nothing unread.",
+                      "items": [item(e, account) for e in unread[:12]]})
+    try:
+        drafts = envelopes("personal", "drafts", 20)
+        stats.append({"label": "Drafts waiting", "value": str(len(drafts)), "note": "in Gmail, from me@ruhan.bd"})
+        lists.append({"title": "Drafts waiting", "empty": "No drafts. Ask Hermes to draft a reply.",
+                      "items": [{"title": d.get("subject") or "(no subject)",
+                                 "meta": ", ".join(a.get("email", "") for a in d.get("to") or []) or "no recipient"}
+                                for d in drafts]})
+    except Exception as e:
+        errors.append(str(e))
+
+    summary = f"{unread_total} unread across both inboxes."
+    if errors:
+        summary += " Could not read: " + "; ".join(errors)
+    data = {"updated": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "summary": summary, "stats": stats, "lists": lists}
+    tmp = OUT + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=1)
+    os.replace(tmp, OUT)
+    print(summary)
+
+
+if __name__ == "__main__":
+    main()
