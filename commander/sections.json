@@ -4,7 +4,6 @@
     {
       "name": "Today",
       "items": [
-        { "id": "mail", "title": "Mail", "icon": "mail", "tile": "1", "blurb": "Both inboxes and all four addresses: what needs a reply, and drafts waiting for you.", "ask": "update my mail on the commander" },
         { "id": "calendar", "title": "Calendar", "icon": "calendar", "tile": "2", "blurb": "Meetings and deadlines coming up this week.", "ask": "add my meetings to the commander calendar" },
         { "id": "todo", "title": "To-do", "icon": "check", "tile": "3", "blurb": "Open tasks, what is due today, and what got done.", "ask": "add a to-do: …" },
         { "id": "expenses", "title": "Expenses", "icon": "wallet", "tile": "4", "blurb": "Daily spending, this week and this month.", "ask": "expense 250 taka lunch" }

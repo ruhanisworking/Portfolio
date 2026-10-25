@@ -595,7 +595,7 @@ components:
     duration: "{motion.reveal}"
     ease: "{motion.ease}"
     stagger: "{motion.stagger}"
-  # Commander (ruhan.lol, private dashboard behind Cloudflare Access) — see commander/
+  # Commander (ruhan.lol, public summary site run by Hermes) — see commander/
   cmd-shell:
     sidebar-width: "264px"
     bg: "{colors.dark}"

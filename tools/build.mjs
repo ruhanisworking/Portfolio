@@ -233,8 +233,8 @@ export function build() {
   console.log(`built dist/ in ${Date.now() - t0}ms`);
 }
 
-// Commander — Ruhan's private dashboard at ruhan.lol (behind Cloudflare Access,
-// served from the VM). Same tokens, CSS and JS bundle as the site, but its own
+// Commander — Ruhan's public summary site at ruhan.lol, run by Hermes and
+// served from the VM. Same tokens, CSS and JS bundle as the site, but its own
 // pages: commander/pages/*.html, plus commander/section.html once per section in
 // commander/sections.json → dist-commander/<id>/index.html. Its data is not
 // built here: Hermes writes /data/<id>.json on the VM.
