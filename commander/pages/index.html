@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- Commander home: Hermes' daily brief (data/home.json) and a card per section. -->
+<html lang="en" translate="no" class="notranslate">
+  <head>
+    <!-- @include partials/cmd-head.html title="Overview" -->
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="cmd" data-cmd data-nav="closed">
+      <!-- @include components/cmd-shell/cmd-shell.html -->
+      <main class="cmd__main" id="main">
+        <div class="cmd__content stack stack--lg">
+          <header class="cmd__head">
+            <span class="t-eyebrow">Commander</span>
+            <h1 class="cmd__title t-h2">Everything, <span class="t-accent">at a glance</span></h1>
+            <p class="t-body t-muted">Hermes keeps these pages up to date. Ask it on Telegram to change anything.</p>
+          </header>
+
+          <section class="stack" aria-labelledby="brief">
+            <h2 class="t-h4" id="brief">Today's brief</h2>
+            <!-- @include components/cmd-panel/cmd-panel.html id="home" ask="write today's brief on the commander" -->
+          </section>
+
+          <!-- @each page.groups as group -->
+          <section class="stack" aria-label="{{group.name}}">
+            <h2 class="t-eyebrow">{{group.name}}</h2>
+            <div class="cmd-cards">
+              <!-- @each group.items as s -->
+              <a class="card card--interactive cmd-card" href="/{{s.id}}/" data-cmd-card="{{s.id}}">
+                <span class="cmd-card__top">
+                  <span class="icon-tile icon-tile--{{s.tile}}"><!-- @include components/icon/{{s.icon}}.svg --></span>
+                  <span class="t-meta t-subtle" data-cmd-card-updated></span>
+                </span>
+                <span class="card__title t-h4">{{s.title}}</span>
+                <span class="card__text" data-cmd-card-summary>{{s.blurb}}</span>
+                <span class="cmd-card__stats" data-cmd-card-stats></span>
+              </a>
+              <!-- @end -->
+            </div>
+          </section>
+          <!-- @end -->
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

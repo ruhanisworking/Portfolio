@@ -229,7 +229,40 @@ export function build() {
   // photos are still shared with the live site in /assets until the switch-over
   if (existsSync(join(ROOT, "assets"))) cpSync(join(ROOT, "assets"), join(DIST, "assets"), { recursive: true });
 
+  if (existsSync(CMD)) buildCommander(ctx);
   console.log(`built dist/ in ${Date.now() - t0}ms`);
+}
+
+// Commander — Ruhan's private dashboard at ruhan.lol (behind Cloudflare Access,
+// served from the VM). Same tokens, CSS and JS bundle as the site, but its own
+// pages: commander/pages/*.html, plus commander/section.html once per section in
+// commander/sections.json → dist-commander/<id>/index.html. Its data is not
+// built here: Hermes writes /data/<id>.json on the VM.
+const CMD = join(ROOT, "commander");
+const CMD_DIST = join(ROOT, "dist-commander");
+
+function buildCommander(ctx) {
+  const cfg = JSON.parse(read(join(CMD, "sections.json")));
+  rmSync(CMD_DIST, { recursive: true, force: true });
+  const emit = (srcFile, page, name, outFile) => {
+    const pageCtx = { ...ctx, page, pageName: name };
+    write(outFile, includes(render(read(srcFile), pageCtx), pageCtx, srcFile));
+  };
+  for (const f of readdirSync(join(CMD, "pages")).filter((f) => f.endsWith(".html"))) {
+    emit(join(CMD, "pages", f), cfg, `commander/${f}`, join(CMD_DIST, f));
+  }
+  for (const group of cfg.groups) {
+    for (const s of group.items) {
+      emit(join(CMD, "section.html"), { ...cfg, section: { ...s, group: group.name } }, `commander/${s.id}`,
+        join(CMD_DIST, s.id, "index.html"));
+    }
+  }
+  cpSync(join(DIST, "css"), join(CMD_DIST, "css"), { recursive: true });
+  cpSync(join(DIST, "js"), join(CMD_DIST, "js"), { recursive: true });
+  for (const f of readdirSync(join(SRC, "static")).filter((f) => f.startsWith("favicon"))) {
+    cpSync(join(SRC, "static", f), join(CMD_DIST, f));
+  }
+  write(join(CMD_DIST, "robots.txt"), "User-agent: *\nDisallow: /\n");
 }
 
 function dev() {
@@ -262,6 +295,7 @@ function dev() {
   };
   watch(SRC, { recursive: true }, (_, file) => { if (file && !file.includes("tokens.css")) rebuild(); });
   watch(join(ROOT, "DESIGN.md"), rebuild);
+  if (existsSync(CMD)) watch(CMD, { recursive: true }, rebuild);
 }
 
 try {

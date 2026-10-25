@@ -187,6 +187,43 @@
         </div>
       </section>
 
+      <!-- ── commander (ruhan.lol, private) ───────────────────────────── -->
+      <section class="section" id="commander">
+        <div class="container stack stack--lg">
+          <!-- @include components/section-header/section-header.html eyebrow="Commander" title="Private dashboard" accent="blocks" sub="Used only on ruhan.lol (commander/). cmd-panel.js fills them from /data/&lt;id&gt;.json written by Hermes; here they are static." -->
+          <div class="cmd-stats" data-component="cmd-stat">
+            <div class="cmd-stat"><span class="cmd-stat__label">Needs reply</span><span class="cmd-stat__value">3</span><span class="cmd-stat__note">plain note</span></div>
+            <div class="cmd-stat"><span class="cmd-stat__label">Trend up</span><span class="cmd-stat__value">12</span><span class="cmd-stat__note" data-trend="up">+4 since last week</span></div>
+            <div class="cmd-stat"><span class="cmd-stat__label">Trend down</span><span class="cmd-stat__value">7</span><span class="cmd-stat__note" data-trend="down">−2 since last week</span></div>
+          </div>
+          <div class="cmd-panels" data-component="cmd-panel">
+            <section class="cmd-panel">
+              <div class="cmd-panel__head"><h3 class="cmd-panel__title t-h4">A list</h3><span class="t-meta t-subtle">2</span></div>
+              <ul class="cmd-list">
+                <li class="cmd-list__item"><div class="cmd-list__row"><span class="cmd-list__title">Item title</span><span class="cmd-list__meta">meta</span></div><p class="cmd-list__text">One line of text under the title.</p><span class="cmd-tag">tag</span></li>
+                <li class="cmd-list__item"><div class="cmd-list__row"><a class="cmd-list__title" href="#commander">Linked item</a><span class="cmd-list__meta">2 h ago</span></div></li>
+              </ul>
+            </section>
+            <section class="cmd-panel">
+              <div class="cmd-panel__head"><h3 class="cmd-panel__title t-h4">Empty list</h3></div>
+              <p class="cmd-empty"><strong>Nothing here yet.</strong>Ask Hermes on Telegram.</p>
+            </section>
+          </div>
+          <div class="cmd-cards">
+            <a class="card card--interactive cmd-card" href="#commander">
+              <span class="cmd-card__top"><span class="icon-tile"><!-- @include components/icon/mail.svg --></span><span class="t-meta t-subtle">5 min ago</span></span>
+              <span class="card__title t-h4">Overview card</span>
+              <span class="card__text">Summary line from the section's data.</span>
+              <span class="cmd-card__stats"><span><strong>3</strong> needs reply</span><span><strong>12</strong> unread</span></span>
+            </a>
+            <div class="stack stack--sm" data-component="cmd-shell">
+              <p class="t-body-sm t-muted">cmd-shell is the full-page layout (dark sidebar, sheet below lg). See it in dist-commander/ after a build.</p>
+              <div class="cluster"><span class="icon-tile icon-tile--2"><!-- @include components/icon/wallet.svg --></span><span class="icon-tile icon-tile--3"><!-- @include components/icon/check.svg --></span><span class="icon-tile icon-tile--4"><!-- @include components/icon/spark.svg --></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- markers for components that are shown elsewhere on this page or on the home page -->
       <div hidden data-component="hero"></div>
       <!-- shown on /solutions/ai-agents/ (src/templates/solution.html) -->

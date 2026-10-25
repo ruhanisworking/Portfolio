@@ -1,0 +1,38 @@
+/* Commander stat — one KPI: label, big value, optional note (data-trend="up|down" colours it).
+   Markup: <div class="cmd-stats"><div class="cmd-stat"><span class="cmd-stat__label">…</span>
+           <span class="cmd-stat__value">…</span><span class="cmd-stat__note" data-trend="up">…</span></div></div> */
+.cmd-stats {
+  display: grid;
+  gap: var(--space-sm);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--c-cmd-stat-min)), 1fr));
+}
+.cmd-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  padding: var(--c-cmd-stat-pad);
+  background: var(--c-cmd-stat-bg);
+  border: var(--c-cmd-stat-border);
+  border-radius: var(--c-cmd-stat-radius);
+}
+.cmd-stat__label {
+  font-family: var(--type-meta-family);
+  font-size: var(--type-meta-size);
+  font-weight: var(--type-meta-weight);
+  color: var(--c-cmd-stat-label);
+}
+.cmd-stat__value {
+  font-family: var(--type-h3-family);
+  font-size: var(--c-cmd-stat-value-size);
+  font-weight: var(--type-h3-weight);
+  line-height: var(--type-h1-leading);
+  color: var(--c-cmd-stat-value);
+  overflow-wrap: anywhere;
+}
+.cmd-stat__note {
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-leading);
+  color: var(--c-cmd-stat-note);
+}
+.cmd-stat__note[data-trend="up"] { color: var(--c-cmd-stat-up); }
+.cmd-stat__note[data-trend="down"] { color: var(--c-cmd-stat-down); }

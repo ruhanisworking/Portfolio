@@ -1,0 +1,22 @@
+<header class="cmd__top">
+  <a href="/" aria-label="Commander home"><!-- @include components/wordmark/wordmark.html id="cmd-top" --></a>
+  <button class="btn btn--secondary btn--sm" type="button" data-cmd-nav-toggle aria-expanded="false" aria-controls="cmd-side">Menu</button>
+</header>
+<div class="cmd__scrim" data-cmd-nav-close></div>
+<nav class="cmd__side" id="cmd-side" aria-label="Commander">
+  <a class="cmd__brand" href="/" aria-label="Commander home">
+    <!-- @include components/wordmark/wordmark.html id="cmd-side" -->
+    <span class="cmd__brand-name">Commander</span>
+  </a>
+  <div class="cmd-nav">
+    <a class="cmd-nav__link" href="/"><!-- @include components/icon/chart.svg -->Overview</a>
+    <!-- @each page.groups as group -->
+    <span class="cmd-nav__group">{{group.name}}</span>
+    <!-- @each group.items as s -->
+    <a class="cmd-nav__link" href="/{{s.id}}/"><!-- @include components/icon/{{s.icon}}.svg -->{{s.title}}</a>
+    <!-- @end -->
+    <!-- @end -->
+    <span class="cmd-nav__group">System</span>
+    <a class="cmd-nav__link" href="{{page.agent-url}}" target="_blank" rel="noopener"><!-- @include components/icon/server.svg -->Hermes agent<span class="cmd-nav__ext" aria-hidden="true">↗</span></a>
+  </div>
+</nav>

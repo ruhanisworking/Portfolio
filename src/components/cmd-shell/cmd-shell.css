@@ -1,0 +1,122 @@
+/* Commander shell — the private dashboard at ruhan.lol.
+   Markup: <div class="cmd" data-cmd data-nav="closed"> + cmd-shell.html (sidebar, top bar, scrim)
+           + <main class="cmd__main"><div class="cmd__content">…</div></main></div>
+   The sidebar is fixed from lg up; below lg it is a sheet opened from the top bar. */
+.cmd {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--c-cmd-shell-main-bg);
+  background-image: var(--c-cmd-shell-main-glow);
+  background-repeat: no-repeat;
+}
+/* the data blocks toggle [hidden]; component display rules must not win over it */
+.cmd [hidden] { display: none; }
+
+.cmd__side {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: var(--z-overlay);
+  width: min(var(--c-cmd-shell-sidebar-width), 86vw);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding: var(--space-md) var(--space-sm);
+  overflow-y: auto;
+  background-color: var(--c-cmd-shell-bg);
+  background-image: var(--c-cmd-shell-glow);
+  color: var(--c-cmd-shell-text);
+  transform: translateX(-100%);
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+.cmd[data-nav="open"] .cmd__side { transform: none; }
+
+.cmd__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-2xs) var(--space-xs) var(--space-sm);
+  color: var(--c-cmd-shell-text-active);
+}
+.cmd__brand .wordmark { height: var(--c-wordmark-height-sm); color: var(--c-wordmark-ink-on-dark); }
+.cmd__brand-name { font-family: var(--type-eyebrow-family); font-size: var(--type-eyebrow-size); font-weight: var(--type-eyebrow-weight); letter-spacing: var(--type-eyebrow-tracking); text-transform: var(--type-eyebrow-case); color: var(--c-cmd-shell-group); }
+
+.cmd-nav { display: flex; flex-direction: column; gap: var(--space-3xs); }
+.cmd-nav__group {
+  margin: var(--space-sm) 0 var(--space-3xs);
+  padding-inline: var(--space-xs);
+  font-family: var(--type-eyebrow-family);
+  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-eyebrow-weight);
+  letter-spacing: var(--type-eyebrow-tracking);
+  text-transform: var(--type-eyebrow-case);
+  color: var(--c-cmd-shell-group);
+}
+.cmd-nav__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--c-cmd-shell-link-height);
+  padding-inline: var(--space-xs);
+  border-radius: var(--c-cmd-shell-link-radius);
+  color: var(--c-cmd-shell-text);
+  font-family: var(--type-nav-family);
+  font-size: var(--type-nav-size);
+  font-weight: var(--type-nav-weight);
+  text-decoration: none;
+  transition: background var(--motion-fast) var(--motion-ease), color var(--motion-fast) var(--motion-ease);
+}
+.cmd-nav__link .icon { width: var(--c-cmd-shell-icon-size); height: var(--c-cmd-shell-icon-size); }
+.cmd-nav__link:hover { background: var(--c-cmd-shell-link-hover-bg); color: var(--c-cmd-shell-text-active); }
+.cmd-nav__link[aria-current="page"] { background: var(--c-cmd-shell-link-active-bg); color: var(--c-cmd-shell-text-active); }
+.cmd-nav__link[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  inset-block: 25%;
+  left: 0;
+  width: var(--c-cmd-shell-marker-width);
+  border-radius: var(--radius-pill);
+  background: var(--c-cmd-shell-marker);
+}
+.cmd-nav__link[aria-current="page"] .icon { color: var(--color-orange-400); }
+.cmd-nav__ext { margin-left: auto; color: var(--c-cmd-shell-group); }
+
+.cmd__top {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-raised);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  height: var(--c-cmd-shell-topbar-height);
+  padding-inline: var(--layout-gutter);
+  background: var(--c-cmd-shell-bg);
+  color: var(--c-cmd-shell-text-active);
+}
+.cmd__top .wordmark { height: var(--c-wordmark-height-sm); color: var(--c-wordmark-ink-on-dark); }
+
+.cmd__scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-island);
+  background: var(--c-cmd-shell-scrim);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-base) var(--motion-ease);
+}
+.cmd[data-nav="open"] .cmd__scrim { opacity: 1; pointer-events: auto; }
+
+.cmd__content {
+  max-width: var(--layout-max);
+  padding: var(--space-lg) var(--layout-gutter) var(--space-2xl);
+}
+.cmd__head { display: flex; flex-direction: column; gap: var(--space-2xs); }
+.cmd__title { margin: 0; }
+
+@media (--bp-lg) {
+  .cmd__side { width: var(--c-cmd-shell-sidebar-width); transform: none; transition: none; }
+  .cmd__top, .cmd__scrim { display: none; }
+  .cmd__main { margin-left: var(--c-cmd-shell-sidebar-width); }
+  .cmd__content { padding-top: var(--space-xl); }
+}

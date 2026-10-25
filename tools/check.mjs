@@ -85,7 +85,8 @@ if (existsSync(catalogue)) {
 }
 
 // ── markup: no inline styling ───────────────────────────────────────────────
-for (const f of files(SRC, ".html")) {
+const CMD = join(ROOT, "commander");
+for (const f of [...files(SRC, ".html"), ...(existsSync(CMD) ? files(CMD, ".html") : [])]) {
   readFileSync(f, "utf8").split("\n").forEach((line, i) => {
     if (/\sstyle\s*=\s*"/i.test(line)) say(f, i + 1, 'inline style="" — put it in the component CSS');
     if (/<style[\s>]/i.test(line)) say(f, i + 1, "<style> block — put it in the component CSS");

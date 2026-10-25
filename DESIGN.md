@@ -595,6 +595,50 @@ components:
     duration: "{motion.reveal}"
     ease: "{motion.ease}"
     stagger: "{motion.stagger}"
+  # Commander (ruhan.lol, private dashboard behind Cloudflare Access) — see commander/
+  cmd-shell:
+    sidebar-width: "264px"
+    bg: "{colors.dark}"
+    glow: "{gradients.dark-glow}"
+    text: "{colors.on-dark-muted}"
+    text-active: "{colors.on-dark}"
+    group: "{colors.on-dark-subtle}"
+    link-height: "40px"
+    link-radius: "{radius.sm}"
+    link-hover-bg: "rgba(255, 253, 251, 0.06)"
+    link-active-bg: "rgba(255, 253, 251, 0.10)"
+    marker: "{gradients.brand}"
+    marker-width: "3px"
+    icon-size: "18px"
+    topbar-height: "56px"
+    main-bg: "{colors.canvas}"
+    main-glow: "{gradients.canvas-glow}"
+    scrim: "{colors.scrim}"
+  cmd-stat:
+    bg: "{colors.paper}"
+    border: "{border.thin}"
+    radius: "{radius.md}"
+    pad: "{space.sm}"
+    min: "180px"
+    label: "{colors.text-subtle}"
+    value: "{colors.ink}"
+    value-size: "clamp(24px, 2.4vw, 30px)"
+    note: "{colors.text-muted}"
+    up: "{colors.success}"
+    down: "{colors.error}"
+  cmd-panel:
+    bg: "{colors.paper}"
+    border: "{border.thin}"
+    radius: "{radius.lg}"
+    pad: "{space.md}"
+    shadow: "{shadow.sm}"
+    row-border: "{border.thin}"
+    tag-bg: "{colors.orange-50}"
+    tag-border: "1px solid var(--color-orange-200)"
+    tag-text: "{colors.text-accent}"
+    empty-bg: "{colors.sunken}"
+    empty-text: "{colors.text-muted}"
+    card-min: "260px"
 ---
 
 # Ember — ruhan.bd design system
@@ -703,6 +747,9 @@ tokens are under `components.<name>` above. The catalogue is
 | count-up | css, js | numbers count up when they scroll into view |
 | icon | css, svg | line icons used across components |
 | contact-form | css, js | name / email / message → opens a pre-filled email to the site address |
+| cmd-shell | html, css, js | Commander layout: dark sidebar nav grouped by area (sheet below `lg`), canvas main area |
+| cmd-stat | css | Commander KPI tile: label, big value, note with up/down trend |
+| cmd-panel | html, css, js | Commander data block: loads `/data/<id>.json` (written by Hermes) into summary, stats, lists and overview cards; empty state when missing |
 
 ## Do's and Don'ts
 

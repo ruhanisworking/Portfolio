@@ -1,0 +1,41 @@
+{
+  "agent-url": "https://agent.ruhan.lol/",
+  "groups": [
+    {
+      "name": "Today",
+      "items": [
+        { "id": "mail", "title": "Mail", "icon": "mail", "tile": "1", "blurb": "Both inboxes and all four addresses: what needs a reply, and drafts waiting for you.", "ask": "update my mail on the commander" },
+        { "id": "calendar", "title": "Calendar", "icon": "calendar", "tile": "2", "blurb": "Meetings and deadlines coming up this week.", "ask": "add my meetings to the commander calendar" },
+        { "id": "todo", "title": "To-do", "icon": "check", "tile": "3", "blurb": "Open tasks, what is due today, and what got done.", "ask": "add a to-do: …" },
+        { "id": "expenses", "title": "Expenses", "icon": "wallet", "tile": "4", "blurb": "Daily spending, this week and this month.", "ask": "expense 250 taka lunch" }
+      ]
+    },
+    {
+      "name": "Growth",
+      "items": [
+        { "id": "clients", "title": "Client hunting", "icon": "globe", "tile": "1", "blurb": "Where the next US and Australian clients come from.", "ask": "update client hunting on the commander" },
+        { "id": "leads", "title": "Lead pipeline", "icon": "user", "tile": "2", "blurb": "New, contacted, demo done, converted.", "ask": "add a lead: …" },
+        { "id": "social", "title": "Social", "icon": "chat", "tile": "3", "blurb": "Draft posts, published posts and how they did.", "ask": "draft a LinkedIn post about …" },
+        { "id": "content", "title": "Content calendar", "icon": "calendar", "tile": "4", "blurb": "Idea pool, in production, published.", "ask": "add a content idea: …" },
+        { "id": "newsletter", "title": "Newsletters", "icon": "doc", "tile": "1", "blurb": "What the newsletters in your inbox said, in a few lines.", "ask": "summarize my newsletters on the commander" }
+      ]
+    },
+    {
+      "name": "Business",
+      "items": [
+        { "id": "business", "title": "Business", "icon": "chart", "tile": "2", "blurb": "Revenue, active clients and deals — from records you give Hermes.", "ask": "update business numbers: …" },
+        { "id": "team", "title": "Team", "icon": "user", "tile": "3", "blurb": "Who is working on what, and pending requests.", "ask": "update the team page" },
+        { "id": "invest", "title": "Investments", "icon": "wallet", "tile": "4", "blurb": "Holdings and how they moved.", "ask": "update my investments: …" },
+        { "id": "research", "title": "Research", "icon": "bolt", "tile": "1", "blurb": "Ideas being evaluated and projects in motion.", "ask": "add a research idea: …" }
+      ]
+    },
+    {
+      "name": "Mind",
+      "items": [
+        { "id": "books", "title": "Book notes", "icon": "book", "tile": "2", "blurb": "Today's lesson, books read and the reading streak.", "ask": "book note: …" },
+        { "id": "knowledge", "title": "Weird knowledge", "icon": "spark", "tile": "3", "blurb": "One strange, true thing a day.", "ask": "give me today's weird fact for the commander" },
+        { "id": "journal", "title": "Memory vault", "icon": "lock", "tile": "4", "blurb": "Journal entries and things worth remembering.", "ask": "journal: …" }
+      ]
+    }
+  ]
+}

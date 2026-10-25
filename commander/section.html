@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- One Commander section. tools/build.mjs renders this once per entry in
+     commander/sections.json into dist-commander/<id>/index.html. -->
+<html lang="en" translate="no" class="notranslate">
+  <head>
+    <!-- @include partials/cmd-head.html title="{{page.section.title}}" -->
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="cmd" data-cmd data-nav="closed">
+      <!-- @include components/cmd-shell/cmd-shell.html -->
+      <main class="cmd__main" id="main">
+        <div class="cmd__content stack stack--lg">
+          <header class="cmd__head">
+            <span class="t-eyebrow">{{page.section.group}}</span>
+            <h1 class="cmd__title t-h2">{{page.section.title}}</h1>
+            <p class="t-body t-muted">{{page.section.blurb}}</p>
+          </header>
+          <!-- @include components/cmd-panel/cmd-panel.html id="{{page.section.id}}" ask="{{page.section.ask}}" -->
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

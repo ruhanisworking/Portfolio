@@ -12,6 +12,7 @@ Thumbs.db
 
 # build output — tools/build.mjs regenerates it
 dist/
+dist-commander/
 
 # personal working notes — not part of the published site
 docs/notes/
