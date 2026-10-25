@@ -59,6 +59,7 @@ in inline remote commands.
 | `~/hermes/compose.yaml` | hermes, commander, cloudflared. Copy: [compose.yaml](compose.yaml) |
 | `~/hermes/Dockerfile` | adds git + rsync to the Hermes image. Copy: [Dockerfile](Dockerfile) |
 | `~/hermes/Caddyfile` | Commander file server. Copy: [Caddyfile](Caddyfile) |
+| `~/hermes/commander-auth.caddy` | `basic_auth` for ruhan.lol: same user as the dashboard, bcrypt hash made from `dashboard.env`. If the dashboard password changes, rebuild it with `caddy hash-password` and `docker compose restart commander` |
 | `~/.hermes/work/Portfolio` | clone of this repo. Hermes builds Commander here |
 | `~/.hermes/commander/site/` | deployed `dist-commander/` (rsync) |
 | `~/.hermes/commander/data/<id>.json` | Commander data written by Hermes / `commander-mail` |
@@ -113,8 +114,11 @@ Set in `config.yaml`:
 - **Access application** `Commander` uses policy `Only Me`: Allow, Include
   Emails. Login methods are Cloudflare account login, plus One-time PIN if it
   has been enabled. Without an Access app, ruhan.lol would be open to anyone.
-- Visitors log in twice: once to Cloudflare Access, then to the dashboard's
-  basic auth.
+- Visitors log in twice on both hostnames: first to Cloudflare Access, then
+  with basic auth (one user/password for both: the Hermes dashboard's own on
+  agent.ruhan.lol, Caddy's on ruhan.lol). The Commander's **Log out** link is
+  `/cdn-cgi/access/logout`. It ends the Access session only. The browser keeps
+  basic auth until it is closed.
 - Verify with `curl -s -o /dev/null -w '%{http_code} %{redirect_url}' https://ruhan.lol/`.
   The result must be a **302 to `…cloudflareaccess.com`**, never 200 or 401.
 
