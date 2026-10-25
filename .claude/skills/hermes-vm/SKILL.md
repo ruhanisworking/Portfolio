@@ -59,12 +59,11 @@ in inline remote commands.
 | `~/hermes/compose.yaml` | hermes, commander, cloudflared. Copy: [compose.yaml](compose.yaml) |
 | `~/hermes/Dockerfile` | adds git + rsync to the Hermes image. Copy: [Dockerfile](Dockerfile) |
 | `~/hermes/Caddyfile` | Commander file server. Copy: [Caddyfile](Caddyfile) |
-| `~/hermes/commander-auth.caddy` | `basic_auth` for ruhan.lol: same user as the dashboard, bcrypt hash made from `dashboard.env`. If the dashboard password changes, rebuild it with `caddy hash-password` and `docker compose restart commander` |
 | `~/.hermes/work/Portfolio` | clone of this repo. Hermes builds Commander here |
 | `~/.hermes/commander/site/` | deployed `dist-commander/` (rsync) |
 | `~/.hermes/commander/data/<id>.json` | Commander data written by Hermes / `commander-mail` |
 | `~/.hermes/skills/ruhan/ruhan-{commander,frontend,business}` | symlinks into the repo clone's `hermes/skills/` |
-| ruhan's crontab | `*/15` runs `commander-mail` (refreshes ruhan.lol/mail, no model calls) |
+| `hermes/bin/commander-mail` (repo) | fills a Commander mail page from both inboxes. **Not in use**: ruhan.lol went public on 2026-10-25, so its cron and data were removed. Only use it again behind a login |
 | `~/hermes/dashboard.env` | dashboard basic-auth user `ruhan` + random password (600) |
 | `~/hermes/tunnel.env` | `TUNNEL_TOKEN=` for cloudflared (600) |
 | `~/.hermes/.env` | API keys: `OPENROUTER_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_ALLOWED_USERS`, … |
@@ -109,18 +108,18 @@ Set in `config.yaml`:
   (set under Domain → Nameservers → Custom DNS, not under Advanced DNS). It is a
   zone in the same Cloudflare account as ruhan.bd.
 - **Tunnel** `hermes-vm` has routes ("Published application"):
-  `ruhan.lol` → `http://commander:80`, and `agent.ruhan.lol` →
-  `http://hermes:9119`. Both hostnames must be covered by the Access app.
+  `ruhan.lol` → `http://commander:80` (**public**: no Access, no password, by
+  Ruhan's choice), and `agent.ruhan.lol` → `http://hermes:9119`, which **must**
+  stay inside the Access app because it controls the agent.
+- Because ruhan.lol is public, the Commander carries no private data. That
+  rule is in `hermes/skills/ruhan-commander`.
 - **Access application** `Commander` uses policy `Only Me`: Allow, Include
   Emails. Login methods are Cloudflare account login, plus One-time PIN if it
   has been enabled. Without an Access app, ruhan.lol would be open to anyone.
-- Visitors log in twice on both hostnames: first to Cloudflare Access, then
-  with basic auth (one user/password for both: the Hermes dashboard's own on
-  agent.ruhan.lol, Caddy's on ruhan.lol). The Commander's **Log out** link is
-  `/cdn-cgi/access/logout`. It ends the Access session only. The browser keeps
-  basic auth until it is closed.
-- Verify with `curl -s -o /dev/null -w '%{http_code} %{redirect_url}' https://ruhan.lol/`.
-  The result must be a **302 to `…cloudflareaccess.com`**, never 200 or 401.
+- agent.ruhan.lol needs two logins: Cloudflare Access, then the dashboard's
+  basic auth (`dashboard.env`). Log out at `agent.ruhan.lol/cdn-cgi/access/logout`.
+- Verify with `curl -s -o /dev/null -w '%{http_code} %{redirect_url}' https://agent.ruhan.lol/`.
+  The result must be a **302 to `…cloudflareaccess.com`**. ruhan.lol answers 200.
 
 ## Mail (himalaya, draft-only)
 

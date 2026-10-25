@@ -1,5 +1,5 @@
 # Copy of ~/hermes/compose.yaml on the VM (user ruhan). No secrets here:
-# dashboard.env, tunnel.env and commander-auth.caddy sit next to it on the VM and are never committed.
+# dashboard.env and tunnel.env sit next to it on the VM and are never committed.
 services:
   hermes:
     build: .
@@ -25,7 +25,6 @@ services:
     restart: unless-stopped
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./commander-auth.caddy:/etc/caddy/commander-auth.caddy:ro
       - /home/ruhan/.hermes/commander/site:/srv/site:ro
       - /home/ruhan/.hermes/commander/data:/srv/data:ro
 

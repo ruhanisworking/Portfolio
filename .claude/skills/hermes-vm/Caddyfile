@@ -1,8 +1,6 @@
-# Commander (ruhan.lol). Cloudflare Access sits in front; on top of that the
-# same user/password as the Hermes dashboard (bcrypt hash in commander-auth.caddy,
-# generated from dashboard.env — never committed).
+# Commander (ruhan.lol). Public by Ruhan's choice: no Access, no password.
+# Hermes must never write private data here (see the ruhan-commander skill).
 :80 {
-	import /etc/caddy/commander-auth.caddy
 	handle_path /data/* {
 		root * /srv/data
 		header Cache-Control "no-store"
