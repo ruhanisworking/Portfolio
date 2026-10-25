@@ -80,6 +80,8 @@
 }
 .cmd-nav__link[aria-current="page"] .icon { color: var(--color-orange-400); }
 .cmd-nav__ext { margin-left: auto; color: var(--c-cmd-shell-group); }
+/* pinned to the bottom of the sidebar, under a hairline */
+.cmd-nav__logout { margin-top: auto; border-top: var(--border-dark); border-radius: 0; padding-top: var(--space-xs); }
 
 .cmd__top {
   position: sticky;
