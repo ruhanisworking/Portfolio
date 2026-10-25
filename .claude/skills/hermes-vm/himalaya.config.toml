@@ -1,0 +1,28 @@
+# Copy of ~/.hermes/.config/himalaya/config.toml on the VM (mounted at /opt/data/.config/himalaya).
+# Gmail addresses replaced with placeholders; the real ones are in docs/notes/hermes-vm-private.md.
+# Hermes mail: IMAP only. There is deliberately NO smtp.* section, so nothing
+# can be sent from here. Drafts are saved and Ruhan sends them from Gmail.
+# App passwords live in /opt/data/secrets/ (host: ~/.hermes/secrets/), mode 600.
+
+# <personal-gmail>. me@ruhan.bd and hi@ruhan.bd are forwarded here by
+# Cloudflare Email Routing, and me@ruhan.bd is a Gmail "Send mail as" alias.
+[accounts.personal]
+default = true
+email = "me@ruhan.bd"
+display-name = "Mohammad Ruhan Islam"
+imap.server = "imaps://imap.gmail.com:993"
+imap.sasl.plain.username = "<personal-gmail>"
+imap.sasl.plain.password.command = "cat /opt/data/secrets/gmail-personal"
+mailbox.alias.drafts = "[Gmail]/Drafts"
+mailbox.alias.sent = "[Gmail]/Sent Mail"
+
+# <work-gmail>: read only in practice; replies are drafted in
+# the personal account from me@ruhan.bd.
+[accounts.work]
+email = "<work-gmail>"
+display-name = "Mohammad Ruhan Islam"
+imap.server = "imaps://imap.gmail.com:993"
+imap.sasl.plain.username = "<work-gmail>"
+imap.sasl.plain.password.command = "cat /opt/data/secrets/gmail-work"
+mailbox.alias.drafts = "[Gmail]/Drafts"
+mailbox.alias.sent = "[Gmail]/Sent Mail"

@@ -60,6 +60,14 @@ in inline remote commands.
 | `~/.hermes/skills/` | 58 bundled skills + any the agent creates from Ruhan's work |
 | `~/.hermes/memories/`, `sessions/`, `cron/` | agent memory, chat history, schedules |
 | `~/.hermes/backups/` | config copies taken before each manual edit |
+| `~/.hermes/.local/bin/himalaya` | himalaya v2.2.1, pinned release binary (sha256 checked); in the container's PATH |
+| `~/.hermes/.config/himalaya/config.toml` | the 2 IMAP accounts, no SMTP. Copy: [himalaya.config.toml](himalaya.config.toml) |
+| `~/.hermes/secrets/gmail-{personal,work}` | Gmail App Passwords, 16 chars each (dir 700, files 600) |
+| `~/.hermes/skills/ruhan/ruhan-mail/` | Hermes skill with Ruhan's mail rules. Copy: [ruhan-mail.SKILL.md](ruhan-mail.SKILL.md) |
+
+Inside the container the `hermes` user's HOME is `/opt/data` (the volume).
+Anything installed under `~/.hermes/.local/bin` survives image updates. Run
+tools as that user: `docker exec -u hermes hermes himalaya …`.
 
 ## Rules for secrets
 
@@ -98,6 +106,36 @@ Set in `config.yaml`:
 - Verify with `curl -s -o /dev/null -w '%{http_code} %{redirect_url}' https://ruhan.lol/`.
   The result must be a **302 to `…cloudflareaccess.com`**, never 200 or 401.
 
+## Mail (himalaya, draft-only)
+
+There are four addresses and two Gmail accounts:
+- `personal` = the personal Gmail. me@ruhan.bd and hi@ruhan.bd reach it too.
+  ruhan.bd MX is Cloudflare Email Routing, which forwards there, and
+  me@ruhan.bd is set up as a Gmail "Send mail as" alias.
+- `work` = the work Gmail.
+- Every draft, whichever inbox the original came to, is saved in `personal`
+  → Drafts with `From: Mohammad Ruhan Islam <me@ruhan.bd>`. Ruhan sends it
+  himself.
+
+```bash
+docker exec -u hermes hermes himalaya -a work envelope list -s 10
+docker exec -u hermes hermes himalaya -a personal message add -m drafts -f draft seen -- /tmp/draft.eml
+```
+`-f` takes several values, so the file path must come after `--`. Otherwise
+himalaya reads the path as a flag.
+
+**Paste trouble when saving a password:** silent `read -s` and nano would not
+take a paste in Ruhan's terminals. What worked was typing it into a visible
+prompt: `read -rp "pass: " P && printf '%s' "${P// /}" > FILE && unset P && wc -c < FILE`.
+The result must be 16. Do not pipe `Get-Clipboard`: the clipboard tends to
+hold the command itself.
+
+**Open problem, deliverability:** the ruhan.bd SPF is only
+`v=spf1 include:_spf.mx.cloudflare.net ~all`, and there is no DMARC record. Mail
+sent through Gmail as me@ruhan.bd may land in spam or show "via gmail.com".
+To fix: add Google to SPF, add DMARC, and ideally send through an SMTP
+provider (Brevo/Resend) that signs DKIM for ruhan.bd.
+
 ## Everyday commands (on the VM, in `~/hermes`)
 
 ```bash
@@ -128,9 +166,9 @@ The status of this setup lives in `docs/notes/hermes-vm-private.md` (status
 log). Update that note after each work session. Open items when this skill was
 written:
 
-1. Mail. Two accounts, IMAP only, through `himalaya`, which is not yet
-   installed in the container. Also inbox summaries and a daily summary cron to
-   Telegram.
+1. Mail. Both accounts are connected and drafting works. Still to do: a daily
+   inbox summary cron to Telegram, and the ruhan.bd SPF/DMARC/DKIM fix
+   described above.
 2. Git. A fine-grained GitHub token for the repos Hermes may touch
    (`GITHUB_TOKEN`).
 3. Commander dashboard. Build Ruhan's own summary page for ruhan.lol, using
