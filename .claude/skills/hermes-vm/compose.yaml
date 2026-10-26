@@ -16,6 +16,7 @@ services:
       - dashboard.env
     environment:
       - HERMES_DASHBOARD=1
+      - TZ=Asia/Dhaka
       - PUID=1001
       - PGID=1001
 

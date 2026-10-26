@@ -57,7 +57,7 @@ in inline remote commands.
 | Path | What |
 |---|---|
 | `~/hermes/compose.yaml` | hermes, commander, cloudflared. Copy: [compose.yaml](compose.yaml) |
-| `~/hermes/Dockerfile` | adds git + rsync to the Hermes image. Copy: [Dockerfile](Dockerfile) |
+| `~/hermes/Dockerfile` | adds git, rsync, python3-icalendar, python3-recurring-ical-events and tzdata to the Hermes image. The container runs with `TZ=Asia/Dhaka`. Copy: [Dockerfile](Dockerfile) |
 | `~/hermes/Caddyfile` | Commander file server. Copy: [Caddyfile](Caddyfile) |
 | `~/.hermes/work/Portfolio` | clone of this repo. Hermes builds Commander here |
 | `~/.hermes/commander/site/` | deployed `dist-commander/` (rsync) |
@@ -66,6 +66,12 @@ in inline remote commands.
 | `~/hermes/commander-auth.caddy` | `basic_auth` for ruhan.lol: dashboard user + bcrypt hash from `dashboard.env`. Rebuild it with `caddy hash-password` if that password changes |
 | `hermes/bin/commander-mail` (repo) | fills ruhan.lol/mail from both inboxes. It runs from ruhan's crontab every 15 min, without model calls |
 | `hermes/bin/commander-deploy` (repo) | build + check + rsync to the live site. Linked into `~/.hermes/.local/bin` |
+| `hermes/bin/commander-{calendar,people,learn-raw}` (repo) | Phase 1 scripts (see `hermes/README.md`), linked into `~/.hermes/.local/bin` |
+| `~/.hermes/scripts/{morning,agenda,remind}.sh` | wrappers that Hermes cron `--script` runs (it only takes files in this folder) |
+| `~/.hermes/commander/records/` | raw truth behind the pages (calendar events, People book, Databricks plan). Not served |
+| `~/.hermes/secrets/gcal-ics-url` | Google Calendar "secret address in iCal format". Ruhan adds it; it is read-only |
+| ruhan's crontab (host, UTC) | `*/15` commander-mail, `*/15` commander-calendar, `30 0` commander-people. No model calls |
+| Hermes cron (`hermes cron list`, Asia/Dhaka) | `morning` 07:00 (Learn + agenda + quiz + brief), `mail-digest` 08:00/17:00, `databricks-task` 20:00, `plan-tomorrow` 21:00, `reminders` */5 (no-agent). All deliver to Telegram |
 | `~/hermes/dashboard.env` | dashboard basic-auth user `ruhan` + random password (600) |
 | `~/hermes/tunnel.env` | `TUNNEL_TOKEN=` for cloudflared (600) |
 | `~/.hermes/.env` | API keys: `OPENROUTER_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_ALLOWED_USERS`, … |
