@@ -58,9 +58,9 @@ def today():
     return dt.datetime.now(TZ).date().isoformat()
 
 
-def get(url, timeout=20):
+def get(url, timeout=20, limit=400_000):
     with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout) as r:
-        return r.status, r.read(400_000).decode("utf-8", "replace"), r.geturl()
+        return r.status, r.read(limit).decode("utf-8", "replace"), r.geturl()
 
 
 def check(url):
@@ -79,7 +79,8 @@ def check(url):
 
 
 def videos(query, n=6):
-    _, body, _ = get("https://www.youtube.com/results?search_query=" + urllib.parse.quote(query) + "&hl=en")
+    # the results page is ~1.5 MB and ytInitialData sits near the end
+    _, body, _ = get("https://www.youtube.com/results?search_query=" + urllib.parse.quote(query) + "&hl=en", limit=5_000_000)
     m = re.search(r"var ytInitialData = (\{.*?\});</script>", body, re.S)
     if not m:
         return []
