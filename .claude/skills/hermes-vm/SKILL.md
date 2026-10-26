@@ -196,6 +196,15 @@ docker compose run --rm hermes <cmd>        # one-off hermes CLI (setup, config,
 
 Telegram is healthy when the log shows `Connected to Telegram (polling mode)`.
 
+**Hermes ignores a new ability** (for example, it says it "can only draft",
+or writes a placeholder Meet link). There are two causes. (1) A stale Telegram
+session: one session ran from 2026-10-25 with 100+ turns of old rules, and
+the free model trusted that history over its skills. Ruhan sends `/new` on
+Telegram. (2) Stale memory: `~/.hermes/memories/MEMORY.md` and `USER.md`
+are injected into every turn. Keep a short "CURRENT SETUP" block there,
+rewrite it when the setup changes, back it up to `~/.hermes/backups/`, and
+never let a password sit in it.
+
 ## Decisions and why
 
 - **Docker, not the host installer.** Ruhan asked for this. It keeps the host
