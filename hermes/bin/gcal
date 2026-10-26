@@ -17,6 +17,12 @@ Google never mails the guests itself (sendUpdates=none): invitations always go o
 from me@ruhan.bd.
 """
 import argparse
+import socket
+
+# The VM has no IPv6 route and httplib2 does not fall back, so resolve to IPv4 only
+_getaddrinfo = socket.getaddrinfo
+socket.getaddrinfo = lambda *a, **k: [x for x in _getaddrinfo(*a, **k) if x[0] == socket.AF_INET] or _getaddrinfo(*a, **k)
+
 import datetime as dt
 import json
 import subprocess

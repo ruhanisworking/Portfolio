@@ -10,7 +10,12 @@ Token:  /opt/data/google_token.json (refreshes itself; `gcal` reads it).
 """
 import json
 import os
+import socket
 import sys
+
+# The VM has no IPv6 route and httplib2 does not fall back, so resolve to IPv4 only
+_getaddrinfo = socket.getaddrinfo
+socket.getaddrinfo = lambda *a, **k: [x for x in _getaddrinfo(*a, **k) if x[0] == socket.AF_INET] or _getaddrinfo(*a, **k)
 
 from google_auth_oauthlib.flow import Flow
 
