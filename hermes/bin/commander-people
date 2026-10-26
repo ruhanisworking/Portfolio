@@ -18,8 +18,19 @@ import subprocess
 ROOT = "/opt/data/commander"
 BOOK = f"{ROOT}/records/people.json"
 OUT = f"{ROOT}/data/people.json"
-OWN = {"me@ruhan.bd", "hi@ruhan.bd", "ruhan.9mri@gmail.com", "ruhanisworking@gmail.com"}
 SCAN = 300
+HIMALAYA = "/opt/data/.config/himalaya/config.toml"
+
+
+def own_addresses():
+    # Ruhan's own addresses (never "people"): every quoted address in the himalaya
+    # config, so none of them is written in this public repo
+    import re
+    try:
+        text = open(HIMALAYA, encoding="utf-8").read()
+    except FileNotFoundError:
+        return {"me@ruhan.bd", "hi@ruhan.bd"}
+    return {m.lower() for m in re.findall(r'"([^"@\s]+@[^"\s]+)"', text)} | {"me@ruhan.bd", "hi@ruhan.bd"}
 
 
 def sent(account):
@@ -39,6 +50,7 @@ def main():
     rules = book.get("rules", {})
     known = {e.lower() for p in people for e in p.get("emails", [])}
 
+    OWN = own_addresses()
     counts, names, last, errors = collections.Counter(), {}, {}, []
     for account in ("personal", "work"):
         try:
