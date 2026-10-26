@@ -29,8 +29,10 @@ For any visual / frontend work, load the **ruhan-frontend** skill
 
 Ruhan runs a personal Hermes Agent in Docker on his own VM. He talks to it over
 Telegram, and its dashboard is at https://ruhan.lol behind Cloudflare Access.
-For anything about it, load the **hermes-vm** skill
-(`.claude/skills/hermes-vm/SKILL.md`). Connect with `ssh ruhan-vm`. The host,
+For anything about it, read **`hermes/JOURNAL.md`** first (the whole story, A
+to Z, and the open items), then load the **hermes-vm** skill
+(`.claude/skills/hermes-vm/SKILL.md`). The feature plan is `hermes/PLAN.md`.
+When you finish work on it, add a dated entry to the journal. Connect with `ssh ruhan-vm`. The host,
 port and Cloudflare IDs are in `docs/notes/hermes-vm-private.md` (git-ignored).
 Never commit them or any key or token. Log progress in that note's status log.
 

@@ -74,7 +74,7 @@ in inline remote commands.
 | `hermes/bin/gcal`, `gcal-auth`, `mail-outbox` (repo) | Google Calendar read/write + Meet invites from me@ruhan.bd; OAuth helper; the scheduled-mail queue (`records/outbox/`, sent by the no-agent cron `scheduled-mail` every 5 min) |
 | Desktop helpers on the PC | `Save Google Calendar link.cmd` and `Send Google client file.cmd` (scripts in `C:\Users\ruhan\.ssh\`). They send the clipboard or a downloaded file to the VM, because paste into ssh/PuTTY does not work for Ruhan. PowerShell 5.1 adds a UTF-8 BOM to piped text, and the VM side strips it |
 | ruhan's crontab (host, UTC) | `*/15` commander-mail, `*/15` commander-calendar, `30 0` commander-people. No model calls |
-| Hermes cron (`hermes cron list`, Asia/Dhaka) | `morning` 07:00 (Learn + agenda + quiz + brief), `mail-digest` 08:00/17:00, `databricks-task` 20:00, `plan-tomorrow` 21:00, `reminders` */5 (no-agent). All deliver to Telegram |
+| Hermes cron (`hermes cron list`, Asia/Dhaka) | `morning` 07:00 (Learn + agenda + Databricks quiz + brief), `mail-digest` 08:00/17:00, `databricks-lesson` 20:00 (ruhan-databricks), `plan-tomorrow` 21:00, `reminders` and `scheduled-mail` */5 (no-agent). All deliver to Telegram |
 | `~/hermes/dashboard.env` | dashboard basic-auth user `ruhan` + random password (600) |
 | `~/hermes/tunnel.env` | `TUNNEL_TOKEN=` for cloudflared (600) |
 | `~/.hermes/.env` | API keys: `OPENROUTER_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_ALLOWED_USERS`, … |
