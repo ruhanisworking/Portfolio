@@ -1,0 +1,185 @@
+#!/usr/bin/python3
+"""Ruhan's calendar: Google Calendar (iCal feed, read-only) + events Hermes keeps.
+
+  commander-calendar            write /opt/data/commander/data/calendar.json
+  commander-calendar --agenda   also print today's agenda (for the morning job)
+  commander-calendar --remind   print reminders for events starting in the next
+                                16 minutes, once each (for a 5-minute no-agent cron)
+
+Sources
+  /opt/data/secrets/gcal-ics-url            Google Calendar "secret address in iCal format" (optional)
+  /opt/data/commander/records/calendar.json Hermes' own events:
+     {"events": [{"id": "…", "title": "…", "start": "2026-10-27T15:00", "end": "2026-10-27T16:00",
+                  "all_day": false, "where": "Zoom link or place", "with": ["Karim"],
+                  "kind": "meeting|focus|study|travel|task", "note": "…"}]}
+Times without a zone are Asia/Dhaka. Runs on the system python (python3-icalendar).
+"""
+import datetime as dt
+import json
+import os
+import sys
+import urllib.request
+from zoneinfo import ZoneInfo
+
+TZ = ZoneInfo("Asia/Dhaka")
+ROOT = "/opt/data/commander"
+OUT = f"{ROOT}/data/calendar.json"
+OWN = f"{ROOT}/records/calendar.json"
+REMINDED = f"{ROOT}/records/.reminded.json"
+ICS_URL_FILE = "/opt/data/secrets/gcal-ics-url"
+DAYS = 7
+
+
+def to_local(v, all_day=False):
+    if isinstance(v, dt.datetime):
+        return (v if v.tzinfo else v.replace(tzinfo=TZ)).astimezone(TZ), all_day
+    if isinstance(v, dt.date):  # all-day
+        return dt.datetime.combine(v, dt.time(0), TZ), True
+    raise ValueError(v)
+
+
+def google_events(start, end, errors):
+    if not os.path.exists(ICS_URL_FILE):
+        return []
+    try:
+        import icalendar
+        import recurring_ical_events
+        url = open(ICS_URL_FILE).read().strip()
+        with urllib.request.urlopen(url, timeout=30) as r:
+            cal = icalendar.Calendar.from_ical(r.read())
+        out = []
+        for ev in recurring_ical_events.of(cal).between(start, end):
+            s, all_day = to_local(ev.get("DTSTART").dt)
+            e_raw = ev.get("DTEND")
+            e = to_local(e_raw.dt)[0] if e_raw else s + dt.timedelta(hours=1)
+            who = [str(a.params.get("CN") or a).replace("mailto:", "") for a in
+                   (ev.get("ATTENDEE") if isinstance(ev.get("ATTENDEE"), list) else [ev.get("ATTENDEE")] if ev.get("ATTENDEE") else [])]
+            out.append({"id": f"g:{ev.get('UID')}:{s.isoformat()}", "title": str(ev.get("SUMMARY") or "(busy)"),
+                        "start": s, "end": e, "all_day": all_day, "where": str(ev.get("LOCATION") or ""),
+                        "with": who[:6], "kind": "meeting" if who else "event", "source": "google"})
+        return out
+    except Exception as e:  # keep the page useful if the feed fails
+        errors.append(f"Google Calendar: {e}")
+        return []
+
+
+def own_events(start, end, errors):
+    try:
+        with open(OWN, encoding="utf-8") as f:
+            raw = json.load(f).get("events", [])
+    except FileNotFoundError:
+        return []
+    except Exception as e:
+        errors.append(f"own events: {e}")
+        return []
+    out = []
+    for x in raw:
+        try:
+            s = to_local(dt.datetime.fromisoformat(x["start"]))[0]
+            e = to_local(dt.datetime.fromisoformat(x["end"]))[0] if x.get("end") else s + dt.timedelta(hours=1)
+        except Exception:
+            continue
+        if e >= start and s < end:
+            out.append({**x, "start": s, "end": e, "source": "hermes"})
+    return out
+
+
+def when(ev):
+    if ev.get("all_day"):
+        return "all day"
+    return f"{ev['start']:%H:%M}–{ev['end']:%H:%M}"
+
+
+def item(ev, with_day=False):
+    where = ev.get("where", "")
+    it = {"time": when(ev), "title": ev["title"], "tag": ev.get("kind") or "event"}
+    meta = []
+    if with_day:
+        it.pop("time")
+        meta.append(f"{ev['start']:%a %d %b}" + ("" if ev.get("all_day") else f" · {ev['start']:%H:%M}"))
+    if where and not where.startswith("http"):
+        meta.append(where[:60])
+    if meta:
+        it["meta"] = " · ".join(meta)
+    if where.startswith("https://"):
+        it["href"] = where
+    text = []
+    if ev.get("with"):
+        text.append("With " + ", ".join(ev["with"]))
+    if ev.get("note"):
+        text.append(ev["note"])
+    if text:
+        it["text"] = ". ".join(text)
+    return it
+
+
+def main():
+    now = dt.datetime.now(TZ)
+    day0 = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    end = day0 + dt.timedelta(days=DAYS + 1)
+    errors = []
+    events = sorted(google_events(day0, end, errors) + own_events(day0, end, errors), key=lambda e: e["start"])
+    today = [e for e in events if e["start"] < day0 + dt.timedelta(days=1)]
+    later = [e for e in events if e["start"] >= day0 + dt.timedelta(days=1)]
+    upcoming = [e for e in today if e["end"] > now and not e.get("all_day")]
+    nxt = upcoming[0] if upcoming else None
+
+    summary = f"{len(today)} event{'s' if len(today) != 1 else ''} today"
+    summary += f"; next: {nxt['title']} at {nxt['start']:%H:%M}." if nxt else "; nothing else today."
+    if errors:
+        summary += " Could not read: " + "; ".join(errors)
+    data = {
+        "updated": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "summary": summary,
+        "stats": [
+            {"label": "Today", "value": str(len(today)), "note": f"{now:%a %d %b}"},
+            {"label": "Next", "value": f"{nxt['start']:%H:%M}" if nxt else "—", "note": nxt["title"] if nxt else "free"},
+            {"label": f"Next {DAYS} days", "value": str(len(later))},
+        ],
+        "lists": [
+            {"title": f"Today · {now:%A %d %B}", "style": "timeline", "empty": "Nothing on the calendar today.",
+             "items": [item(e) for e in today]},
+            {"title": f"Next {DAYS} days", "empty": "Nothing planned yet.", "items": [item(e, True) for e in later]},
+        ],
+    }
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    with open(OUT + ".tmp", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=1)
+    os.replace(OUT + ".tmp", OUT)
+
+    if "--agenda" in sys.argv:
+        print(f"Agenda for {now:%A %d %B %Y} (Asia/Dhaka)")
+        for e in today:
+            print(f"- {when(e)}  {e['title']}" + (f"  @ {e['where']}" if e.get("where") else "") +
+                  (f"  with {', '.join(e['with'])}" if e.get("with") else ""))
+        if not today:
+            print("- nothing scheduled")
+        print(f"Next {DAYS} days: {len(later)} events")
+        for e in later[:10]:
+            print(f"- {e['start']:%a %d %b %H:%M}  {e['title']}")
+        for err in errors:
+            print(f"! {err}")
+
+    if "--remind" in sys.argv:
+        try:
+            done = set(json.load(open(REMINDED)))
+        except Exception:
+            done = set()
+        soon = [e for e in today if not e.get("all_day") and now < e["start"] <= now + dt.timedelta(minutes=16)]
+        lines = []
+        for e in soon:
+            key = f"{e.get('id') or e['title']}@{e['start'].isoformat()}"
+            if key in done:
+                continue
+            done.add(key)
+            mins = round((e["start"] - now).total_seconds() / 60)
+            lines.append(f"⏰ In {mins} min: {e['title']} ({e['start']:%H:%M})" +
+                         (f"\n{e['where']}" if e.get("where") else ""))
+        if lines:
+            print("\n\n".join(lines))
+        os.makedirs(os.path.dirname(REMINDED), exist_ok=True)
+        json.dump(sorted(done)[-500:], open(REMINDED, "w"))
+
+
+if __name__ == "__main__":
+    main()

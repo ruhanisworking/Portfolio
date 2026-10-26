@@ -1,0 +1,98 @@
+#!/opt/hermes/.venv/bin/python3
+"""Ruhan's People book → /opt/data/commander/data/people.json (ruhan.lol/people).
+
+Merges the book Hermes keeps (/opt/data/commander/records/people.json) with who
+Ruhan actually mails (To: of the newest sent mail in both Gmail accounts, via
+himalaya). No AI, no mail bodies. Book format:
+  {"rules": {"to": "…", "cc": "…", "bcc": "…"},
+   "people": [{"name": "Karim Ahmed", "emails": ["karim@x.com"], "group": "client",
+               "company": "X Ltd", "tone": "formal", "language": "en",
+               "cc": ["lead@x.com"], "bcc": [], "note": "…"}]}
+"""
+import collections
+import datetime as dt
+import json
+import os
+import subprocess
+
+ROOT = "/opt/data/commander"
+BOOK = f"{ROOT}/records/people.json"
+OUT = f"{ROOT}/data/people.json"
+OWN = {"me@ruhan.bd", "hi@ruhan.bd", "ruhan.9mri@gmail.com", "ruhanisworking@gmail.com"}
+SCAN = 300
+
+
+def sent(account):
+    r = subprocess.run(["himalaya", "--json", "-a", account, "envelope", "list", "-m", "sent", "-s", str(SCAN)],
+                       capture_output=True, text=True, timeout=120)
+    if r.returncode != 0:
+        raise RuntimeError(f"{account}: {(r.stderr or r.stdout).strip()[:200]}")
+    return json.loads(r.stdout).get("envelopes", [])
+
+
+def main():
+    try:
+        book = json.load(open(BOOK, encoding="utf-8"))
+    except FileNotFoundError:
+        book = {}
+    people = book.get("people", [])
+    rules = book.get("rules", {})
+    known = {e.lower() for p in people for e in p.get("emails", [])}
+
+    counts, names, last, errors = collections.Counter(), {}, {}, []
+    for account in ("personal", "work"):
+        try:
+            for env in sent(account):
+                for a in env.get("to") or []:
+                    mail = (a.get("email") or "").lower()
+                    if not mail or mail in OWN:
+                        continue
+                    counts[mail] += 1
+                    if a.get("name"):
+                        names[mail] = a["name"]
+                    last[mail] = max(last.get(mail, ""), env.get("date", ""))
+        except Exception as e:
+            errors.append(str(e))
+
+    def person_item(p):
+        mails = p.get("emails", [])
+        n = sum(counts.get(m.lower(), 0) for m in mails)
+        text = ", ".join(mails)
+        if p.get("cc"):
+            text += " · CC " + ", ".join(p["cc"])
+        if p.get("bcc"):
+            text += " · BCC " + ", ".join(p["bcc"])
+        it = {"title": p.get("name", mails[0] if mails else "?"),
+              "meta": " · ".join(x for x in (p.get("company"), p.get("tone"), f"{n} sent" if n else "") if x),
+              "text": text, "tag": p.get("group", "other")}
+        if p.get("note"):
+            it["text"] += f" · {p['note']}"
+        return it
+
+    groups = collections.Counter(p.get("group", "other") for p in people)
+    unknown = [(m, c) for m, c in counts.most_common() if m not in known][:20]
+    data = {
+        "updated": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "summary": f"{len(people)} people in the book; {len(unknown)} frequent recipients still to sort."
+                   + (" Could not read: " + "; ".join(errors) if errors else ""),
+        "stats": [{"label": "In the book", "value": str(len(people))}]
+                 + [{"label": g.capitalize(), "value": str(n)} for g, n in groups.most_common(3)],
+        "lists": [
+            {"title": "People", "empty": "Tell Hermes who someone is: “Karim is my client, formal, CC the team lead”.",
+             "items": [person_item(p) for p in sorted(people, key=lambda p: (p.get("group", "z"), p.get("name", "")))]},
+            {"title": "Mailed often, not in the book yet", "empty": "Everyone you mail is in the book.",
+             "items": [{"title": names.get(m, m), "meta": f"{c} sent · last {last.get(m, '')[:10]}", "text": m}
+                       for m, c in unknown]},
+        ],
+    }
+    if rules:
+        data["lists"].insert(1, {"title": "Addressing rules",
+                                 "items": [{"title": k.upper(), "text": v} for k, v in rules.items()]})
+    with open(OUT + ".tmp", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=1)
+    os.replace(OUT + ".tmp", OUT)
+    print(data["summary"])
+
+
+if __name__ == "__main__":
+    main()

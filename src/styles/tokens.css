@@ -467,6 +467,14 @@
   --c-cmd-panel-empty-bg: var(--color-sunken);
   --c-cmd-panel-empty-text: var(--color-text-muted);
   --c-cmd-panel-card-min: 260px;
+  --c-cmd-panel-time-width: 92px;
+  --c-cmd-panel-time: var(--color-text-accent);
+  --c-cmd-panel-rail: var(--color-orange-100);
+  --c-cmd-panel-dot: var(--gradient-brand);
+  --c-cmd-panel-dot-size: 10px;
+  --c-cmd-panel-bar-height: 6px;
+  --c-cmd-panel-bar-track: var(--color-sunken);
+  --c-cmd-panel-bar-fill: var(--gradient-brand);
 }
 :root[lang="bn"] {
   --font-display: "Cinzel", "Tiro Bangla", "Noto Serif Bengali", serif;

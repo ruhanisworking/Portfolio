@@ -1,8 +1,9 @@
 // Commander data: fills [data-cmd-source] blocks and [data-cmd-card] overview cards
 // from /data/<id>.json, which Hermes writes on the VM. Shape (every key optional):
 //   { "updated": ISO time, "summary": "…",
-//     "stats": [{ "label", "value", "note", "trend": "up"|"down" }],
-//     "lists": [{ "title", "empty", "items": [{ "title", "meta", "text", "tag", "href" }] }] }
+//     "stats": [{ "label", "value", "note", "trend": "up"|"down", "progress": 0–100 }],
+//     "lists": [{ "title", "empty", "style": "timeline"?,
+//                 "items": [{ "time", "title", "meta", "text", "tag", "href", "progress": 0–100 }] }] }
 // The data can hold mail and other outside text, so it only ever goes in via textContent.
 if (!document.querySelector("[data-cmd-source], [data-cmd-card]")) return;
 
@@ -31,9 +32,22 @@ const load = async (id) => {
   } catch { return null; }
 };
 
+const bar = (p) => {
+  const n = Math.max(0, Math.min(100, Number(p)));
+  const b = el("div", "cmd-bar");
+  b.style.setProperty("--_progress", `${n}%`);
+  b.setAttribute("role", "progressbar");
+  b.setAttribute("aria-valuenow", String(n));
+  b.setAttribute("aria-valuemin", "0");
+  b.setAttribute("aria-valuemax", "100");
+  return b;
+};
+const hasProgress = (x) => x.progress != null && x.progress !== "" && !Number.isNaN(Number(x.progress));
+
 const stat = (s) => {
   const box = el("div", "cmd-stat");
   box.append(el("span", "cmd-stat__label", s.label ?? ""), el("span", "cmd-stat__value", s.value ?? "—"));
+  if (hasProgress(s)) box.append(bar(s.progress));
   if (s.note) {
     const note = el("span", "cmd-stat__note", s.note);
     if (s.trend === "up" || s.trend === "down") note.dataset.trend = s.trend;
@@ -50,9 +64,15 @@ const panel = (l) => {
   if (items.length) head.append(el("span", "t-meta t-subtle", items.length));
   p.append(head);
   if (!items.length) { p.append(el("p", "cmd-empty", l.empty || "Nothing here right now.")); return p; }
-  const ul = el("ul", "cmd-list");
+  const ul = el("ul", l.style === "timeline" ? "cmd-list cmd-list--timeline" : "cmd-list");
   for (const it of items) {
-    const li = el("li", "cmd-list__item");
+    const item = el("li", "cmd-list__item");
+    // timeline: time on the left, everything else in a body on the rail
+    let li = item;
+    if (l.style === "timeline") {
+      li = el("div", "cmd-list__body");
+      item.append(el("span", "cmd-list__time", it.time ?? ""), li);
+    }
     const row = el("div", "cmd-list__row");
     const href = it.href && safeHref(it.href);
     const title = href ? el("a", "cmd-list__title", it.title ?? href) : el("span", "cmd-list__title", it.title ?? "");
@@ -61,8 +81,9 @@ const panel = (l) => {
     if (it.meta) row.append(el("span", "cmd-list__meta", it.meta));
     li.append(row);
     if (it.text) li.append(el("p", "cmd-list__text", it.text));
+    if (hasProgress(it)) li.append(bar(it.progress));
     if (it.tag) li.append(el("span", "cmd-tag", it.tag));
-    ul.append(li);
+    ul.append(item);
   }
   p.append(ul);
   return p;

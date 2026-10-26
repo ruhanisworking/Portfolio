@@ -43,6 +43,58 @@ a.cmd-list__title { color: var(--color-text-accent); }
 }
 .cmd-list__text { margin: 0; font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-leading); color: var(--color-text-muted); }
 
+/* timeline lists (calendar): time column, a rail with a dot per item */
+.cmd-list--timeline .cmd-list__item {
+  display: grid;
+  grid-template-columns: var(--c-cmd-panel-time-width) 1fr;
+  column-gap: var(--space-xs);
+  padding: 0;
+  border-top: 0;
+}
+.cmd-list__time {
+  padding-top: var(--space-3xs);
+  font-family: var(--type-meta-family);
+  font-size: var(--type-meta-size);
+  font-weight: var(--type-button-weight);
+  color: var(--c-cmd-panel-time);
+}
+.cmd-list__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  padding: 0 0 var(--space-md) var(--space-sm);
+  border-left: 2px solid var(--c-cmd-panel-rail);
+}
+.cmd-list__item:last-child .cmd-list__body { padding-bottom: 0; }
+.cmd-list__body::before {
+  content: "";
+  position: absolute;
+  top: var(--space-2xs);
+  left: calc(var(--c-cmd-panel-dot-size) / -2 - 1px);
+  width: var(--c-cmd-panel-dot-size);
+  height: var(--c-cmd-panel-dot-size);
+  border-radius: 50%;
+  background: var(--c-cmd-panel-dot);
+}
+
+/* progress bar under a stat or a list item: --_progress is set by cmd-panel.js */
+.cmd-bar {
+  height: var(--c-cmd-panel-bar-height);
+  margin-top: var(--space-3xs);
+  border-radius: var(--radius-pill);
+  background: var(--c-cmd-panel-bar-track);
+  overflow: hidden;
+}
+.cmd-bar::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: var(--_progress, 0%);
+  border-radius: inherit;
+  background: var(--c-cmd-panel-bar-fill);
+}
+
 .cmd-tag {
   align-self: flex-start;
   padding: var(--space-3xs) var(--space-2xs);

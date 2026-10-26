@@ -639,6 +639,14 @@ components:
     empty-bg: "{colors.sunken}"
     empty-text: "{colors.text-muted}"
     card-min: "260px"
+    time-width: "92px"
+    time: "{colors.text-accent}"
+    rail: "{colors.orange-100}"
+    dot: "{gradients.brand}"
+    dot-size: "10px"
+    bar-height: "6px"
+    bar-track: "{colors.sunken}"
+    bar-fill: "{gradients.brand}"
 ---
 
 # Ember — ruhan.bd design system
