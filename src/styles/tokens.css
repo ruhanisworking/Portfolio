@@ -475,6 +475,16 @@
   --c-cmd-panel-bar-height: 6px;
   --c-cmd-panel-bar-track: var(--color-sunken);
   --c-cmd-panel-bar-fill: var(--gradient-brand);
+  --c-cmd-login-max: 400px;
+  --c-cmd-login-pad: var(--space-lg);
+  --c-cmd-login-bg: var(--color-paper);
+  --c-cmd-login-border: var(--border-thin);
+  --c-cmd-login-radius: var(--radius-xl);
+  --c-cmd-login-shadow: var(--shadow-lg);
+  --c-cmd-login-note-bg: var(--color-error-bg);
+  --c-cmd-login-note-text: var(--color-error);
+  --c-cmd-login-note-ok-bg: var(--color-success-bg);
+  --c-cmd-login-note-ok-text: var(--color-success);
 }
 :root[lang="bn"] {
   --font-display: "Cinzel", "Tiro Bangla", "Noto Serif Bengali", serif;

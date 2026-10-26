@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- Commander sign-in. Served without a session; the form posts to the auth
+     service (commander/auth/server.py), which sets the session cookie. -->
+<html lang="en" translate="no" class="notranslate">
+  <head>
+    <!-- @include partials/cmd-head.html title="Sign in" -->
+  </head>
+  <body>
+    <main class="cmd-login">
+      <form class="cmd-login__card" method="post" action="/auth/login" data-cmd-login>
+        <div class="cmd-login__brand">
+          <!-- @include components/wordmark/wordmark.html id="login" -->
+          <span class="t-eyebrow">Commander</span>
+          <h1 class="cmd-login__title t-h3">Sign in</h1>
+        </div>
+        <p class="cmd-login__note" data-cmd-login-note role="status" hidden></p>
+        <div class="cmd-login__fields">
+          <label class="field"><span class="field__label">User name</span>
+            <input class="field__input" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required /></label>
+          <label class="field"><span class="field__label">Password</span>
+            <input class="field__input" name="password" type="password" autocomplete="current-password" required /></label>
+          <input type="hidden" name="next" value="/" />
+        </div>
+        <button class="btn btn--primary btn--block" type="submit">Sign in <span class="btn__arrow" aria-hidden="true">&rarr;</span></button>
+      </form>
+    </main>
+  </body>
+</html>

@@ -647,6 +647,17 @@ components:
     bar-height: "6px"
     bar-track: "{colors.sunken}"
     bar-fill: "{gradients.brand}"
+  cmd-login:
+    max: "400px"
+    pad: "{space.lg}"
+    bg: "{colors.paper}"
+    border: "{border.thin}"
+    radius: "{radius.xl}"
+    shadow: "{shadow.lg}"
+    note-bg: "{colors.error-bg}"
+    note-text: "{colors.error}"
+    note-ok-bg: "{colors.success-bg}"
+    note-ok-text: "{colors.success}"
 ---
 
 # Ember — ruhan.bd design system
@@ -757,7 +768,8 @@ tokens are under `components.<name>` above. The catalogue is
 | contact-form | css, js | name / email / message → opens a pre-filled email to the site address |
 | cmd-shell | html, css, js | Commander layout: dark sidebar nav grouped by area (sheet below `lg`), canvas main area |
 | cmd-stat | css | Commander KPI tile: label, big value, note with up/down trend |
-| cmd-panel | html, css, js | Commander data block: loads `/data/<id>.json` (written by Hermes) into summary, stats, lists and overview cards; empty state when missing |
+| cmd-panel | html, css, js | Commander data block: loads `/data/<id>.json` (written by Hermes) into summary, stats, lists (plain or timeline, with progress bars) and overview cards; empty state when missing |
+| cmd-login | css, js | Commander sign-in card: wordmark, user + password fields, error / signed-out note. The form posts to the server-side auth (`commander/auth/`) |
 
 ## Do's and Don'ts
 

@@ -1,0 +1,42 @@
+/* Commander login — a centred sign-in card on the canvas glow.
+   Markup: <main class="cmd-login"><form class="cmd-login__card" method="post" action="/auth/login">
+           wordmark · h1 · .cmd-login__note[data-cmd-login-note] · .field × 2 · .btn--primary</form></main>
+   The form posts to the server-side auth service; this page never checks a password itself. */
+.cmd-login {
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* flex, not grid: a grid track sized by the inputs pushed the card off narrow screens */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) var(--layout-gutter);
+  background-color: var(--color-canvas);
+  background-image: var(--gradient-canvas-glow);
+}
+.cmd-login__card {
+  width: 100%;
+  max-width: var(--c-cmd-login-max);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--c-cmd-login-pad);
+  background: var(--c-cmd-login-bg);
+  border: var(--c-cmd-login-border);
+  border-radius: var(--c-cmd-login-radius);
+  box-shadow: var(--c-cmd-login-shadow);
+}
+.cmd-login__brand { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
+.cmd-login__brand .wordmark { height: var(--c-wordmark-height); color: var(--c-wordmark-ink); }
+.cmd-login__title { margin: 0; }
+.cmd-login__note {
+  margin: 0;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  background: var(--c-cmd-login-note-bg);
+  color: var(--c-cmd-login-note-text);
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-leading);
+}
+.cmd-login__note[data-tone="ok"] { background: var(--c-cmd-login-note-ok-bg); color: var(--c-cmd-login-note-ok-text); }
+.cmd-login__fields { display: flex; flex-direction: column; gap: var(--space-sm); }
