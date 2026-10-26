@@ -22,6 +22,8 @@ in what order.
 | `commander-calendar` | ruhan.lol/calendar from Google Calendar + Hermes' events; `--agenda`, `--remind` | host cron every 15 min; Hermes jobs |
 | `commander-people` | ruhan.lol/people from the People book + sent mail | host cron, daily |
 | `commander-learn-raw` | GitHub + Hacker News raw material for the 07:00 lesson | Hermes morning job |
+| `gcal` | Google Calendar: list / add / invite (new Meet link + invite from me@ruhan.bd) / move / cancel | Hermes, on request |
+| `mail-outbox` | scheduled mail queue: `add --at … --file …`, `list`, `cancel`, `send` | Hermes adds; a 5-min no-agent cron sends |
 
 `ruhan-mail` (the mail sending rules) lives only on the VM, because it names
 private addresses. A copy with placeholders is in `.claude/skills/hermes-vm/`.

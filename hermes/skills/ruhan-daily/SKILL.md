@@ -50,19 +50,41 @@ and `data/` is what the pages read.
 "explain more" means a deeper follow-up on today's lesson. "save this idea"
 means add it to `records/ideas.json` (and to the Research page later).
 
-## 2. Calendar: `records/calendar.json` → `commander-calendar` → `data/calendar.json`
+## 2. Calendar: **Google Calendar is the only calendar** (`gcal`)
 
-- Google Calendar is read-only, from the secret iCal URL in
-  `/opt/data/secrets/gcal-ics-url`. You cannot change Google events. Say so,
-  and offer to add the event to Hermes' own calendar.
-- **Add, move or cancel** an event: edit `records/calendar.json`:
-  `{"events": [{"id": "e-<yyyymmddhhmm>-<slug>", "title", "start": "YYYY-MM-DDTHH:MM", "end", "where", "with": [names], "kind": "meeting|focus|study|travel|task", "note"}]}`.
-  Then run `commander-calendar` and confirm in one line, for example
-  "Added: Tue 27 Oct 15:00–16:00 Karim (Zoom)."
-- Understand plain Bangla/English: "kal 3 tay" means tomorrow 15:00.
-  "porshu" means the day after tomorrow. The default length is 1 hour.
-- Mail invites (an `.ics` attachment, or "meeting at …"): propose adding them
-  and ask once.
+Everything goes into Ruhan's Google Calendar, so it shows on his phone with
+Google's own notifications. Use the `gcal` command (JSON output; times without
+a zone are Asia/Dhaka):
+
+| Ruhan says | You run |
+|---|---|
+| "kal 3 tay Karim er sathe meeting" (with a person or group) | `gcal invite --title "…" --start 2026-10-28T15:00 --minutes 30 --to karim@x.com --cc … --body-file /tmp/body.txt` |
+| "20:00 e Databricks study block" / "focus 2 ghonta" | `gcal add --title "Databricks: <topic>" --start … --minutes 60 --kind study --remind 10` |
+| "kal 9 tay bank e call korar kotha mone koriye dio" | `gcal add --title "Call the bank" --start … --minutes 15 --kind reminder --remind 0,10` |
+| "aj / kal ki ache?" | `gcal list --days 1` (or `--from YYYY-MM-DD`) |
+| "3 tar meeting 5 tay niye jao" | `gcal list` to find the id → `gcal move ID --start …` → mail the guests the new time (section 3) |
+| "meeting cancel" | `gcal cancel ID` → mail the guests (section 3) |
+
+- **`gcal invite`** = a new event with **its own Google Meet link**, the guests
+  (To + CC) on it, a 10-minute reminder, and an invitation **sent from
+  me@ruhan.bd**: your body text, then the time block, the Meet link and a
+  calendar `.ics`. Google itself never mails the guests. Write the body first
+  (Meeting request format, the person's tone, 2–4 lines, no time or link:
+  the script adds those), save it to `/tmp/body.txt`, then run. Use the
+  People book for addresses and CC/BCC order.
+- One meeting = one event = one Meet link. A different person, group or time
+  always means a new `gcal invite`.
+- Reminders: `--remind` takes minutes before the start (`0,10,60`). They are
+  Google popups on his phone. The Telegram reminder 15 minutes before also
+  runs by itself.
+- After any change, run `commander-calendar` (it refreshes ruhan.lol/calendar)
+  and confirm in one line: "Invited Karim: Wed 28 Oct 15:00–15:30, Meet
+  link sent from me@ruhan.bd."
+- Understand plain Bangla/English: "kal 3 tay" means tomorrow 15:00, and
+  "porshu" means the day after tomorrow. Defaults: meeting 30 min, block 60
+  min.
+- If `gcal` fails with an auth error, Google OAuth is not set up or has
+  expired. Tell Ruhan; do not fall back silently.
 - **07:00 job**: `commander-calendar --agenda` output is in your prompt.
   Send the day's agenda. Suggest focus blocks in the gaps and one Databricks
   study block (default 20:00–21:00) if there is none, and add them when
@@ -109,6 +131,16 @@ Sign-off: friendly → "Ruhan". Formal → "Best regards,\nMohammad Ruhan Islam"
 **Send** with `ruhan-mail`. Draft only if he says "draft". After sending,
 append `{date, to, subject, format}` to `records/sent.json`.
 
+**Meeting invitations** are not written by hand. Use `gcal invite` (section
+2): it creates the Meet link and sends the invite.
+
+**Scheduled mail** ("kal sokal 9 tay X ke mail koro", "Friday follow up"):
+write the full raw mail to `/tmp/mail.eml` (same rules as sending), then
+`mail-outbox add --at 2026-10-28T09:00 --file /tmp/mail.eml`. It goes out at
+that time, and Ruhan gets "📤 Scheduled mail sent" on Telegram. Use
+`mail-outbox list` to see what is waiting, and `mail-outbox cancel NAME` to
+drop one. Confirm in one line: "Scheduled: Wed 09:00 → Karim, “Follow-up”."
+
 **08:00 and 17:00 jobs**: check both inboxes for mail that needs a reply
 (real people and direct questions, not newsletters or alerts). Send a short
 list on Telegram, each with one line, and offer "reply koro?".
@@ -136,8 +168,9 @@ https://www.databricks.com/sites/default/files/2026-10/Databricks-Certified-Data
   driving the time. Keep the last 7 days for full practice and weak areas.
   With no date yet, plan 6 weeks and ask for the date.
 - **20:00 job**: today's topic, with what to read or do (an official doc or
-  Databricks Academy link) and why it is on the exam. Put a 20:00–21:00 study
-  block in the calendar if there is none.
+  Databricks Academy link) and why it is on the exam.
+- The study block goes in Google Calendar:
+  `gcal add --title "Databricks: <topic>" --start <today>T20:00 --minutes 60 --kind study --remind 10`.
 - **Next morning (in the 07:00 message)**: a 5-question multiple-choice quiz
   on yesterday's topic. Log each answer in `quiz`.
 - **Progress per domain** = done topics ÷ planned topics × 100.

@@ -1,0 +1,190 @@
+#!/opt/hermes/.venv/bin/python3
+"""Ruhan's Google Calendar for Hermes (OAuth token from the google-workspace setup).
+
+Times without a zone are Asia/Dhaka. Every command prints JSON.
+
+  gcal list   [--days 7] [--from YYYY-MM-DD]
+  gcal add    --title T --start 2026-10-28T15:00 [--end … | --minutes 60] [--where W]
+              [--note N] [--remind 10,60] [--attendees a@x,b@y] [--meet] [--kind meeting|focus|study|task|reminder]
+  gcal invite --title T --start … [--minutes 30] --to a@x[,b@y] [--cc …] [--bcc …]
+              [--body-file /tmp/body.txt] [--remind 10] [--note N]
+              → new event with its own Google Meet link, attendees = To + CC, then an
+                invitation mail from me@ruhan.bd (body + meeting block + .ics) via himalaya
+  gcal move   ID --start … [--end … | --minutes N]
+  gcal cancel ID
+
+Google never mails the guests itself (sendUpdates=none): invitations always go out
+from me@ruhan.bd.
+"""
+import argparse
+import datetime as dt
+import json
+import subprocess
+import sys
+import tempfile
+import uuid
+from email.message import EmailMessage
+from email.utils import formatdate, getaddresses, make_msgid
+from zoneinfo import ZoneInfo
+
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+
+TZ = ZoneInfo("Asia/Dhaka")
+TOKEN = "/opt/data/google_token.json"
+FROM = "Mohammad Ruhan Islam <me@ruhan.bd>"
+KIND_COLOR = {"meeting": "9", "focus": "2", "study": "5", "task": "8", "reminder": "11", "travel": "6"}
+
+
+def api():
+    creds = Credentials.from_authorized_user_file(TOKEN)
+    if not creds.valid:
+        creds.refresh(Request())
+        with open(TOKEN, "w") as f:
+            f.write(creds.to_json())
+    return build("calendar", "v3", credentials=creds, cache_discovery=False)
+
+
+def when(s):
+    t = dt.datetime.fromisoformat(s)
+    return (t if t.tzinfo else t.replace(tzinfo=TZ)).astimezone(TZ)
+
+
+def span(a):
+    start = when(a.start)
+    end = when(a.end) if getattr(a, "end", None) else start + dt.timedelta(minutes=a.minutes or 60)
+    return start, end
+
+
+def emails(s):
+    return [e for _, e in getaddresses([s or ""]) if e]
+
+
+def slim(ev):
+    s = ev["start"].get("dateTime") or ev["start"].get("date")
+    e = ev["end"].get("dateTime") or ev["end"].get("date")
+    return {"id": ev["id"], "title": ev.get("summary", "(busy)"), "start": s, "end": e,
+            "all_day": "date" in ev["start"], "where": ev.get("location", ""),
+            "meet": ev.get("hangoutLink", ""), "link": ev.get("htmlLink", ""),
+            "with": [x.get("displayName") or x["email"] for x in ev.get("attendees", []) if not x.get("self")],
+            "kind": (ev.get("extendedProperties", {}).get("private", {}) or {}).get("kind", "")}
+
+
+def body_for(a, start, end, attendees, meet):
+    b = {"summary": a.title, "start": {"dateTime": start.isoformat(), "timeZone": "Asia/Dhaka"},
+         "end": {"dateTime": end.isoformat(), "timeZone": "Asia/Dhaka"},
+         "extendedProperties": {"private": {"kind": a.kind, "by": "hermes"}}}
+    if a.where:
+        b["location"] = a.where
+    if a.note:
+        b["description"] = a.note
+    if a.kind in KIND_COLOR:
+        b["colorId"] = KIND_COLOR[a.kind]
+    if a.remind:
+        b["reminders"] = {"useDefault": False, "overrides": [{"method": "popup", "minutes": int(m)} for m in a.remind.split(",")]}
+    if attendees:
+        b["attendees"] = [{"email": e} for e in attendees]
+    if meet:
+        b["conferenceData"] = {"createRequest": {"requestId": uuid.uuid4().hex,
+                                                 "conferenceSolutionKey": {"type": "hangoutsMeet"}}}
+    return b
+
+
+def create(a, attendees=(), meet=False):
+    start, end = span(a)
+    ev = api().events().insert(calendarId="primary", body=body_for(a, start, end, list(attendees), meet),
+                               conferenceDataVersion=1 if meet else 0, sendUpdates="none").execute()
+    return ev, start, end
+
+
+def ics(ev, start, end, attendees, title, description):
+    z = lambda t: t.astimezone(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    esc = lambda s: s.replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,").replace("\n", "\\n")
+    lines = ["BEGIN:VCALENDAR", "PRODID:-//ruhan//hermes gcal//EN", "VERSION:2.0", "METHOD:REQUEST", "BEGIN:VEVENT",
+             f"UID:{ev.get('iCalUID', ev['id'])}", f"DTSTAMP:{z(dt.datetime.now(dt.timezone.utc))}",
+             f"DTSTART:{z(start)}", f"DTEND:{z(end)}", f"SUMMARY:{esc(title)}",
+             f"DESCRIPTION:{esc(description)}", f"LOCATION:{esc(ev.get('hangoutLink', ''))}",
+             "ORGANIZER;CN=Mohammad Ruhan Islam:mailto:me@ruhan.bd"]
+    lines += [f"ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mailto:{e}" for e in attendees]
+    lines += ["END:VEVENT", "END:VCALENDAR"]
+    return "\r\n".join(lines) + "\r\n"
+
+
+def cmd_invite(a):
+    to, cc, bcc = emails(a.to), emails(a.cc), emails(a.bcc)
+    if not to:
+        sys.exit("invite needs --to")
+    ev, start, end = create(a, attendees=to + cc, meet=True)
+    meet = ev.get("hangoutLink", "")
+    body = open(a.body_file, encoding="utf-8").read().rstrip() + "\n\n" if a.body_file else ""
+    block = f"{a.title}\n{start:%A, %d %B %Y}, {start:%H:%M}–{end:%H:%M} (Bangladesh time, UTC+6)\nGoogle Meet: {meet}\n"
+    msg = EmailMessage()
+    msg["From"], msg["To"], msg["Subject"] = FROM, ", ".join(to), f"Invitation: {a.title} · {start:%a %d %b, %H:%M} (UTC+6)"
+    if cc:
+        msg["Cc"] = ", ".join(cc)
+    if bcc:
+        msg["Bcc"] = ", ".join(bcc)
+    msg["Date"], msg["Message-ID"] = formatdate(localtime=True), make_msgid(domain="ruhan.bd")
+    msg.set_content(body + block)
+    msg.add_attachment(ics(ev, start, end, to + cc, a.title, block).encode(), maintype="text", subtype="calendar",
+                       filename="invite.ics", params={"method": "REQUEST"})
+    with tempfile.NamedTemporaryFile("wb", suffix=".eml", delete=False) as f:
+        f.write(msg.as_bytes())
+    r = subprocess.run(["himalaya", "-a", "personal", "message", "send", "--", f.name], capture_output=True, text=True)
+    out = {**slim(ev), "mail": "sent" if r.returncode == 0 else f"FAILED: {(r.stderr or r.stdout).strip()[:300]}",
+           "to": to, "cc": cc, "bcc": bcc}
+    print(json.dumps(out, ensure_ascii=False))
+
+
+def main():
+    p = argparse.ArgumentParser()
+    sub = p.add_subparsers(dest="cmd", required=True)
+    l = sub.add_parser("list"); l.add_argument("--days", type=int, default=7); l.add_argument("--from", dest="frm")
+    for name in ("add", "invite"):
+        s = sub.add_parser(name)
+        s.add_argument("--title", required=True); s.add_argument("--start", required=True)
+        s.add_argument("--end"); s.add_argument("--minutes", type=int)
+        s.add_argument("--where", default=""); s.add_argument("--note", default="")
+        s.add_argument("--remind", default="10" if name == "invite" else "")
+        s.add_argument("--kind", default="meeting" if name == "invite" else "task")
+        if name == "add":
+            s.add_argument("--attendees", default=""); s.add_argument("--meet", action="store_true")
+        else:
+            s.add_argument("--to", required=True); s.add_argument("--cc", default=""); s.add_argument("--bcc", default="")
+            s.add_argument("--body-file")
+    m = sub.add_parser("move"); m.add_argument("id"); m.add_argument("--start", required=True)
+    m.add_argument("--end"); m.add_argument("--minutes", type=int)
+    c = sub.add_parser("cancel"); c.add_argument("id")
+    a = p.parse_args()
+
+    if a.cmd == "list":
+        day0 = (dt.datetime.fromisoformat(a.frm).replace(tzinfo=TZ) if a.frm
+                else dt.datetime.now(TZ).replace(hour=0, minute=0, second=0, microsecond=0))
+        evs = api().events().list(calendarId="primary", timeMin=day0.isoformat(),
+                                  timeMax=(day0 + dt.timedelta(days=a.days + 1)).isoformat(),
+                                  singleEvents=True, orderBy="startTime", maxResults=250).execute().get("items", [])
+        print(json.dumps([slim(e) for e in evs], ensure_ascii=False))
+    elif a.cmd == "add":
+        ev, _, _ = create(a, attendees=emails(a.attendees), meet=a.meet)
+        print(json.dumps(slim(ev), ensure_ascii=False))
+    elif a.cmd == "invite":
+        cmd_invite(a)
+    elif a.cmd == "move":
+        svc = api()
+        ev = svc.events().get(calendarId="primary", eventId=a.id).execute()
+        start = when(a.start)
+        old = (dt.datetime.fromisoformat(ev["end"]["dateTime"]) - dt.datetime.fromisoformat(ev["start"]["dateTime"])
+               if "dateTime" in ev["start"] else dt.timedelta(hours=1))
+        end = when(a.end) if a.end else start + (dt.timedelta(minutes=a.minutes) if a.minutes else old)
+        ev["start"] = {"dateTime": start.isoformat(), "timeZone": "Asia/Dhaka"}
+        ev["end"] = {"dateTime": end.isoformat(), "timeZone": "Asia/Dhaka"}
+        print(json.dumps(slim(svc.events().update(calendarId="primary", eventId=a.id, body=ev,
+                                                  sendUpdates="none").execute()), ensure_ascii=False))
+    elif a.cmd == "cancel":
+        api().events().delete(calendarId="primary", eventId=a.id, sendUpdates="none").execute()
+        print(json.dumps({"id": a.id, "cancelled": True}))
+
+
+if __name__ == "__main__":
+    main()

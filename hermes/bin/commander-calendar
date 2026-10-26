@@ -7,6 +7,7 @@
                                 16 minutes, once each (for a 5-minute no-agent cron)
 
 Sources
+  Google Calendar through `gcal list` (OAuth) when /opt/data/google_token.json exists, else
   /opt/data/secrets/gcal-ics-url            Google Calendar "secret address in iCal format" (optional)
   /opt/data/commander/records/calendar.json Hermes' own events:
      {"events": [{"id": "…", "title": "…", "start": "2026-10-27T15:00", "end": "2026-10-27T16:00",
@@ -27,6 +28,7 @@ OUT = f"{ROOT}/data/calendar.json"
 OWN = f"{ROOT}/records/calendar.json"
 REMINDED = f"{ROOT}/records/.reminded.json"
 ICS_URL_FILE = "/opt/data/secrets/gcal-ics-url"
+GOOGLE_TOKEN = "/opt/data/google_token.json"  # once OAuth is set up, read through `gcal list` instead
 DAYS = 7
 
 
@@ -38,7 +40,31 @@ def to_local(v, all_day=False):
     raise ValueError(v)
 
 
+def google_api_events(start, end, errors):
+    # through `gcal list` (the Hermes venv has the Google client; this python has icalendar)
+    import subprocess
+    days = (end - start).days
+    r = subprocess.run(["gcal", "list", "--days", str(days), "--from", start.date().isoformat()],
+                       capture_output=True, text=True, timeout=90)
+    if r.returncode != 0:
+        raise RuntimeError((r.stderr or r.stdout).strip()[-200:])
+    out = []
+    for x in json.loads(r.stdout):
+        all_day = x["all_day"]
+        s = to_local(dt.date.fromisoformat(x["start"]) if all_day else dt.datetime.fromisoformat(x["start"]))[0]
+        e = to_local(dt.date.fromisoformat(x["end"]) if all_day else dt.datetime.fromisoformat(x["end"]))[0]
+        out.append({"id": f"g:{x['id']}", "title": x["title"], "start": s, "end": e, "all_day": all_day,
+                    "where": x["meet"] or x["where"], "with": x["with"][:6],
+                    "kind": x["kind"] or ("meeting" if x["with"] or x["meet"] else "event"), "source": "google"})
+    return out
+
+
 def google_events(start, end, errors):
+    if os.path.exists(GOOGLE_TOKEN):
+        try:
+            return google_api_events(start, end, errors)
+        except Exception as e:  # fall back to the iCal feed
+            errors.append(f"Google Calendar API: {e}")
     if not os.path.exists(ICS_URL_FILE):
         return []
     try:

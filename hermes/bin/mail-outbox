@@ -1,0 +1,73 @@
+#!/opt/hermes/.venv/bin/python3
+"""Scheduled mail for Hermes.
+
+  mail-outbox add --at 2026-10-28T09:00 --file /tmp/mail.eml   queue a raw RFC 5322 mail (Asia/Dhaka time)
+  mail-outbox list                                             what is waiting (JSON)
+  mail-outbox cancel NAME                                      drop one (NAME from list)
+  mail-outbox send                                             send everything due; prints one line per mail
+                                                               (a 5-minute no-agent cron runs this → Telegram)
+Queue: /opt/data/commander/records/outbox/<YYYYMMDDTHHMM>--<id>.eml, sent ones move to outbox/sent/.
+Mail goes out through himalaya, account `personal` (me@ruhan.bd).
+"""
+import datetime as dt
+import email
+import json
+import os
+import shutil
+import subprocess
+import sys
+import uuid
+from zoneinfo import ZoneInfo
+
+TZ = ZoneInfo("Asia/Dhaka")
+Q = "/opt/data/commander/records/outbox"
+
+
+def due_of(name):
+    return dt.datetime.strptime(name.split("--")[0], "%Y%m%dT%H%M").replace(tzinfo=TZ)
+
+
+def headers(path):
+    with open(path, "rb") as f:
+        m = email.message_from_binary_file(f)
+    return m.get("Subject", "(no subject)"), m.get("To", "")
+
+
+def main():
+    os.makedirs(f"{Q}/sent", exist_ok=True)
+    cmd = sys.argv[1] if len(sys.argv) > 1 else "send"
+    if cmd == "add":
+        args = dict(zip(sys.argv[2::2], sys.argv[3::2]))
+        at = dt.datetime.fromisoformat(args["--at"])
+        at = (at if at.tzinfo else at.replace(tzinfo=TZ)).astimezone(TZ)
+        name = f"{at:%Y%m%dT%H%M}--{uuid.uuid4().hex[:8]}.eml"
+        shutil.copy(args["--file"], f"{Q}/{name}")
+        subj, to = headers(f"{Q}/{name}")
+        print(json.dumps({"queued": name, "at": at.isoformat(), "subject": subj, "to": to}, ensure_ascii=False))
+    elif cmd == "list":
+        out = []
+        for n in sorted(os.listdir(Q)):
+            if n.endswith(".eml"):
+                subj, to = headers(f"{Q}/{n}")
+                out.append({"name": n, "at": due_of(n).isoformat(), "subject": subj, "to": to})
+        print(json.dumps(out, ensure_ascii=False))
+    elif cmd == "cancel":
+        os.remove(f"{Q}/{sys.argv[2]}")
+        print(json.dumps({"cancelled": sys.argv[2]}))
+    elif cmd == "send":
+        now = dt.datetime.now(TZ)
+        for n in sorted(os.listdir(Q)):
+            if not n.endswith(".eml") or due_of(n) > now:
+                continue
+            subj, to = headers(f"{Q}/{n}")
+            r = subprocess.run(["himalaya", "-a", "personal", "message", "send", "--", f"{Q}/{n}"],
+                               capture_output=True, text=True, timeout=120)
+            if r.returncode == 0:
+                shutil.move(f"{Q}/{n}", f"{Q}/sent/{n}")
+                print(f"📤 Scheduled mail sent: “{subj}” → {to}")
+            else:
+                print(f"⚠️ Scheduled mail failed (will retry): “{subj}” → {to}\n{(r.stderr or r.stdout).strip()[:200]}")
+
+
+if __name__ == "__main__":
+    main()

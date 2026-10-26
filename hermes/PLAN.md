@@ -59,8 +59,12 @@ what is next.
   Leaves free gaps for focus and for Databricks study.
 - **15 minutes before** each meeting: a Telegram reminder with the link.
 - **21:00**: asks "kal er plan ki?", then builds tomorrow from the answer.
-- Source: Hermes' own calendar (records in `calendar.json`). Google Calendar
-  sync is an option. See Open questions.
+- **Google Calendar is the only calendar** (`gcal`, OAuth). Every meeting
+  gets its own Google Meet link, the guests and a reminder. The invitation
+  goes out from me@ruhan.bd with an `.ics`. Tasks, study blocks and
+  reminders go in as events too, so the phone notifies.
+- **Scheduled mail**: "kal 9 tay X ke mail koro" is queued in
+  `mail-outbox`. It sends on time and reports on Telegram.
 
 **You say**: "add meeting …", "aj ki ache?", "move 3pm to 5pm", "cancel …".
 
@@ -171,7 +175,7 @@ refreshes it at 07:00 and after any change.
 
 ## Open questions (Ruhan)
 
-1. Calendar source: Hermes' own calendar only, or also Google Calendar?
-2. Databricks: which exam, and the target date?
-3. Times: are 07:00 / 20:00 / 21:00 right?
+1. ~~Calendar source~~: Google Calendar, read and write (OAuth), decided 2026-10-27.
+2. Databricks: Data Engineer Associate. The exam date is still open.
+3. ~~Times~~: 07:00 / 20:00 / 21:00.
 4. People: the first 10 people he mails most, with their group and CC rules.
