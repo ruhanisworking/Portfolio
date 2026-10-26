@@ -69,7 +69,10 @@ in inline remote commands.
 | `hermes/bin/commander-{calendar,people,learn-raw}` (repo) | Phase 1 scripts (see `hermes/README.md`), linked into `~/.hermes/.local/bin` |
 | `~/.hermes/scripts/{morning,agenda,remind}.sh` | wrappers that Hermes cron `--script` runs (it only takes files in this folder) |
 | `~/.hermes/commander/records/` | raw truth behind the pages (calendar events, People book, Databricks plan). Not served |
-| `~/.hermes/secrets/gcal-ics-url` | Google Calendar "secret address in iCal format". Ruhan adds it; it is read-only |
+| `~/.hermes/secrets/gcal-ics-url` | Google Calendar "secret address in iCal format". Read-only fallback, used only when the OAuth token is missing |
+| `~/.hermes/google_token.json` + `google_client_secret.json` | Google OAuth, **Calendar scope only** (Desktop client, Google Cloud project `bustling-tree-318817`, app in Testing with ruhan.9mri as the test user). Made by `gcal-auth url` / `gcal-auth code <redirect URL>`; check it with `gcal-auth check`. While the app is in Testing, Google expires the refresh token after 7 days: re-run `gcal-auth`, or publish the app |
+| `hermes/bin/gcal`, `gcal-auth`, `mail-outbox` (repo) | Google Calendar read/write + Meet invites from me@ruhan.bd; OAuth helper; the scheduled-mail queue (`records/outbox/`, sent by the no-agent cron `scheduled-mail` every 5 min) |
+| Desktop helpers on the PC | `Save Google Calendar link.cmd` and `Send Google client file.cmd` (scripts in `C:\Users\ruhan\.ssh\`). They send the clipboard or a downloaded file to the VM, because paste into ssh/PuTTY does not work for Ruhan. PowerShell 5.1 adds a UTF-8 BOM to piped text, and the VM side strips it |
 | ruhan's crontab (host, UTC) | `*/15` commander-mail, `*/15` commander-calendar, `30 0` commander-people. No model calls |
 | Hermes cron (`hermes cron list`, Asia/Dhaka) | `morning` 07:00 (Learn + agenda + quiz + brief), `mail-digest` 08:00/17:00, `databricks-task` 20:00, `plan-tomorrow` 21:00, `reminders` */5 (no-agent). All deliver to Telegram |
 | `~/hermes/dashboard.env` | dashboard basic-auth user `ruhan` + random password (600) |
