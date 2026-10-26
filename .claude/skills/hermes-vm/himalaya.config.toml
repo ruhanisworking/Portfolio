@@ -1,7 +1,7 @@
 # Copy of ~/.hermes/.config/himalaya/config.toml on the VM (mounted at /opt/data/.config/himalaya).
 # Gmail addresses replaced with placeholders; the real ones are in docs/notes/hermes-vm-private.md.
-# Hermes mail: IMAP only. There is deliberately NO smtp.* section, so nothing
-# can be sent from here. Drafts are saved and Ruhan sends them from Gmail.
+# Hermes mail. `personal` sends as me@ruhan.bd (Gmail SMTP) since 2026-10-26, when
+# Ruhan asked Hermes to send mail itself. `work` is read-only.
 # App passwords live in /opt/data/secrets/ (host: ~/.hermes/secrets/), mode 600.
 
 # <personal-gmail>. me@ruhan.bd and hi@ruhan.bd are forwarded here by
@@ -16,8 +16,13 @@ imap.sasl.plain.password.command = "cat /opt/data/secrets/gmail-personal"
 mailbox.alias.drafts = "[Gmail]/Drafts"
 mailbox.alias.sent = "[Gmail]/Sent Mail"
 
-# <work-gmail>: read only in practice; replies are drafted in
-# the personal account from me@ruhan.bd.
+[accounts.personal.smtp]
+server = "smtps://smtp.gmail.com:465"
+sasl.plain.username = "<personal-gmail>"
+sasl.plain.password.command = "cat /opt/data/secrets/gmail-personal"
+
+# <work-gmail>: read-only; replies are sent from the personal account as
+# me@ruhan.bd.
 [accounts.work]
 email = "<work-gmail>"
 display-name = "Mohammad Ruhan Islam"

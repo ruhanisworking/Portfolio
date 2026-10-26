@@ -63,7 +63,9 @@ in inline remote commands.
 | `~/.hermes/commander/site/` | deployed `dist-commander/` (rsync) |
 | `~/.hermes/commander/data/<id>.json` | Commander data written by Hermes / `commander-mail` |
 | `~/.hermes/skills/ruhan/ruhan-{commander,frontend,business}` | symlinks into the repo clone's `hermes/skills/` |
-| `hermes/bin/commander-mail` (repo) | fills a Commander mail page from both inboxes. **Not in use**: ruhan.lol went public on 2026-10-25, so its cron and data were removed. Only use it again behind a login |
+| `~/hermes/commander-auth.caddy` | `basic_auth` for ruhan.lol: dashboard user + bcrypt hash from `dashboard.env`. Rebuild it with `caddy hash-password` if that password changes |
+| `hermes/bin/commander-mail` (repo) | fills ruhan.lol/mail from both inboxes. It runs from ruhan's crontab every 15 min, without model calls |
+| `hermes/bin/commander-deploy` (repo) | build + check + rsync to the live site. Linked into `~/.hermes/.local/bin` |
 | `~/hermes/dashboard.env` | dashboard basic-auth user `ruhan` + random password (600) |
 | `~/hermes/tunnel.env` | `TUNNEL_TOKEN=` for cloudflared (600) |
 | `~/.hermes/.env` | API keys: `OPENROUTER_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_ALLOWED_USERS`, … |
@@ -108,32 +110,35 @@ Set in `config.yaml`:
   (set under Domain → Nameservers → Custom DNS, not under Advanced DNS). It is a
   zone in the same Cloudflare account as ruhan.bd.
 - **Tunnel** `hermes-vm` has routes ("Published application"):
-  `ruhan.lol` → `http://commander:80` (**public**: no Access, no password, by
-  Ruhan's choice), and `agent.ruhan.lol` → `http://hermes:9119`, which **must**
-  stay inside the Access app because it controls the agent.
-- Because ruhan.lol is public, the Commander carries no private data. That
-  rule is in `hermes/skills/ruhan-commander`.
-- **Access application** `Commander` uses policy `Only Me`: Allow, Include
-  Emails. Login methods are Cloudflare account login, plus One-time PIN if it
-  has been enabled. Without an Access app, ruhan.lol would be open to anyone.
-- agent.ruhan.lol needs two logins: Cloudflare Access, then the dashboard's
-  basic auth (`dashboard.env`). Log out at `agent.ruhan.lol/cdn-cgi/access/logout`.
-- Verify with `curl -s -o /dev/null -w '%{http_code} %{redirect_url}' https://agent.ruhan.lol/`.
-  The result must be a **302 to `…cloudflareaccess.com`**. ruhan.lol answers 200.
+  `ruhan.lol` → `http://commander:80`, and `agent.ruhan.lol` →
+  `http://hermes:9119`.
+- **ruhan.lol** is not in Cloudflare Access, by Ruhan's choice: he wanted a
+  plain login. Caddy `basic_auth` guards every path, `/data/` included, with
+  the same user/password as the Hermes dashboard
+  (`~/hermes/commander-auth.caddy`, a bcrypt hash made from `dashboard.env`).
+  Never accept a client-side or JS login there. Hermes built one on
+  2026-10-26 that put the password in a public `auth.js`, and it was removed.
+- **agent.ruhan.lol** **must** stay in the Access app `Commander` (policy
+  `Only Me`: Allow, Include Emails), because it controls the agent. It also
+  has the dashboard's basic auth.
+- Verify: `https://agent.ruhan.lol/` must give a **302 to `…cloudflareaccess.com`**,
+  and `https://ruhan.lol/` must give a **401** without credentials.
 
-## Mail (himalaya, draft-only)
+## Mail (himalaya)
 
 There are four addresses and two Gmail accounts:
 - `personal` = the personal Gmail. me@ruhan.bd and hi@ruhan.bd reach it too.
   ruhan.bd MX is Cloudflare Email Routing, which forwards there, and
   me@ruhan.bd is set up as a Gmail "Send mail as" alias.
 - `work` = the work Gmail.
-- Every draft, whichever inbox the original came to, is saved in `personal`
-  → Drafts with `From: Mohammad Ruhan Islam <me@ruhan.bd>`. Ruhan sends it
-  himself.
+- Since 2026-10-26, **Hermes sends** when Ruhan says mail/send/reply. It
+  sends from `personal` through Gmail SMTP as
+  `From: Mohammad Ruhan Islam <me@ruhan.bd>`, whichever inbox the original
+  came to. It saves a draft only when he says "draft". `work` has no SMTP.
 
 ```bash
 docker exec -u hermes hermes himalaya -a work envelope list -s 10
+docker exec -u hermes hermes himalaya -a personal message send -- /tmp/mail.eml
 docker exec -u hermes hermes himalaya -a personal message add -m drafts -f draft seen -- /tmp/draft.eml
 ```
 `-f` takes several values, so the file path must come after `--`. Otherwise
@@ -159,11 +164,14 @@ The source is in this repo: `commander/` holds the pages and `sections.json`,
 `/opt/data/commander/data/<id>.json` (shape in `cmd-panel.js` and in
 `hermes/skills/ruhan-commander`). The Hermes skills for it live in `hermes/`.
 
-Deploy after changing commander code:
+Deploy after changing commander code. `commander-deploy` (in `hermes/bin`)
+is the only thing that writes the live site:
 ```bash
 git push   # from the PC; then on the VM:
-docker exec -u hermes hermes sh -c 'cd /opt/data/work/Portfolio && git pull --ff-only && node tools/build.mjs && node tools/check.mjs && rsync -a --delete dist-commander/ /opt/data/commander/site/'
+docker exec -u hermes hermes sh -c 'cd /opt/data/work/Portfolio && git pull --ff-only && commander-deploy'
 ```
+If Hermes hand-edits `~/.hermes/commander/site` or puts data in `site/data`,
+back it up (as in `~/.hermes/backups/commander-by-hermes-*`), then redeploy.
 After you edit `hermes/skills/*`, pull the same way and `docker compose restart hermes`.
 
 ## Everyday commands (on the VM, in `~/hermes`)
@@ -184,9 +192,12 @@ Telegram is healthy when the log shows `Connected to Telegram (polling mode)`.
 - **Docker, not the host installer.** Ruhan asked for this. It keeps the host
   clean, and one volume holds all state.
 - **The `ruhan` user with sudo.** The shared `iict` account stays untouched.
-- **Mail is draft-only.** Hermes may read and save to Drafts, but no SMTP is
-  configured, so it cannot send even by mistake or through prompt injection.
-  Ruhan sends from Gmail himself.
+- **Full access in the development phase (2026-10-26).** Ruhan asked for no
+  barriers: `approvals.mode: "off"` in config.yaml, mail sending is on, and
+  the SOUL.md says to do the work end to end. Cost of this choice: a
+  prompt-injected mail could make Hermes act. The mail skill tells it to treat
+  mail content as data. Revisit before the agent touches anything
+  client-facing at scale.
 - **Gmail through App Passwords** (2FA, myaccount.google.com/apppasswords), so
   the agent never gets the real account password.
 
