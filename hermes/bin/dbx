@@ -1,0 +1,248 @@
+#!/opt/hermes/.venv/bin/python3
+"""Databricks study tracker for Hermes (see the ruhan-databricks skill).
+
+  dbx today                      next lesson to teach (JSON) + pending labs
+  dbx check URL [URL…]           HTTP status + page title per URL (YouTube via oEmbed)
+  dbx videos "query" [N]         real YouTube results: title, channel, length, url
+  dbx save ID FILE.md            store a lesson; it becomes today's lesson on the page
+  dbx done ID                    lab done
+  dbx quiz ID CORRECT TOTAL      log a quiz
+  dbx exam-date YYYY-MM-DD       set the exam date
+  dbx status                     progress by domain, accuracy, weak areas (JSON)
+  dbx page                       rebuild /opt/data/commander/data/databricks.json
+State lives in /opt/data/commander/records/databricks/ (state.json, lessons/<ID>.md).
+"""
+import datetime as dt
+import html
+import json
+import os
+import re
+import shutil
+import socket
+import sys
+import urllib.parse
+import urllib.request
+from zoneinfo import ZoneInfo
+
+# the VM has no IPv6 route
+_gai = socket.getaddrinfo
+socket.getaddrinfo = lambda *a, **k: [x for x in _gai(*a, **k) if x[0] == socket.AF_INET] or _gai(*a, **k)
+
+TZ = ZoneInfo("Asia/Dhaka")
+CUR = "/opt/data/work/Portfolio/hermes/skills/ruhan-databricks/curriculum.json"
+REC = "/opt/data/commander/records/databricks"
+STATE = f"{REC}/state.json"
+OUT = "/opt/data/commander/data/databricks.json"
+UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130 Safari/537.36",
+      "Accept-Language": "en-US,en;q=0.9"}
+
+
+def cur():
+    return json.load(open(CUR, encoding="utf-8"))
+
+
+def state():
+    try:
+        return json.load(open(STATE, encoding="utf-8"))
+    except FileNotFoundError:
+        return {"exam_date": None, "taught": {}, "done": {}, "quiz": []}
+
+
+def save_state(s):
+    os.makedirs(REC, exist_ok=True)
+    json.dump(s, open(STATE + ".tmp", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    os.replace(STATE + ".tmp", STATE)
+
+
+def today():
+    return dt.datetime.now(TZ).date().isoformat()
+
+
+def get(url, timeout=20):
+    with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout) as r:
+        return r.status, r.read(400_000).decode("utf-8", "replace"), r.geturl()
+
+
+def check(url):
+    try:
+        if re.search(r"(youtube\.com/watch|youtu\.be/)", url):
+            st, body, _ = get("https://www.youtube.com/oembed?format=json&url=" + urllib.parse.quote(url, safe=""))
+            j = json.loads(body)
+            return {"url": url, "ok": True, "status": st, "title": j.get("title"), "channel": j.get("author_name")}
+        st, body, final = get(url)
+        m = re.search(r"<title[^>]*>(.*?)</title>", body, re.S | re.I)
+        title = html.unescape(m.group(1)).strip() if m else ""
+        notfound = re.search(r"page not found|404", title, re.I)
+        return {"url": url, "ok": st == 200 and not notfound, "status": st, "title": title, "final": final}
+    except Exception as e:
+        return {"url": url, "ok": False, "error": str(e)[:160]}
+
+
+def videos(query, n=6):
+    _, body, _ = get("https://www.youtube.com/results?search_query=" + urllib.parse.quote(query) + "&hl=en")
+    m = re.search(r"var ytInitialData = (\{.*?\});</script>", body, re.S)
+    if not m:
+        return []
+    out, seen = [], set()
+
+    def walk(x):
+        if isinstance(x, dict):
+            v = x.get("videoRenderer")
+            if v and v.get("videoId") not in seen:
+                seen.add(v["videoId"])
+                out.append({"title": "".join(r.get("text", "") for r in v.get("title", {}).get("runs", [])),
+                            "channel": (v.get("ownerText", {}).get("runs") or [{}])[0].get("text", ""),
+                            "length": v.get("lengthText", {}).get("simpleText", ""),
+                            "published": v.get("publishedTimeText", {}).get("simpleText", ""),
+                            "url": f"https://www.youtube.com/watch?v={v['videoId']}"})
+            for val in x.values():
+                walk(val)
+        elif isinstance(x, list):
+            for val in x:
+                walk(val)
+    walk(json.loads(m.group(1)))
+    return out[:n]
+
+
+def section(md, name):
+    m = re.search(rf"^##\s+{name}\s*$(.*?)(?=^##\s|\Z)", md, re.S | re.M | re.I)
+    return m.group(1).strip() if m else ""
+
+
+def links(text):
+    items = []
+    for line in text.splitlines():
+        m = re.search(r"\[([^\]]+)\]\((https?://[^)\s]+)\)\s*[—-]?\s*(.*)", line)
+        if m:
+            items.append({"title": m.group(1), "href": m.group(2), "text": m.group(3).strip()})
+    return items
+
+
+def status_data(c, s):
+    lessons = c["lessons"]
+    by_dom = {}
+    for l in lessons:
+        d = l["id"][0]
+        by_dom.setdefault(d, {"total": 0, "covered": 0, "done": 0})
+        by_dom[d]["total"] += 1
+        by_dom[d]["covered"] += l["id"] in s["taught"]
+        by_dom[d]["done"] += l["id"] in s["done"]
+    acc = {}
+    for q in s["quiz"]:
+        d = q["id"][0] if q["id"][0] in c["domains"] else "R"
+        a = acc.setdefault(d, [0, 0])
+        a[0] += q["correct"]
+        a[1] += q["total"]
+    weak = [{"domain": c["domains"][d]["name"], "accuracy": round(100 * a[0] / a[1])}
+            for d, a in acc.items() if d in c["domains"] and a[1] >= 5 and a[0] / a[1] < 0.7]
+    tot = [sum(a[0] for a in acc.values()), sum(a[1] for a in acc.values())]
+    return by_dom, weak, tot
+
+
+def page():
+    c, s = cur(), state()
+    lessons = {l["id"]: l for l in c["lessons"]}
+    by_dom, weak, tot = status_data(c, s)
+    taught = sorted(s["taught"].items(), key=lambda kv: kv[1])
+    n = len(c["lessons"])
+    days_left = None
+    if s.get("exam_date"):
+        days_left = (dt.date.fromisoformat(s["exam_date"]) - dt.datetime.now(TZ).date()).days
+    lists, summary = [], ""
+    if taught:
+        lid, when = taught[-1]
+        l = lessons.get(lid, {"title": lid, "goal": ""})
+        md = open(f"{REC}/lessons/{lid}.md", encoding="utf-8").read() if os.path.exists(f"{REC}/lessons/{lid}.md") else ""
+        summary = f"Lesson {len(taught)} of {n}: {lid} · {l['title']}."
+        lists.append({"title": f"Today's lesson · {lid}", "items": [
+            {"title": l["title"], "meta": f"{c['domains'][lid[0]]['name']} · taught {when}",
+             "text": section(md, "Big idea") or l.get("goal", ""), "tag": "done" if lid in s["done"] else "lab pending"}]})
+        for name in ("Read", "Watch"):
+            items = links(section(md, name))
+            if items:
+                lists.append({"title": name, "items": items})
+        lab = section(md, "Do it.*?")
+        if lab:
+            lists.append({"title": "Do it (Free Edition)", "items": [{"title": "Hands-on lab", "text": lab[:1500]}]})
+        cards = [ln.strip("- ").split(" — ", 1) for ln in section(md, "Flashcards").splitlines() if " — " in ln]
+        if cards:
+            lists.append({"title": "Flashcards", "items": [{"title": a, "text": b} for a, b in cards]})
+    else:
+        summary = "Not started yet. The first lesson arrives at 20:00 on Telegram (or ask Hermes: “start Databricks”)."
+    if days_left is not None:
+        summary += f" {days_left} days to the exam ({s['exam_date']})."
+    else:
+        summary += " Trial mode: no exam date yet."
+    lists.append({"title": "Roadmap", "items": [
+        {"title": c["domains"][d]["name"], "meta": (f"{c['domains'][d]['weight']}% of exam · " if c["domains"][d]["weight"] else "")
+         + f"{v['covered']}/{v['total']} lessons", "progress": round(100 * v["covered"] / v["total"])}
+        for d, v in by_dom.items()]})
+    if weak:
+        lists.append({"title": "Weak areas", "items": [{"title": w["domain"], "meta": f"{w['accuracy']}% in quizzes",
+                                                         "text": "Hermes brings these questions back."} for w in weak]})
+    lists.append({"title": "Study book", "empty": "Lessons appear here as you go.", "items": [
+        {"title": f"{lid} · {lessons.get(lid, {}).get('title', lid)}", "meta": when,
+         "tag": "lab done" if lid in s["done"] else "lab pending"} for lid, when in reversed(taught[-30:])]})
+    lists.append({"title": "Sources", "items": [
+        {"title": "Official exam guide (August 2026)", "href": c["guide_url"], "text": c["format"]},
+        {"title": "Databricks Free Edition (practice)", "href": "https://www.databricks.com/learn/free-edition"},
+        {"title": "Databricks documentation", "href": "https://docs.databricks.com/aws/en/"}]})
+    data = {"updated": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "summary": summary,
+            "stats": [
+                {"label": "Lessons", "value": f"{len(taught)}/{n}", "progress": round(100 * len(taught) / n)},
+                {"label": "Labs done", "value": str(len(s["done"])), "progress": round(100 * len(s["done"]) / n)},
+                {"label": "Quiz accuracy", "value": f"{round(100 * tot[0] / tot[1])}%" if tot[1] else "—",
+                 **({"progress": round(100 * tot[0] / tot[1])} if tot[1] else {}), "note": f"{tot[1]} questions"},
+                {"label": "Exam", "value": f"{days_left} days" if days_left is not None else "—",
+                 "note": s.get("exam_date") or "no date yet"}],
+            "lists": lists}
+    json.dump(data, open(OUT + ".tmp", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    os.replace(OUT + ".tmp", OUT)
+    return summary
+
+
+def main():
+    a = sys.argv[1:] or ["status"]
+    c, s = cur(), state()
+    if a[0] == "today":
+        nxt = next((l for l in c["lessons"] if l["id"] not in s["taught"]), None)
+        pending = [i for i in s["taught"] if i not in s["done"]]
+        taught_today = [i for i, d in s["taught"].items() if d == today()]
+        print(json.dumps({"next": nxt, "already_taught_today": taught_today, "labs_pending": pending,
+                          "lesson_number": len(s["taught"]) + 1, "of": len(c["lessons"]),
+                          "weekday": dt.datetime.now(TZ).strftime("%A")}, ensure_ascii=False, indent=1))
+    elif a[0] == "check":
+        for u in a[1:]:
+            print(json.dumps(check(u), ensure_ascii=False))
+    elif a[0] == "videos":
+        print(json.dumps(videos(a[1], int(a[2]) if len(a) > 2 else 6), ensure_ascii=False, indent=1))
+    elif a[0] == "save":
+        os.makedirs(f"{REC}/lessons", exist_ok=True)
+        shutil.copy(a[2], f"{REC}/lessons/{a[1]}.md")
+        s["taught"][a[1]] = today()
+        save_state(s)
+        print(page())
+    elif a[0] == "done":
+        s["done"][a[1]] = today()
+        save_state(s)
+        print(page())
+    elif a[0] == "quiz":
+        s["quiz"].append({"date": today(), "id": a[1], "correct": int(a[2]), "total": int(a[3])})
+        save_state(s)
+        print(page())
+    elif a[0] == "exam-date":
+        dt.date.fromisoformat(a[1])
+        s["exam_date"] = a[1]
+        save_state(s)
+        print(page())
+    elif a[0] == "status":
+        by_dom, weak, tot = status_data(c, s)
+        print(json.dumps({"by_domain": by_dom, "weak": weak, "quiz_total": tot, "exam_date": s.get("exam_date")}, indent=1))
+    elif a[0] == "page":
+        print(page())
+    else:
+        sys.exit(__doc__)
+
+
+if __name__ == "__main__":
+    main()

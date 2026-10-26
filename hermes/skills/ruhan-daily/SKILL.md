@@ -145,36 +145,9 @@ drop one. Confirm in one line: "Scheduled: Wed 09:00 → Karim, “Follow-up”.
 (real people and direct questions, not newsletters or alerts). Send a short
 list on Telegram, each with one line, and offer "reply koro?".
 
-## 4. Databricks: Data Engineer Associate, `data/databricks.json`
+## 4. Databricks: load the `ruhan-databricks` skill
 
-Exam (official page, August 2026 guide): **45 scored questions, 90 minutes,
-$200, online or test centre.** Guide:
-https://www.databricks.com/sites/default/files/2026-10/Databricks-Certified-Data-Engineer-Associate-Exam-Guide-August-2026.pdf
-
-| Domain | Weight |
-|---|---|
-| Databricks Intelligence Platform | 6% |
-| Data Ingestion and Loading | 21% |
-| Data Transformation and Modeling | 22% |
-| Working with Lakeflow Jobs | 16% |
-| Implementing CI/CD | 10% |
-| Troubleshooting, Monitoring, and Optimization | 10% |
-| Governance and Security | 15% |
-
-- `records/databricks.json`: `{"exam_date": "YYYY-MM-DD" | null, "plan": [{"date", "domain", "topic", "resource"}], "done": [{"date", "domain", "topic"}], "quiz": [{"date", "domain", "q", "correct": true|false}], "notes": [{"date", "domain", "text"}]}`
-- **Starting the plan** ("exam on …"): read the guide PDF (curl it to
-  `/opt/data/tmp`, then extract the text). Split each domain into topics. Schedule
-  them backwards from the exam date, about 45 minutes a day, with weight
-  driving the time. Keep the last 7 days for full practice and weak areas.
-  With no date yet, plan 6 weeks and ask for the date.
-- **20:00 job**: today's topic, with what to read or do (an official doc or
-  Databricks Academy link) and why it is on the exam.
-- The study block goes in Google Calendar:
-  `gcal add --title "Databricks: <topic>" --start <today>T20:00 --minutes 60 --kind study --remind 10`.
-- **Next morning (in the 07:00 message)**: a 5-question multiple-choice quiz
-  on yesterday's topic. Log each answer in `quiz`.
-- **Progress per domain** = done topics ÷ planned topics × 100.
-  **Weak area** = quiz accuracy under 70% with at least 5 questions.
-- `databricks.json` page: summary (days left and today's topic) · stats
-  (days left, overall progress %, quiz accuracy) · list "Domains" (each item:
-  domain, `meta` weight, `progress`) · "Today's task" · "Weak areas" · "Notes".
+All Databricks teaching (the fixed 40-lesson syllabus, the lesson format,
+verified links and videos, quizzes and the ruhan.lol/databricks page) lives in
+the **ruhan-databricks** skill and its `dbx` command. Do not keep any other
+Databricks plan here.
