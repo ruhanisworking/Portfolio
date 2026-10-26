@@ -1,0 +1,62 @@
+#!/opt/hermes/.venv/bin/python3
+"""One-time Google OAuth for `gcal`, Calendar scope only.
+
+  gcal-auth url            print the Google login URL (saves the PKCE verifier)
+  gcal-auth code <URL>     paste the whole http://localhost/?code=… URL the browser ends on
+  gcal-auth check          is the token there and working?
+
+Client: /opt/data/google_client_secret.json (a Desktop OAuth client).
+Token:  /opt/data/google_token.json (refreshes itself; `gcal` reads it).
+"""
+import json
+import os
+import sys
+
+from google_auth_oauthlib.flow import Flow
+
+CLIENT = "/opt/data/google_client_secret.json"
+TOKEN = "/opt/data/google_token.json"
+PENDING = "/opt/data/.gcal_auth_pending.json"
+SCOPES = ["https://www.googleapis.com/auth/calendar"]
+REDIRECT = "http://localhost"
+
+
+def flow(**kw):
+    return Flow.from_client_secrets_file(CLIENT, scopes=SCOPES, redirect_uri=REDIRECT, **kw)
+
+
+def main():
+    cmd = sys.argv[1] if len(sys.argv) > 1 else "check"
+    if cmd == "url":
+        f = flow(autogenerate_code_verifier=True)
+        url, state = f.authorization_url(access_type="offline", prompt="consent")
+        with open(PENDING, "w") as p:
+            json.dump({"state": state, "verifier": f.code_verifier}, p)
+        os.chmod(PENDING, 0o600)
+        print(url)
+    elif cmd == "code":
+        pend = json.load(open(PENDING))
+        f = flow(state=pend["state"], code_verifier=pend["verifier"])
+        os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"  # the redirect is http://localhost by design
+        f.fetch_token(authorization_response=sys.argv[2])
+        with open(TOKEN, "w") as t:
+            t.write(f.credentials.to_json())
+        os.chmod(TOKEN, 0o600)
+        os.remove(PENDING)
+        print("AUTHENTICATED: token saved")
+    elif cmd == "check":
+        from google.auth.transport.requests import Request
+        from google.oauth2.credentials import Credentials
+        from googleapiclient.discovery import build
+        if not os.path.exists(TOKEN):
+            sys.exit("NOT_AUTHENTICATED: no token, run `gcal-auth url`")
+        c = Credentials.from_authorized_user_file(TOKEN)
+        if not c.valid:
+            c.refresh(Request())
+            open(TOKEN, "w").write(c.to_json())
+        cal = build("calendar", "v3", credentials=c, cache_discovery=False).calendars().get(calendarId="primary").execute()
+        print(f"AUTHENTICATED: calendar {cal.get('id')} ({cal.get('timeZone')})")
+
+
+if __name__ == "__main__":
+    main()
