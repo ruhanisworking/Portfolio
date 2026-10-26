@@ -1,0 +1,11 @@
+#!/bin/sh
+# Build the Commander from the repo and publish it to ruhan.lol.
+#   commander-deploy            build + check + publish
+# The live site (/opt/data/commander/site) is ONLY ever written by this script.
+# Edit the repo (commander/, src/components/cmd-*, DESIGN.md), then run it.
+set -e
+cd /opt/data/work/Portfolio
+node tools/build.mjs
+node tools/check.mjs | head -1
+rsync -a --delete dist-commander/ /opt/data/commander/site/
+echo "published to ruhan.lol ($(git rev-parse --short HEAD)$(git diff --quiet || echo ', with uncommitted changes'))"

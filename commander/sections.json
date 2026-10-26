@@ -4,6 +4,7 @@
     {
       "name": "Today",
       "items": [
+        { "id": "mail", "title": "Mail", "icon": "mail", "tile": "1", "blurb": "Both inboxes and all four addresses: what is unread, and drafts waiting.", "ask": "refresh my mail page" },
         { "id": "calendar", "title": "Calendar", "icon": "calendar", "tile": "2", "blurb": "Meetings and deadlines coming up this week.", "ask": "add my meetings to the commander calendar" },
         { "id": "todo", "title": "To-do", "icon": "check", "tile": "3", "blurb": "Open tasks, what is due today, and what got done.", "ask": "add a to-do: …" },
         { "id": "expenses", "title": "Expenses", "icon": "wallet", "tile": "4", "blurb": "Daily spending, this week and this month.", "ask": "expense 250 taka lunch" }
@@ -31,6 +32,7 @@
     {
       "name": "Mind",
       "items": [
+        { "id": "databricks", "title": "Databricks exam", "icon": "doc", "tile": "1", "blurb": "Study plan, topics covered and what is left before the exam.", "ask": "update my Databricks study progress" },
         { "id": "books", "title": "Book notes", "icon": "book", "tile": "2", "blurb": "Today's lesson, books read and the reading streak.", "ask": "book note: …" },
         { "id": "knowledge", "title": "Weird knowledge", "icon": "spark", "tile": "3", "blurb": "One strange, true thing a day.", "ask": "give me today's weird fact for the commander" },
         { "id": "journal", "title": "Memory vault", "icon": "lock", "tile": "4", "blurb": "Journal entries and things worth remembering.", "ask": "journal: …" }

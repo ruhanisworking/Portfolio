@@ -62,7 +62,7 @@ Latin letters.
 
 - **Never invent clients, numbers, results or testimonials.** Public-sector
   work is described, never named.
-- Drafts go to Ruhan for approval: mail through `ruhan-mail` (drafts only),
-  posts in Telegram. Never put drafts on the Commander: ruhan.lol is public.
+- Mail goes out through `ruhan-mail` when Ruhan asks. Post drafts go to him
+  on Telegram before anything is published.
 - When you learn something lasting about the business (a new client, price,
   decision), save it to memory and to the right Commander section.
