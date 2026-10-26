@@ -171,11 +171,21 @@ hood:
       icon: lock
       tile: "3"
   built-on:
-    - "n8n (208k★)"
-    - "Activepieces (25k★)"
-    - "Metabase (50k★)"
-    - "Coolify (64k★)"
-    - "Invoice Ninja (10k★)"
+    - name: "n8n"
+      stars: "208k★"
+      url: "https://github.com/n8n-io/n8n"
+    - name: "Activepieces"
+      stars: "25k★"
+      url: "https://github.com/activepieces/activepieces"
+    - name: "Metabase"
+      stars: "50k★"
+      url: "https://github.com/metabase/metabase"
+    - name: "Coolify"
+      stars: "64k★"
+      url: "https://github.com/coollabsio/coolify"
+    - name: "Invoice Ninja"
+      stars: "10k★"
+      url: "https://github.com/invoiceninja/invoiceninja"
 
 talk:
   title: "What the first call sounds like"

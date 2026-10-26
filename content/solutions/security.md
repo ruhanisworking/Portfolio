@@ -189,11 +189,21 @@ hood:
       icon: book
       tile: "3"
   built-on:
-    - "Vaultwarden (70k★)"
-    - "Keycloak (38k★)"
-    - "Wazuh (17k★)"
-    - "CrowdSec (15k★)"
-    - "Infisical (30k★)"
+    - name: "Vaultwarden"
+      stars: "70k★"
+      url: "https://github.com/dani-garcia/vaultwarden"
+    - name: "Keycloak"
+      stars: "38k★"
+      url: "https://github.com/keycloak/keycloak"
+    - name: "Wazuh"
+      stars: "17k★"
+      url: "https://github.com/wazuh/wazuh"
+    - name: "CrowdSec"
+      stars: "15k★"
+      url: "https://github.com/crowdsecurity/crowdsec"
+    - name: "Infisical"
+      stars: "30k★"
+      url: "https://github.com/Infisical/infisical"
 
 talk:
   title: "What the first call sounds like"

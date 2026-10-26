@@ -36,3 +36,11 @@ main > .section:first-child { padding-top: calc(var(--space-section) + var(--lay
 
 /* spacing utilities — only the few the pages need between components */
 .u-mt-lg { margin-top: var(--space-lg); }
+
+/* "Built on open source:" — outbound links to each project's GitHub */
+.built-on a {
+  color: var(--color-orange-300);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.built-on a:hover { color: var(--color-on-dark); }

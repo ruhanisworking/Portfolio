@@ -148,7 +148,7 @@
           </header>
           <div class="offers offers--{{page.look.offers}}" data-reveal-stagger>
             <!-- @each page.offers as offer -->
-            <article class="offer-card card card--interactive">
+            <article class="offer-card card">
               <p class="offer-card__num">Project 0{{loop.n}}</p>
               <h3 class="t-h3">{{offer.name}}</h3>
               <p class="offer-card__brief">{{offer.brief}}</p>
@@ -183,7 +183,7 @@
             </article>
             <!-- @end -->
           </div>
-          <p class="t-meta u-mt-lg" data-reveal>Built on: <!-- @each page.hood.built-on as b sep=" · " -->{{b}}<!-- @end --></p>
+          <p class="t-meta u-mt-lg built-on" data-reveal>Built on open source: <!-- @each page.hood.built-on as b sep=" · " --><a href="{{b.url}}" target="_blank" rel="noopener">{{b.name}}</a><!-- @if b.stars --> <span>({{b.stars}})</span><!-- @end --><!-- @end --></p>
         </div>
       </section>
 
@@ -273,7 +273,7 @@
           </header>
           <ul class="related-links" data-reveal-stagger>
             <!-- @each page.related as r -->
-            <li><a class="related-links__item card card--interactive" href="{{r.path}}"><b>{{r.name}}</b><span>{{r.line}}</span></a></li>
+            <li><a class="related-links__item card card--interactive" href="{{r.path}}"><b>{{r.name}}</b><span>{{r.line}}</span><span class="related-links__go">View solution <span aria-hidden="true">&rarr;</span></span></a></li>
             <!-- @end -->
           </ul>
         </div>

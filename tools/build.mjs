@@ -223,11 +223,19 @@ export function build() {
   // for tools/og.py: what each page's share image should say
   write(join(DIST, "pages.json"), JSON.stringify(pagesIndex, null, 2));
 
+  // llms.txt — a plain-text map of the site for AI search engines, listing
+  // every indexed page (src/static/llms-intro.md is the hand-written intro)
+  const intro = existsSync(join(SRC, "static", "llms-intro.md")) ? read(join(SRC, "static", "llms-intro.md")).trim() : "";
+  const solutions = (collections.solutions || []).map((p) =>
+    `- [${p.hero.crumb}](${site.url}${p.seo.path}): ${p.seo.description}`);
+  write(join(DIST, "llms.txt"),
+    `${intro}\n\n## Pages\n\n- [Home](${site.url}/): who Ruhan is, services, selected work, process, FAQ and contact\n` +
+    `${solutions.join("\n")}\n- [Sitemap](${site.url}/sitemap.html): every page and project\n`);
+
   // 5. resolved tokens, static files
   write(join(DIST, "tokens.json"), JSON.stringify(literalTokens(tokens), null, 2));
   if (existsSync(join(SRC, "static"))) cpSync(join(SRC, "static"), DIST, { recursive: true });
-  // photos are still shared with the live site in /assets until the switch-over
-  if (existsSync(join(ROOT, "assets"))) cpSync(join(ROOT, "assets"), join(DIST, "assets"), { recursive: true });
+  rmSync(join(DIST, "llms-intro.md"), { force: true }); // source for llms.txt, not a page
 
   if (existsSync(CMD)) buildCommander(ctx);
   console.log(`built dist/ in ${Date.now() - t0}ms`);

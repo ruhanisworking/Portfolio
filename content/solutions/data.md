@@ -162,11 +162,21 @@ hood:
       icon: lock
       tile: "3"
   built-on:
-    - "Superset (75k★)"
-    - "Metabase (50k★)"
-    - "Airbyte (22k★)"
-    - "NocoDB (65k★)"
-    - "Vanna (24k★)"
+    - name: "Superset"
+      stars: "75k★"
+      url: "https://github.com/apache/superset"
+    - name: "Metabase"
+      stars: "50k★"
+      url: "https://github.com/metabase/metabase"
+    - name: "Airbyte"
+      stars: "22k★"
+      url: "https://github.com/airbytehq/airbyte"
+    - name: "NocoDB"
+      stars: "65k★"
+      url: "https://github.com/nocodb/nocodb"
+    - name: "Vanna"
+      stars: "24k★"
+      url: "https://github.com/vanna-ai/vanna"
 
 talk:
   title: "What the first call sounds like"

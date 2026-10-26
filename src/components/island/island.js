@@ -17,8 +17,11 @@ let hovering = false;
 let menuOpen = false;
 
 function render() {
-  const open = desktop.matches ? atTop || hovering : menuOpen;
+  // desktop opens at the top, on hover/focus, or when the menu button is
+  // tapped (touch tablets have no hover); mobile opens only from the button
+  const open = desktop.matches ? atTop || hovering || menuOpen : menuOpen;
   island.dataset.state = open ? "open" : "compact";
+  island.dataset.top = String(atTop);
   if (toggle) toggle.setAttribute("aria-expanded", String(open));
 }
 
@@ -27,19 +30,39 @@ function onScroll() {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0;
   island.style.setProperty("--_progress", progress.toFixed(4));
+  if (label && window.scrollY < window.innerHeight * 0.6 && typeof visible !== "undefined" && !visible.size) setLabel(homeLabel);
   render();
 }
 
 // ── desktop: hover and keyboard focus open it ───────────────────────────────
 island.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") { hovering = true; render(); } });
 island.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") { hovering = false; render(); } });
-island.addEventListener("focusin", () => { hovering = true; render(); });
+// keyboard focus opens the island; focus that comes from a tap or click
+// doesn't (otherwise a tap on the menu button would open, then instantly close it)
+let pointerDown = false;
+island.addEventListener("pointerdown", () => { pointerDown = true; });
+island.addEventListener("focusin", () => {
+  if (pointerDown) { pointerDown = false; return; }
+  hovering = true;
+  render();
+});
 island.addEventListener("focusout", (e) => {
   if (!island.contains(e.relatedTarget)) { hovering = false; render(); }
 });
 
 // ── mobile: tap to open, close on link / Esc / outside tap ──────────────────
-if (toggle) toggle.addEventListener("click", () => { menuOpen = !menuOpen; render(); });
+// the button toggles what the user sees: if the island is open for any reason
+// (menu, hover or a tap's focus), the button closes it
+if (toggle) toggle.addEventListener("click", () => {
+  if (island.dataset.state === "open") {
+    menuOpen = false;
+    hovering = false;
+    toggle.blur();
+  } else {
+    menuOpen = true;
+  }
+  render();
+});
 links.forEach((a) => a.addEventListener("click", () => { menuOpen = false; render(); }));
 document.addEventListener("keydown", (e) => {
   if (e.key !== "Escape" || island.dataset.state !== "open") return;
@@ -79,7 +102,9 @@ if ("IntersectionObserver" in window && sections.length) {
       for (const e of entries) e.isIntersecting ? visible.add(e.target) : visible.delete(e.target);
       const current = sections.find((s) => visible.has(s.target));
       sections.forEach((s) => s.link.setAttribute("aria-current", String(s === current)));
-      setLabel(current ? current.link.textContent.trim() : homeLabel);
+      // between tracked sections keep the last name; only near the top say "Home"
+      if (current) setLabel(current.link.textContent.trim());
+      else if (window.scrollY < window.innerHeight * 0.6) setLabel(homeLabel);
     },
     // a section counts as "being read" while it crosses the middle of the screen
     { rootMargin: "-45% 0px -50% 0px" }

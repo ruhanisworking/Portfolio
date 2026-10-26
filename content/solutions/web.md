@@ -180,11 +180,21 @@ hood:
       icon: bolt
       tile: "3"
   built-on:
-    - "axe-core (8k★)"
-    - "Lighthouse (31k★)"
-    - "Pa11y (5k★)"
-    - "Medusa (37k★)"
-    - "Supabase (114k★)"
+    - name: "axe-core"
+      stars: "8k★"
+      url: "https://github.com/dequelabs/axe-core"
+    - name: "Lighthouse"
+      stars: "31k★"
+      url: "https://github.com/GoogleChrome/lighthouse"
+    - name: "Pa11y"
+      stars: "5k★"
+      url: "https://github.com/pa11y/pa11y"
+    - name: "Medusa"
+      stars: "37k★"
+      url: "https://github.com/medusajs/medusa"
+    - name: "Supabase"
+      stars: "114k★"
+      url: "https://github.com/supabase/supabase"
 
 talk:
   title: "What the first call sounds like"

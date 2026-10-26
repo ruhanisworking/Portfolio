@@ -162,11 +162,21 @@ hood:
       icon: bolt
       tile: "3"
   built-on:
-    - "restic (37k★)"
-    - "Kopia (14k★)"
-    - "Borg (14k★)"
-    - "Backrest (8k★)"
-    - "Syncthing (90k★)"
+    - name: "restic"
+      stars: "37k★"
+      url: "https://github.com/restic/restic"
+    - name: "Kopia"
+      stars: "14k★"
+      url: "https://github.com/kopia/kopia"
+    - name: "Borg"
+      stars: "14k★"
+      url: "https://github.com/borgbackup/borg"
+    - name: "Backrest"
+      stars: "8k★"
+      url: "https://github.com/garethgeorge/backrest"
+    - name: "Syncthing"
+      stars: "90k★"
+      url: "https://github.com/syncthing/syncthing"
 
 talk:
   title: "What the first call sounds like"

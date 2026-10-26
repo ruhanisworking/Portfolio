@@ -49,4 +49,13 @@
   line-height: var(--type-body-sm-leading);
 }
 .card__meta { margin-top: var(--space-sm); }
-.card__link { margin-top: var(--space-xs); margin-left: calc(-1 * var(--space-xs)); }
+/* a card with a .card__link is clickable all over: the link's ::after covers it */
+.card__link { margin-top: var(--space-sm); align-self: flex-start; }
+.card__link::after { content: ""; position: absolute; inset: 0; z-index: var(--z-raised); border-radius: inherit; }
+.card:has(.card__link) { display: flex; flex-direction: column; cursor: pointer; }
+.card:has(.card__link) .card__link { margin-top: auto; }
+.card:has(.card__link) .card__text { margin-bottom: var(--space-sm); }
+/* no lift on the link itself: a transform would make the link the containing
+   block of its ::after, shrinking the click area back to the button */
+.card__link:hover { transform: none; }
+.card:has(.card__link):hover .card__link .btn__arrow { transform: translateX(3px); }

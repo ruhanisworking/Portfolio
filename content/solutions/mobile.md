@@ -144,10 +144,18 @@ hood:
       icon: server
       tile: "3"
   built-on:
-    - "Expo (53k★)"
-    - "React Native"
-    - "Supabase (114k★)"
-    - "Appwrite (58k★)"
+    - name: "Expo"
+      stars: "53k★"
+      url: "https://github.com/expo/expo"
+    - name: "React Native"
+      stars: ""
+      url: "https://github.com/facebook/react-native"
+    - name: "Supabase"
+      stars: "114k★"
+      url: "https://github.com/supabase/supabase"
+    - name: "Appwrite"
+      stars: "58k★"
+      url: "https://github.com/appwrite/appwrite"
 
 talk:
   title: "What the first call sounds like"

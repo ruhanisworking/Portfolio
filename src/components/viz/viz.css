@@ -235,8 +235,8 @@
 .viz--tall { height: auto; min-height: var(--c-viz-height); }
 .viz-seq { display: flex; flex-direction: column; gap: var(--space-2xs); }
 .viz-seq > * {
-  opacity: 0;
-  transform: translateY(6px);
+  /* lines wait dimmed, then light up in turn — the window never looks empty */
+  opacity: var(--c-viz-seq-dim);
   animation: viz-seq calc(var(--motion-pulse) * 4) var(--motion-ease) infinite;
 }
 .viz-seq > :nth-child(1) { animation-delay: 0s; }
@@ -246,10 +246,10 @@
 .viz-seq > :nth-child(5) { animation-delay: calc(var(--motion-pulse) * 1.8); }
 .viz-seq > :nth-child(6) { animation-delay: calc(var(--motion-pulse) * 2.25); }
 @keyframes viz-seq {
-  0%   { opacity: 0; transform: translateY(6px); }
-  6%   { opacity: 1; transform: none; }
-  88%  { opacity: 1; transform: none; }
-  100% { opacity: 0; transform: none; }
+  0%   { opacity: var(--c-viz-seq-dim); }
+  6%   { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { opacity: var(--c-viz-seq-dim); }
 }
 .viz-seq .viz-pill { align-self: flex-start; }
 .viz-event {

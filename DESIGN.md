@@ -107,7 +107,7 @@ gradients:
   text-rust: "linear-gradient(100deg, var(--color-orange-900) 0%, var(--color-orange-800) 50%, var(--color-orange-700) 100%)"
   glow-rust: "radial-gradient(60% 45% at 12% 0%, rgba(194, 65, 12, 0.18), transparent 70%), radial-gradient(50% 40% at 92% 8%, rgba(154, 52, 18, 0.14), transparent 72%)"
   dark-glow-rust: "radial-gradient(70% 60% at 20% 0%, rgba(194, 65, 12, 0.36), transparent 70%)"
-  brand-wood: "linear-gradient(135deg, var(--color-wood-400) 0%, var(--color-amber-500) 55%, var(--color-amber-300) 100%)"
+  brand-wood: "linear-gradient(135deg, var(--color-amber-600) 0%, var(--color-amber-400) 55%, var(--color-yellow-400) 100%)"
   text-wood: "linear-gradient(100deg, var(--color-wood-700) 0%, var(--color-wood-500) 50%, var(--color-terracotta) 100%)"
   glow-wood: "radial-gradient(60% 45% at 12% 0%, rgba(168, 117, 75, 0.22), transparent 70%), radial-gradient(50% 40% at 92% 8%, rgba(244, 211, 94, 0.18), transparent 72%)"
   dark-glow-wood: "radial-gradient(70% 60% at 20% 0%, rgba(168, 117, 75, 0.34), transparent 70%)"
@@ -376,7 +376,7 @@ components:
     cta-text: "{colors.on-orange}"
   button:
     height: "48px"
-    height-sm: "38px"
+    height-sm: "44px"
     pad-x: "22px"
     pad-x-sm: "16px"
     radius: "{radius.md}"
@@ -461,6 +461,7 @@ components:
     text: "{colors.on-dark-muted}"
     heading: "{colors.orange-300}"
     link-hover: "{colors.on-dark}"
+    link-height: "44px"
     fine: "{colors.on-dark-subtle}"
     glow: "{gradients.dark-glow}"
   contact-links:
@@ -513,11 +514,12 @@ components:
     radius: "{radius.md}"
     inner-radius: "{radius.xs}"
     glow: "{gradients.dark-glow}"
+    seq-dim: "0.28"
     bars-height: "72px"
     device-width: "112px"
   case-card:
     fact-value: "{colors.orange-300}"
-    fact-size: "clamp(26px, 3vw, 34px)"
+    fact-size: "clamp(21px, 2.4vw, 30px)"
     fact-label: "{colors.on-dark-muted}"
   process-steps:
     num-size: "48px"

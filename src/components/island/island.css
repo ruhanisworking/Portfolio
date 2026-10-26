@@ -36,6 +36,7 @@
 /* ── brand ──────────────────────────────────────────────────────────────── */
 .island__brand {
   grid-area: brand;
+  padding-left: var(--space-xs);
   display: inline-flex;
   align-items: center;
   gap: var(--space-2xs);
@@ -148,7 +149,8 @@
 .island__cta:hover { transform: scale(1.04); }
 .island__cta svg { width: var(--c-island-icon-size); height: var(--c-island-icon-size); flex: none; }
 
-/* ── toggle (mobile only) ───────────────────────────────────────────────── */
+/* ── menu button — always on mobile; on desktop only while compact, so
+      touch tablets (no hover) can still open the menu ─────────────────── */
 .island__toggle {
   grid-area: toggle;
   position: relative;
@@ -192,7 +194,9 @@
     display: flex;
     column-gap: 0;
   }
-  .island__toggle { display: none; }
+  /* at the very top the island is always open, so the button has nothing to do */
+  .island[data-top="true"] .island__toggle { display: none; }
+  .island__toggle { margin-left: var(--space-3xs); }
 
   .island[data-state="open"] .island__status { grid-template-columns: 0fr; opacity: 0; }
   .island__status-inner { padding-inline: var(--space-2xs) var(--space-sm); }

@@ -8,6 +8,7 @@ Thumbs.db
 .claude/skills/*
 !.claude/skills/
 !.claude/skills/ruhan-frontend/
+!.claude/skills/seo/
 !.claude/skills/hermes-vm/
 
 # build output — tools/build.mjs regenerates it

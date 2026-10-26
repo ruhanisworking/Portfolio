@@ -12,7 +12,7 @@
             "@type": "Person",
             "@id": "{{site.url}}/#person",
             "name": "{{site.full-name}}",
-            "alternateName": "{{site.name}}",
+            "alternateName": ["{{site.name}}", "Ruhan Islam", "ruhan bd"],
             "jobTitle": "{{site.role}}",
             "email": "mailto:{{site.email}}",
             "url": "{{site.url}}/",
@@ -38,6 +38,7 @@
             "@id": "{{site.url}}/#website",
             "url": "{{site.url}}/",
             "name": "{{site.name}}",
+            "alternateName": ["ruhan.bd", "Mohammad Ruhan Islam"],
             "inLanguage": "en",
             "publisher": { "@id": "{{site.url}}/#person" }
           }
@@ -47,7 +48,7 @@
   </head>
   <body id="top">
     <a class="skip-link" href="#main">Skip to content</a>
-    <!-- @include components/island/island.html home="Hello" -->
+    <!-- @include components/island/island.html home="Home" -->
 
     <main id="main">
 
@@ -67,7 +68,7 @@
                 </div>
               </div>
               <h1 class="hero__title" id="hero-title">
-                <span class="hero__kicker">AI automation engineer · private AI, backups &amp; monitoring</span>
+                <span class="hero__kicker">Ruhan · AI automation engineer · private AI, backups &amp; monitoring</span>
                 <span class="hero__line"><span>Your systems.</span> <span class="t-accent">Your data.</span> <span>Your machines.</span></span>
               </h1>
               <p class="hero__lede">I'm Ruhan, an AI automation engineer. I build <strong>private AI</strong>, <strong>workflow automation</strong>, backups that actually restore and monitoring that warns you first — self-hosted on proven open source and supported after launch, for small businesses in the US and Australia.</p>
@@ -110,42 +111,42 @@
               <p class="card__problem">"My team pastes client data into ChatGPT."</p>
               <h3 class="card__title t-h3">Private AI for business</h3>
               <p class="card__text">A ChatGPT-style assistant on your own server that answers from your documents — with the source for every answer.</p>
-              <a class="btn btn--ghost btn--sm card__link" href="/solutions/ai-agent-development/">Explore AI agents &amp; chatbots <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="btn btn--secondary btn--sm card__link" href="/solutions/ai-agent-development/">Explore AI agents &amp; chatbots <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
             </article>
             <article class="card card--interactive">
               <div class="card__media"><!-- @include components/viz/viz-automation.html --></div>
               <p class="card__problem">"We copy the same data between five apps."</p>
               <h3 class="card__title t-h3">Workflow automation with n8n</h3>
               <p class="card__text">Workflows that move leads, invoices and emails on their own, with AI steps where they genuinely help.</p>
-              <a class="btn btn--ghost btn--sm card__link" href="/solutions/workflow-automation/">Explore workflow automation <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="btn btn--secondary btn--sm card__link" href="/solutions/workflow-automation/">Explore workflow automation <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
             </article>
             <article class="card card--interactive">
               <div class="card__media"><!-- @include components/viz/viz-backup.html --></div>
               <p class="card__problem">"We have backups. Nobody has tested a restore."</p>
               <h3 class="card__title t-h3">Backup and recovery</h3>
               <p class="card__text">Encrypted and offline copies, monthly restore tests and a one-page ransomware recovery plan your team can follow.</p>
-              <a class="btn btn--ghost btn--sm card__link" href="/solutions/small-business-backup/">Explore backup &amp; recovery <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="btn btn--secondary btn--sm card__link" href="/solutions/small-business-backup/">Explore backup &amp; recovery <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
             </article>
             <article class="card card--interactive">
               <div class="card__media"><!-- @include components/viz/viz-monitor.html --></div>
               <p class="card__problem">"We hear about downtime from customers."</p>
               <h3 class="card__title t-h3">Server monitoring &amp; uptime alerts</h3>
               <p class="card__text">Uptime checks, server health and forecast alerts — so you know days before a disk fills up, not minutes after.</p>
-              <a class="btn btn--ghost btn--sm card__link" href="/solutions/server-monitoring/">Explore monitoring &amp; IT support <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="btn btn--secondary btn--sm card__link" href="/solutions/server-monitoring/">Explore monitoring &amp; IT support <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
             </article>
             <article class="card card--interactive">
               <div class="card__media"><!-- @include components/viz/viz-security.html --></div>
               <p class="card__problem">"Shared passwords, no MFA — and an audit coming."</p>
               <h3 class="card__title t-h3">Security &amp; compliance basics</h3>
               <p class="card__text">A team password vault, single sign-on and MFA, patching, and the evidence behind Essential Eight, HIPAA or SOC 2 prep.</p>
-              <a class="btn btn--ghost btn--sm card__link" href="/solutions/small-business-cybersecurity/">Explore security &amp; compliance <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="btn btn--secondary btn--sm card__link" href="/solutions/small-business-cybersecurity/">Explore security &amp; compliance <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
             </article>
             <article class="card card--interactive">
               <div class="card__media"><!-- @include components/viz/viz-web.html --></div>
               <p class="card__problem">"One inaccessible checkout from an ADA letter."</p>
               <h3 class="card__title t-h3">Accessible websites &amp; stores</h3>
               <p class="card__text">WCAG 2.2 AA websites and online stores, accessibility audits and fixes, and monthly re-scans with a report.</p>
-              <a class="btn btn--ghost btn--sm card__link" href="/solutions/website-accessibility/">Explore websites &amp; accessibility <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="btn btn--secondary btn--sm card__link" href="/solutions/website-accessibility/">Explore websites &amp; accessibility <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
             </article>
           </div>
 
@@ -165,6 +166,7 @@
             <li><a class="related-links__item card card--interactive" href="{{sol.seo.path}}">
               <span class="icon-tile icon-tile--{{loop.n}}"><!-- @include components/icon/{{sol.icon}}.svg --></span>
               <b>{{sol.hero.crumb}}</b><span>{{sol.hero.line}}</span>
+              <span class="related-links__go">View solution <span aria-hidden="true">&rarr;</span></span>
             </a></li>
             <!-- @end -->
           </ul>

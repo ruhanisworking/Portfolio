@@ -4,9 +4,6 @@
 
 Contact: hi@ruhan.bd
 
-## Pages
-
-- [Home](https://ruhan.bd/): services, selected work, process, experience, FAQ and contact
 
 ## Facts
 

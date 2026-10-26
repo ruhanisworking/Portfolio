@@ -114,9 +114,10 @@
   border-radius: 50%;
   box-shadow: none;
 }
+/* top-right corner of the stage — clear of every window's text */
 .hero__badge--1 { top: calc(-1 * var(--space-sm)); right: var(--space-sm); }
 @media (--bp-md) {
-  .hero__badge--1 { top: 22%; right: auto; left: 52%; }
+  .hero__badge--1 { top: var(--space-xs); right: 0; }
 }
 
 @keyframes hero-float {

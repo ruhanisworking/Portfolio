@@ -69,7 +69,7 @@
   --gradient-text-rust: linear-gradient(100deg, var(--color-orange-900) 0%, var(--color-orange-800) 50%, var(--color-orange-700) 100%);
   --gradient-glow-rust: radial-gradient(60% 45% at 12% 0%, rgba(194, 65, 12, 0.18), transparent 70%), radial-gradient(50% 40% at 92% 8%, rgba(154, 52, 18, 0.14), transparent 72%);
   --gradient-dark-glow-rust: radial-gradient(70% 60% at 20% 0%, rgba(194, 65, 12, 0.36), transparent 70%);
-  --gradient-brand-wood: linear-gradient(135deg, var(--color-wood-400) 0%, var(--color-amber-500) 55%, var(--color-amber-300) 100%);
+  --gradient-brand-wood: linear-gradient(135deg, var(--color-amber-600) 0%, var(--color-amber-400) 55%, var(--color-yellow-400) 100%);
   --gradient-text-wood: linear-gradient(100deg, var(--color-wood-700) 0%, var(--color-wood-500) 50%, var(--color-terracotta) 100%);
   --gradient-glow-wood: radial-gradient(60% 45% at 12% 0%, rgba(168, 117, 75, 0.22), transparent 70%), radial-gradient(50% 40% at 92% 8%, rgba(244, 211, 94, 0.18), transparent 72%);
   --gradient-dark-glow-wood: radial-gradient(70% 60% at 20% 0%, rgba(168, 117, 75, 0.34), transparent 70%);
@@ -238,7 +238,7 @@
   --c-island-cta-bg: var(--gradient-brand);
   --c-island-cta-text: var(--color-on-orange);
   --c-button-height: 48px;
-  --c-button-height-sm: 38px;
+  --c-button-height-sm: 44px;
   --c-button-pad-x: 22px;
   --c-button-pad-x-sm: 16px;
   --c-button-radius: var(--radius-md);
@@ -314,6 +314,7 @@
   --c-footer-text: var(--color-on-dark-muted);
   --c-footer-heading: var(--color-orange-300);
   --c-footer-link-hover: var(--color-on-dark);
+  --c-footer-link-height: 44px;
   --c-footer-fine: var(--color-on-dark-subtle);
   --c-footer-glow: var(--gradient-dark-glow);
   --c-contact-links-gap: var(--space-2xs);
@@ -362,10 +363,11 @@
   --c-viz-radius: var(--radius-md);
   --c-viz-inner-radius: var(--radius-xs);
   --c-viz-glow: var(--gradient-dark-glow);
+  --c-viz-seq-dim: 0.28;
   --c-viz-bars-height: 72px;
   --c-viz-device-width: 112px;
   --c-case-card-fact-value: var(--color-orange-300);
-  --c-case-card-fact-size: clamp(26px, 3vw, 34px);
+  --c-case-card-fact-size: clamp(21px, 2.4vw, 30px);
   --c-case-card-fact-label: var(--color-on-dark-muted);
   --c-process-steps-num-size: 48px;
   --c-process-steps-num-bg: var(--gradient-brand);
