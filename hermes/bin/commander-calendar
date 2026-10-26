@@ -44,7 +44,9 @@ def google_events(start, end, errors):
     try:
         import icalendar
         import recurring_ical_events
-        url = open(ICS_URL_FILE).read().strip()
+        url = open(ICS_URL_FILE, encoding="utf-8").read().strip().lstrip("﻿")  # a Windows paste may add a BOM
+        if not url:
+            return []
         with urllib.request.urlopen(url, timeout=30) as r:
             cal = icalendar.Calendar.from_ical(r.read())
         out = []
