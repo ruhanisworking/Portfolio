@@ -7,7 +7,7 @@ Times without a zone are Asia/Dhaka. Every command prints JSON.
   gcal add    --title T --start 2026-10-28T15:00 [--end … | --minutes 60] [--where W]
               [--note N] [--remind 10,60] [--attendees a@x,b@y] [--meet] [--kind meeting|focus|study|task|reminder]
   gcal invite --title T --start … [--minutes 30] --to a@x[,b@y] [--cc …] [--bcc …]
-              [--body-file /tmp/body.txt] [--remind 10] [--note N]
+              [--body-file /opt/data/tmp/body.txt] [--remind 10] [--note N]
               → new event with its own Google Meet link, attendees = To + CC, then an
                 invitation mail from me@ruhan.bd (body + meeting block + .ics) via himalaya
   gcal move   ID --start … [--end … | --minutes N]
@@ -121,9 +121,10 @@ def cmd_invite(a):
     to, cc, bcc = emails(a.to), emails(a.cc), emails(a.bcc)
     if not to:
         sys.exit("invite needs --to")
+    # read the body before creating anything, so a missing file never leaves an event without its mail
+    body = open(a.body_file, encoding="utf-8").read().rstrip() + "\n\n" if a.body_file else ""
     ev, start, end = create(a, attendees=to + cc, meet=True)
     meet = ev.get("hangoutLink", "")
-    body = open(a.body_file, encoding="utf-8").read().rstrip() + "\n\n" if a.body_file else ""
     block = f"{a.title}\n{start:%A, %d %B %Y}, {start:%H:%M}–{end:%H:%M} (Bangladesh time, UTC+6)\nGoogle Meet: {meet}\n"
     msg = EmailMessage()
     msg["From"], msg["To"], msg["Subject"] = FROM, ", ".join(to), f"Invitation: {a.title} · {start:%a %d %b, %H:%M} (UTC+6)"

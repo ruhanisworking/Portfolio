@@ -1,7 +1,7 @@
 #!/opt/hermes/.venv/bin/python3
 """Scheduled mail for Hermes.
 
-  mail-outbox add --at 2026-10-28T09:00 --file /tmp/mail.eml   queue a raw RFC 5322 mail (Asia/Dhaka time)
+  mail-outbox add --at 2026-10-28T09:00 --file /opt/data/tmp/mail.eml   queue a raw RFC 5322 mail (Asia/Dhaka time)
   mail-outbox list                                             what is waiting (JSON)
   mail-outbox cancel NAME                                      drop one (NAME from list)
   mail-outbox send                                             send everything due; prints one line per mail

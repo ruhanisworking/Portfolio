@@ -58,7 +58,7 @@ a zone are Asia/Dhaka):
 
 | Ruhan says | You run |
 |---|---|
-| "kal 3 tay Karim er sathe meeting" (with a person or group) | `gcal invite --title "…" --start 2026-10-28T15:00 --minutes 30 --to karim@x.com --cc … --body-file /tmp/body.txt` |
+| "kal 3 tay Karim er sathe meeting" (with a person or group) | `gcal invite --title "…" --start 2026-10-28T15:00 --minutes 30 --to karim@x.com --cc … --body-file /opt/data/tmp/body.txt` |
 | "20:00 e Databricks study block" / "focus 2 ghonta" | `gcal add --title "Databricks: <topic>" --start … --minutes 60 --kind study --remind 10` |
 | "kal 9 tay bank e call korar kotha mone koriye dio" | `gcal add --title "Call the bank" --start … --minutes 15 --kind reminder --remind 0,10` |
 | "aj / kal ki ache?" | `gcal list --days 1` (or `--from YYYY-MM-DD`) |
@@ -70,7 +70,7 @@ a zone are Asia/Dhaka):
   me@ruhan.bd**: your body text, then the time block, the Meet link and a
   calendar `.ics`. Google itself never mails the guests. Write the body first
   (Meeting request format, the person's tone, 2–4 lines, no time or link:
-  the script adds those), save it to `/tmp/body.txt`, then run. Use the
+  the script adds those), save it to `/opt/data/tmp/body.txt`, then run. Use the
   People book for addresses and CC/BCC order.
 - One meeting = one event = one Meet link. A different person, group or time
   always means a new `gcal invite`.
@@ -135,8 +135,8 @@ append `{date, to, subject, format}` to `records/sent.json`.
 2): it creates the Meet link and sends the invite.
 
 **Scheduled mail** ("kal sokal 9 tay X ke mail koro", "Friday follow up"):
-write the full raw mail to `/tmp/mail.eml` (same rules as sending), then
-`mail-outbox add --at 2026-10-28T09:00 --file /tmp/mail.eml`. It goes out at
+write the full raw mail to `/opt/data/tmp/mail.eml` (same rules as sending), then
+`mail-outbox add --at 2026-10-28T09:00 --file /opt/data/tmp/mail.eml`. It goes out at
 that time, and Ruhan gets "📤 Scheduled mail sent" on Telegram. Use
 `mail-outbox list` to see what is waiting, and `mail-outbox cancel NAME` to
 drop one. Confirm in one line: "Scheduled: Wed 09:00 → Karim, “Follow-up”."
@@ -163,7 +163,7 @@ https://www.databricks.com/sites/default/files/2026-10/Databricks-Certified-Data
 
 - `records/databricks.json`: `{"exam_date": "YYYY-MM-DD" | null, "plan": [{"date", "domain", "topic", "resource"}], "done": [{"date", "domain", "topic"}], "quiz": [{"date", "domain", "q", "correct": true|false}], "notes": [{"date", "domain", "text"}]}`
 - **Starting the plan** ("exam on …"): read the guide PDF (curl it to
-  `/tmp`, then extract the text). Split each domain into topics. Schedule
+  `/opt/data/tmp`, then extract the text). Split each domain into topics. Schedule
   them backwards from the exam date, about 45 minutes a day, with weight
   driving the time. Keep the last 7 days for full practice and weak areas.
   With no date yet, plan 6 weeks and ask for the date.
