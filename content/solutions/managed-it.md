@@ -40,7 +40,7 @@ hero:
   kicker: "Server monitoring · uptime monitoring · remote IT support"
   line: "Know before your customers do."
   lede: "Server monitoring and uptime alerts for small businesses in the US and Australia — with forecasts that warn you days before a disk fills, a status page your customers can check, and remote IT support with response times in writing."
-  cta: Get a free monitoring plan
+  cta: Book a private consultation
   scene: viz-monitor
   chips:
     - Forecast alerts

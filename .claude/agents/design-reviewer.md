@@ -14,7 +14,7 @@ and the fix:
 1. `npm run build` and `npm run check` — both must pass. Paste any failure.
 2. Ember rules: white text on any orange fill; a single flat orange where a
    gradient or shade variety is expected; orange text lighter than
-   `orange-700` on a light background; uppercase applied to Cinzel; letter
+   `orange-700` on a light background; uppercase applied to a heading; letter
    spacing or uppercase reaching Bengali text.
 3. Every component folder has a `components.<name>` entry in `DESIGN.md` and a
    `data-component` section in `src/pages/components.html`.

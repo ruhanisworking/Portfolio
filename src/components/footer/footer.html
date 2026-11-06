@@ -4,29 +4,37 @@
       <a class="footer__wordmark" href="/" aria-label="Ruhan Islam — back to top">
         <!-- @include components/wordmark/wordmark.html id="footer" -->
       </a>
+      <p class="footer__sub">{{site.full-name}}</p>
       <p class="footer__tagline">{{props.tagline}}</p>
+      <button class="bookmark" type="button" data-bookmark>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        Bookmark this site
+      </button>
     </div>
-    <nav class="footer__col" aria-label="Footer">
+    <nav class="footer__col" aria-label="Top solutions">
+      <h4 class="footer__heading">Top solutions</h4>
+      <!-- @each site.nav-top as sol --><a href="{{sol.path}}">{{sol.name}}</a>
+      <!-- @end -->
+      <a class="footer__all" href="/sitemap.html">All solutions <span aria-hidden="true">&rarr;</span></a>
+    </nav>
+    <nav class="footer__col" aria-label="Explore">
       <h4 class="footer__heading">Explore</h4>
-      <a href="/#services">Services</a>
+      <a href="/ruhan-islam/">About Ruhan Islam</a>
       <a href="/#work">Work</a>
-      <a href="/#process">Process</a>
-      <a href="/#about">About</a>
-      <a href="/#faq">FAQ</a>
       <a href="/blog/">Blog</a>
       <a href="/ai-automation-bangladesh/">Bangladesh</a>
+      <a href="/sitemap.html">Sitemap</a>
     </nav>
-    <nav class="footer__col" aria-label="Solutions">
-      <h4 class="footer__heading">Solutions</h4>
-      <!-- @each solutions as sol --><a href="{{sol.seo.path}}">{{sol.hero.crumb}}</a>
-      <!-- @end -->
-    </nav>
-    <div class="footer__col">
+    <nav class="footer__col" aria-label="Contact">
       <h4 class="footer__heading">Contact</h4>
-      <!-- @include components/contact-links/contact-links.html variant="pills-dark" -->
-    </div>
+      <a href="mailto:{{site.email}}">{{site.email}}</a>
+      <a href="{{site.whatsapp-link}}" rel="noopener" target="_blank">WhatsApp</a>
+      <a href="{{site.linkedin}}" rel="noopener me" target="_blank">LinkedIn</a>
+      <a href="{{site.github}}" rel="noopener me" target="_blank">GitHub</a>
+    </nav>
   </div>
   <div class="container">
-    <p class="footer__fine">&copy; 2026 {{site.full-name}} &middot; {{site.location}} &middot; serving Bangladesh, the US &amp; Australia &middot; <a href="/sitemap.html">Sitemap</a></p>
+    <p class="footer__fine">&copy; 2026 {{site.full-name}} &middot; {{site.location}}</p>
   </div>
 </footer>
+<!-- @include components/mail-choice/mail-choice.html -->

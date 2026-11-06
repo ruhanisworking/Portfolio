@@ -13,22 +13,58 @@
 
     <div class="island__links" id="island-links">
       <div class="island__links-inner">
-        <a class="island__link" href="/#services" data-island-link>Services</a>
-        <a class="island__link" href="/#work" data-island-link>Work</a>
-        <a class="island__link" href="/#process" data-island-link>Process</a>
-        <a class="island__link" href="/#about" data-island-link>About</a>
-        <a class="island__link" href="/#faq" data-island-link>FAQ</a>
-        <a class="island__cta" href="mailto:{{site.email}}">
+        <!-- island.js fills this with the page sections that carry data-nav -->
+        <span class="island__sections" data-island-sections></span>
+        <button class="island__all" type="button" data-island-all aria-expanded="false" aria-controls="island-menu">
+          All pages
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <a class="island__cta" href="mailto:{{site.email}}" aria-label="Email me at {{site.email}}">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          {{site.email}}
+          Email me
         </a>
       </div>
     </div>
 
     <button class="island__toggle" type="button" data-island-toggle
-            aria-expanded="false" aria-controls="island-links" aria-label="Menu">
+            aria-expanded="false" aria-controls="island-menu" aria-label="Menu">
       <span></span><span></span>
     </button>
   </nav>
   <span class="island__progress" aria-hidden="true"></span>
 </header>
+
+<!-- All pages: a mega panel under the island on desktop, a sheet on mobile -->
+<div class="island-menu" id="island-menu" data-island-menu data-open="false">
+  <div class="island-menu__here" data-island-here>
+    <p class="island-menu__heading">On this page</p>
+    <div class="island-menu__chips" data-island-here-chips></div>
+  </div>
+
+  <p class="island-menu__heading island-menu__heading--all">All pages</p>
+  <div class="island-menu__groups">
+    <!-- @each site.nav as group -->
+    <details class="island-menu__group" name="island-group" data-island-group>
+      <summary class="island-menu__title">{{group.title}} <span class="island-menu__count">{{group.items.length}}</span></summary>
+      <ul class="island-menu__list">
+        <!-- @each group.items as it -->
+        <li><a class="island-menu__item" href="{{it.path}}">
+          <span class="island-menu__tile island-menu__tile--{{loop.n}}"><!-- @include components/icon/{{it.icon}}.svg --></span>
+          <span class="island-menu__text"><b>{{it.name}}</b><span>{{it.line}}</span></span>
+        </a></li>
+        <!-- @end -->
+      </ul>
+    </details>
+    <!-- @end -->
+  </div>
+
+  <div class="island-menu__foot">
+    <a class="island-menu__bd" href="/ai-automation-bangladesh/">In Bangladesh? <b>AI, websites &amp; software in Dhaka</b> <span aria-hidden="true">&rarr;</span></a>
+    <span class="island-menu__more"><a href="/">Home</a> <a href="/ruhan-islam/">About</a> <a href="/blog/">Blog</a> <a href="/sitemap.html">Sitemap</a></span>
+  </div>
+
+  <div class="island-menu__cta">
+    <a class="island-menu__btn island-menu__btn--main" href="mailto:{{site.email}}">Email {{site.email}}</a>
+    <a class="island-menu__btn" href="{{site.whatsapp-link}}" rel="noopener" target="_blank">WhatsApp</a>
+  </div>
+</div>

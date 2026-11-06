@@ -142,6 +142,21 @@ redirects, Googlebot UA) → `site:ruhan.bd` and brand searches → Search Conso
 102. Common first names ("Ruhan") are competitive — rank for the full name and domain first.
 103. Social share previews tested (LinkedIn Post Inspector, Facebook debugger).
 
+## 9b · Ranking for the name (Ruhan Islam) — read before any "brand search" work
+- The entity home is **/ruhan-islam/** (ProfilePage → Person `#person`). Every
+  profile Ruhan creates goes into that Person's `sameAs` (and the home page's).
+- One name everywhere: **Ruhan Islam** (full: Mohammad Ruhan Islam). Handle
+  **ruhanbd**. Variants (Ruhan, ruhanbd, ruhan bd, Rohan Islam, Bangla) live only
+  in schema `alternateName` — never as visible keyword lists.
+- Google matches words, not substrings: "%ruhan%" is not a thing. Realistic #1
+  targets: ruhan.bd / ruhan bd / ruhanbd, Mohammad Ruhan Islam, Ruhan Islam,
+  then "ruhan + ai/dhaka/developer". "ruhan" alone is a long game (name-meaning
+  sites, other Bangladeshi Ruhans). "rohan" (Tolkien, celebrities) and
+  "ruhani/rohani" (means "spiritual") are not targets: never build pages for them.
+- The name page must stay ≤ 2.5% name density (check.mjs) — use "he" / "Ruhan".
+- Off-page beats on-page here: .ac.bd links (IICT BUET, KUET), Google Business
+  Profile, consistent social profiles. Full plan: `docs/notes/NAME-SEO-REPORT.md`.
+
 ## 10 · International targeting (.bd domain, US/AU audience) (7)
 104. `.bd` is geo-targeted to Bangladesh — compensate with US English, US/AU topics, `areaServed`.
 105. Backlinks from US/AU sites matter more than BD directories.
@@ -171,6 +186,7 @@ redirects, Googlebot UA) → `site:ruhan.bd` and brand searches → Search Conso
 - Hover-only island menu left touch tablets with no navigation.
 - Hover lift on cards that weren't links.
 - Brand name missing from the home title/H1 (bad for "ruhan" searches).
+- An HTML comment containing the word `<main>` made check.mjs count words from the wrong place.
 - Animated scenes that started empty.
 - Hermes (free model) added hreflang en-US/en-AU/x-default all pointing at
   the same URL: useless, and wrong for a .bd site. Never add hreflang without

@@ -6,7 +6,7 @@ icon: doc
 
 # page character — see src/components/look/look.css
 look:
-  accent: wood
+  accent: rust
   hero: reverse
   story: timeline
   offers: rows
@@ -40,7 +40,7 @@ hero:
   kicker: "Small business backup · ransomware recovery · restore testing"
   line: "Backups you've actually tested — before you need them."
   lede: "Small business backup for offices in the US and Australia: encrypted copies, an offline copy ransomware can't touch, and a restore test every month so you know — not hope — that you can recover."
-  cta: Get a free backup check
+  cta: Book a private consultation
   scene: viz-recovery
   chips:
     - Restore tested monthly

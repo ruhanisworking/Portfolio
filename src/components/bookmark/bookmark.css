@@ -1,0 +1,52 @@
+/* Bookmark — footer button. Browsers don't let a page add a bookmark, so it
+   installs the site where the browser offers that (Android Chrome, Edge),
+   otherwise shows a toast with the shortcut (Ctrl+D / ⌘D / Add to Home Screen).
+   Markup: <button class="bookmark" data-bookmark>…</button> */
+.bookmark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-height: var(--c-island-link-height);
+  padding-inline: var(--space-sm);
+  border-radius: var(--radius-pill);
+  background: var(--c-footer-bookmark-bg);
+  border: var(--c-footer-bookmark-border);
+  color: var(--color-on-dark);
+  font-family: var(--type-button-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-button-weight);
+  cursor: pointer;
+  transition: transform var(--motion-base) var(--motion-spring);
+}
+.bookmark:hover { transform: translateY(-1px); }
+.bookmark svg { width: var(--c-island-icon-size); height: var(--c-island-icon-size); color: var(--color-orange-300); }
+
+.bookmark-toast {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: var(--c-bookmark-toast-bottom);
+  margin-inline: auto;
+  z-index: var(--z-overlay);
+  width: max-content;
+  max-width: calc(100% - 2 * var(--layout-gutter));
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--c-bookmark-toast-radius);
+  background: var(--c-bookmark-toast-bg);
+  color: var(--c-bookmark-toast-text);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--type-body-sm-size);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity var(--motion-base) var(--motion-ease), transform var(--motion-base) var(--motion-spring);
+}
+.bookmark-toast.is-on { opacity: 1; transform: none; }
+.bookmark-toast kbd {
+  padding: 0 var(--space-3xs);
+  border-radius: var(--radius-xs);
+  background: var(--c-island-link-hover-bg);
+  font-family: var(--font-sans);
+  font-weight: var(--type-button-weight);
+}

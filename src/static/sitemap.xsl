@@ -14,7 +14,7 @@
         <meta name="robots" content="noindex"/>
         <title>Sitemap — ruhan.bd</title>
         <style>
-          body { margin: 0; background: #fbf8f5; color: #141110; font: 15px/1.6 "DM Sans", system-ui, sans-serif; }
+          body { margin: 0; background: #fbf8f5; color: #141110; font: 15px/1.6 "Atkinson Hyperlegible Next", system-ui, sans-serif; }
           header { background: #141110; color: #fffdfb; padding: 40px 24px; }
           header h1 { margin: 0 0 6px; font: 700 28px/1.2 Georgia, serif; letter-spacing: .02em; }
           header p { margin: 0; color: rgba(255,253,251,.68); }

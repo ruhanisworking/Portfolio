@@ -13,7 +13,7 @@
        "description": "{{page.seo.description|json}}",
        "datePublished": "{{page.date}}",
        "dateModified": "{{page.date}}",
-       "author": { "@type": "Person", "@id": "{{site.url}}/#person" },
+       "author": { "@type": "Person", "@id": "{{site.url}}/#person", "name": "{{site.full-name}}", "url": "{{site.url}}/ruhan-islam/" },
        "publisher": { "@type": "Organization", "@id": "{{site.url}}/#service" },
        "image": "{{site.url}}{{page.og-image}}",
        "inLanguage": "en"
@@ -29,34 +29,31 @@
    <section class="section" aria-labelledby="page-title">
     <div class="container container--prose stack stack--lg">
      <nav class="breadcrumb" aria-label="Breadcrumb">
-      <ol><li><a href="/">Home</a></li><li><a href="/blog/">Blog</a></li><li aria-current="page">{{page.hero.crumb}}</li></ol>
+      <ol><li><a href="/">Home</a></li><li><a href="/blog/">Blog</a></li><li aria-current="page">{{page.hero.line}}</li></ol>
      </nav>
      <header class="stack" data-reveal>
       <span class="t-eyebrow">{{page.hero.kicker}}</span>
       <h1 class="t-h1" id="page-title">{{page.hero.line}}</h1>
       <p class="t-subheading">{{page.hero.lede}}</p>
+      <!-- @include components/byline/byline.html row="true" date="{{page.date|date}}" minutes="{{page.minutes}}" -->
      </header>
-     <div class="stack stack--lg" data-reveal>{{page.body}}</div>
+     <div class="prose" data-reveal>{{page.body}}</div>
+     <!-- @include components/byline/byline.html card="true" -->
 
-     <!-- @if page.related -->
-     <section class="section" aria-labelledby="related-title">
-      <div class="container">
-       <header class="section-header section-header--center" data-reveal>
-        <span class="section-header__eyebrow t-eyebrow">Keep exploring</span>
-        <h2 class="t-h2" id="related-title">Related solutions</h2>
-       </header>
-       <ul class="related-links" data-reveal-stagger>
-        <!-- @each page.related as r -->
-        <li><a class="related-links__item card card--interactive" href="{{r.path}}"><b>{{r.name}}</b><span>{{r.line}}</span></a></li>
-        <!-- @end -->
-       </ul>
-      </div>
-     </section>
+     <!-- @if page.more -->
+     <nav class="stack" aria-labelledby="more-title">
+      <h2 class="t-h3" id="more-title">More from the blog</h2>
+      <ul class="related-links" data-reveal-stagger>
+       <!-- @each page.more as m -->
+       <li><a class="related-links__item card card--interactive" href="{{m.path}}"><b>{{m.name}}</b><span>{{m.line}}</span><span class="related-links__go">Read <span aria-hidden="true">&rarr;</span></span></a></li>
+       <!-- @end -->
+      </ul>
+     </nav>
      <!-- @end -->
     </div>
    </section>
   </main>
 
-  <!-- @include components/footer/footer.html tagline="Private AI, automation, backups and monitoring for small businesses in the US and Australia - built on open source, owned by you." -->
+  <!-- @include components/footer/footer.html tagline="AI, automation, websites and software from Dhaka — for Bangladesh, the US and Australia." -->
  </body>
 </html>

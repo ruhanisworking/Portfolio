@@ -17,7 +17,7 @@ that `tools/build.mjs` generates from that file, and `tools/check.mjs` fails
 on anything hard-coded.
 
 Stack: **vanilla HTML/CSS/JS, no framework, no dependencies** (Node only for
-the build). Fonts from Google Fonts. Deployed on GitHub Pages.
+the build). Fonts from Google Fonts (Fraunces + Atkinson Hyperlegible Next). Deployed on GitHub Pages.
 
 ## Map
 
@@ -99,8 +99,8 @@ Current pages and their looks: `docs/SOLUTION-PAGES-PLAN.md`.
   `icon-tile` variants, chip hover. Never one flat orange everywhere.
 - **Orange as text on light backgrounds is `--color-text-accent` (orange-700)
   or darker** — lighter oranges fail contrast.
-- **Cinzel headings are typed in normal case.** Never `text-transform: uppercase`
-  them; lowercase already renders as small capitals.
+- **Headings are Fraunces, in sentence case.** Never `text-transform: uppercase`
+  them. Body is Atkinson Hyperlegible Next at 17px; don't go smaller for body copy.
 - **Bangla:** no letter-spacing, no uppercase; DESIGN.md `type-bn` already
   overrides tracking/leading under `:root[lang="bn"]`.
 - **Motion:** content enters with `data-reveal` / `data-reveal-stagger`
@@ -124,8 +124,20 @@ Never import their colours or fonts. See
 
 `src/components/island/` — the Dynamic-Island navbar. States via
 `data-state` (`open` | `compact`) set by `island.js`; the morph is grid-track
-animation (`0fr ↔ 1fr`), no measuring. Links are `[data-island-link]` and
-must point at section ids on the page; the compact pill shows the link text
-of the section crossing the middle of the screen. Keep it centred with
+animation (`0fr ↔ 1fr`), no measuring. Keep it centred with
 `left: 0; right: 0; margin-inline: auto` — `left: 50%` caps its width at half
 the screen and clips the links.
+
+- **Section links come from the page.** Give each main section an `id` and
+  `data-nav="Short label"` (4–5 per page). `island.js` builds the links; the
+  compact pill shows the label of the section crossing the middle of the screen.
+- **All pages** = `.island-menu`, groups from `site.nav` in `content/site.md`
+  (the footer's "Top solutions" is `site.nav-top`). Desktop: a 3-column mega
+  panel. Mobile: a sheet from the menu button — groups are one-at-a-time
+  `<details>`, the current page's group opens. Never show a scrollbar there.
+- Never write the word `<main>` inside an HTML comment: `check.mjs` finds the
+  page body with that tag.
+- Every `mailto:` link opens `mail-choice` (Gmail / mail app / copy) — the
+  person picks; nothing opens on its own.
+- A clickable card uses `.card__link` (the "View …" bar with a round arrow),
+  never a lone small arrow.

@@ -20,8 +20,8 @@ CACHE = ROOT / "tools" / ".cache"
 OUT = ROOT / "src" / "static" / "og"
 AVATAR = ROOT / "src" / "static" / "images" / "ruhan-avatar.png"
 FONTS = {
-    "Cinzel.ttf": "https://github.com/google/fonts/raw/main/ofl/cinzel/Cinzel%5Bwght%5D.ttf",
-    "DMSans.ttf": "https://github.com/google/fonts/raw/main/ofl/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+    "Fraunces.ttf": "https://github.com/google/fonts/raw/main/ofl/fraunces/Fraunces%5BSOFT,WONK,opsz,wght%5D.ttf",
+    "Atkinson.ttf": "https://github.com/google/fonts/raw/main/ofl/atkinsonhyperlegiblenext/AtkinsonHyperlegibleNext%5Bwght%5D.ttf",
 }
 W, H = 1200, 630
 
@@ -32,8 +32,13 @@ def font(name, size, axes):
         CACHE.mkdir(parents=True, exist_ok=True)
         urllib.request.urlretrieve(FONTS[name], path)
     f = ImageFont.truetype(str(path), size)
+    # axes by name, e.g. {"weight": 700, "optical size": 72}; the rest keep defaults
     try:
-        f.set_variation_by_axes(axes)
+        values = []
+        for a in f.get_variation_axes():
+            n = a["name"].decode() if isinstance(a["name"], bytes) else str(a["name"])
+            values.append(axes.get(n.lower(), a["default"]))
+        f.set_variation_by_axes(values)
     except Exception:
         pass
     return f
@@ -51,9 +56,9 @@ def main():
     o300, o500, o600, a500 = rgb(c["orange-300"]), rgb(c["orange-500"]), rgb(c["orange-600"]), rgb(c["amber-500"])
     muted = (200, 192, 186)
 
-    kicker_f = font("DMSans.ttf", 22, [14, 700])
-    title_f = font("Cinzel.ttf", 56, [700])
-    small_f = font("DMSans.ttf", 24, [14, 600])
+    kicker_f = font("Atkinson.ttf", 22, {"weight": 700})
+    title_f = font("Fraunces.ttf", 60, {"weight": 600, "optical size": 72})
+    small_f = font("Atkinson.ttf", 24, {"weight": 600})
     avatar = Image.open(AVATAR).convert("RGBA").resize((330, 330), Image.LANCZOS)
 
     OUT.mkdir(parents=True, exist_ok=True)

@@ -57,7 +57,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--color-amber-300);
+  background: var(--color-orange-300);
   box-shadow: var(--shadow-glow);
   animation: flow-packet var(--motion-pulse) var(--motion-ease) infinite;
 }

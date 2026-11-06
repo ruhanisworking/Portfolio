@@ -1,0 +1,19 @@
+<!-- Byline — who wrote this. variant="row" under the title, variant="card" at the end.
+     Include with date="…" minutes="…" (row) . -->
+<!-- @if props.row -->
+<div class="byline">
+  <img class="byline__avatar" src="/images/ruhan-avatar-256.png" width="44" height="44" alt="Ruhan Islam" loading="lazy" />
+  <p class="byline__text"><a class="byline__name" href="/ruhan-islam/" rel="author">Ruhan Islam</a><span>{{props.date}} · {{props.minutes}} min read</span></p>
+</div>
+<!-- @end -->
+<!-- @if props.card -->
+<aside class="byline-card" aria-label="About the author">
+  <img class="byline-card__avatar" src="/images/ruhan-avatar-256.png" width="72" height="72" alt="Ruhan Islam" loading="lazy" />
+  <div class="byline-card__body">
+    <p class="t-eyebrow">Written by</p>
+    <p class="byline-card__name"><a href="/ruhan-islam/" rel="author">Ruhan Islam</a></p>
+    <p class="byline-card__bio">I'm an AI automation and software engineer in Dhaka. I build private AI, automation, websites and backups for businesses in Bangladesh, the US and Australia. Here I write about one problem at a time, and the popular fixes I don't trust.</p>
+    <p class="byline-card__links"><a href="mailto:{{site.email}}">{{site.email}}</a><a href="{{site.linkedin}}" rel="me noopener" target="_blank">LinkedIn</a><a href="/ruhan-islam/">More about me</a></p>
+  </div>
+</aside>
+<!-- @end -->

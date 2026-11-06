@@ -6,7 +6,7 @@
 seo:
   path: /
   # ≤ 60 characters — primary keyword first, brand last
-  title: "Mohammad Ruhan Islam — AI Automation Engineer | ruhan.bd"
+  title: "Ruhan Islam — AI Automation Engineer in Dhaka | ruhan.bd"
   # 120–160 characters — who, what, for whom, a reason to click
   description: "I'm Ruhan Islam, an AI automation engineer in Dhaka. I build private AI, n8n workflows and monitoring for businesses in Bangladesh, the US and Australia."
   og-title: "Mohammad Ruhan Islam (Ruhan) — AI automation engineer for private, self-hosted systems"

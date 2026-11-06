@@ -359,3 +359,10 @@
   .viz-flow__token { left: 50%; }
   .viz-meter i { transform: none; }
 }
+
+/* Calm by default: inside a card the scene rests in its finished state and
+   only plays while the card is hovered. The hero's scenes keep playing. */
+.card:not(:hover) .viz *,
+.card:not(:hover) .viz *::after { animation: none; }
+.card:not(:hover) .viz-seq > * { opacity: 1; }
+.card:not(:hover) .viz-flow__token { left: 50%; }

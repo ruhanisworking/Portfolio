@@ -1,0 +1,58 @@
+/* Mail choice — a small dialog that asks how to write before any mailto: link
+   opens: Gmail in a new tab (draft filled in), the mail app, or copy. */
+.mail-choice {
+  width: min(calc(100% - 2 * var(--layout-gutter)), var(--c-mail-choice-width));
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: var(--c-mail-choice-bg);
+  color: var(--color-text);
+  border-radius: var(--c-mail-choice-radius);
+  box-shadow: var(--c-mail-choice-shadow);
+}
+.mail-choice::backdrop { background: var(--c-mail-choice-backdrop); }
+.mail-choice[open] { animation: mail-choice-in var(--motion-base) var(--motion-spring); }
+@keyframes mail-choice-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+.mail-choice__box { display: flex; flex-direction: column; gap: var(--space-2xs); padding: var(--c-mail-choice-pad); }
+.mail-choice__title { font-family: var(--type-h4-family); font-size: var(--type-h4-size); letter-spacing: var(--type-h4-tracking); }
+.mail-choice__lede { margin-bottom: var(--space-xs); color: var(--color-text-muted); font-size: var(--type-body-sm-size); }
+
+.mail-choice__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  min-height: var(--c-button-height);
+  padding: var(--space-xs) var(--space-sm);
+  border: var(--c-mail-choice-option-border);
+  border-radius: var(--c-mail-choice-option-radius);
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--type-button-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-button-weight);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--motion-fast) var(--motion-ease), transform var(--motion-base) var(--motion-spring);
+}
+.mail-choice__option:hover { border-color: var(--color-hairline-orange); transform: translateY(-1px); }
+.mail-choice__option svg { width: var(--c-island-icon-size); height: var(--c-island-icon-size); flex: none; }
+.mail-choice__option small { display: block; font-weight: var(--type-nav-weight); color: var(--color-text-muted); font-size: var(--type-meta-size); }
+.mail-choice__option--main { border: 0; background: var(--c-mail-choice-option-main-bg); color: var(--c-mail-choice-option-main-text); }
+.mail-choice__option--main small { color: var(--c-mail-choice-option-main-text); }
+
+.mail-choice__cancel {
+  align-self: center;
+  margin-top: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-sm);
+  background: none;
+  border: 0;
+  color: var(--color-text-muted);
+  font-size: var(--type-body-sm-size);
+  cursor: pointer;
+}
+.mail-choice__cancel:hover { color: var(--color-text); }

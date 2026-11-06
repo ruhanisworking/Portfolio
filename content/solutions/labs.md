@@ -219,7 +219,7 @@ engagement:
   title: "How a Labs pilot works"
   items:
     - name: Discovery call
-      time: "Free · 30 min"
+      time: "30 min · private"
       what: "Your problem, the candidate tools, and what a pilot would need to prove."
       best: "Best when you're curious but cautious."
       kind: plain

@@ -6,7 +6,7 @@ icon: book
 
 # page character — see src/components/look/look.css
 look:
-  accent: amber
+  accent: ember
   hero: stacked
   story: timeline
   offers: grid
@@ -40,7 +40,7 @@ hero:
   kicker: "Online course platform · LMS · exams · research computing"
   line: "Teach, test and research — on your own platform."
   lede: "An online course platform for training companies, coaches and schools in the US and Australia — with payments, exams and certificates anyone can verify — plus research computing for university labs. Your brand, your students, your data."
-  cta: Get a free platform plan
+  cta: Book a private consultation
   scene: viz-course
   chips:
     - Your brand

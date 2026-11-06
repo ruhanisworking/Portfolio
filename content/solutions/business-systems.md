@@ -6,7 +6,7 @@ icon: calendar
 
 # page character — see src/components/look/look.css
 look:
-  accent: wood
+  accent: ember
   hero: stacked
   story: row
   offers: grid
@@ -40,7 +40,7 @@ hero:
   kicker: "Custom business software · CRM · ERP · internal tools"
   line: "Run the business on software you own."
   lede: "Custom business software for small teams in the US and Australia. We replace the pile of per-seat subscriptions with open-source systems on your own server — projects, CRM, ERP, HR, booking and e-signature — set up, migrated and supported."
-  cta: Get a free systems plan
+  cta: Book a private consultation
   scene: viz-saas
   chips:
     - No per-seat fees
@@ -243,7 +243,7 @@ faq:
   - q: "Can you move our data from our current tools?"
     a: "Yes. We migrate, check the record counts and keep the old system read-only until you're confident."
   - q: "What does ERPNext cost?"
-    a: "There's no license fee. You pay for hosting and for setup and support, with a fixed price agreed after a free assessment."
+    a: "There's no license fee. You pay for hosting and for setup and support, with a fixed price agreed after a consultation."
   - q: "Can we still use Microsoft 365 or Google Workspace?"
     a: "Yes. Single sign-on and integrations connect the new systems to the email and calendar you already use."
 

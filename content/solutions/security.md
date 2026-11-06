@@ -40,7 +40,7 @@ hero:
   kicker: "Small business cybersecurity · Essential Eight · HIPAA · SOC 2"
   line: "Security your team will actually use."
   lede: "Small business cybersecurity for teams in the US and Australia: single sign-on with MFA, a shared password vault, alerts when something looks wrong, and the evidence an auditor or insurer will ask for — set up calmly and kept current."
-  cta: Get a free security check
+  cta: Book a private consultation
   scene: viz-security
   chips:
     - MFA everywhere

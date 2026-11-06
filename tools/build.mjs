@@ -33,9 +33,15 @@ const componentDirs = () =>
 // {{props.title}}    → the include's attribute
 // {{offer.name}}     → a loop variable from <!-- @each page.offers as offer -->
 // {{x|json}}         → escaped for a JSON string · {{x|attr}} → escaped for an HTML attribute
+// {{x|date}}         → "2026-11-01" as "1 Nov 2026"
 const FILTERS = {
   json: (s) => JSON.stringify(s).slice(1, -1),
   attr: (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;"),
+  // "2026-11-01" → "1 Nov 2026"
+  date: (s) => {
+    const d = new Date(`${s}T00:00:00Z`);
+    return isNaN(d) ? s : d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  },
 };
 
 function lookup(path, ctx, props, scope) {

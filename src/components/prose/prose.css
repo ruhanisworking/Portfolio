@@ -1,0 +1,52 @@
+/* Prose — long-form article text (the blog). Wrap the body in .prose and write
+   plain HTML: h2/h3, p, ul/ol, blockquote, table, and <aside class="prose__callout">.
+   Sizes come from the type scale; markers are ember dots. */
+.prose { display: flex; flex-direction: column; gap: var(--c-prose-gap); }
+.prose > h2,
+.prose > h3 { margin-top: var(--c-prose-heading-gap); }
+.prose > :first-child { margin-top: 0; }
+.prose p,
+.prose li { font-size: var(--type-body-lg-size); line-height: var(--type-body-lg-leading); color: var(--color-text); }
+.prose a { color: var(--c-prose-link); text-decoration: underline; text-underline-offset: 3px; }
+.prose a:hover { text-decoration-thickness: 2px; }
+.prose strong { font-weight: var(--type-button-weight); }
+
+.prose ul,
+.prose ol { display: grid; gap: var(--space-2xs); padding-left: var(--space-lg); }
+.prose ul { list-style: none; }
+.prose ul > li { position: relative; }
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--space-md));
+  top: 0.7em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c-prose-marker);
+}
+.prose ol { list-style: decimal; }
+.prose ol > li::marker { color: var(--c-prose-marker); font-weight: var(--type-button-weight); }
+
+.prose blockquote {
+  padding-left: var(--space-md);
+  border-left: var(--c-prose-quote-border);
+  font-family: var(--type-quote-family);
+  font-style: italic;
+  font-size: var(--type-quote-size);
+  line-height: var(--type-quote-leading);
+}
+
+.prose__callout {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--c-prose-callout-bg);
+  border: var(--c-prose-callout-border);
+}
+.prose__callout p { font-size: var(--type-body-size); }
+
+.prose__table { overflow-x: auto; }
+.prose table { width: 100%; border-collapse: collapse; font-size: var(--type-body-sm-size); }
+.prose th,
+.prose td { padding: var(--space-xs) var(--space-sm); border-bottom: var(--c-prose-table-border); text-align: left; vertical-align: top; }
+.prose th { background: var(--c-prose-table-head-bg); font-weight: var(--type-button-weight); }

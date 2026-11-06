@@ -6,7 +6,7 @@ icon: chart
 
 # page character — see src/components/look/look.css
 look:
-  accent: amber
+  accent: rust
   hero: split
   story: row
   offers: bento
@@ -40,7 +40,7 @@ hero:
   kicker: "Business dashboards · data pipelines · ask your data"
   line: "All your numbers. One screen. Ask it anything."
   lede: "Business dashboards for small teams in the US and Australia. We join Stripe, Shopify, your CRM and the spreadsheets nobody wants to own into one live view — and let you ask questions in plain English when a chart isn't enough."
-  cta: Get a free data plan
+  cta: Book a private consultation
   scene: viz-dashboard
   chips:
     - Live, not weekly

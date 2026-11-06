@@ -6,7 +6,7 @@ icon: globe
 
 # page character — see src/components/look/look.css
 look:
-  accent: peach
+  accent: ember
   hero: stacked
   story: checklist
   offers: bento
@@ -40,7 +40,7 @@ hero:
   kicker: "Website accessibility · ADA website compliance · WCAG 2.2 AA"
   line: "Websites and stores everyone can use."
   lede: "Website accessibility work for small businesses in the US and Australia: audits, fixes and monthly re-scans that keep you WCAG 2.2 AA — plus fast, accessible stores, business sites and web apps built right from the first line."
-  cta: Get a free accessibility check
+  cta: Book a private consultation
   scene: viz-audit
   chips:
     - WCAG 2.2 AA

@@ -2,52 +2,68 @@
 
     npm run brand        (builds first, so dist/tokens.json is fresh)
 
-The wordmark is DM Sans ExtraBold "ruh" + "n" with our own "a" between them:
-an ink bowl with an orange ember core and an ink stem (logo concept C).
+The wordmark is "ruhan" in Fraunces SemiBold (soft, display optical size),
+tightly set, with the "a" filled with the ember gradient (logo concept 1,
+"Ember Serif"). The favicon is that ember "a" on an ink tile.
 Glyph outlines come from the real font (fontTools), so the SVG needs no font.
 
 Writes:
   src/components/wordmark/wordmark.html   inline SVG partial (ink = currentColor)
-  src/static/favicon.svg                  the "a" mark on an ink tile
-  src/static/favicon-{32,180,192}.png
+  src/static/favicon.svg                  the ember "a" on an ink tile
+  src/static/favicon-{32,180,192,512}.png
 
-Needs Pillow + fontTools; DM Sans is downloaded once into tools/.cache/.
+Needs Pillow + fontTools; Fraunces is downloaded once into tools/.cache/.
 """
 import json
 import re
 import pathlib
 import urllib.request
 
+from fontTools.pens.boundsPen import BoundsPen
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.ttLib import TTFont
 from fontTools.varLib import instancer
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CACHE = ROOT / "tools" / ".cache"
-FONT_URL = "https://github.com/google/fonts/raw/main/ofl/dmsans/DMSans%5Bopsz,wght%5D.ttf"
-WEIGHT = 800
-TRACKING = -0.035  # of the em, between letters — tight, like a wordmark
+FONT_URL = "https://github.com/google/fonts/raw/main/ofl/fraunces/Fraunces%5BSOFT,WONK,opsz,wght%5D.ttf"
+AXES = {"wght": 600, "opsz": 144, "SOFT": 50, "WONK": 0}
+TRACKING = -0.03  # of the em, between letters — tight, like a wordmark
 
 
 def load_font():
-    path = CACHE / "DMSans.ttf"
+    path = CACHE / "Fraunces.ttf"
     if not path.exists():
         CACHE.mkdir(parents=True, exist_ok=True)
         urllib.request.urlretrieve(FONT_URL, path)
-    return instancer.instantiateVariableFont(TTFont(path), {"wght": WEIGHT, "opsz": 40})
+    return instancer.instantiateVariableFont(TTFont(path), AXES)
 
 
-def glyph_path(font, char, x_offset, upm):
+def short(d):
+    # one decimal is far below a pixel at any size we show the logo
+    return re.sub(r"-?\d+\.\d+", lambda m: f"{float(m.group()):.1f}".rstrip("0").rstrip("."), d)
+
+
+def glyph_path(font, char, transform):
     gs = font.getGlyphSet()
     name = font.getBestCmap()[ord(char)]
     pen = SVGPathPen(gs)
-    # font units are y-up; SVG is y-down — flip around the baseline
-    gs[name].draw(TransformPen(pen, (1, 0, 0, -1, x_offset, 0)))
-    # one decimal is far below a pixel at any size we show the logo
-    d = re.sub(r"-?\d+\.\d+", lambda m: f"{float(m.group()):.1f}".rstrip("0").rstrip("."), pen.getCommands())
-    return d, gs[name].width
+    gs[name].draw(TransformPen(pen, transform))
+    return short(pen.getCommands()), gs[name].width
+
+
+def glyph_bounds(font, char):
+    gs = font.getGlyphSet()
+    pen = BoundsPen(gs)
+    gs[font.getBestCmap()[ord(char)]].draw(pen)
+    return pen.bounds  # xMin, yMin, xMax, yMax (y-up)
+
+
+def rgb(h):
+    h = h.lstrip("#")
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 
 
 def main():
@@ -55,36 +71,25 @@ def main():
     fav = tokens["favicon"]
     font = load_font()
     upm = font["head"].unitsPerEm
-    x_height = font["OS/2"].sxHeight
     track = TRACKING * upm
 
-    # stem width = the "n"'s left stem, measured from its outline bounds
-    glyf = font["glyf"]
-    n = glyf[font.getBestCmap()[ord("n")]]
-    stem = round((n.xMax - n.xMin) * 0.27)
-
-    paths, x = [], 0.0
-    for ch in "ruh":
-        d, adv = glyph_path(font, ch, x, upm)
-        paths.append(d)
+    # ── wordmark: ink "ruh" + ember "a" + ink "n" ──────────────────────────
+    # font units are y-up; SVG is y-down — flip around the baseline
+    ink, ember, x = [], "", 0.0
+    for ch in "ruhan":
+        d, adv = glyph_path(font, ch, (1, 0, 0, -1, x, 0))
+        if ch == "a":
+            ember = d
+        else:
+            ink.append(d)
         x += adv + track
-
-    # the ember "a": bowl circle the height of the x-height, stem on its right
-    r = x_height / 2
-    cx, cy = x + r, -r
-    core = r - stem * 1.05
-    a_bowl = f"M{cx - r:.1f},{cy:.1f}a{r:.1f},{r:.1f} 0 1,0 {2 * r:.1f},0a{r:.1f},{r:.1f} 0 1,0 {-2 * r:.1f},0Z"
-    a_stem = f"M{cx + r - stem:.1f},{-x_height:.1f}h{stem:.1f}v{x_height:.1f}h{-stem:.1f}Z"
-    x = cx + r + track * 0.6
-
-    d, adv = glyph_path(font, "n", x, upm)
-    paths.append(d)
-    width = x + adv
+    width = x - track
 
     ascender = font["hhea"].ascent
+    x_height = font["OS/2"].sxHeight
     pad = upm * 0.02
-    view = f"{-pad:.0f} {-ascender:.0f} {width + 2 * pad:.0f} {ascender + pad * 4:.0f}"
-    ink = "".join(paths) + a_bowl + a_stem
+    top = max(ascender * 0.78, x_height * 1.6)
+    view = f"{-pad:.0f} {-top:.0f} {width + 2 * pad:.0f} {top + pad * 6:.0f}"
 
     partial = f"""<svg class="wordmark" viewBox="{view}" role="img" aria-label="ruhan">
   <defs>
@@ -94,8 +99,8 @@ def main():
       <stop offset="1" stop-color="{{{{colors.amber-500}}}}"/>
     </linearGradient>
   </defs>
-  <path class="wordmark__ink" fill="currentColor" d="{ink}"/>
-  <circle class="wordmark__core" cx="{cx:.1f}" cy="{cy:.1f}" r="{core:.1f}" fill="url(#ember-{{{{props.id}}}})"/>
+  <path class="wordmark__ink" fill="currentColor" d="{"".join(ink)}"/>
+  <path class="wordmark__core" fill="url(#ember-{{{{props.id}}}})" d="{ember}"/>
 </svg>
 """
     out = ROOT / "src" / "components" / "wordmark" / "wordmark.html"
@@ -103,12 +108,15 @@ def main():
     out.write_text(partial, encoding="utf-8")
     print("wrote src/components/wordmark/wordmark.html")
 
-    # ── favicon: the "a" mark, light on an ink tile ────────────────────────
+    # ── favicon: the ember "a", centred on an ink tile ─────────────────────
     S = 64
-    fr = 20            # bowl radius
-    fstem = 9
-    fcore = fr - fstem * 1.05
-    fcx, fcy = 29, 34
+    fill = 0.62  # the "a" fills this much of the tile's height
+    x0, y0, x1, y1 = glyph_bounds(font, "a")
+    k = S * fill / (y1 - y0)
+    tx = (S - (x1 - x0) * k) / 2 - x0 * k
+    ty = (S + (y1 - y0) * k) / 2 + y0 * k  # baseline position (y-down)
+    a_path, _ = glyph_path(font, "a", (k, 0, 0, -k, tx, ty))
+
     svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {S} {S}" role="img" aria-label="ruhan">
   <title>ruhan</title>
   <defs>
@@ -119,9 +127,7 @@ def main():
     </linearGradient>
   </defs>
   <rect width="{S}" height="{S}" rx="{fav['radius']}" fill="{fav['tile']}"/>
-  <circle cx="{fcx}" cy="{fcy}" r="{fr}" fill="{fav['ink']}"/>
-  <rect x="{fcx + fr - fstem}" y="{fcy - fr}" width="{fstem}" height="{2 * fr}" fill="{fav['ink']}"/>
-  <circle cx="{fcx}" cy="{fcy}" r="{fcore:.2f}" fill="url(#g)"/>
+  <path fill="url(#g)" d="{a_path}"/>
 </svg>
 """
     static = ROOT / "src" / "static"
@@ -129,36 +135,34 @@ def main():
     (static / "favicon.svg").write_text(svg, encoding="utf-8")
     print("wrote src/static/favicon.svg")
 
-    def rgb(h):
-        h = h.lstrip("#")
-        return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
-
+    # PNGs: the same "a" drawn at 8x with PIL from the variable font, filled
+    # with the gradient through its mask, then shrunk for smooth edges
     stops = [(0.0, rgb(fav["from"])), (0.5, rgb(fav["via"])), (1.0, rgb(fav["to"]))]
 
     def colour_at(t):
         for (t0, c0), (t1, c1) in zip(stops, stops[1:]):
             if t <= t1:
-                k = (t - t0) / (t1 - t0)
-                return tuple(round(a + (b - a) * k) for a, b in zip(c0, c1))
+                f = (t - t0) / (t1 - t0)
+                return tuple(round(a + (b - a) * f) for a, b in zip(c0, c1))
         return stops[-1][1]
 
-    for size in (32, 180, 192):
-        k = size * 8 / S
+    for size in (32, 180, 192, 512):
         big = size * 8
+        s = big / S
         img = Image.new("RGBA", (big, big), (0, 0, 0, 0))
-        d = ImageDraw.Draw(img)
-        d.rounded_rectangle((0, 0, big - 1, big - 1), radius=int(float(fav["radius"]) * k), fill=rgb(fav["tile"]))
-        d.ellipse(((fcx - fr) * k, (fcy - fr) * k, (fcx + fr) * k, (fcy + fr) * k), fill=rgb(fav["ink"]))
-        d.rectangle(((fcx + fr - fstem) * k, (fcy - fr) * k, (fcx + fr) * k, (fcy + fr) * k), fill=rgb(fav["ink"]))
-        c = int(2 * fcore * k)
-        grad = Image.new("RGB", (c, c))
-        px = grad.load()
-        for y in range(c):
-            for x in range(c):
-                px[x, y] = colour_at((x + y) / (2 * (c - 1)))
-        mask = Image.new("L", (c, c), 0)
-        ImageDraw.Draw(mask).ellipse((0, 0, c - 1, c - 1), fill=255)
-        img.paste(grad, (int((fcx - fcore) * k), int((fcy - fcore) * k)), mask)
+        ImageDraw.Draw(img).rounded_rectangle((0, 0, big - 1, big - 1), radius=int(float(fav["radius"]) * s), fill=rgb(fav["tile"]))
+
+        pil_font = ImageFont.truetype(str(CACHE / "Fraunces.ttf"), round(upm * k * s))
+        by_name = {a["name"].decode() if isinstance(a["name"], bytes) else a["name"]: a for a in pil_font.get_variation_axes()}
+        tags = {"Optical Size": "opsz", "Weight": "wght", "Softness": "SOFT", "Wonky": "WONK"}
+        pil_font.set_variation_by_axes([AXES.get(tags.get(n, ""), a["default"]) for n, a in by_name.items()])
+        mask = Image.new("L", (big, big), 0)
+        # anchor "ls" = left edge of the advance, on the baseline
+        ImageDraw.Draw(mask).text((tx * s, ty * s), "a", font=pil_font, fill=255, anchor="ls")
+
+        grad = Image.new("RGB", (256, 256))
+        grad.putdata([colour_at((x + y) / 510) for y in range(256) for x in range(256)])
+        img.paste(grad.resize((big, big), Image.BILINEAR), (0, 0), mask)
         img.resize((size, size), Image.LANCZOS).save(static / f"favicon-{size}.png")
         print(f"wrote src/static/favicon-{size}.png")
 

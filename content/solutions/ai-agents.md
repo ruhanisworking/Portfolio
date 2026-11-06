@@ -42,7 +42,7 @@ hero:
   kicker: "AI agent development · chatbots · AI receptionist"
   line: "AI agents that answer, qualify and book — while you sleep."
   lede: "AI agent development for small businesses in the US and Australia: we build agents and chatbots that answer, qualify and book. They answer from your own documents, handle lead qualification, book the call and hand off to a person when it matters. We've done this before — you won't have to think about the moving parts."
-  cta: Get a free agent plan
+  cta: Book a private consultation
   scene: viz-agent
   chips:
     - Answers 24/7
@@ -250,7 +250,7 @@ faq:
   - q: "What does AI agent development include?"
     a: "Our AI agent development covers the whole job: reading your real enquiries, mapping answers to your documents, connecting your website, WhatsApp, CRM and calendar, testing, and weekly reviews after launch."
   - q: "How much does an AI chatbot cost for a small business?"
-    a: "It depends on the channels and systems involved. After a free assessment you get a fixed price in writing for the setup, plus an optional monthly plan for reviews and updates."
+    a: "It depends on the channels and systems involved. After a consultation you get a fixed price in writing for the setup, plus an optional monthly plan for reviews and updates."
   - q: "Will the AI agent make things up?"
     a: "We limit it to your approved documents, make it cite the source for every answer and tell it to hand off when it isn't sure. Weekly reviews catch weak answers early."
   - q: "Can the agent book appointments and update our CRM?"

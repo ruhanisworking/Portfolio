@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!-- About Ruhan Islam — the entity home for the name. ProfilePage schema whose
+     mainEntity is the same Person (#person) the home page describes. -->
+<html lang="en" translate="no">
+  <head>
+    <!-- @include partials/head.html robots="index, follow, max-image-preview:large, max-snippet:-1" -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "ProfilePage",
+            "@id": "{{site.url}}/ruhan-islam/#page",
+            "url": "{{site.url}}/ruhan-islam/",
+            "name": "{{page.seo.title|json}}",
+            "inLanguage": "en",
+            "isPartOf": { "@id": "{{site.url}}/#website" },
+            "mainEntity": {
+              "@type": "Person",
+              "@id": "{{site.url}}/#person",
+              "name": "{{site.full-name}}",
+              "alternateName": ["Ruhan Islam", "Ruhan", "Md Ruhan Islam", "ruhanbd", "ruhan bd", "Rohan Islam", "রুহান ইসলাম", "মোহাম্মদ রুহান ইসলাম"],
+              "givenName": "Ruhan",
+              "familyName": "Islam",
+              "jobTitle": "{{site.role}}",
+              "description": "{{page.hero.lede|json}}",
+              "url": "{{site.url}}/",
+              "image": "{{site.url}}/images/ruhan-avatar.png",
+              "email": "mailto:{{site.email}}",
+              "telephone": "+8801749501010",
+              "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
+              "nationality": { "@type": "Country", "name": "Bangladesh" },
+              "alumniOf": { "@type": "CollegeOrUniversity", "name": "Khulna University of Engineering & Technology (KUET)" },
+              "worksFor": { "@type": "Organization", "name": "Institute of Information & Communication Technology (IICT), BUET" },
+              "knowsAbout": ["AI automation", "Private AI", "Workflow automation", "n8n", "Software engineering", "DevOps", "Backup and recovery", "Server monitoring", "Web development"],
+              "sameAs": [<!-- @each site.profiles as pr sep=", " -->"{{pr.url}}"<!-- @end -->]
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{site.url}}/" },
+              { "@type": "ListItem", "position": 2, "name": "Ruhan Islam", "item": "{{site.url}}/ruhan-islam/" }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              { "@type": "Question", "name": "Who is Ruhan Islam?", "acceptedAnswer": { "@type": "Answer", "text": "Mohammad Ruhan Islam is an AI automation and software engineer based in Dhaka, Bangladesh. He is a Programmer at IICT, BUET, holds a BSc in Computer Science and Engineering from KUET, and builds private AI, automation and custom software for businesses through ruhan.bd." } },
+              { "@type": "Question", "name": "How do I get in touch?", "acceptedAnswer": { "@type": "Answer", "text": "Email hi@ruhan.bd, message +880 1749-501010 on WhatsApp, or connect on LinkedIn at linkedin.com/in/ruhan-mri. He replies within one business day." } },
+              { "@type": "Question", "name": "What does he work on?", "acceptedAnswer": { "@type": "Answer", "text": "Private AI assistants, n8n workflow automation, websites, custom business software, backups and server monitoring, for businesses in Bangladesh, the United States and Australia." } }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <!-- @include components/island/island.html home="About" -->
+
+    <main id="main">
+
+      <!-- ── hero ─────────────────────────────────────────────────────────── -->
+      <section class="section" aria-labelledby="page-title">
+        <div class="container container--prose stack stack--lg">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol><li><a href="/">Home</a></li><li aria-current="page">{{page.hero.crumb}}</li></ol>
+          </nav>
+          <div class="hero__id" data-reveal>
+            <picture class="hero__avatar">
+              <source srcset="/images/ruhan-avatar-256.webp" type="image/webp" />
+              <img src="/images/ruhan-avatar-256.png" width="256" height="256" alt="Ruhan Islam, AI automation engineer in Dhaka" fetchpriority="high" />
+            </picture>
+            <div>
+              <p class="hero__name">{{site.full-name}}</p>
+              <p class="hero__handle">ruhan.bd · {{site.location}}</p>
+            </div>
+          </div>
+          <header class="stack" data-reveal>
+            <span class="t-eyebrow">{{page.hero.kicker}}</span>
+            <h1 class="t-display" id="page-title">{{page.hero.line}}</h1>
+            <p class="t-subheading">{{page.hero.lede}}</p>
+          </header>
+          <!-- @include components/contact-links/contact-links.html variant="pills" -->
+        </div>
+      </section>
+
+      <!-- ── story ────────────────────────────────────────────────────────── -->
+      <section class="section" id="story" data-nav="Story" aria-labelledby="story-title">
+        <div class="container container--prose stack stack--lg">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Story</span>
+            <h2 class="t-h2" id="story-title">An AI automation engineer <span class="t-accent">from Dhaka</span></h2>
+          </header>
+          <div class="stack" data-reveal>
+            <p class="t-body-lg">Ruhan grew up in Bangladesh and studied Computer Science and Engineering at KUET, where his thesis was on verifiable search over encrypted cloud data. He graduated in 2024 with a CGPA of 3.72 and the Dean's Award.</p>
+            <p class="t-body-lg">Since May 2024 he has been a Programmer at the Institute of Information &amp; Communication Technology (IICT), BUET, where he is the lead engineer on national exam, results and logistics platforms: full-stack work, DevOps, database administration and security hardening. In 2025 he also led a full-stack team for a US-based software company, remotely.</p>
+            <p class="t-body-lg">Through <a href="/">ruhan.bd</a> he builds <a href="/solutions/ai-agent-development/">private AI assistants</a>, <a href="/solutions/workflow-automation/">n8n workflow automation</a>, <a href="/solutions/website-accessibility/">websites</a> and <a href="/solutions/custom-business-software/">custom business software</a> for businesses in <a href="/ai-automation-bangladesh/">Bangladesh</a>, the US and Australia. His rule: the client owns the system, the data and the machines it runs on.</p>
+            <p class="t-body-lg">How he works is simple: a written plan and a fixed price before anything starts, a short demo every week, and handover notes at the end, so the client's own team can run what was built. Most of the systems run on proven open-source software on the client's own server, with tested backups and monitoring from day one.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── experience ───────────────────────────────────────────────────── -->
+      <section class="section" id="experience" data-nav="Experience" aria-labelledby="experience-title">
+        <div class="container container--prose stack stack--lg">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Experience</span>
+            <h2 class="t-h2" id="experience-title">Software engineer, <span class="t-accent">2.5 years in production</span></h2>
+          </header>
+          <ol class="timeline" data-reveal-stagger>
+            <li class="timeline__item">
+              <p class="timeline__when">May 2024 — present</p>
+              <h3 class="t-h3">Programmer</h3>
+              <p class="timeline__where">IICT, BUET · Institute of Information &amp; Communication Technology</p>
+              <p class="timeline__text">Lead engineer on national exam, results and logistics platforms — full-stack, DevOps, database administration and security hardening. Promoted from Assistant Programmer.</p>
+            </li>
+            <li class="timeline__item">
+              <p class="timeline__when">Jan 2025 — Oct 2025</p>
+              <h3 class="t-h3">Team Lead, Full-Stack</h3>
+              <p class="timeline__where">US-based software company · remote</p>
+              <p class="timeline__text">Joined as a developer, promoted to team lead. Shipped an AI document engine, a restaurant platform with thermal-printer ordering and the company website.</p>
+            </li>
+            <li class="timeline__item">
+              <p class="timeline__when">2024</p>
+              <h3 class="t-h3">BSc, Computer Science &amp; Engineering</h3>
+              <p class="timeline__where">KUET · CGPA 3.72 / 4.00 · Dean's Award</p>
+              <p class="timeline__text">Thesis research on verifiable search over encrypted cloud data.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ── elsewhere ────────────────────────────────────────────────────── -->
+      <section class="section" id="elsewhere" data-nav="Find me" aria-labelledby="elsewhere-title">
+        <div class="container container--prose stack stack--lg">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Elsewhere</span>
+            <h2 class="t-h2" id="elsewhere-title">Where to find <span class="t-accent">him online</span></h2>
+            <p class="section-header__sub t-subheading">The same person on every profile: AI automation engineer, Dhaka.</p>
+          </header>
+          <ul class="related-links" data-reveal-stagger>
+            <!-- @each site.profiles as pr -->
+            <li><a class="related-links__item card card--interactive" href="{{pr.url}}" rel="me noopener" target="_blank"><b>{{pr.name}}</b><span>{{pr.line}}</span><span class="related-links__go">{{pr.show}} <span aria-hidden="true">&rarr;</span></span></a></li>
+            <!-- @end -->
+            <li><a class="related-links__item card card--interactive" href="mailto:{{site.email}}"><b>Email</b><span>Replies within one business day</span><span class="related-links__go">{{site.email}} <span aria-hidden="true">&rarr;</span></span></a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ── FAQ ──────────────────────────────────────────────────────────── -->
+      <section class="section" id="faq" data-nav="FAQ" aria-labelledby="faq-title">
+        <div class="container container--prose">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Questions</span>
+            <h2 class="t-h2" id="faq-title">Common <span class="t-accent">questions</span></h2>
+          </header>
+          <div data-reveal>
+            <details class="accordion" name="faq" open>
+              <summary>Who is Ruhan Islam? <span class="accordion__icon" aria-hidden="true"></span></summary>
+              <div class="accordion__body">Mohammad Ruhan Islam is an AI automation and software engineer based in Dhaka, Bangladesh. He is a Programmer at IICT, BUET, holds a BSc in Computer Science and Engineering from KUET, and builds private AI, automation and custom software for businesses through ruhan.bd.</div>
+            </details>
+            <details class="accordion" name="faq">
+              <summary>How do I get in touch? <span class="accordion__icon" aria-hidden="true"></span></summary>
+              <div class="accordion__body">Email hi@ruhan.bd, message +880 1749-501010 on WhatsApp, or connect on LinkedIn at linkedin.com/in/ruhan-mri. He replies within one business day.</div>
+            </details>
+            <details class="accordion" name="faq">
+              <summary>What does he work on? <span class="accordion__icon" aria-hidden="true"></span></summary>
+              <div class="accordion__body">Private AI assistants, n8n workflow automation, websites, custom business software, backups and server monitoring, for businesses in Bangladesh, the United States and Australia.</div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- @include components/footer/footer.html tagline="AI, automation, websites and software from Dhaka — for Bangladesh, the US and Australia." -->
+  </body>
+</html>

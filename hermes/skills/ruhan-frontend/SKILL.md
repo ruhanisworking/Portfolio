@@ -38,8 +38,8 @@ The full, binding guide lives in the repo, and it is always current after a
   together** (gradients orange-600 → orange-500 → amber-500). **Text on orange
   is ink, never white.** Orange text on light backgrounds is orange-700 or
   darker.
-- Type: Cinzel headings, **typed in normal case, never uppercased**. DM Sans
-  body, Playfair italic quotes.
+- Type: Fraunces headings in sentence case, never uppercased. Atkinson
+  Hyperlegible Next body (17px), Fraunces italic quotes.
 - Motion: calm fade-up (`data-reveal`). Spring only for small pops.
 - Breakpoints in CSS: `@media (--bp-md)` / `(--bp-lg)`.
 - Any text from outside (mail, web) goes into the page with `textContent`,

@@ -3,9 +3,9 @@ version: 1.0.0
 name: Ember — ruhan.bd
 description: >-
   The design system for ruhan.bd. Many shades of orange and amber on warm paper,
-  inked in a deep warm black. Headings are set in Cinzel (capital-only: the first
-  letter of each word stands taller), body copy in DM Sans, quotes in Playfair
-  Display italic. The signature element is a black Dynamic-Island navbar that
+  inked in a deep warm black. Headings and quotes are set in Fraunces (a warm,
+  soft serif), body copy in Atkinson Hyperlegible Next (made by the Braille
+  Institute so every letter is easy to tell apart, readable at any age). The signature element is a black Dynamic-Island navbar that
   morphs between a compact pill and a full menu. Motion is calm: things fade up
   into place, the island springs.
 
@@ -81,6 +81,9 @@ colors:
   hairline-strong: "rgba(20, 17, 16, 0.14)"
   hairline-dark: "rgba(255, 253, 251, 0.10)"
   hairline-orange: "rgba(249, 115, 22, 0.32)"
+  # Ember Noir: one ember orange family + a thin champagne gold for rules and hairlines
+  gold: "#c8a46a"
+  hairline-gold: "rgba(200, 164, 106, 0.55)"
   # states
   focus: "{colors.orange-600}"
   selection: "{colors.orange-200}"
@@ -117,57 +120,57 @@ gradients:
   dark-glow-peach: "radial-gradient(70% 60% at 20% 0%, rgba(207, 106, 67, 0.32), transparent 70%)"
 
 fonts:
-  google-href: "https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&display=swap"
+  google-href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Atkinson+Hyperlegible+Next:ital,wght@0,400..800;1,400..800&display=swap"
   google-href-bn: "https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@400;500;600;700&display=swap"
-  display: "\"Cinzel\", \"Playfair Display\", Georgia, serif"
-  serif: "\"Playfair Display\", Georgia, serif"
-  sans: "\"DM Sans\", system-ui, -apple-system, \"Segoe UI\", sans-serif"
+  display: "\"Fraunces\", Georgia, serif"
+  serif: "\"Fraunces\", Georgia, serif"
+  sans: "\"Atkinson Hyperlegible Next\", system-ui, -apple-system, \"Segoe UI\", sans-serif"
 
 # Bangla keeps the Latin face first so English words inside Bangla text keep
 # the same look; Bengali glyphs fall through to the Bengali face.
 fonts-bn:
-  display: "\"Cinzel\", \"Tiro Bangla\", \"Noto Serif Bengali\", serif"
-  serif: "\"Playfair Display\", \"Tiro Bangla\", \"Noto Serif Bengali\", serif"
-  sans: "\"DM Sans\", \"Hind Siliguri\", \"Noto Sans Bengali\", system-ui, sans-serif"
+  display: "\"Fraunces\", \"Tiro Bangla\", \"Noto Serif Bengali\", serif"
+  serif: "\"Fraunces\", \"Tiro Bangla\", \"Noto Serif Bengali\", serif"
+  sans: "\"Atkinson Hyperlegible Next\", \"Hind Siliguri\", \"Noto Sans Bengali\", system-ui, sans-serif"
 
 # Text styles. Each becomes --type-<name>-family/size/weight/leading/tracking/case.
-# Cinzel is typed in normal case on purpose: lowercase renders as small capitals,
-# which is what gives the "first letter taller" look. Never uppercase it.
+# Headings are sentence case (only the first word and names capitalised).
+# Never uppercase a heading: only eyebrows are uppercase.
 type:
   display:
     family: "{fonts.display}"
     size: "clamp(40px, 7vw, 76px)"
-    weight: "700"
-    leading: "1.04"
-    tracking: "0.01em"
+    weight: "600"
+    leading: "1.02"
+    tracking: "-0.02em"
     case: "none"
   h1:
     family: "{fonts.display}"
     size: "clamp(34px, 5.6vw, 58px)"
-    weight: "700"
+    weight: "600"
     leading: "1.08"
-    tracking: "0.015em"
+    tracking: "-0.015em"
     case: "none"
   h2:
     family: "{fonts.display}"
     size: "clamp(28px, 4.2vw, 44px)"
     weight: "600"
     leading: "1.12"
-    tracking: "0.02em"
+    tracking: "-0.01em"
     case: "none"
   h3:
     family: "{fonts.display}"
     size: "clamp(19px, 2.2vw, 23px)"
-    weight: "700"
+    weight: "600"
     leading: "1.25"
-    tracking: "0.02em"
+    tracking: "-0.005em"
     case: "none"
   h4:
     family: "{fonts.display}"
     size: "16px"
-    weight: "700"
+    weight: "600"
     leading: "1.3"
-    tracking: "0.03em"
+    tracking: "0"
     case: "none"
   subheading:
     family: "{fonts.sans}"
@@ -178,21 +181,21 @@ type:
     case: "none"
   body-lg:
     family: "{fonts.sans}"
-    size: "18px"
+    size: "19px"
     weight: "400"
     leading: "1.7"
     tracking: "0"
     case: "none"
   body:
     family: "{fonts.sans}"
-    size: "16px"
+    size: "17px"
     weight: "400"
     leading: "1.65"
     tracking: "0"
     case: "none"
   body-sm:
     family: "{fonts.sans}"
-    size: "14px"
+    size: "15px"
     weight: "400"
     leading: "1.6"
     tracking: "0"
@@ -228,7 +231,7 @@ type:
   quote:
     family: "{fonts.serif}"
     size: "clamp(18px, 2vw, 22px)"
-    weight: "500"
+    weight: "400"
     leading: "1.45"
     tracking: "0"
     case: "none"
@@ -374,6 +377,23 @@ components:
     progress: "{gradients.brand}"
     cta-bg: "{gradients.brand}"
     cta-text: "{colors.on-orange}"
+    # "All pages" menu: a mega panel under the island (desktop), a sheet (mobile)
+    all-bg: "rgba(255, 253, 251, 0.08)"
+    all-border: "1px solid rgba(255, 253, 251, 0.16)"
+    menu-width: "880px"
+    menu-gap: "10px"
+    menu-pad: "{space.md}"
+    menu-radius: "{radius.xl}"
+    menu-shadow: "0 30px 60px rgba(20, 17, 16, 0.35)"
+    menu-heading: "{colors.orange-300}"
+    menu-rule: "1px solid rgba(255, 253, 251, 0.1)"
+    menu-item-radius: "{radius.md}"
+    menu-tile-size: "34px"
+    here-bg: "rgba(251, 146, 60, 0.14)"
+    here-ring: "inset 0 0 0 1px rgba(251, 146, 60, 0.4)"
+    chip-on-bg: "{colors.orange-300}"
+    chip-on-text: "{colors.ink}"
+    accent: "{colors.orange-300}"
   button:
     height: "48px"
     height-sm: "44px"
@@ -393,11 +413,19 @@ components:
   card:
     bg: "{colors.paper}"
     border: "{border.thin}"
-    border-hover: "{colors.hairline-orange}"
+    border-hover: "{colors.hairline-gold}"
     radius: "{radius.lg}"
     pad: "{space.md}"
     shadow: "{shadow.sm}"
     shadow-hover: "{shadow.md}"
+    # .card__link — the "View …" bar along the bottom of a clickable card
+    go-bg: "{colors.orange-50}"
+    go-bg-hover: "{colors.orange-100}"
+    go-text: "{colors.orange-800}"
+    go-border: "{border.thin}"
+    go-arrow-size: "32px"
+    go-arrow-bg: "{colors.ink}"
+    go-arrow-text: "{colors.orange-300}"
     lift: "-4px"
     dark-bg: "{colors.dark-2}"
     dark-border: "{border.dark}"
@@ -405,9 +433,9 @@ components:
     size: "44px"
     radius: "{radius.sm}"
     text: "{colors.on-orange}"
-    bg-1: "linear-gradient(135deg, var(--color-orange-500), var(--color-amber-500))"
-    bg-2: "linear-gradient(135deg, var(--color-orange-600), var(--color-orange-400))"
-    bg-3: "linear-gradient(135deg, var(--color-amber-500), var(--color-amber-300))"
+    bg-1: "linear-gradient(135deg, var(--color-orange-600), var(--color-amber-500))"
+    bg-2: "linear-gradient(135deg, var(--color-orange-700), var(--color-orange-500))"
+    bg-3: "linear-gradient(135deg, var(--color-orange-500), var(--color-orange-300))"
     bg-4: "linear-gradient(135deg, var(--color-orange-400), var(--color-orange-200))"
   chip:
     height: "30px"
@@ -422,7 +450,7 @@ components:
     gap: "{space.xs}"
     max: "{layout.prose}"
     eyebrow: "{colors.text-accent}"
-    eyebrow-rule: "{gradients.brand}"
+    eyebrow-rule: "{colors.gold}"
     title: "{colors.text}"
     accent: "{gradients.text}"
     sub: "{colors.text-muted}"
@@ -435,8 +463,8 @@ components:
     radius: "{radius.pill}"
     height: "30px"
   wordmark:
-    height: "26px"
-    height-sm: "20px"
+    height: "30px"
+    height-sm: "24px"
     height-lg: "56px"
     ink: "{colors.ink}"
     ink-on-dark: "{colors.on-dark}"
@@ -447,6 +475,8 @@ components:
     border: "{border.strong}"
     border-focus: "{colors.orange-500}"
     label: "{colors.text-subtle}"
+    # inputs keep dark text even inside a dark section
+    text: "{colors.text}"
     focus-ring: "0 0 0 4px var(--color-orange-100)"
     textarea-min: "140px"
   accordion:
@@ -461,9 +491,45 @@ components:
     text: "{colors.on-dark-muted}"
     heading: "{colors.orange-300}"
     link-hover: "{colors.on-dark}"
-    link-height: "44px"
+    link-height: "32px"
     fine: "{colors.on-dark-subtle}"
     glow: "{gradients.dark-glow}"
+    pad-top: "{space.2xl}"
+    bookmark-bg: "rgba(255, 253, 251, 0.08)"
+    bookmark-border: "1px solid rgba(255, 253, 251, 0.16)"
+  byline:
+    avatar: "44px"
+    avatar-lg: "72px"
+    ring: "2px solid var(--color-orange-400)"
+    card-bg: "{colors.paper}"
+    card-border: "{border.thin}"
+    card-radius: "{radius.lg}"
+  prose:
+    gap: "{space.sm}"
+    heading-gap: "{space.xl}"
+    marker: "{colors.orange-500}"
+    link: "{colors.text-accent}"
+    quote-border: "3px solid var(--color-gold)"
+    callout-bg: "{colors.orange-50}"
+    callout-border: "{border.thin}"
+    table-border: "{border.thin}"
+    table-head-bg: "{colors.sunken}"
+  mail-choice:
+    width: "420px"
+    bg: "{colors.paper}"
+    radius: "{radius.xl}"
+    pad: "{space.lg}"
+    shadow: "{shadow.lg}"
+    backdrop: "{colors.scrim}"
+    option-border: "{border.strong}"
+    option-radius: "{radius.md}"
+    option-main-bg: "{gradients.brand}"
+    option-main-text: "{colors.on-orange}"
+  bookmark:
+    toast-bg: "{colors.ink}"
+    toast-text: "{colors.on-dark}"
+    toast-radius: "{radius.pill}"
+    toast-bottom: "24px"
   contact-links:
     gap: "{space.2xs}"
     pill-height: "48px"
@@ -696,9 +762,9 @@ usually a heading or the island — everything else stays quiet.
 
 | Role | Face | Notes |
 |---|---|---|
-| display, h1–h4, wordmark | Cinzel | capital-only; type in normal case so first letters stand taller |
-| subheading, body, meta, eyebrow, button, nav | DM Sans | |
-| quote | Playfair Display italic | Cinzel has no italic |
+| display, h1–h4 | Fraunces 600 | sentence case, slightly tight tracking |
+| subheading, body, meta, eyebrow, button, nav | Atkinson Hyperlegible Next | body 17px for easy reading |
+| quote | Fraunces italic | |
 | Bangla | Tiro Bangla (display) · Hind Siliguri (body) | Latin face stays first in the stack |
 
 Hierarchy on a section: **eyebrow** (small caps-tracked label in orange-700 with
@@ -736,7 +802,11 @@ tokens are under `components.<name>` above. The catalogue is
 
 | Component | Files | What it is |
 |---|---|---|
-| island | html, css, js | Dynamic-Island navbar: compact ↔ open, section label, scroll progress, mobile sheet |
+| island | html, css, js | Dynamic-Island navbar: compact ↔ open, this page's sections (from `data-nav` on each section), "All pages" mega menu (groups from `site.nav`), mobile sheet, scroll progress |
+| byline | html, css | the author on a blog post: a row under the title (photo, name, date, reading time) and an "About the author" card at the end |
+| prose | css | long-form article text (blog): headings, lists with ember markers, links, quotes, callouts, tables |
+| mail-choice | html, css, js | asks before any `mailto:` link opens: Gmail in a new tab with a draft, the mail app, or copy the address |
+| bookmark | css, js | footer button: install prompt where the browser offers one, otherwise a toast with the bookmark shortcut |
 | button | css | primary (gradient, ink text), secondary, ghost, dark, sm size, icon |
 | card | css | base, interactive (lifts), dark |
 | icon-tile | css | 44px gradient square holding an icon, four shade variants |
@@ -776,11 +846,11 @@ tokens are under `components.<name>` above. The catalogue is
 ## Do's and Don'ts
 
 **Do** take every value from a token. **Do** use 2–3 orange shades together.
-**Do** keep ink text on orange. **Do** write Cinzel text in normal case.
+**Do** keep ink text on orange. **Do** write headings in sentence case.
 
 **Don't** write a raw hex, rgb(), font name, radius, shadow, duration or
 z-index in component CSS (`npm run check` fails). **Don't** put white text on
-orange. **Don't** uppercase Cinzel. **Don't** letter-space Bengali.
+orange. **Don't** uppercase headings. **Don't** letter-space Bengali.
 
 ## Responsive Behavior
 

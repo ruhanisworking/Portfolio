@@ -3,8 +3,13 @@
      open     at the top of the page, on hover/focus (desktop) or after a tap (mobile)
      compact  everywhere else — seal + current section name + scroll progress
    The morph is grid-track animation (0fr ↔ 1fr), so the pill's width/height
-   follows its content smoothly with no measuring. Mobile (< md): links drop
-   down as a sheet; desktop: links slide out sideways. */
+   follows its content smoothly with no measuring.
+   Links: this page's sections (filled by island.js from [data-nav]), the
+   "All pages" button and the email CTA. On mobile (< md) the pill shows only
+   brand + section + menu button, and the menu button opens .island-menu as a
+   sheet. On desktop the links slide out sideways and "All pages" opens
+   .island-menu as a mega panel. Section links sit in the pill from lg up;
+   below that they appear at the top of the menu ("On this page"). */
 
 .island {
   position: fixed;
@@ -22,7 +27,6 @@
   box-shadow: var(--c-island-shadow);
   transition: border-radius var(--c-island-duration) var(--motion-spring);
 }
-.island[data-state="open"] { border-radius: var(--c-island-radius-open); }
 
 .island__bar {
   display: grid;
@@ -87,14 +91,13 @@
   to   { opacity: 1; transform: none; }
 }
 
-/* ── links: a sheet on mobile ───────────────────────────────────────────── */
+/* ── links: hidden on mobile (the menu sheet replaces them) ──────────────── */
 .island__links {
   grid-area: links;
-  display: grid;
+  display: none;
   grid-template-rows: 0fr;
   transition: grid-template-rows var(--c-island-duration) var(--motion-spring);
 }
-.island[data-state="open"] .island__links { grid-template-rows: 1fr; }
 
 .island__links-inner {
   display: flex;
@@ -127,7 +130,27 @@
 .island__link:hover { background: var(--c-island-link-hover-bg); color: var(--c-island-text); }
 .island__link[aria-current="true"] { color: var(--c-island-text); background: var(--c-island-link-hover-bg); }
 
-.island .lang-toggle { align-self: flex-start; margin: var(--space-2xs) var(--space-xs); }
+.island__sections { display: none; }
+
+.island__all {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-height: var(--c-island-link-height);
+  padding-inline: var(--space-sm);
+  margin-inline: var(--space-2xs);
+  border-radius: var(--radius-pill);
+  background: var(--c-island-all-bg);
+  border: var(--c-island-all-border);
+  color: var(--c-island-text);
+  font-family: var(--type-nav-family);
+  font-size: var(--type-nav-size);
+  font-weight: var(--type-button-weight);
+  white-space: nowrap;
+}
+.island__all svg { width: var(--c-island-icon-size); height: var(--c-island-icon-size); transition: transform var(--motion-base) var(--motion-spring); }
+.island__all[aria-expanded="true"] svg { transform: rotate(180deg); }
+.island__all:hover { background: var(--c-island-link-hover-bg); }
 
 .island__cta {
   display: inline-flex;
@@ -201,11 +224,197 @@
   .island[data-state="open"] .island__status { grid-template-columns: 0fr; opacity: 0; }
   .island__status-inner { padding-inline: var(--space-2xs) var(--space-sm); }
 
-  .island__links { grid-template-rows: none; grid-template-columns: 0fr; transition-property: grid-template-columns; }
+  .island__links { display: grid; grid-template-rows: none; grid-template-columns: 0fr; transition-property: grid-template-columns; }
   .island[data-state="open"] .island__links { grid-template-columns: 1fr; }
   .island__links-inner { flex-direction: row; align-items: center; }
   .island__links-inner > :first-child { margin-top: 0; }
   .island__link { padding-inline: var(--space-xs); }
-  .island .lang-toggle { align-self: center; margin: 0 var(--space-2xs); }
   .island__cta { margin-bottom: 0; }
 }
+
+@media (--bp-lg) {
+  .island__sections { display: flex; align-items: center; }
+}
+
+/* ── All pages menu ─────────────────────────────────────────────────────── */
+.island-menu {
+  position: fixed;
+  top: calc(var(--layout-island-top) + var(--c-island-height) + var(--c-island-menu-gap));
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  z-index: var(--z-island);
+  width: min(calc(100% - 2 * var(--layout-gutter)), var(--c-island-width-mobile));
+  max-height: calc(100dvh - var(--layout-island-top) - var(--c-island-height) - 2 * var(--c-island-menu-gap));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* scrolls if a very small phone needs it, but never shows a scrollbar */
+  scrollbar-width: none;
+  padding: var(--c-island-menu-pad);
+  background: var(--c-island-bg);
+  color: var(--c-island-text);
+  border-radius: var(--c-island-menu-radius);
+  box-shadow: var(--c-island-menu-shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.98);
+  transform-origin: top center;
+  transition:
+    opacity var(--motion-base) var(--motion-ease),
+    transform var(--c-island-duration) var(--motion-spring),
+    visibility 0s linear var(--motion-base);
+}
+.island-menu::-webkit-scrollbar { display: none; }
+.island-menu[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.island-menu__heading {
+  margin: var(--space-sm) var(--space-3xs) var(--space-2xs);
+  color: var(--c-island-menu-heading);
+  font-family: var(--type-eyebrow-family);
+  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-eyebrow-weight);
+  letter-spacing: var(--type-eyebrow-tracking);
+  text-transform: var(--type-eyebrow-case);
+}
+.island-menu__here .island-menu__heading,
+.island-menu__here[hidden] + .island-menu__heading { margin-top: 0; }
+
+.island-menu__chips { display: flex; flex-wrap: wrap; gap: var(--space-3xs); }
+.island-menu__chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--c-island-link-height);
+  padding-inline: var(--space-sm);
+  border-radius: var(--radius-pill);
+  background: var(--c-island-link-hover-bg);
+  color: var(--c-island-text);
+  font-size: var(--type-nav-size);
+}
+.island-menu__chip[aria-current="true"] {
+  background: var(--c-island-chip-on-bg);
+  color: var(--c-island-chip-on-text);
+  font-weight: var(--type-button-weight);
+}
+
+/* groups: tap to open on mobile, one at a time */
+.island-menu__group { border-top: var(--c-island-menu-rule); }
+.island-menu__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--c-island-link-height);
+  padding-inline: var(--space-3xs);
+  list-style: none;
+  cursor: pointer;
+  font-family: var(--type-nav-family);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-button-weight);
+}
+.island-menu__title::-webkit-details-marker { display: none; }
+.island-menu__count { color: var(--c-island-text-muted); font-weight: var(--type-nav-weight); font-size: var(--type-meta-size); }
+.island-menu__list { list-style: none; padding-bottom: var(--space-2xs); }
+
+.island-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--c-island-link-height);
+  padding: var(--space-3xs) var(--space-xs);
+  border-radius: var(--c-island-menu-item-radius);
+  color: var(--c-island-text);
+  transition: background var(--motion-fast) var(--motion-ease);
+}
+.island-menu__item:hover { background: var(--c-island-link-hover-bg); }
+.island-menu__item[aria-current="page"] { background: var(--c-island-here-bg); box-shadow: var(--c-island-here-ring); }
+/* mobile: name + arrow only; the tile and the line come back on desktop */
+.island-menu__tile,
+.island-menu__text span { display: none; }
+.island-menu__text { flex: 1; }
+.island-menu__text b { font-size: var(--type-body-sm-size); font-weight: var(--type-button-weight); }
+.island-menu__item::after { content: "→"; color: var(--c-island-accent); }
+
+.island-menu__foot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding-top: var(--space-sm);
+  border-top: var(--c-island-menu-rule);
+  font-size: var(--type-body-sm-size);
+  color: var(--c-island-text-muted);
+}
+.island-menu__bd b { color: var(--c-island-accent); }
+.island-menu__more { display: flex; gap: var(--space-sm); }
+.island-menu__more a:hover,
+.island-menu__bd:hover b { color: var(--c-island-text); }
+
+.island-menu__cta { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xs); margin-top: var(--space-sm); }
+.island-menu__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--c-island-link-height);
+  padding-inline: var(--space-xs);
+  border-radius: var(--radius-pill);
+  background: var(--c-island-link-hover-bg);
+  color: var(--c-island-text);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-button-weight);
+  text-align: center;
+}
+.island-menu__btn--main { background: var(--c-island-cta-bg); color: var(--c-island-cta-text); }
+
+/* desktop: a three-column mega panel with every group open */
+@media (--bp-md) {
+  .island-menu { width: min(calc(100% - 2 * var(--layout-gutter)), var(--c-island-menu-width)); }
+  .island-menu__heading--all,
+  .island-menu__count,
+  .island-menu__cta,
+  .island-menu__item::after { display: none; }
+  .island-menu__groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-sm); }
+  .island-menu__group { border-top: 0; }
+  .island-menu__title {
+    pointer-events: none;
+    min-height: 0;
+    margin: var(--space-3xs) var(--space-3xs) var(--space-2xs);
+    color: var(--c-island-menu-heading);
+    font-family: var(--type-eyebrow-family);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--type-eyebrow-weight);
+    letter-spacing: var(--type-eyebrow-tracking);
+    text-transform: var(--type-eyebrow-case);
+  }
+  .island-menu__here { margin-bottom: var(--space-sm); }
+  .island-menu__item { align-items: flex-start; padding: var(--space-xs); }
+  .island-menu__tile {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: var(--c-island-menu-tile-size);
+    height: var(--c-island-menu-tile-size);
+    border-radius: var(--radius-sm);
+    background: var(--c-icon-tile-bg-1);
+    color: var(--c-icon-tile-text);
+  }
+  .island-menu__tile svg { width: 55%; height: 55%; }
+  .island-menu__tile--2 { background: var(--c-icon-tile-bg-2); }
+  .island-menu__tile--3 { background: var(--c-icon-tile-bg-3); }
+  .island-menu__tile--4 { background: var(--c-icon-tile-bg-4); }
+  .island-menu__text span {
+    display: block;
+    margin-top: var(--space-3xs);
+    color: var(--c-island-text-muted);
+    font-size: var(--type-meta-size);
+    line-height: var(--type-body-sm-leading);
+  }
+  .island-menu__foot { flex-direction: row; justify-content: space-between; align-items: center; margin-top: var(--space-xs); }
+}
+@media (--bp-lg) {
+  /* from here up the page's sections are in the pill itself */
+  .island-menu__here { display: none; }
+}
+

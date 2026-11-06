@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<!-- Human-readable sitemap: every solution page (from content/solutions/*.md)
-     and every project on it. Also gives crawlers one page that links to all. -->
+<!-- Human-readable sitemap: every page on the site, grouped like the island's
+     "All pages" menu (site.nav), plus every project on each solution page and
+     every blog guide. Gives people and crawlers one page that links to all. -->
 <html lang="en" translate="no">
   <head>
     <!-- @include partials/head.html robots="index, follow" -->
@@ -10,37 +11,73 @@
     <!-- @include components/island/island.html home="Sitemap" -->
 
     <main id="main">
-      <section class="section">
-        <div class="container">
+
+      <!-- ── hero ─────────────────────────────────────────────────────────── -->
+      <section class="section" aria-labelledby="page-title">
+        <div class="container stack stack--lg">
           <nav class="breadcrumb" aria-label="Breadcrumb">
             <ol><li><a href="/">Home</a></li><li aria-current="page">Sitemap</li></ol>
           </nav>
-          <header class="section-header u-mt-lg">
+          <header class="section-header" data-reveal>
             <span class="section-header__eyebrow t-eyebrow">Sitemap</span>
             <h1 class="t-h1">Every page <span class="t-accent">on ruhan.bd</span></h1>
-            <p class="section-header__sub t-subheading">Each solution page, and every project it covers. The machine-readable version is at <a href="/sitemap.xml">/sitemap.xml</a>.</p>
+            <p class="section-header__sub t-subheading">Everything Ruhan Islam has published here, in one place: who he is, the eleven solutions and every project on them, the guides, and the files search engines read.</p>
           </header>
+        </div>
+      </section>
 
-          <div class="grid grid--3">
-            <article class="card">
-              <h2 class="t-h4"><a href="/">Home</a></h2>
-              <p class="card__text">AI automation engineer — private AI, automation, backups and monitoring for small businesses in the US and Australia.</p>
-              <ul class="card__text u-mt-lg">
-                <li><a href="/#services">What I build</a></li>
-                <li><a href="/#work">Selected work</a></li>
-                <li><a href="/#process">How I work</a></li>
-                <li><a href="/#about">About</a></li>
-                <li><a href="/#faq">FAQ</a></li>
-                <li><a href="/#contact">Contact</a></li>
-                <li><a href="/ai-automation-bangladesh/">AI automation in Bangladesh</a></li>
-                <li><a href="/blog/">Blog</a></li>
-              </ul>
-            </article>
+      <!-- ── start here ───────────────────────────────────────────────────── -->
+      <section class="section" id="start" data-nav="Start here" aria-labelledby="start-title">
+        <div class="container stack stack--lg">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Start here</span>
+            <h2 class="t-h2" id="start-title">The main <span class="t-accent">pages</span></h2>
+          </header>
+          <ul class="related-links related-links--four" data-reveal-stagger>
+            <li><a class="related-links__item card card--interactive" href="/"><b>Home</b><span>AI automation engineer: what I build, selected work, process and contact.</span><span class="related-links__go">Open <span aria-hidden="true">&rarr;</span></span></a></li>
+            <li><a class="related-links__item card card--interactive" href="/ruhan-islam/"><b>About Ruhan Islam</b><span>Background, experience, education and where to find me online.</span><span class="related-links__go">Open <span aria-hidden="true">&rarr;</span></span></a></li>
+            <li><a class="related-links__item card card--interactive" href="/ai-automation-bangladesh/"><b>Bangladesh</b><span>AI chatbots, websites and custom software for businesses in Dhaka and beyond.</span><span class="related-links__go">Open <span aria-hidden="true">&rarr;</span></span></a></li>
+            <li><a class="related-links__item card card--interactive" href="/blog/"><b>Blog</b><span>Practical guides on backups, private AI and the Essential Eight.</span><span class="related-links__go">Open <span aria-hidden="true">&rarr;</span></span></a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ── solutions, grouped like the menu ─────────────────────────────── -->
+      <section class="section" id="solutions" data-nav="Solutions" aria-labelledby="solutions-title">
+        <div class="container stack stack--lg">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Solutions</span>
+            <h2 class="t-h2" id="solutions-title">Eleven solutions, <span class="t-accent">three groups</span></h2>
+          </header>
+          <!-- @each site.nav as group -->
+          <div class="stack" data-reveal>
+            <h3 class="t-eyebrow">{{group.title}}</h3>
+            <ul class="related-links related-links--four" data-reveal-stagger>
+              <!-- @each group.items as it -->
+              <li><a class="related-links__item card card--interactive" href="{{it.path}}">
+                <span class="icon-tile icon-tile--{{loop.n}}"><!-- @include components/icon/{{it.icon}}.svg --></span>
+                <b>{{it.name}}</b><span>{{it.line}}</span>
+                <span class="related-links__go">View <span aria-hidden="true">&rarr;</span></span>
+              </a></li>
+              <!-- @end -->
+            </ul>
+          </div>
+          <!-- @end -->
+        </div>
+      </section>
+
+      <!-- ── every project ────────────────────────────────────────────────── -->
+      <section class="section section--dark" id="projects" data-nav="Projects" aria-labelledby="projects-title">
+        <div class="container stack stack--lg">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Projects</span>
+            <h2 class="t-h2" id="projects-title">Every project, <span class="t-accent">by solution</span></h2>
+          </header>
+          <div class="grid grid--3" data-reveal-stagger>
             <!-- @each solutions as sol -->
-            <article class="card">
-              <h2 class="t-h4"><a href="{{sol.seo.path}}">{{sol.hero.crumb}}</a></h2>
-              <p class="card__text">{{sol.seo.description}}</p>
-              <ul class="card__text u-mt-lg">
+            <article class="card card--dark">
+              <h3 class="t-h4"><a href="{{sol.seo.path}}">{{sol.hero.crumb}}</a></h3>
+              <ul class="card__list">
                 <!-- @each sol.offers as o --><li><a href="{{sol.seo.path}}#build">{{o.name}}</a></li>
                 <!-- @end -->
               </ul>
@@ -49,8 +86,38 @@
           </div>
         </div>
       </section>
+
+      <!-- ── guides ───────────────────────────────────────────────────────── -->
+      <section class="section" id="guides" data-nav="Guides" aria-labelledby="guides-title">
+        <div class="container stack stack--lg">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">Guides</span>
+            <h2 class="t-h2" id="guides-title">From <span class="t-accent">the blog</span></h2>
+          </header>
+          <ul class="related-links related-links--four" data-reveal-stagger>
+            <!-- @each blog as post -->
+            <li><a class="related-links__item card card--interactive" href="{{post.seo.path}}"><b>{{post.hero.line}}</b><span>{{post.seo.description}}</span><span class="related-links__go">Read <span aria-hidden="true">&rarr;</span></span></a></li>
+            <!-- @end -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- ── for machines ─────────────────────────────────────────────────── -->
+      <section class="section" id="files" aria-labelledby="files-title">
+        <div class="container stack stack--lg">
+          <header class="section-header" data-reveal>
+            <span class="section-header__eyebrow t-eyebrow">For search engines</span>
+            <h2 class="t-h2" id="files-title">Machine-readable <span class="t-accent">files</span></h2>
+          </header>
+          <ul class="related-links" data-reveal-stagger>
+            <li><a class="related-links__item card card--interactive" href="/sitemap.xml"><b>sitemap.xml</b><span>Every page with its last update, for Google and Bing.</span><span class="related-links__go">Open <span aria-hidden="true">&rarr;</span></span></a></li>
+            <li><a class="related-links__item card card--interactive" href="/llms.txt"><b>llms.txt</b><span>A plain summary of the site for AI assistants like ChatGPT.</span><span class="related-links__go">Open <span aria-hidden="true">&rarr;</span></span></a></li>
+            <li><a class="related-links__item card card--interactive" href="/blog/rss.xml"><b>RSS feed</b><span>New guides as they are published.</span><span class="related-links__go">Open <span aria-hidden="true">&rarr;</span></span></a></li>
+          </ul>
+        </div>
+      </section>
     </main>
 
-    <!-- @include components/footer/footer.html tagline="Private AI, automation, backups and monitoring for small businesses in the US and Australia — built on open source, owned by you." -->
+    <!-- @include components/footer/footer.html tagline="AI, automation, websites and software from Dhaka — for Bangladesh, the US and Australia." -->
   </body>
 </html>

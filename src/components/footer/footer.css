@@ -1,41 +1,55 @@
-/* Footer — dark band with an orange glow. Include with tagline="…". */
+/* Footer — compact dark band with an orange glow: brand + bookmark, top
+   solutions, explore, contact. Two columns on mobile (brand across the top),
+   four from lg. Include with tagline="…". */
 .footer {
   background-color: var(--c-footer-bg);
   background-image: var(--c-footer-glow);
   color: var(--c-footer-text);
-  padding-block: var(--space-3xl) var(--space-lg);
+  padding-block: var(--c-footer-pad-top) var(--space-md);
 }
 
-.footer__grid { display: grid; gap: var(--space-xl); grid-template-columns: 1fr; }
-@media (--bp-sm) {
-  .footer__grid { grid-template-columns: 1fr 1fr; }
-  .footer__brand { grid-column: 1 / -1; }
+.footer__grid {
+  display: grid;
+  gap: var(--space-lg) var(--space-md);
+  grid-template-columns: 1fr 1fr;
+}
+.footer__brand { grid-column: 1 / -1; }
+/* on mobile "Explore" is the one column left out, to keep it short */
+.footer__col[aria-label="Explore"] { display: none; }
+@media (--bp-md) {
+  .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  .footer__brand { grid-column: auto; }
+  .footer__col[aria-label="Contact"] { grid-column: auto; }
 }
 @media (--bp-lg) {
-  .footer__grid { grid-template-columns: 1.3fr 0.8fr 1fr 1.2fr; }
-  .footer__brand { grid-column: auto; }
+  .footer__grid { grid-template-columns: 1.4fr 1fr 0.8fr 1fr; }
+  .footer__col[aria-label="Explore"] { display: block; }
 }
 
 .footer__wordmark {
   display: inline-flex;
-  min-height: var(--c-footer-link-height);
   align-items: center;
-  gap: var(--space-xs);
   color: var(--color-on-dark);
-  font-family: var(--type-wordmark-family);
-  font-size: var(--type-wordmark-size);
-  font-weight: var(--type-wordmark-weight);
-  letter-spacing: var(--type-wordmark-tracking);
+}
+/* the full name under the logo, in widely spaced capitals, gold */
+.footer__sub {
+  margin-top: var(--space-2xs);
+  color: var(--color-gold);
+  font-family: var(--type-eyebrow-family);
+  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-eyebrow-weight);
+  letter-spacing: var(--type-eyebrow-tracking);
+  text-transform: var(--type-eyebrow-case);
 }
 .footer__tagline {
-  margin-top: var(--space-sm);
-  max-width: 38ch;
+  margin-block: var(--space-xs) var(--space-sm);
+  max-width: 34ch;
   font-size: var(--type-body-sm-size);
   line-height: var(--type-body-sm-leading);
 }
 
 .footer__heading {
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-2xs);
   color: var(--c-footer-heading);
   font-family: var(--type-eyebrow-family);
   font-size: var(--type-eyebrow-size);
@@ -44,8 +58,7 @@
   text-transform: var(--type-eyebrow-case);
 }
 
-.footer__col > a,
-.footer__col > span {
+.footer__col > a {
   display: flex;
   align-items: center;
   min-height: var(--c-footer-link-height);
@@ -53,12 +66,12 @@
   transition: color var(--motion-fast) var(--motion-ease);
 }
 .footer__col > a:hover { color: var(--c-footer-link-hover); }
-.footer__col .contact-links { flex-direction: column; align-items: flex-start; }
+.footer__all { gap: var(--space-3xs); color: var(--c-footer-heading); font-weight: var(--type-button-weight); }
 
 .footer__fine {
-  margin-top: var(--space-2xl);
-  padding-top: var(--space-md);
-  border-top: var(--border-dark);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-hairline-gold);
   color: var(--c-footer-fine);
   font-size: var(--type-meta-size);
 }

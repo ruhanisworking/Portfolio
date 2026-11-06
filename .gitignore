@@ -32,3 +32,6 @@ frontend-workflow/
 
 # downloaded fonts etc. for tools/
 tools/.cache/
+
+# python bytecode from tools/
+__pycache__/

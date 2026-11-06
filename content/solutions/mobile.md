@@ -6,7 +6,7 @@ icon: phone
 
 # page character — see src/components/look/look.css
 look:
-  accent: peach
+  accent: rust
   hero: reverse
   story: flow
   offers: rows
@@ -40,7 +40,7 @@ hero:
   kicker: "Mobile app development · iOS and Android · app MVP"
   line: "Your app on every phone — in weeks, not months."
   lede: "Mobile app development for startups and small businesses in the US and Australia: one codebase for iOS and Android, offline-first so it works in a basement, and a backend you own instead of rent."
-  cta: Get a free app plan
+  cta: Book a private consultation
   scene: viz-phone
   chips:
     - iOS + Android

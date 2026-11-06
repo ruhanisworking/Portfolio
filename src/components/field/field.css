@@ -17,6 +17,7 @@
   height: var(--c-field-height);
   padding-inline: var(--space-sm);
   background: var(--c-field-bg);
+  color: var(--c-field-text);
   border: var(--c-field-border);
   border-radius: var(--c-field-radius);
   font-family: var(--type-body-family);

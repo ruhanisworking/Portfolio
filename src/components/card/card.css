@@ -49,13 +49,47 @@
   line-height: var(--type-body-sm-leading);
 }
 .card__meta { margin-top: var(--space-sm); }
-/* a card with a .card__link is clickable all over: the link's ::after covers it */
-.card__link { margin-top: var(--space-sm); align-self: flex-start; }
-.card__link::after { content: ""; position: absolute; inset: 0; z-index: var(--z-raised); border-radius: inherit; }
-.card:has(.card__link) { display: flex; flex-direction: column; cursor: pointer; }
-.card:has(.card__link) .card__link { margin-top: auto; }
+/* a plain list of links inside a card (sitemap projects) */
+.card__list { list-style: none; display: grid; gap: var(--space-2xs); margin-top: var(--space-sm); font-size: var(--type-body-sm-size); }
+.card__list a { color: var(--color-text-muted); transition: color var(--motion-fast) var(--motion-ease); }
+.card__list a:hover { color: var(--color-text-accent); }
+.card--dark .card__list a { color: var(--color-on-dark-muted); }
+.card--dark .card__list a:hover { color: var(--color-orange-300); }
+.card--dark h3 a:hover { color: var(--color-orange-300); }
+/* a card with a .card__link is clickable all over: the link's ::after covers
+   it. The link itself is a bar along the bottom — "View …" + a round arrow —
+   so it reads as a link at a glance.
+   Markup: <a class="card__link" href="…"><span>Explore …</span>
+           <span class="card__arrow" aria-hidden="true">&rarr;</span></a> */
+.card:has(.card__link) { display: flex; flex-direction: column; cursor: pointer; overflow: hidden; }
 .card:has(.card__link) .card__text { margin-bottom: var(--space-sm); }
-/* no lift on the link itself: a transform would make the link the containing
-   block of its ::after, shrinking the click area back to the button */
-.card__link:hover { transform: none; }
-.card:has(.card__link):hover .card__link .btn__arrow { transform: translateX(3px); }
+.card__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  margin: auto calc(-1 * var(--c-card-pad)) calc(-1 * var(--c-card-pad));
+  padding: var(--space-sm) var(--c-card-pad);
+  border-top: var(--c-card-go-border);
+  background: var(--c-card-go-bg);
+  color: var(--c-card-go-text);
+  font-family: var(--type-button-family);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-button-weight);
+  transition: background var(--motion-fast) var(--motion-ease);
+}
+.card__link::after { content: ""; position: absolute; inset: 0; z-index: var(--z-raised); border-radius: inherit; }
+.card__arrow {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--c-card-go-arrow-size);
+  height: var(--c-card-go-arrow-size);
+  border-radius: 50%;
+  background: var(--c-card-go-arrow-bg);
+  color: var(--c-card-go-arrow-text);
+  transition: transform var(--motion-base) var(--motion-spring);
+}
+.card:has(.card__link):hover .card__link { background: var(--c-card-go-bg-hover); }
+.card:has(.card__link):hover .card__arrow { transform: translateX(4px); }
+.card:has(.card__link:focus-visible) { outline: var(--border-focus-ring); outline-offset: 2px; }

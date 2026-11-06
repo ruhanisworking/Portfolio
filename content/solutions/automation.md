@@ -6,7 +6,7 @@ icon: bolt
 
 # page character — see src/components/look/look.css
 look:
-  accent: amber
+  accent: ember
   hero: reverse
   story: row
   offers: rows
@@ -40,7 +40,7 @@ hero:
   kicker: "Workflow automation · n8n · AI workflow automation"
   line: "Stop copying data between five apps."
   lede: "Workflow automation for small businesses in the US and Australia. We map the work your team repeats every day and hand it to n8n — with AI steps where they help and alerts when anything fails. You keep the results; the busywork goes away."
-  cta: Get a free automation plan
+  cta: Book a private consultation
   scene: viz-automation
   chips:
     - Runs on your server
@@ -104,7 +104,7 @@ story:
 build:
   title: "Five business process automation projects"
   accent: "we build most often"
-  sub: "Our workflow automation work usually starts with one of these. Each is fixed-price after a free assessment."
+  sub: "Our workflow automation work usually starts with one of these. Each is fixed-price after a consultation."
 
 offers:
   - name: "Zapier → n8n migration"
@@ -233,7 +233,7 @@ faq:
   - q: "What happens when an app changes and a flow breaks?"
     a: "The flow alerts us and you. On an ongoing plan we fix it, usually before anyone notices."
   - q: "How much does workflow automation cost?"
-    a: "It depends on the number of apps and steps. After a free assessment you get a fixed price in writing."
+    a: "It depends on the number of apps and steps. After a consultation you get a fixed price in writing."
 
 cta:
   title: "Show us the task"

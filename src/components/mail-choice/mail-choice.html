@@ -1,0 +1,22 @@
+<!-- Mail choice — asks before any mailto: link opens. mail-choice.js fills the links. -->
+<dialog class="mail-choice" data-mail-choice aria-labelledby="mail-choice-title">
+  <form method="dialog" class="mail-choice__box">
+    <h2 class="mail-choice__title" id="mail-choice-title">Email Ruhan Islam</h2>
+    <p class="mail-choice__lede"><span data-mail-choice-to>{{site.email}}</span> — how would you like to write?</p>
+
+    <a class="mail-choice__option mail-choice__option--main" data-mail-choice-gmail href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to={{site.email}}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Open in Gmail<small>A new tab with the draft already written</small></span>
+    </a>
+    <a class="mail-choice__option" data-mail-choice-app href="mailto:{{site.email}}">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h12m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Use my mail app<small>Outlook, Apple Mail and others</small></span>
+    </a>
+    <button class="mail-choice__option" type="button" data-mail-choice-copy>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="2"/></svg>
+      <span data-mail-choice-copy-label>Copy the address</span>
+    </button>
+
+    <button class="mail-choice__cancel" value="cancel">Cancel</button>
+  </form>
+</dialog>

@@ -1,6 +1,5 @@
 /* Text styles — one class per DESIGN.md `type` entry, plus element defaults.
-   Cinzel (display/h1–h4/wordmark) is written in normal case on purpose:
-   lowercase renders as small capitals, so first letters stand taller. */
+   Fraunces (display/h1–h4) is written in sentence case; never uppercased. */
 
 h1, h2, h3, h4 { color: var(--color-text); font-weight: inherit; }
 
