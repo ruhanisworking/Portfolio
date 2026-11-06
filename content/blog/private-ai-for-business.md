@@ -5,9 +5,9 @@ date: 2026-11-01
 icon: doc
 seo:
   path: /blog/private-ai-for-business/
-  title: "Private AI for Business: Run LLMs On-Site | Ruhan"
+  title: "Private AI for Business: Run LLMs On-Site | Ruhan Islam"
   description: "Private AI for business: run LLMs on your own servers. Keep client data on your network with on-premise LLMs, document search and PII redaction."
-  og-title: "Private AI for business - run LLMs on your own servers"
+  og-title: "Private AI for business — run LLMs on your own servers"
   og-image-alt: "Private AI on-premise: local LLM running on business hardware with no data leaving the network"
   index: "true"
 keywords:
@@ -65,7 +65,7 @@ body: |
   <p class="t-body">Common starting points include a private ChatGPT-style assistant that answers from the business's own documents, AI document search across thousands of contracts and files, automated workflows with AI steps (n8n), and an AI receptionist that answers calls and books appointments without sending caller data to a public provider.</p>
 
   <h2 class="t-h3" id="what-does-it-cost">What does private AI cost?</h2>
-  <p class="t-body">Private AI has no per-user, per-token or per-seat licence fees because the models are open source and self-hosted. The costs are hardware (a server with adequate GPU and RAM), setup and configuration, document indexing, and monthly support for updates, security patches and model upgrades. We price fixed-fee setup projects and simple monthly support plans — no per-seat fees, no variable token bills that grow with usage.</p>
+  <p class="t-body">Private AI has no per-user, per-token or per-seat license fees because the models are open source and self-hosted. The costs are hardware (a server with adequate GPU and RAM), setup and configuration, document indexing, and monthly support for updates, security patches and model upgrades. We price fixed-fee setup projects and simple monthly support plans — no per-seat fees, no variable token bills that grow with usage.</p>
   <p class="t-body">For comparison, public AI pricing scales with every user and every document processed. A growing team using a public chatbot for daily work can see monthly bills rise quickly. Private AI's cost is predictable: the hardware and support, regardless of how many questions the team asks.</p>
 
   <h2 class="t-h3" id="how-we-help">How we help small businesses deploy private AI</h2>
@@ -74,7 +74,7 @@ body: |
   <p class="t-body"><strong>Book a free 30-minute assessment.</strong> We will review what your team wants to use AI for, what data is involved, and what hardware fits — then give you a written plan within 48 hours. <a href="/#contact" class="t-link">Book your free assessment.</a></p>
 
   <h2 class="t-h3" id="tools-we-use">Tools and platforms we use for private AI</h2>
-  <p class="t-body">We work with open source AI infrastructure so there are no per-seat or per-token licence fees:</p>
+  <p class="t-body">We work with open source AI infrastructure so there are no per-seat or per-token license fees:</p>
   <ul class="t-list">
     <li class="t-list-item"><strong>Ollama</strong> — runs LLMs locally with a simple API, good for getting started quickly on a single server.</li>
     <li class="t-list-item"><strong>Open WebUI</strong> — a ChatGPT-style chat interface that connects to Ollama or other local model backends.</li>

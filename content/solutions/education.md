@@ -14,7 +14,7 @@ look:
 
 seo:
   path: /solutions/online-course-platform/
-  title: "Online Course Platform & Research Computing | Ruhan"
+  title: "Online Course Platform & Research Computing | Ruhan Islam"
   description: "An online course platform with payments and verifiable certificates, secure exams, and research computing for labs — owned by your school or training company."
   og-title: "Your own online course platform: teach, test, certify"
   og-image-alt: "A learner finishing modules, passing an exam and receiving a QR-verifiable certificate"
@@ -67,7 +67,7 @@ story:
       caption: "Example: 6 courses · 400 learners a year"
     - title: Map
       text: "Course structure, payment and enrolment flow, exams and the certificate design — agreed up front."
-      caption: "Enrol → learn → assess → certify"
+      caption: "Enroll → learn → assess → certify"
     - title: Build
       text: "The LMS on your domain, Stripe payments, secure exams and certificates with a QR code that checks back to you."
       caption: "Paid, enrolled and learning in under a minute"
@@ -179,13 +179,13 @@ talk:
       name: "Training company director"
       line: "We sell our courses through a marketplace and lose a big slice of every sale."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Let's put the same courses on your own platform with Stripe. You keep the margin and the student relationship."
     - who: client
       name: "Training company director"
       line: "Our corporate clients want to verify certificates."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Every certificate will carry a QR code that opens a verification page on your domain. Nothing to fake."
 
 engagement:
@@ -214,7 +214,7 @@ faq:
   - q: "How do QR-verifiable certificates work?"
     a: "Each certificate carries a QR code linking to a record on your site. Anyone can scan it to confirm it's genuine."
   - q: "Can the exams be timed and secure?"
-    a: "Yes. Timed sessions, randomised question banks and logged results with history make results hard to tamper with."
+    a: "Yes. Timed sessions, randomized question banks and logged results with history make results hard to tamper with."
   - q: "Can you set up JupyterHub for a university lab?"
     a: "Yes. Shared notebooks with accounts per student, backups and the lab's software preinstalled."
   - q: "Can we move courses from our current platform?"

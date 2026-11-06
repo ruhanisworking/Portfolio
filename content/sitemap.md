@@ -1,7 +1,7 @@
 ---
 seo:
   path: /sitemap.html
-  title: "Sitemap: Every Page and Solution on ruhan.bd | Ruhan"
+  title: "Sitemap: Every Page and Solution on ruhan.bd | Ruhan Islam"
   description: "Every page on ruhan.bd in one place: AI agents, automation, backups, cybersecurity, monitoring, web, data, business software, mobile, education and labs."
   og-title: "Sitemap — every page on ruhan.bd"
   og-image-alt: "The ruhan.bd sitemap"

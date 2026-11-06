@@ -14,7 +14,7 @@ look:
 
 seo:
   path: /solutions/server-monitoring/
-  title: "Server Monitoring & Remote IT Support | Ruhan"
+  title: "Server Monitoring & Remote IT Support | Ruhan Islam"
   description: "Server monitoring, uptime alerts and status pages that warn you first — plus remote IT support and self-hosted hosting for small teams in the US and Australia."
   og-title: "Server monitoring that warns you before customers notice"
   og-image-alt: "A status board turning amber and forecasting that a disk will be full in six days"
@@ -206,13 +206,13 @@ talk:
       name: "Online shop owner"
       line: "Our site went down on a sale weekend and we only found out from an angry customer."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Let's make sure that never happens quietly again. Uptime checks and SMS alerts can be live in a couple of days."
     - who: client
       name: "Online shop owner"
       line: "Can you also look at why the hosting costs so much?"
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Yes. We'll compare what you pay now with running the same apps on a server you control — with backups and monitoring included."
 
 engagement:

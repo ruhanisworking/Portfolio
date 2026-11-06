@@ -8,9 +8,9 @@ seo:
   # ≤ 60 characters — primary keyword first, brand last
   title: "Mohammad Ruhan Islam — AI Automation Engineer | ruhan.bd"
   # 120–160 characters — who, what, for whom, a reason to click
-  description: "I'm Ruhan, an AI automation engineer. I build private AI, n8n workflows, tested backups and server monitoring for small businesses in the US and Australia."
+  description: "I'm Ruhan Islam, an AI automation engineer in Dhaka. I build private AI, n8n workflows and monitoring for businesses in Bangladesh, the US and Australia."
   og-title: "Mohammad Ruhan Islam (Ruhan) — AI automation engineer for private, self-hosted systems"
-  og-image-alt: "Ruhan, AI automation and infrastructure engineer, on a river in Bangladesh"
+  og-image-alt: "Ruhan Islam, AI automation and infrastructure engineer, on a river in Bangladesh"
   index: "true"
 
 # What US / Australian buyers type. Primary = the one phrase this page must

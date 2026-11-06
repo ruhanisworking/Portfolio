@@ -14,7 +14,7 @@ look:
 
 seo:
   path: /solutions/small-business-cybersecurity/
-  title: "Small Business Cybersecurity & Compliance | Ruhan"
+  title: "Small Business Cybersecurity & Compliance | Ruhan Islam"
   description: "Small business cybersecurity that people actually use: MFA, a team password vault, threat detection, and the evidence for Essential Eight, HIPAA or SOC 2."
   og-title: "Small business cybersecurity your team will actually use"
   og-image-alt: "A security checklist filling up from three to eight of eight controls"
@@ -67,7 +67,7 @@ story:
       caption: "Example baseline: 3 of 8 controls in place"
     - title: Map
       text: "We map your gaps to the framework you care about — Essential Eight, HIPAA or SOC 2 — and fix the riskiest first."
-      caption: "Prioritised by risk, not by checklist order"
+      caption: "Prioritized by risk, not by checklist order"
     - title: Build
       text: "SSO and MFA, a password vault, patching, threat detection and logging — rolled out with a two-minute staff video."
       caption: "Rolled out without stopping work"
@@ -212,13 +212,13 @@ talk:
       name: "Practice owner"
       line: "Our insurer sent a security questionnaire and I can't answer half of it."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Send it over. We'll mark what you already do, what's missing, and the order to fix it — most of it in a couple of weeks."
     - who: client
       name: "Practice owner"
       line: "My staff will hate MFA."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "They'll log in once a day with single sign-on and a phone tap. We'll send them a two-minute video so nobody gets stuck."
 
 engagement:
@@ -226,7 +226,7 @@ engagement:
   items:
     - name: Security check
       time: "About 1 week"
-      what: "Baseline review mapped to your framework, with a prioritised fix list."
+      what: "Baseline review mapped to your framework, with a prioritized fix list."
       best: "Best before an audit or insurance renewal."
       kind: plain
     - name: Uplift project

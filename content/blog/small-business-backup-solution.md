@@ -5,7 +5,7 @@ date: 2026-11-01
 icon: doc
 seo:
   path: /blog/small-business-backup-solution/
-  title: "Small Business Backup Solution: 3-2-1-1-0 | Ruhan"
+  title: "Small Business Backup Solution: 3-2-1-1-0 | Ruhan Islam"
   description: "Small business backup solution: the 3-2-1-1-0 rule, restore testing, immutable backups and ransomware recovery for US and Australian small businesses."
   og-title: "Small business backup solution: the 3-2-1-1-0 rule explained"
   og-image-alt: "Small business backup strategy: encrypted offline copies with monthly restore tests"
@@ -93,7 +93,7 @@ body: |
   <p class="t-body">Businesses with compliance obligations should pay particular attention. HIPAA-covered practices in the US need encrypted backups with access controls and audit logs. Australian businesses bidding for government work increasingly need Essential Eight evidence, including documented restore testing. A backup that has never been restored is a guess, not a backup.</p>
 
   <h2 class="t-h3" id="what-does-it-cost">What does a tested backup system cost?</h2>
-  <p class="t-body">Cost depends on data volume, recovery speed targets and compliance needs, but the components are consistent: backup software (restic, Kopia or Velero — all open source with no per-seat licence fees), storage (local NAS plus offsite object storage), and the monthly restore testing service. We price fixed-fee setup projects and simple monthly support plans for backup, security and monitoring — no per-seat licence fees, no surprise invoices.</p>
+  <p class="t-body">Cost depends on data volume, recovery speed targets and compliance needs, but the components are consistent: backup software (restic, Kopia or Velero — all open source with no per-seat license fees), storage (local NAS plus offsite object storage), and the monthly restore testing service. We price fixed-fee setup projects and simple monthly support plans for backup, security and monitoring — no per-seat license fees, no surprise invoices.</p>
   <p class="t-body">The alternative is more expensive. Downtime from an untested backup that fails during an incident costs revenue every hour. A ransomware payment offers no guarantee. Compliance fines for lost health or customer data can exceed the cost of years of backup service.</p>
 
   <h2 class="t-h3" id="how-we-help">How we help small businesses own their backups</h2>
@@ -102,7 +102,7 @@ body: |
   <p class="t-body"><strong>Book a free 30-minute assessment.</strong> We will review your current backup setup, identify restore gaps, and give you a written plan within 48 hours. <a href="/#contact" class="t-link">Book your free assessment.</a></p>
 
   <h2 class="t-h3" id="tools-we-use">Tools and platforms we use for backups</h2>
-  <p class="t-body">We work with open source backup tools so there are no per-seat licence fees and the client owns the full stack:</p>
+  <p class="t-body">We work with open source backup tools so there are no per-seat license fees and the client owns the full stack:</p>
   <ul class="t-list">
     <li class="t-list-item"><strong>restic</strong> — fast, encrypted, deduplicated backups to local storage, S3-compatible object storage and cloud buckets. Backed by a large GitHub community and simple restore commands.</li>
     <li class="t-list-item"><strong>Kopia</strong> — snapshot-style backups with built-in encryption, compression and immutable storage support. Good for desktop and laptop fleets as well as servers.</li>

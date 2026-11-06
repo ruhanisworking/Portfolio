@@ -14,7 +14,7 @@ look:
 
 seo:
   path: /solutions/mobile-app-development/
-  title: "Mobile App Development for Startups & SMBs | Ruhan"
+  title: "Mobile App Development for Startups & SMBs | Ruhan Islam"
   description: "Mobile app development for iOS and Android: MVPs in weeks, offline-first ordering and field apps, and a backend you own — for startups and small businesses."
   og-title: "Mobile app development: iOS and Android in weeks"
   og-image-alt: "A mobile app taking an order offline and printing a kitchen receipt"
@@ -164,13 +164,13 @@ talk:
       name: "Startup founder"
       line: "We have a long feature list and a short runway."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Then let's find the one thing users must be able to do and ship that well. Everything else can wait for real feedback."
     - who: client
       name: "Startup founder"
       line: "Will we be stuck with you forever?"
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "No. The code and the backend are in your accounts from day one, and they're standard tools any developer can pick up."
 
 engagement:

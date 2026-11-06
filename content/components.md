@@ -1,7 +1,7 @@
 ---
 seo:
   path: /components.html
-  title: "Components — Ember design system | Ruhan"
+  title: "Components — Ember design system | Ruhan Islam"
   description: "The Ember design system catalogue: every component of ruhan.bd in every state."
   og-title: "Ember design system — components"
   og-image-alt: "The ruhan wordmark"

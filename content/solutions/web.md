@@ -14,7 +14,7 @@ look:
 
 seo:
   path: /solutions/website-accessibility/
-  title: "Website Accessibility, ADA & Accessible E-commerce | Ruhan"
+  title: "Website Accessibility & ADA-Ready Stores | Ruhan Islam"
   description: "Website accessibility for US and Australian businesses: WCAG 2.2 AA audits, fixes and monthly re-scans, plus fast, accessible stores and web apps."
   og-title: "Website accessibility: sites and stores everyone can use"
   og-image-alt: "An accessibility scan fixing issues on an online store and reaching a score of 100"
@@ -203,13 +203,13 @@ talk:
       name: "Store owner"
       line: "We got a demand letter about our website. I don't even know where to start."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Start by not panicking — and loop in your lawyer. We'll run a full audit this week so you know exactly what's wrong and what it takes to fix."
     - who: client
       name: "Store owner"
       line: "Someone sold us an accessibility widget last year. Didn't that cover it?"
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Widgets don't change the code underneath, so the issues stay. We'll fix them properly and set up monthly re-scans so it stays fixed."
 
 engagement:
@@ -217,7 +217,7 @@ engagement:
   items:
     - name: Audit
       time: "About 1 week"
-      what: "Full WCAG 2.2 AA audit with a prioritised, plain-English report."
+      what: "Full WCAG 2.2 AA audit with a prioritized, plain-English report."
       best: "Best when you need to know where you stand."
       kind: plain
     - name: Audit + fix

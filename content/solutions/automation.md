@@ -14,7 +14,7 @@ look:
 
 seo:
   path: /solutions/workflow-automation/
-  title: "Workflow Automation Services with n8n & AI | Ruhan"
+  title: "Workflow Automation Services with n8n & AI | Ruhan Islam"
   description: "Workflow automation for small businesses: we connect your forms, CRM, invoices and email with n8n and AI — and cut the Zapier bill while we're at it."
   og-title: "Workflow automation that does the copy-paste for you"
   og-image-alt: "An automation moving a lead from a web form to a CRM, an invoice and an email"
@@ -144,10 +144,10 @@ offers:
     live: "Typically 1–2 weeks"
     stack: [n8n, Invoice Ninja, Kimai]
   - name: "Email outreach sequence"
-    brief: "Personalised outreach that respects your domain: AI-drafted first lines, sensible sending limits and proper SPF/DKIM so it lands in inboxes."
+    brief: "Personalized outreach that respects your domain: AI-drafted first lines, sensible sending limits and proper SPF/DKIM so it lands in inboxes."
     log:
       - "List cleaned · 412 contacts"
-      - "Personalised drafts · reviewed"
+      - "Personalized drafts · reviewed"
       - "Sent in batches · replies to CRM"
     get: "Sequence, deliverability setup, reply tracking"
     live: "Typically 1 week"
@@ -194,13 +194,13 @@ talk:
       name: "Agency owner"
       line: "We live in Zapier and it's costing a fortune. Half the zaps break and nobody knows until a client complains."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Export your Zaps and send them over. We'll show you which ones can move to n8n as-is, which are broken today, and what the monthly cost becomes."
     - who: client
       name: "Agency owner"
       line: "Do we have to switch everything at once?"
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "No — we run both side by side, move flows one group at a time, and only switch Zapier off when the new ones have run clean for a week."
 
 engagement:

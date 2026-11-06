@@ -14,7 +14,7 @@ look:
 
 seo:
   path: /solutions/small-business-backup/
-  title: "Small Business Backup & Ransomware Recovery | Ruhan"
+  title: "Small Business Backup & Ransomware Recovery | Ruhan Islam"
   description: "Small business backup that actually restores: encrypted and offline copies, monthly restore tests and a ransomware recovery plan your team can follow."
   og-title: "Small business backup you've actually tested"
   og-image-alt: "A ransomware incident at 2am, with the office restored from tested backups by 6am"
@@ -185,14 +185,14 @@ talk:
       name: "Practice manager"
       line: "Our IT person set up backups years ago. I honestly don't know if they work."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "That's the most common answer we hear. We'll restore a sample this week and tell you exactly what's covered and what isn't."
     - who: client
       name: "Practice manager"
       line: "And if ransomware hits?"
     - who: us
-      name: "Ruhan"
-      line: "Then you follow a one-page plan we wrote together, and restore from a copy the attacker couldn't touch. We'll even practise it with you."
+      name: "Ruhan Islam"
+      line: "Then you follow a one-page plan we wrote together, and restore from a copy the attacker couldn't touch. We'll even practice it with you."
 
 engagement:
   title: "Three ways to start"

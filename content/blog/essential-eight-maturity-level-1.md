@@ -5,7 +5,7 @@ date: 2026-10-31
 icon: doc
 seo:
   path: /blog/essential-eight-maturity-level-1/
-  title: "Essential Eight maturity level 1 checklist | Ruhan"
+  title: "Essential Eight maturity level 1 checklist | Ruhan Islam"
   description: "Essential Eight maturity level 1 is the cybersecurity baseline for Australian small businesses. A checklist for MFA, backups, patching and application control."
   og-title: "Essential Eight maturity level 1 checklist"
   og-image-alt: "Essential Eight maturity level 1 cybersecurity checklist for small business"

@@ -14,7 +14,7 @@ look:
 
 seo:
   path: /solutions/ai-agent-development/
-  title: "AI Agent Development & Chatbots for Small Business | Ruhan"
+  title: "AI Agent Development & Chatbots for Business | Ruhan Islam"
   description: "AI agent development for small businesses: agents and chatbots that answer customers, qualify leads, book calls and hand off to your team — on your terms."
   og-title: "AI agent development: agents that answer, qualify and book"
   og-image-alt: "An AI agent answering a customer, booking a call and handing off to a person"
@@ -217,13 +217,13 @@ talk:
       name: "Clinic owner"
       line: "We lose calls after hours and my front desk is drowning in the same questions."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "That's the most common one we see. Send us a few weeks of enquiries — we'll show you which questions an agent can take and where your team still needs to step in."
     - who: client
       name: "Clinic owner"
       line: "What about patient data? I can't have it going to OpenAI."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Then it won't. We'll run the model on a server you control. You'll get a written plan and a fixed price before anything is built."
 
 engagement:

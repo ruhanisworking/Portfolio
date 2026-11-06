@@ -14,7 +14,7 @@ look:
 
 seo:
   path: /labs/private-ai-tools/
-  title: "Labs: Private AI Tools for Business | Ruhan"
+  title: "Labs: Private AI Tools for Business | Ruhan Islam"
   description: "Private AI tools we're putting to work early: meeting notes that never leave your server, ask-your-database, AI memory and safe agents for small teams."
   og-title: "Private AI tools for small teams, set up today"
   og-image-alt: "A recorded meeting transcribed on a private server answering a question with a timestamp"
@@ -66,8 +66,8 @@ story:
       text: "We start from your problem — confidential meetings, slow reports, forgetful assistants — not from the tool."
       caption: "Problem first, tool second"
     - title: Map
-      text: "We pick the open-source project that fits, check its licence and maturity, and agree what a pilot must prove."
-      caption: "Licence checked · success measured"
+      text: "We pick the open-source project that fits, check its license and maturity, and agree what a pilot must prove."
+      caption: "License checked · success measured"
     - title: Build
       text: "A small pilot on your own server with local AI, so nothing confidential leaves your network."
       caption: "Local models · private by design"
@@ -81,7 +81,7 @@ story:
       tile: "1"
       from: "1"
     - label: "Open-source pick"
-      sub: "licence + maturity checked"
+      sub: "license + maturity checked"
       icon: book
       tile: "2"
       from: "2"
@@ -108,7 +108,7 @@ build:
 
 offers:
   - name: "Private meeting brain"
-    brief: "Private meeting notes: record, transcribe and summarise on your server with local AI, then ask what was promised — with a timestamp."
+    brief: "Private meeting notes: record, transcribe and summarize on your server with local AI, then ask what was promised — with a timestamp."
     log:
       - "42-minute call · stays local"
       - "Transcript + summary ready"
@@ -165,10 +165,10 @@ offers:
 hood:
   title: "Early,"
   accent: "but not reckless"
-  sub: "New tools change fast. We check licences, run them privately and say clearly what's still a pilot."
+  sub: "New tools change fast. We check licenses, run them privately and say clearly what's still a pilot."
   items:
     - name: "Licences checked"
-      text: "Some new projects have custom licences. We read them before recommending anything."
+      text: "Some new projects have custom licenses. We read them before recommending anything."
       icon: book
       tile: "1"
     - name: "Local AI by default"
@@ -206,13 +206,13 @@ talk:
       name: "Law firm partner"
       line: "We'd love AI meeting notes, but client calls can't go to a cloud service."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Then we'll run transcription and summaries on a machine in your office. Let's pilot it on internal meetings for two weeks first."
     - who: client
       name: "Law firm partner"
       line: "And if it isn't good enough?"
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Then the pilot report says so and you've lost two weeks, not a year's subscription. That's the point of a pilot."
 
 engagement:

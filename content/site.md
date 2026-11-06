@@ -1,7 +1,7 @@
 ---
 # Site-wide facts. Pages and partials read these as {{site.key}}.
 # Change a value here and every page picks it up on the next build.
-name: Ruhan
+name: Ruhan Islam
 full-name: Mohammad Ruhan Islam
 url: https://ruhan.bd
 role: AI Automation & Infrastructure Engineer

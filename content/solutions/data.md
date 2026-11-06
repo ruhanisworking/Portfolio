@@ -14,7 +14,7 @@ look:
 
 seo:
   path: /solutions/business-dashboards/
-  title: "Business Dashboards & Data Automation | Ruhan"
+  title: "Business Dashboards & Data Automation | Ruhan Islam"
   description: "Business dashboards for small teams: Stripe, Shopify, CRM and spreadsheets joined into live dashboards — or just ask your data a question in plain English."
   og-title: "Business dashboards: all your numbers on one screen"
   og-image-alt: "A dashboard chart building from joined data, then answering a plain-English question"
@@ -185,13 +185,13 @@ talk:
       name: "Operations lead"
       line: "Every Monday I spend half the morning stitching three exports together, and the totals never match finance."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Send us last Monday's spreadsheet and the questions it answers. We'll show you which sources feed it and how to make it build itself."
     - who: client
       name: "Operations lead"
       line: "Can my boss just ask it things instead of me?"
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Yes — once the data is clean, a chat can answer most questions, and it shows the query it used so you can trust the number."
 
 engagement:

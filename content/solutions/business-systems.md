@@ -14,7 +14,7 @@ look:
 
 seo:
   path: /solutions/custom-business-software/
-  title: "Custom Business Software & SaaS Alternatives | Ruhan"
+  title: "Custom Business Software & SaaS Alternatives | Ruhan Islam"
   description: "Custom business software you own: CRM, project management, ERP, HR, booking and e-signature on open source — fewer per-seat bills, one place for your data."
   og-title: "Custom business software you own"
   og-image-alt: "Many per-seat software subscriptions fading into one set of systems the business owns"
@@ -72,8 +72,8 @@ story:
       text: "We set them up on your server with single sign-on, migrate the data and train the team in short sessions."
       caption: "One login for everything"
     - title: Run
-      text: "Updates, backups and small changes as the team grows — and the licence line on your budget stays at zero."
-      caption: "Licence fees: $0 — support when you need it"
+      text: "Updates, backups and small changes as the team grows — and the license line on your budget stays at zero."
+      caption: "License fees: $0 — support when you need it"
   flow:
     - label: "Your team"
       sub: "one login (SSO)"
@@ -112,12 +112,12 @@ offers:
     log:
       - "Jira export · 1,240 issues"
       - "Imported to Plane · templates set"
-      - "Team trained · Jira cancelled"
+      - "Team trained · Jira canceled"
     get: "Plane or Huly, migration, templates, training"
     live: "Typically 1 week"
     stack: [Plane, Huly, SSO]
   - name: "CRM (Salesforce alternative)"
-    brief: "A clean, modern Salesforce alternative with your pipeline, industry templates and automations — without the licence bill."
+    brief: "A clean, modern Salesforce alternative with your pipeline, industry templates and automations — without the license bill."
     log:
       - "Contacts + deals imported"
       - "Pipeline + automations set"
@@ -176,7 +176,7 @@ hood:
       icon: doc
       tile: "2"
     - name: "Costs that don't scale with headcount"
-      text: "Hosting is a fixed cost. Adding people doesn't add licence fees."
+      text: "Hosting is a fixed cost. Adding people doesn't add license fees."
       icon: chart
       tile: "3"
   built-on:
@@ -206,13 +206,13 @@ talk:
       name: "Agency founder"
       line: "We spend more on software than on our newest hire, and half of it overlaps."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "Send us the list of tools and seat counts. We'll show which jobs overlap and what owning them would cost instead."
     - who: client
       name: "Agency founder"
       line: "Switching sounds painful."
     - who: us
-      name: "Ruhan"
+      name: "Ruhan Islam"
       line: "We do it one tool at a time, move the data for you and keep the old one read-only until your team is comfortable."
 
 engagement:
@@ -243,7 +243,7 @@ faq:
   - q: "Can you move our data from our current tools?"
     a: "Yes. We migrate, check the record counts and keep the old system read-only until you're confident."
   - q: "What does ERPNext cost?"
-    a: "There's no licence fee. You pay for hosting and for setup and support, with a fixed price agreed after a free assessment."
+    a: "There's no license fee. You pay for hosting and for setup and support, with a fixed price agreed after a free assessment."
   - q: "Can we still use Microsoft 365 or Google Workspace?"
     a: "Yes. Single sign-on and integrations connect the new systems to the email and calendar you already use."
 
