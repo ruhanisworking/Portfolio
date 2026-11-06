@@ -130,7 +130,8 @@ Telegram; state is in `commander/data/research.json`, drafts in `/opt/data/tmp/`
   .com" (not needed). Free-model reports were half garbled text.
 - Added: Bangladesh page, name variants (Ruhan / Ruhan Islam / Rohan /
   Bangla) in schema and visible text, Bangladesh in areaServed.
-- VM clone reset to origin/main after the push.
+- TODO: the VM clone still holds the two old Hermes commits; reset it to
+  origin/main (keep a branch of them first) before Hermes works on the site.
 
 ## Open items (2026-10-27)
 - Databricks: first lesson tonight at 20:00. Exam date to be set.
