@@ -116,6 +116,22 @@ the work end to end.
 | Commander code in the Portfolio repo | it reuses the Ember design system, with one source of truth. Data never goes in the repo |
 | Hermes skills versioned in `hermes/skills` | they are symlinked on the VM, so nothing is lost, and Claude and Hermes read the same rules |
 
+## 2026-11-06 · SEO sprint review (Claude)
+
+Hermes ran an hourly "2-day research" cron (45 runs, Oct 31 to Nov 2) and
+made two commits in its clone that it could not push. Reports went to
+Telegram; state is in `commander/data/research.json`, drafts in `/opt/data/tmp/`.
+- Kept: the blog (hub, 4 articles, RSS, article template). Fixed 3 links to
+  pages that don't exist, a `/blog/` 404, and two og-titles.
+- Dropped: hreflang en-US/en-AU on one URL (no value), self-hosted fonts
+  (1.9 MB of full font files), an unasked DESIGN.md gradient change. Its
+  clone was also behind main, so it would have undone the QA fixes.
+- Wrong in its reports: "Search Console not verified" (it is), and "move to
+  .com" (not needed). Free-model reports were half garbled text.
+- Added: Bangladesh page, name variants (Ruhan / Ruhan Islam / Rohan /
+  Bangla) in schema and visible text, Bangladesh in areaServed.
+- VM clone reset to origin/main after the push.
+
 ## Open items (2026-10-27)
 - Databricks: first lesson tonight at 20:00. Exam date to be set.
 - People book: Ruhan to name his main contacts, groups and CC rules.

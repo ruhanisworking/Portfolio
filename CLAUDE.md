@@ -38,7 +38,9 @@ Never commit them or any key or token. Log progress in that note's status log.
 
 ## Content and language
 
-Audience is the US and Australia, US English. The new site has no Bangla for
+Audience is the US and Australia, plus businesses in Bangladesh (since
+2026-11-06: AI, websites, custom software; page `/ai-automation-bangladesh/`).
+Copy is US English. The new site has no Bangla for
 now; on the live site English is the default and Bangla is opt-in.
 
 ## Folders

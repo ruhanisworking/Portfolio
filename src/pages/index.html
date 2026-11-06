@@ -12,12 +12,16 @@
             "@type": "Person",
             "@id": "{{site.url}}/#person",
             "name": "{{site.full-name}}",
-            "alternateName": ["{{site.name}}", "Ruhan Islam", "ruhan bd"],
+            "alternateName": ["{{site.name}}", "Ruhan Islam", "Md Ruhan Islam", "Rohan", "Rohan Islam", "ruhan bd", "রুহান", "মোহাম্মদ রুহান ইসলাম"],
+            "givenName": "Ruhan",
+            "familyName": "Islam",
             "jobTitle": "{{site.role}}",
             "email": "mailto:{{site.email}}",
             "url": "{{site.url}}/",
             "image": "{{site.url}}/images/ruhan-avatar.png",
+            "telephone": "+8801749501010",
             "sameAs": ["{{site.linkedin}}", "{{site.github}}"],
+            "workLocation": { "@type": "Place", "name": "Dhaka, Bangladesh" },
             "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
             "alumniOf": { "@type": "CollegeOrUniversity", "name": "Khulna University of Engineering & Technology (KUET)" },
             "knowsAbout": ["AI automation", "Private AI", "Workflow automation", "n8n", "Self-hosted software", "Backup and recovery", "Server monitoring", "Cybersecurity", "Web accessibility", "Open source"]
@@ -29,8 +33,10 @@
             "url": "{{site.url}}/",
             "email": "{{site.email}}",
             "founder": { "@id": "{{site.url}}/#person" },
-            "areaServed": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "Australia" }],
-            "availableLanguage": "en",
+            "areaServed": [{ "@type": "Country", "name": "Bangladesh" }, { "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "Australia" }],
+            "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
+            "contactPoint": { "@type": "ContactPoint", "email": "{{site.email}}", "telephone": "+8801749501010", "contactType": "customer service", "availableLanguage": ["en", "bn"] },
+            "availableLanguage": ["en", "bn"],
             "serviceType": ["Private AI setup", "Workflow automation", "Backup and recovery", "Server and uptime monitoring", "Security and compliance", "Accessible websites"]
           },
           {
@@ -38,7 +44,7 @@
             "@id": "{{site.url}}/#website",
             "url": "{{site.url}}/",
             "name": "{{site.name}}",
-            "alternateName": ["ruhan.bd", "Mohammad Ruhan Islam"],
+            "alternateName": ["ruhan.bd", "Ruhan", "Ruhan Islam", "Mohammad Ruhan Islam"],
             "inLanguage": "en",
             "publisher": { "@id": "{{site.url}}/#person" }
           }
@@ -264,7 +270,7 @@
           <header class="section-header" data-reveal>
             <span class="section-header__eyebrow t-eyebrow">04 · About</span>
             <h2 class="t-h2" id="about-title">A freelance software engineer with <span class="t-accent">government-scale experience</span></h2>
-            <p class="section-header__sub t-subheading">I'm a freelance software engineer based in Dhaka, Bangladesh, working with teams in the US and Australia. I've spent 2.5 years shipping systems where downtime isn't a metric — it's an incident.</p>
+            <p class="section-header__sub t-subheading">I'm Mohammad Ruhan Islam — Ruhan Islam, or just Ruhan (some write it Rohan). I'm a freelance software engineer based in Dhaka, working with businesses in <a href="/ai-automation-bangladesh/">Bangladesh</a>, the US and Australia. I've spent 2.5 years shipping systems where downtime isn't a metric — it's an incident.</p>
           </header>
 
           <div class="split split--top">
@@ -315,6 +321,10 @@
             <details class="accordion" name="faq" open>
               <summary>Do you work with clients in the US and Australia? <span class="accordion__icon" aria-hidden="true"></span></summary>
               <div class="accordion__body">Yes — all of my client work is remote. My day in Dhaka (GMT+6) overlaps the Australian working day, and for US clients I work while you sleep and hand over by your morning. Calls fit your morning or evening.</div>
+            </details>
+            <details class="accordion" name="faq">
+              <summary>Do you take projects from businesses in Bangladesh? <span class="accordion__icon" aria-hidden="true"></span></summary>
+              <div class="accordion__body">Yes. I'm in Dhaka and build AI chatbots, websites, custom software and mobile apps for businesses across Bangladesh, in Bangla or English. See <a href="/ai-automation-bangladesh/">AI automation in Bangladesh</a> for what that looks like.</div>
             </details>
             <details class="accordion" name="faq">
               <summary>What does "private" or "self-hosted" mean for my business? <span class="accordion__icon" aria-hidden="true"></span></summary>

@@ -201,7 +201,11 @@ export function build() {
   // 4a. hand-written pages: src/pages/<name>.html + content/<name>.md
   for (const f of readdirSync(join(SRC, "pages")).filter((f) => f.endsWith(".html"))) {
     const name = f.replace(/\.html$/, "");
-    emit(join(SRC, "pages", f), join(CONTENT, `${name}.md`), readContent(name), name, join(DIST, f));
+    const page = readContent(name);
+    // a folder-style seo.path ("/blog/") is served from dist/blog/index.html
+    const path = page.seo?.path;
+    const out = path && path !== "/" && path.endsWith("/") ? join(DIST, path, "index.html") : join(DIST, f);
+    emit(join(SRC, "pages", f), join(CONTENT, `${name}.md`), page, name, out);
   }
 
   // 4b. generated pages: every content/<dir>/<slug>.md renders through
@@ -220,6 +224,33 @@ export function build() {
     `<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>\n` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
     `${sitemap.join("\n")}\n</urlset>\n`);
+  // 4c. RSS feed for the blog (dist/blog/rss.xml)
+  const blog = (collections.blog || []).slice().sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+  if (blog.length) {
+    const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    const lines = [];
+    lines.push("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+    lines.push('<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">');
+    lines.push("  <channel>");
+    lines.push(`    <title>${esc(site.name)} - Blog</title>`);
+    lines.push(`    <link>${site.url}/blog/</link>`);
+    lines.push(`    <description>${esc("Practical guides on backups, private AI, the Essential Eight and server monitoring for small businesses in the US and Australia.")}</description>`);
+    lines.push(`    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>`);
+    lines.push(`    <atom:link href="${site.url}/blog/rss.xml" rel="self" type="application/rss+xml" />`);
+    for (const b of blog) {
+      lines.push("    <item>");
+      lines.push(`      <title>${esc(b.seo.title)}</title>`);
+      lines.push(`      <link>${site.url}${b.seo.path}</link>`);
+      lines.push(`      <guid isPermaLink="true">${site.url}${b.seo.path}</guid>`);
+      lines.push(`      <pubDate>${new Date(b.date || Date.now()).toUTCString()}</pubDate>`);
+      lines.push(`      <description>${esc(b.seo.description)}</description>`);
+      lines.push("    </item>");
+    }
+    lines.push("  </channel>");
+    lines.push("</rss>");
+    write(join(DIST, "blog", "rss.xml"), lines.join("\n") + "\n");
+  }
+
   // for tools/og.py: what each page's share image should say
   write(join(DIST, "pages.json"), JSON.stringify(pagesIndex, null, 2));
 

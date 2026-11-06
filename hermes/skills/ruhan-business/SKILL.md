@@ -1,6 +1,6 @@
 ---
 name: ruhan-business
-description: "Who Ruhan is and what his business does: services, audience (US + Australia), positioning, plans and where the details live. Load for client work, proposals, leads, social posts, content ideas, pricing talk, or anything about ruhan.bd."
+description: "Who Ruhan is and what his business does: services, audience (US + Australia + Bangladesh), positioning, plans and where the details live. Load for client work, proposals, leads, social posts, content ideas, pricing talk, or anything about ruhan.bd."
 version: 1.0.0
 author: Ruhan + Claude
 platforms: [linux]
@@ -17,7 +17,10 @@ metadata:
 **Mohammad Ruhan Islam**, AI Automation & Infrastructure Engineer, based in
 Dhaka, Bangladesh. He works remotely for small businesses in the **US and
 Australia**. His hours overlap Australian business hours, with overnight
-turnaround for the US.
+turnaround for the US. Since 2026-11-06 he also takes **Bangladesh**
+clients (AI chatbots, websites, custom software, mobile apps), in Bangla or
+English: https://ruhan.bd/ai-automation-bangladesh/. His name is searched as
+"Ruhan", "Ruhan Islam" and "Rohan"; use "Mohammad Ruhan Islam (Ruhan)".
 
 - Site: https://ruhan.bd. Public contact: **hi@ruhan.bd**. He sends his own
   mail from **me@ruhan.bd**.

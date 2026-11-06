@@ -1,6 +1,6 @@
 # Ruhan — AI automation & infrastructure engineer
 
-> Mohammad Ruhan Islam ("Ruhan") is a freelance AI automation engineer based in Dhaka, Bangladesh, working remotely with small businesses in the United States and Australia. He builds private (self-hosted) AI assistants, workflow automation, backup and recovery with tested restores, server and uptime monitoring, security and compliance basics (MFA, password vaults, Essential Eight / HIPAA / SOC 2 groundwork) and WCAG 2.2 AA accessible websites — on open-source software the client owns.
+> Mohammad Ruhan Islam ("Ruhan", also written "Ruhan Islam" or "Rohan") is a freelance AI automation engineer based in Dhaka, Bangladesh. He works with businesses in Bangladesh (AI chatbots, websites, custom software, mobile apps; in Bangla or English) and remotely with small businesses in the United States and Australia. He builds private (self-hosted) AI assistants, workflow automation, backup and recovery with tested restores, server and uptime monitoring, security and compliance basics (MFA, password vaults, Essential Eight / HIPAA / SOC 2 groundwork) and WCAG 2.2 AA accessible websites — on open-source software the client owns.
 
 Contact: hi@ruhan.bd
 

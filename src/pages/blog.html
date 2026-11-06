@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- Blog listing. content/blog.md provides the page; content/blog/*.md are the articles. -->
+<html lang="en" translate="no">
+ <head>
+  <!-- @include partials/head.html robots="index, follow, max-image-preview:large, max-snippet:-1" -->
+ </head>
+ <body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- @include components/island/island.html home="Blog" -->
+
+  <main id="main">
+   <section class="section" aria-labelledby="page-title">
+    <div class="container container--prose stack stack--lg">
+     <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol><li><a href="/">Home</a></li><li aria-current="page">Blog</li></ol>
+     </nav>
+     <header class="stack" data-reveal>
+      <span class="t-eyebrow">{{page.hero.kicker}}</span>
+      <h1 class="t-h1" id="page-title">{{page.hero.line}}</h1>
+      <p class="t-subheading">{{page.hero.lede}}</p>
+     </header>
+     <p class="t-body" data-reveal>{{page.intro}}</p>
+     <ul class="related-links" data-reveal-stagger>
+      <!-- @each blog as item -->
+      <li><a class="related-links__item card card--interactive" href="{{item.seo.path}}"><b>{{item.hero.line}}</b><span>{{item.seo.description}}</span></a></li>
+      <!-- @end -->
+     </ul>
+    </div>
+   </section>
+  </main>
+
+  <!-- @include components/footer/footer.html tagline="Private AI, automation, backups and monitoring for small businesses in the US and Australia - built on open source, owned by you." -->
+ </body>
+</html>

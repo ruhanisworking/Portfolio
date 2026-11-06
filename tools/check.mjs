@@ -109,7 +109,9 @@ if (existsSync(CONTENT)) {
     const nested = relative(CONTENT, at0).includes("\\") || relative(CONTENT, at0).includes("/");
     const name = relative(CONTENT, at0).replace(/\\/g, "/").replace(/\.md$/, "");
     const page = readFrontMatter(at0);
-    const built = nested ? join(DIST, page.seo?.path || "", "index.html") : join(DIST, `${name}.html`);
+    const p = page.seo?.path || "";
+    const folder = nested || (p !== "/" && p.endsWith("/"));
+    const built = folder ? join(DIST, p, "index.html") : join(DIST, `${name}.html`);
     // noindex pages (e.g. the component catalogue) aren't held to SEO rules
     if (!page.seo || page.seo.index === "false" || !existsSync(built)) continue;
     const html = readFileSync(built, "utf8");

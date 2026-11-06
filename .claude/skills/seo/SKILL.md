@@ -1,7 +1,7 @@
 ---
 name: seo
 description: >
-  SEO audit and fix playbook for ruhan.bd (US / Australian audience, .bd domain):
+  SEO audit and fix playbook for ruhan.bd (US / Australian audience plus Bangladesh, .bd domain):
   120 checks across crawling, indexing, on-page, content, schema, speed, mobile,
   internal links, backlinks, international targeting, AI search and brand
   searches. Use when asked about SEO, Google ranking, indexing, Search Console,
@@ -172,3 +172,10 @@ redirects, Googlebot UA) → `site:ruhan.bd` and brand searches → Search Conso
 - Hover lift on cards that weren't links.
 - Brand name missing from the home title/H1 (bad for "ruhan" searches).
 - Animated scenes that started empty.
+- Hermes (free model) added hreflang en-US/en-AU/x-default all pointing at
+  the same URL: useless, and wrong for a .bd site. Never add hreflang without
+  separate localised pages.
+- A hand-written page with a folder path (`/blog/`) was emitted as
+  `blog.html` → 404. build.mjs now writes folder paths to `<path>/index.html`.
+- Links to solution pages that don't exist (`/solutions/private-chatgpt/`).
+  Check every href against `content/solutions/*.md` paths.

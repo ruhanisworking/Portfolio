@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- Blog article. content/blog/<slug>.md renders through this into /blog/<slug>/. -->
+<html lang="en" translate="no">
+ <head>
+  <!-- @include partials/head.html robots="index, follow, max-image-preview:large, max-snippet:-1" -->
+  <script type="application/ld+json">
+   {
+     "@context": "https://schema.org",
+     "@graph": [{
+       "@type": "BlogPosting",
+       "@id": "{{site.url}}{{page.seo.path}}#post",
+       "headline": "{{page.seo.title|json}}",
+       "description": "{{page.seo.description|json}}",
+       "datePublished": "{{page.date}}",
+       "dateModified": "{{page.date}}",
+       "author": { "@type": "Person", "@id": "{{site.url}}/#person" },
+       "publisher": { "@type": "Organization", "@id": "{{site.url}}/#service" },
+       "image": "{{site.url}}{{page.og-image}}",
+       "inLanguage": "en"
+     }]
+   }
+  </script>
+ </head>
+ <body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- @include components/island/island.html home="Blog" -->
+
+  <main id="main">
+   <section class="section" aria-labelledby="page-title">
+    <div class="container container--prose stack stack--lg">
+     <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol><li><a href="/">Home</a></li><li><a href="/blog/">Blog</a></li><li aria-current="page">{{page.hero.crumb}}</li></ol>
+     </nav>
+     <header class="stack" data-reveal>
+      <span class="t-eyebrow">{{page.hero.kicker}}</span>
+      <h1 class="t-h1" id="page-title">{{page.hero.line}}</h1>
+      <p class="t-subheading">{{page.hero.lede}}</p>
+     </header>
+     <div class="stack stack--lg" data-reveal>{{page.body}}</div>
+
+     <!-- @if page.related -->
+     <section class="section" aria-labelledby="related-title">
+      <div class="container">
+       <header class="section-header section-header--center" data-reveal>
+        <span class="section-header__eyebrow t-eyebrow">Keep exploring</span>
+        <h2 class="t-h2" id="related-title">Related solutions</h2>
+       </header>
+       <ul class="related-links" data-reveal-stagger>
+        <!-- @each page.related as r -->
+        <li><a class="related-links__item card card--interactive" href="{{r.path}}"><b>{{r.name}}</b><span>{{r.line}}</span></a></li>
+        <!-- @end -->
+       </ul>
+      </div>
+     </section>
+     <!-- @end -->
+    </div>
+   </section>
+  </main>
+
+  <!-- @include components/footer/footer.html tagline="Private AI, automation, backups and monitoring for small businesses in the US and Australia - built on open source, owned by you." -->
+ </body>
+</html>
